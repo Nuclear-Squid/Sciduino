@@ -1,6 +1,6 @@
 #define USE_TIMER_1 true
 
-#include <TimerInterrupt.h>
+#include "libs/TimerInterrupt.h"
 
 #include "stdint_aliases.h"
 
