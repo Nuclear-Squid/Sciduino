@@ -5,8 +5,8 @@ import QtCharts
 ChartView {
     id: chartView
 
+    antialiasing: true
     animationOptions: ChartView.NoAnimation
-    theme: ChartView.ChartThemeDark
 
     ValueAxis {
         id: axisX

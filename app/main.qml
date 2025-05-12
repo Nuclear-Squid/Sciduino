@@ -2,22 +2,18 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.11
 import QtQuick.Controls 2.1
 import QtQuick.Window 2.1
-import QtQuick.Controls.Material 2.1
 
 ApplicationWindow {
     id: page
     width: 800
     height: 400
     visible: true
-    Material.theme: Material.Dark
-    Material.accent: Material.Red
 
     Bridge { id: bridge }
 
     ColumnLayout {
         Text {
-            text: "Scpino1k control panel"
-            color: "Ghost white"
+            text: "Scpino1k Control Panel"
             font: ({
                 bold: true,
                 pointSize: 24,
@@ -60,7 +56,6 @@ ApplicationWindow {
                     Text {
                         id: label
                         text: ""
-                        color: "Ghost white"
                         padding: 1
                         Layout.alignment: Qt.AlignHCenter
                     }

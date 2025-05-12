@@ -75,7 +75,6 @@ class Bridge(QObject):
 
 def main() -> None:
     app = QApplication(sys.argv)
-    QQuickStyle.setStyle("Material")
     engine = QQmlApplicationEngine()
     # Add the current directory to the import paths and load the main module.
     engine.addImportPath(sys.path[0])
