@@ -29,21 +29,19 @@ class Board(serial.Serial):
     def measure(self) -> float:
         """ Get current voltage read by the ADC """
         self.write(bytes(':MEAS\n', 'ascii'))
-        return readline_voltage()
+        return self.readline_voltage()
 
-    def burst(self) -> list[tuple[float,float]]:
+    def burst(self, measurements, frequency) -> list[tuple[float,float]]:
         """ Get a lot of mesurements in a small amount of time """
-        POINTS_PER_BURST = 500
-        FREQUENCY = 5000
 
-        self.write(bytes(f':BRST {POINTS_PER_BURST},{FREQUENCY}\n', 'ascii'))
+        self.write(bytes(f':BRST {measurements},{frequency}\n', 'ascii'))
 
         # HACK: Wait for the data to come in, as to not trigger the timeout when
         # immediataly trying to read values from the board when it’s measuring
         # the input signal.
-        time.sleep(POINTS_PER_BURST / FREQUENCY)
+        time.sleep(measurements / frequency)
 
-        return [(i / FREQUENCY, self.readline_voltage()) for i in range(POINTS_PER_BURST)]
+        return [(i / frequency, self.readline_voltage()) for i in range(measurements)]
 
 scpino = Board(
     port     = "/dev/ttyACM0",
@@ -76,10 +74,10 @@ class Bridge(QObject):
     def readOneShotValue(self):
         return str(scpino.measure()) + 'V'
 
-    @Slot(result=str)
-    def getBurst(self):
+    @Slot(int, float, result=str)
+    def getBurst(self, measurements, frequency):
         shit_json = '['
-        for (i, x) in scpino.burst():
+        for (i, x) in scpino.burst(measurements, frequency):
             shit_json += f'[{i}, {x}],'
 
         shit_json = shit_json[:-1] + ']'
