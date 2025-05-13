@@ -2,15 +2,19 @@
 
 #include "libs/TimerInterrupt.h"
 
+#include "flip_flop.h"
 #include "stdint_aliases.h"
 
 #define RBI "rbi-scpino1k"
-#define VER "0.1"
+#define VER "0.2"
 
 #define ADC_PIN A0
 
-#define STREAM_INTERVAL_MILIS 1000
 #define STREAM_BUFFER_SIZE 50
+#define STREAM_FREQUENCY STREAM_BUFFER_SIZE
+
+#define BURST_BUFFER_SIZE 500
+#define BURST_FREQUENCY 5000
 
 // Pins :
 //
@@ -29,130 +33,129 @@
 
 String SerialInputStr = "";
 
-bool stream_data = false;
-bool send_stream_data = false;
-struct {
-    u16 buffer1[STREAM_BUFFER_SIZE];
-    u16 buffer2[STREAM_BUFFER_SIZE];
-    u8  current_write_buffer;
+enum: u8 {
+    ReadCommands,
+    SendBurstData,
+    SendStreamData,
+} serial_state;
 
-    u16* get_write_buffer() {
-        return this->current_write_buffer == 0
-            ? this->buffer1
-            : this->buffer2
-        ;
-    }
+union {
+    FlipFlopBuffer<u16, STREAM_BUFFER_SIZE> stream;
+    u16 burst[BURST_BUFFER_SIZE];
+} buffers;
 
-    u16* get_read_buffer() {
-        return this->current_write_buffer == 0
-            ? this->buffer2
-            : this->buffer1
-        ;
-    }
-
-    void flip_buffers() {
-        this->current_write_buffer ^= 1;
-    }
-} stream_buffer;
-
+size_t measure_count = 0;
 
 // SCPI-like command handling
 void processCommand(String cmd) {
     if (cmd == "*IDN?") { // identification (standard SCPI command)
         Serial.println(RBI);
+        return;
     }
-    else if (cmd == "*VER?") { // version number (*not* a standard SCPI command)
+    if (cmd == "*VER?") { // version number (*not* a standard SCPI command)
         Serial.println(VER);
+        return;
     }
 
-    else if (cmd.startsWith(":MEAS")) {
+    if (cmd.startsWith(":MEAS")) {
         Serial.println(analogRead(ADC_PIN));
+        return;
     }
-    else if (cmd.startsWith(":BRST")) {
-        for (int i = 0; i < 50; i++) {
-            stream_buffer.buffer1[i] = analogRead(ADC_PIN);
-            delayMicroseconds(5);
-        }
 
-        for (int i = 0; i < 50; i++) {
-            Serial.println(stream_buffer.buffer1[i]);
+    if (cmd.startsWith(":BRST")) {
+        measure_count = 0;
+        if (!ITimer1.attachInterrupt(BURST_FREQUENCY, TimerHandlerBurst)) {
+            Serial.println("Couldn’t attach interrupt timer 1");
         }
+        return;
     }
-    else if (cmd.startsWith(":STRM")) {
-        // stream_data = !cmd.startsWith(":STRM:STOP");
+
+    if (cmd.startsWith(":STRM")) {
+        measure_count = 0;
         if (cmd.startsWith(":STRM:STOP")) {
             ITimer1.stopTimer();
-            digitalWrite(LED_BUILTIN, LOW);
         }
-        else {
-            ITimer1.restartTimer();
-            digitalWrite(LED_BUILTIN, HIGH);
+        else if (!ITimer1.attachInterrupt(STREAM_FREQUENCY, TimerHandlerStream)) {
+            Serial.println("Couldn’t attach interrupt timer 1");
         }
+        return;
     }
-    else {
-        Serial.print("ERR -- unsupported command: ");
-        Serial.println(cmd);
+
+    Serial.print("ERR -- unsupported command: ");
+    Serial.println(cmd);
+}
+
+
+void TimerHandlerStream() {
+    buffers.stream.get_write_buffer()[measure_count++] = analogRead(ADC_PIN);
+
+    if (measure_count == buffers.stream.length()) {
+        measure_count = 0;
+        buffers.stream.flip_buffers();
+        serial_state = SendStreamData;
     }
 }
 
 
-void TimerHandler1() {
-    static u16 measureCount = 0;
-    stream_buffer.get_write_buffer()[measureCount++] = analogRead(ADC_PIN);
+void TimerHandlerBurst() {
+    buffers.burst[measure_count++] = analogRead(ADC_PIN);
 
-    if (measureCount == STREAM_BUFFER_SIZE) {
-        measureCount = 0;
-        stream_buffer.flip_buffers();
-        send_stream_data = true;
+    if (measure_count == BURST_BUFFER_SIZE) {
+        ITimer1.stopTimer();
+        measure_count = 0;
+        serial_state = SendBurstData;
     }
 }
+
 
 void setup() {
     SerialInputStr.reserve(256);
     Serial.begin(115200);
     while (!Serial);
 
-    pinMode(LED_BUILTIN, OUTPUT);
     pinMode(ADC_PIN, INPUT);
 
     ITimer1.init();
-    if (!ITimer1.attachInterruptInterval(STREAM_INTERVAL_MILIS / STREAM_BUFFER_SIZE, TimerHandler1)) {
-        Serial.println("Couldn’t attach interrupt timer 1");
-        for (;;);
-    }
-    ITimer1.stopTimer();
 }
 
 
 void loop() {
-    if (send_stream_data) {
-        send_stream_data = false;
-        u16* buffer = stream_buffer.get_read_buffer();
-
-        for (size_t i = 0; i < STREAM_BUFFER_SIZE; i++) {
-            Serial.print("    |");
-            u8 graph_star_position = buffer[i] * 20 / 1024;
-            for (size_t j = 0; j < graph_star_position; j++) {
-                Serial.print(" ");
+    switch (serial_state) {
+        case ReadCommands:
+            while (Serial.available()) {
+                char inputChr = (char) Serial.read();
+                if (inputChr == '\n') {
+                    processCommand(SerialInputStr);
+                    SerialInputStr = "";
+                } else {
+                    SerialInputStr += inputChr;
+                }
             }
-            Serial.print("*");
-            for (size_t j = 0; j < 20 - graph_star_position; j++) {
-                Serial.print(" ");
+            break;
+
+        case SendBurstData:
+            for (size_t i = 0; i < BURST_BUFFER_SIZE; i++) Serial.println(buffers.burst[i]);
+            serial_state = ReadCommands;
+            break;
+
+        case SendStreamData:
+            u16* buffer = buffers.stream.get_read_buffer();
+
+            for (size_t i = 0; i < STREAM_BUFFER_SIZE; i++) {
+                Serial.print("    |");
+                size_t graph_star_position = buffer[i] * 20 / 1024;
+                for (u8 j = 0; j < graph_star_position; j++) {
+                    Serial.print(" ");
+                }
+                Serial.print("*");
+                for (u8 j = 0; j < 20 - graph_star_position; j++) {
+                    Serial.print(" ");
+                }
+                Serial.print("|    ");
+
+                Serial.println(buffer[i]);
             }
-            Serial.print("|    ");
-
-            Serial.println(buffer[i]);
-
-        }
-    }
-
-    while (Serial.available()) {
-        char inputChr = (char) Serial.read();
-        if (inputChr == '\n') {
-            processCommand(SerialInputStr);
-            SerialInputStr = "";
-        } else {
-            SerialInputStr += inputChr;
-        }
+            serial_state = ReadCommands;
+            break;
     }
 }
