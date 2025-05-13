@@ -10,12 +10,12 @@ ChartView {
 
     ValueAxis {
         id: axisX
-        min: 0
-        max: 500
+        titleText: "Time [s]"
     }
 
     ValueAxis {
         id: axisY
+        titleText: "Voltage [V]"
         min: -1
         max: 4
     }
@@ -30,6 +30,8 @@ ChartView {
 
     function renderGraph(values) {
         chartView.removeAllSeries();
+        axisX.max = values[values.length - 1][0]
+        axisX.applyNiceNumbers()
         var series = chartView.createSeries(ChartView.SeriesTypeLine, "signal", axisX, axisY);
         for (const [x, y] of values) series.append(x, y)
     }

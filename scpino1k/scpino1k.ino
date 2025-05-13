@@ -1,4 +1,4 @@
-#define USE_TIMER_1 true
+#define USE_TIMER_1 true // NOTE: Needed by `TimerInterrupt`, keep above include statements
 
 #include "libs/TimerInterrupt.h"
 
@@ -6,30 +6,15 @@
 #include "stdint_aliases.h"
 
 #define RBI "rbi-scpino1k"
-#define VER "0.2"
+#define VER "0.3"
 
 #define ADC_PIN A0
 
-#define STREAM_BUFFER_SIZE 50
+#define STREAM_BUFFER_SIZE 500
 #define STREAM_FREQUENCY STREAM_BUFFER_SIZE
 
-#define BURST_BUFFER_SIZE 500
+#define BURST_BUFFER_SIZE 2000
 #define BURST_FREQUENCY 5000
-
-// Pins :
-//
-// 11 -> DOUT = Serial Data Output. When _CS_ is low, data is clocked out of
-//       DOUT with each falling SCLK transition. When _CS_ is high, DOUT is high
-//       impedance.
-//
-// 12 -> DIN = Serial Data Input. When _CS_ is low, data is clocked in on the
-//       rising edge of SCLK. When _CS_ is high, transitions on DIN are ignored.
-//
-// 13 -> SCLK = Serial Clock Input. When _CS_ is low, transitions on SCLK clock
-//       data into DIN and out of DOUT. When _CS_ is high, transitions on SCLK
-//       are ignored. high, transitions on DIN are ignored
-//
-// NOTE: _CS_ is currently connected to GND, thus always low.
 
 String SerialInputStr = "";
 
@@ -45,38 +30,70 @@ union {
 } buffers;
 
 size_t measure_count = 0;
+size_t max_measurements = 0;
 
 // SCPI-like command handling
 void processCommand(String cmd) {
-    if (cmd == "*IDN?") { // identification (standard SCPI command)
+    cmd.trim();
+    cmd.toLowerCase();
+
+    if (cmd == "*idn?") { // identification (standard SCPI command)
         Serial.println(RBI);
         return;
     }
-    if (cmd == "*VER?") { // version number (*not* a standard SCPI command)
+    if (cmd == "*ver?") { // version number (*not* a standard SCPI command)
         Serial.println(VER);
         return;
     }
 
-    if (cmd.startsWith(":MEAS")) {
+    if (cmd.startsWith(":meas")) {
         Serial.println(analogRead(ADC_PIN));
         return;
     }
 
-    if (cmd.startsWith(":BRST")) {
+    if (cmd.startsWith(":brst")) {
+        cmd.remove(0, 5);
+        cmd.trim();
+
+        u8 comma_index = cmd.indexOf(',');
+        if (comma_index == -1 || comma_index != cmd.lastIndexOf(',')) {
+            Serial.println("Err -- BRST command takes two arguments: meas,freq");
+            return;
+        }
+
+        i16 measurements = cmd.substring(0, comma_index).toInt();
+        if (measurements <= 0) {
+            Serial.println("Err -- Number of measurements should be a strictly positive integer");
+            return;
+        }
+
+        if (measurements > BURST_BUFFER_SIZE) {
+            Serial.print("Err -- Number of measurements exceds maximum allowed: ");
+            Serial.println(BURST_BUFFER_SIZE);
+            return;
+        }
+
+        float frequency = cmd.substring(comma_index + 1).toFloat();
+        if (frequency <= 0) {
+            Serial.println("Err -- Invalid frequency (Hz) requested, should be a strictly positive float");
+            return;
+        }
+
         measure_count = 0;
-        if (!ITimer1.attachInterrupt(BURST_FREQUENCY, TimerHandlerBurst)) {
-            Serial.println("Couldn’t attach interrupt timer 1");
+        max_measurements = measurements;
+        if (!ITimer1.attachInterrupt(frequency, TimerHandlerBurst)) {
+            Serial.println("Err -- Couldn’t attach interrupt timer 1");
         }
         return;
     }
 
-    if (cmd.startsWith(":STRM")) {
+    if (cmd.startsWith(":strm")) {
         measure_count = 0;
-        if (cmd.startsWith(":STRM:STOP")) {
+        if (cmd.startsWith(":strm:stop")) {
             ITimer1.stopTimer();
         }
         else if (!ITimer1.attachInterrupt(STREAM_FREQUENCY, TimerHandlerStream)) {
-            Serial.println("Couldn’t attach interrupt timer 1");
+            Serial.println("Err -- Couldn’t attach interrupt timer 1");
         }
         return;
     }
@@ -100,7 +117,7 @@ void TimerHandlerStream() {
 void TimerHandlerBurst() {
     buffers.burst[measure_count++] = analogRead(ADC_PIN);
 
-    if (measure_count == BURST_BUFFER_SIZE) {
+    if (measure_count == max_measurements) {
         ITimer1.stopTimer();
         measure_count = 0;
         serial_state = SendBurstData;
@@ -134,7 +151,7 @@ void loop() {
             break;
 
         case SendBurstData:
-            for (size_t i = 0; i < BURST_BUFFER_SIZE; i++) Serial.println(buffers.burst[i]);
+            for (size_t i = 0; i < max_measurements; i++) Serial.println(buffers.burst[i]);
             serial_state = ReadCommands;
             break;
 

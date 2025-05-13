@@ -3,6 +3,7 @@
 from enum import StrEnum
 import random
 import sys
+import time
 
 import serial
 from PySide6.QtCore import QObject, Slot, QUrl
@@ -17,6 +18,9 @@ QML_IMPORT_MAJOR_VERSION = 1
 
 
 class Board(serial.Serial):
+    def readline_voltage(self, max_voltage=3.3, resolution=10, precision=3):
+        return round(int(self.read_until(b'\n').decode('ascii')) * max_voltage / (2 ** resolution), precision)
+
     def measure_raw(self) -> int:
         """ Get the raw binary value of the ADC """
         self.write(bytes(':MEAS\n', 'ascii'))
@@ -25,12 +29,21 @@ class Board(serial.Serial):
     def measure(self) -> float:
         """ Get current voltage read by the ADC """
         self.write(bytes(':MEAS\n', 'ascii'))
-        return round(int(self.readline().decode('ascii')) * 3.3 / 1024, 3)
+        return readline_voltage()
 
-    def burst(self) -> list[float]:
+    def burst(self) -> list[tuple[float,float]]:
         """ Get a lot of mesurements in a small amount of time """
-        self.write(bytes(':BRST\n', 'ascii'))
-        return [ round(int(self.readline().decode('ascii')) * 3.3 / 1024, 3) for _ in range(50) ]
+        POINTS_PER_BURST = 500
+        FREQUENCY = 5000
+
+        self.write(bytes(f':BRST {POINTS_PER_BURST},{FREQUENCY}\n', 'ascii'))
+
+        # HACK: Wait for the data to come in, as to not trigger the timeout when
+        # immediataly trying to read values from the board when it’s measuring
+        # the input signal.
+        time.sleep(POINTS_PER_BURST / FREQUENCY)
+
+        return [(i / FREQUENCY, self.readline_voltage()) for i in range(POINTS_PER_BURST)]
 
 scpino = Board(
     port     = "/dev/ttyACM0",
@@ -66,8 +79,8 @@ class Bridge(QObject):
     @Slot(result=str)
     def getBurst(self):
         shit_json = '['
-        for (i, x) in enumerate(scpino.burst()):
-            shit_json += f'[{i * 50}, {x}],'
+        for (i, x) in scpino.burst():
+            shit_json += f'[{i}, {x}],'
 
         shit_json = shit_json[:-1] + ']'
         return shit_json
