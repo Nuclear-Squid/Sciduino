@@ -32,6 +32,21 @@ union {
 size_t measure_count = 0;
 size_t max_measurements = 0;
 
+
+bool try_pop_command(String* str, const String& long_command, const String& short_command) {
+    const String* matching_prefix = str->startsWith(long_command)
+        ? &long_command
+        : str->startsWith(short_command)
+        ? &short_command
+        : nullptr
+    ;
+
+    if (!matching_prefix) return false;
+    str->remove(0, matching_prefix->length());
+    str->trim();
+    return true;
+}
+
 // SCPI-like command handling
 void processCommand(String cmd) {
     cmd.trim();
@@ -46,18 +61,16 @@ void processCommand(String cmd) {
         return;
     }
 
-    if (cmd.startsWith(":meas")) {
+    if (try_pop_command(&cmd, ":measure", ":meas")) {
         Serial.println(analogRead(ADC_PIN));
         return;
     }
 
-    if (cmd.startsWith(":brst")) {
-        cmd.remove(0, 5);
-        cmd.trim();
-
+    if (try_pop_command(&cmd, ":burst", ":bur")) {
         u8 comma_index = cmd.indexOf(',');
         if (comma_index == -1 || comma_index != cmd.lastIndexOf(',')) {
             Serial.println("Err -- BRST command takes two arguments: meas,freq");
+            Serial.println("Err -- :BURST command takes two arguments: meas,freq");
             return;
         }
 
@@ -87,9 +100,9 @@ void processCommand(String cmd) {
         return;
     }
 
-    if (cmd.startsWith(":strm")) {
+    if (try_pop_command(&cmd, ":stream", ":str")) {
         measure_count = 0;
-        if (cmd.startsWith(":strm:stop")) {
+        if (cmd.startsWith(":stop")) {
             ITimer1.stopTimer();
         }
         else if (!ITimer1.attachInterrupt(STREAM_FREQUENCY, TimerHandlerStream)) {

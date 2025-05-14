@@ -34,7 +34,7 @@ class Board(serial.Serial):
     def burst(self, measurements, frequency) -> list[tuple[float,float]]:
         """ Get a lot of mesurements in a small amount of time """
 
-        self.write(bytes(f':BRST {measurements},{frequency}\n', 'ascii'))
+        self.write(bytes(f':BURST {measurements},{frequency}\n', 'ascii'))
 
         # HACK: Wait for the data to come in, as to not trigger the timeout when
         # immediataly trying to read values from the board when it’s measuring
