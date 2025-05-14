@@ -10,7 +10,7 @@
 
 #define ADC_PIN A0
 
-#define STREAM_BUFFER_SIZE 500
+#define STREAM_BUFFER_SIZE 1000
 #define STREAM_FREQUENCY STREAM_BUFFER_SIZE
 
 #define BURST_BUFFER_SIZE 2000
@@ -69,7 +69,6 @@ void processCommand(String cmd) {
     if (try_pop_command(&cmd, ":burst", ":bur")) {
         u8 comma_index = cmd.indexOf(',');
         if (comma_index == -1 || comma_index != cmd.lastIndexOf(',')) {
-            Serial.println("Err -- BRST command takes two arguments: meas,freq");
             Serial.println("Err -- :BURST command takes two arguments: meas,freq");
             return;
         }
@@ -101,13 +100,27 @@ void processCommand(String cmd) {
     }
 
     if (try_pop_command(&cmd, ":stream", ":str")) {
-        measure_count = 0;
         if (cmd.startsWith(":stop")) {
             ITimer1.stopTimer();
+            return;
         }
-        else if (!ITimer1.attachInterrupt(STREAM_FREQUENCY, TimerHandlerStream)) {
+
+        if (cmd.indexOf(',') != -1 || cmd == "") {
+            Serial.println("Err -- STREAM command accepts exactly 1 argument: frequency");
+            return;
+        }
+
+        float frequency = cmd.toFloat();
+        if (frequency <= 0) {
+            Serial.println("Err -- Invalid frequency (Hz) requested, should be a strictly positive float");
+            return;
+        }
+
+        measure_count = 0;
+        if (!ITimer1.attachInterrupt(frequency, TimerHandlerStream)) {
             Serial.println("Err -- Couldn’t attach interrupt timer 1");
         }
+
         return;
     }
 
@@ -164,29 +177,23 @@ void loop() {
             break;
 
         case SendBurstData:
+            // We need to send a u16 array as bytes via the serial bus, but
+            // Serial.write only allows sending buffers of type const char*.
             // This is one of the very few cases where `reinterpret_cast` is
             // **actually needed**, yet using it still feels wrong
-            Serial.write(reinterpret_cast<char*>(buffers.burst), max_measurements * sizeof(u16));
+            Serial.write(
+                reinterpret_cast<const char*>(buffers.burst),
+                max_measurements * sizeof(u16)
+            );
             serial_state = ReadCommands;
             break;
 
         case SendStreamData:
-            u16* buffer = buffers.stream.get_read_buffer();
-
-            for (size_t i = 0; i < STREAM_BUFFER_SIZE; i++) {
-                Serial.print("    |");
-                size_t graph_star_position = buffer[i] * 20 / 1024;
-                for (u8 j = 0; j < graph_star_position; j++) {
-                    Serial.print(" ");
-                }
-                Serial.print("*");
-                for (u8 j = 0; j < 20 - graph_star_position; j++) {
-                    Serial.print(" ");
-                }
-                Serial.print("|    ");
-
-                Serial.println(buffer[i]);
-            }
+            // Same thing here, we **actually need** reinterpret_cast...
+            Serial.write(
+                reinterpret_cast<const char*>(buffers.stream.get_read_buffer()),
+                buffers.stream.length() * sizeof(u16)
+            );
             serial_state = ReadCommands;
             break;
     }
