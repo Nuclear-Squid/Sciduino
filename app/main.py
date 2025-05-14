@@ -18,30 +18,26 @@ QML_IMPORT_MAJOR_VERSION = 1
 
 
 class Board(serial.Serial):
-    def readline_voltage(self, max_voltage=3.3, resolution=10, precision=3):
-        return round(int(self.read_until(b'\n').decode('ascii')) * max_voltage / (2 ** resolution), precision)
-
-    def measure_raw(self) -> int:
-        """ Get the raw binary value of the ADC """
-        self.write(bytes(':MEAS\n', 'ascii'))
-        return int(self.readline().decode('ascii'))
+    def read_u16_value(self, max_value=3.3, resolution=10, precision=3):
+        binary_val = int.from_bytes(self.read() + self.read(), "little")
+        return round(binary_val * max_value / (2 ** resolution), precision)
 
     def measure(self) -> float:
         """ Get current voltage read by the ADC """
         self.write(bytes(':MEAS\n', 'ascii'))
-        return self.readline_voltage()
+        return self.read_u16_value()
 
     def burst(self, measurements, frequency) -> list[tuple[float,float]]:
         """ Get a lot of mesurements in a small amount of time """
 
         self.write(bytes(f':BURST {measurements},{frequency}\n', 'ascii'))
 
-        # HACK: Wait for the data to come in, as to not trigger the timeout when
-        # immediataly trying to read values from the board when it’s measuring
-        # the input signal.
+        # HACK: Wait for the data to come in, in order to not trigger the
+        # timeout when immediataly trying to read values from the board when
+        # it’s measuring the input signal.
         time.sleep(measurements / frequency)
 
-        return [(i / frequency, self.readline_voltage()) for i in range(measurements)]
+        return [(i / frequency, self.read_u16_value()) for i in range(measurements)]
 
 scpino = Board(
     port     = "/dev/ttyACM0",

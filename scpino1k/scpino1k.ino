@@ -164,7 +164,9 @@ void loop() {
             break;
 
         case SendBurstData:
-            for (size_t i = 0; i < max_measurements; i++) Serial.println(buffers.burst[i]);
+            // This is one of the very few cases where `reinterpret_cast` is
+            // **actually needed**, yet using it still feels wrong
+            Serial.write(reinterpret_cast<char*>(buffers.burst), max_measurements * sizeof(u16));
             serial_state = ReadCommands;
             break;
 
