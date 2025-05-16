@@ -9,7 +9,7 @@ ApplicationWindow {
     height: 400
     visible: true
 
-    Bridge { id: bridge }
+    Bridge { id: scpino }
 
     ColumnLayout {
         Text {
@@ -24,15 +24,15 @@ ApplicationWindow {
             ColumnLayout {
                 Label { text: "Port:" }
                 TextField {
-                    text: bridge.getPort()
-                    onEditingFinished: bridge.setPort(displayText)
+                    text: scpino.port
+                    onEditingFinished: scpino.port = displayText
                     Layout.fillWidth: true
                 }
 
                 Label { text: "Baudrate:" }
                 TextField {
-                    text: bridge.getBaudrate()
-                    onEditingFinished: bridge.setBaudrate(Number(displayText))
+                    text: scpino.baudrate
+                    onEditingFinished: scpino.baudrate = Number(displayText)
                     Layout.fillWidth: true
                 }
             }
@@ -68,7 +68,7 @@ ApplicationWindow {
                     onClicked: {
                         let measurements = Number(measurements_field.text)
                         let frequency = Number(frequency_field.text)
-                        scope.renderGraph(JSON.parse(bridge.getBurst(measurements, frequency)))
+                        scope.renderGraph(JSON.parse(scpino.burst(measurements, frequency)))
                     }
                 }
             }
@@ -77,7 +77,7 @@ ApplicationWindow {
                 Button {
                     id: oneShotButton
                     text: "Read one shot value"
-                    onClicked: label.text = bridge.readOneShotValue()
+                    onClicked: label.text = scpino.measure()
                 }
 
                 Text {
