@@ -2,10 +2,11 @@
 
 set -euo pipefail
 
+cd $(dirname "$0")
+
 # fqbn="arduino:mbed_giga:giga"
 fqbn="arduino:avr:mega"
-# port="/dev/ttyACM0"
-port="/dev/ttyACM1"
+port="/dev/ttyACM0"
 baudrate=115200
 
 cmd="${1:-''}"
