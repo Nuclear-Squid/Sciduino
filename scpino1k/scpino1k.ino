@@ -18,11 +18,20 @@
 
 String SerialInputStr = "";
 
+// XXX: The two following enums should never overlap bit-wise, as they are
+// combined with a logical or later to more easilly swicth over both of them
+// TODO: Find a better way to represent a "switch-able" format for the
+// format / state pair.
 enum: u8 {
-    ReadCommands,
-    SendBurstData,
-    SendStreamData,
-} serial_state;
+    ReadCommands   = 1,
+    SendBurstData  = 1 << 1,
+    SendStreamData = 1 << 2,
+} serial_state = ReadCommands;
+
+enum: u8 {
+    Ascii  = 1 << 3,
+    Binary = 1 << 4,
+} transmission_format = Binary;
 
 union {
     FlipFlopBuffer<u16, STREAM_BUFFER_SIZE> stream;
@@ -58,6 +67,27 @@ void processCommand(String cmd) {
     }
     if (cmd == "*ver?") { // version number (*not* a standard SCPI command)
         Serial.println(VER);
+        return;
+    }
+
+    if (try_pop_command(&cmd, ":format", ":for")) {
+        if (cmd == "?") {
+            Serial.println(transmission_format == Ascii ? 'A' : 'B');
+            return;
+        }
+
+        if (try_pop_command(&cmd, ":ascii", ":a")) {
+            transmission_format = Ascii;
+            return;
+        }
+
+        if (try_pop_command(&cmd, ":binary", ":b")) {
+            transmission_format = Binary;
+            return;
+        }
+
+        Serial.print("Err -- Unknown format: ");
+        Serial.print(cmd);
         return;
     }
 
@@ -163,8 +193,9 @@ void setup() {
 
 
 void loop() {
-    switch (serial_state) {
-        case ReadCommands:
+    switch (serial_state | transmission_format) {
+        case ReadCommands | Ascii:
+        case ReadCommands | Binary:
             while (Serial.available()) {
                 char inputChr = (char) Serial.read();
                 if (inputChr == '\n') {
@@ -176,7 +207,12 @@ void loop() {
             }
             break;
 
-        case SendBurstData:
+        case SendBurstData | Ascii:
+            for (size_t i = 0; i < max_measurements; i++) Serial.println(buffers.burst[i]);
+            serial_state = ReadCommands;
+            break;
+
+        case SendBurstData | Binary:
             // We need to send a u16 array as bytes via the serial bus, but
             // Serial.write only allows sending buffers of type const char*.
             // This is one of the very few cases where `reinterpret_cast` is
@@ -188,7 +224,13 @@ void loop() {
             serial_state = ReadCommands;
             break;
 
-        case SendStreamData:
+        case SendStreamData | Ascii:
+            u16* values = buffers.stream.get_read_buffer();
+            for (size_t i = 0; i < buffers.stream.length(); i++) Serial.println(values[i]);
+            serial_state = ReadCommands;
+            break;
+
+        case SendStreamData | Binary:
             // Same thing here, we **actually need** reinterpret_cast...
             Serial.write(
                 reinterpret_cast<const char*>(buffers.stream.get_read_buffer()),
