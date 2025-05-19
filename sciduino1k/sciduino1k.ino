@@ -5,7 +5,7 @@
 #include "flip_flop.h"
 #include "stdint_aliases.h"
 
-#define RBI "rbi-scpino1k"
+#define RBI "rbi-sciduino1k"
 #define VER "0.3"
 
 #define ADC_PIN A0
