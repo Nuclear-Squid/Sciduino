@@ -3,13 +3,15 @@
 from enum import StrEnum
 import random
 import sys
+import threading
 import time
 
 import serial
-from PySide6.QtCore import QObject, Signal, Slot, Property, QUrl
+from PySide6.QtCore import QObject, Signal, Slot, Property, QUrl, QPoint, QPointF
 from PySide6.QtQml import QQmlApplicationEngine, QmlElement
 from PySide6.QtWidgets import QApplication
 from PySide6.QtQuickControls2 import QQuickStyle
+from PySide6.QtCharts import QChartView, QLineSeries, QValueAxis
 
 # To be used on the @QmlElement decorator
 # (QML_IMPORT_MINOR_VERSION is optional)
@@ -18,6 +20,9 @@ QML_IMPORT_MAJOR_VERSION = 1
 
 
 class Scpino():
+    streaming_timer = None
+    streaming_timer_interval = 0.2
+
     def __init__(self, safety_check=True):
         self.connection = serial.Serial (
             port     = '/dev/ttyACM0',
@@ -71,7 +76,39 @@ class Scpino():
 
         return [(i / frequency, self.read_u16_value()) for i in range(measurements)]
 
+    # HACK: This should be the same value as the buffer on the board.
+    # FIXME: Remove this once we have a nice protocol to chare waveforms.
+    STREAMING_BUFFER_SIZE = 100
+    def streaming_timer_handler(self, callback, frequency):
+        if self.connection.in_waiting > 0:
+            new_values = [(i / frequency, self.read_u16_value()) for i in range(self.STREAMING_BUFFER_SIZE)]
+            callback(new_values)
+
+        self.streaming_timer = threading.Timer(
+            self.streaming_timer_interval,
+            self.streaming_timer_handler,
+            args=[callback, frequency]
+        )
+        self.streaming_timer.start()
+
+    def start_streaming(self, frequency: float, callback):
+        self.connection.write(bytes(f':stream {frequency}\n', 'ascii'))
+        self.streaming_timer_interval = self.STREAMING_BUFFER_SIZE / frequency
+        self.streaming_timer = threading.Timer(
+            self.streaming_timer_interval,
+            self.streaming_timer_handler,
+            args=[callback, frequency]
+        )
+        self.streaming_timer.start()
+
+    def stop_streaming(self):
+        self.streaming_timer.cancel()
+        self.connection.write(b':stream:stop\n')
+        self.connection.reset_input_buffer()
+
 scpino = Scpino(safety_check=False)
+
+
 
 
 @QmlElement
@@ -80,6 +117,10 @@ class Bridge(QObject):
 
     port_changed = Signal()
     baudrate_changed = Signal()
+
+    def __init__(self, parent=None):
+        super(Bridge, self).__init__(parent)
+        self.my_data = []
 
     @Property(str, notify=port_changed)
     def port(self):
@@ -101,19 +142,40 @@ class Bridge(QObject):
     def measure(self):
         return str(scpino.measure()) + 'V'
 
-    @Slot(int, float, result=str)
-    def burst(self, measurements, frequency):
-        shit_json = '['
-        for (i, x) in scpino.burst(measurements, frequency):
-            shit_json += f'[{i}, {x}],'
+    @Slot(QLineSeries, QValueAxis, int, float)
+    def burst(self, series, axis_x, measurements, frequency):
+        raw_burst = scpino.burst(measurements, frequency)
+        series.replace([QPointF(x, y) for (x, y) in raw_burst])
+        axis_x.setMax(raw_burst[-1][0])
+        axis_x.applyNiceNumbers()
 
-        shit_json = shit_json[:-1] + ']'
-        return shit_json
+    @Slot(float, QLineSeries, QValueAxis)
+    def start_streaming(self, frequency, series, axis_x):
+        self.graph_start_x_position = 0
+        axis_x.setMin(0)
+        axis_x.setMax(1)
+
+        def stream_callback(new_values):
+            fuck_qt = [QPointF(x + self.graph_start_x_position, y) for (x, y) in new_values]
+            series.append(fuck_qt)
+
+            overflow_x = new_values[-1][0] + self.graph_start_x_position - axis_x.max()
+            if overflow_x > 0:
+                axis_x.setMax(axis_x.max() + overflow_x)
+                axis_x.setMin(axis_x.min() + overflow_x)
+
+            waveform_size_x = (new_values[1][0] - new_values[0][0]) * (len(new_values) + 1)
+            self.graph_start_x_position += waveform_size_x
+
+        cancel_timer = threading.Timer(5.1, scpino.stop_streaming)
+        cancel_timer.start()
+        scpino.start_streaming(1000, stream_callback)
 
 
 def main() -> None:
     app = QApplication(sys.argv)
     engine = QQmlApplicationEngine()
+
     # Add the current directory to the import paths and load the main module.
     dir_path = sys.path[0]
     engine.addImportPath(dir_path)

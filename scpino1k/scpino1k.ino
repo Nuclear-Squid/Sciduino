@@ -1,4 +1,4 @@
-#define USE_TIMER_1 true // NOTE: Needed by `TimerInterrupt`, keep above include statements
+#define USE_TIMER_3 true // NOTE: Needed by `TimerInterrupt`, keep above include statements
 
 #include "3rd_parts/TimerInterrupt.h"
 
@@ -10,7 +10,7 @@
 
 #define ADC_PIN A0
 
-#define STREAM_BUFFER_SIZE 1000
+#define STREAM_BUFFER_SIZE 100
 #define STREAM_FREQUENCY STREAM_BUFFER_SIZE
 
 #define BURST_BUFFER_SIZE 2000
@@ -18,19 +18,15 @@
 
 String SerialInputStr = "";
 
-// XXX: The two following enums should never overlap bit-wise, as they are
-// combined with a logical or later to more easilly swicth over both of them
-// TODO: Find a better way to represent a "switch-able" format for the
-// format / state pair.
 enum: u8 {
-    ReadCommands   = 1,
-    SendBurstData  = 1 << 1,
-    SendStreamData = 1 << 2,
+    ReadCommands,
+    SendBurstData,
+    SendStreamData,
 } serial_state = ReadCommands;
 
 enum: u8 {
-    Ascii  = 1 << 3,
-    Binary = 1 << 4,
+    Ascii,
+    Binary,
 } transmission_format = Binary;
 
 union {
@@ -123,7 +119,7 @@ void processCommand(String cmd) {
 
         measure_count = 0;
         max_measurements = measurements;
-        if (!ITimer1.attachInterrupt(frequency, TimerHandlerBurst)) {
+        if (!ITimer3.attachInterrupt(frequency, TimerHandlerBurst)) {
             Serial.println("Err -- Couldn’t attach interrupt timer 1");
         }
         return;
@@ -131,7 +127,7 @@ void processCommand(String cmd) {
 
     if (try_pop_command(&cmd, ":stream", ":str")) {
         if (cmd.startsWith(":stop")) {
-            ITimer1.stopTimer();
+            ITimer3.stopTimer();
             return;
         }
 
@@ -147,7 +143,7 @@ void processCommand(String cmd) {
         }
 
         measure_count = 0;
-        if (!ITimer1.attachInterrupt(frequency, TimerHandlerStream)) {
+        if (!ITimer3.attachInterrupt(frequency, TimerHandlerStream)) {
             Serial.println("Err -- Couldn’t attach interrupt timer 1");
         }
 
@@ -174,7 +170,7 @@ void TimerHandlerBurst() {
     buffers.burst[measure_count++] = analogRead(ADC_PIN);
 
     if (measure_count == max_measurements) {
-        ITimer1.stopTimer();
+        ITimer3.stopTimer();
         measure_count = 0;
         serial_state = SendBurstData;
     }
@@ -187,15 +183,15 @@ void setup() {
     while (!Serial);
 
     pinMode(ADC_PIN, INPUT);
+    pinMode(LED_BUILTIN, OUTPUT);
 
-    ITimer1.init();
+    ITimer3.init();
 }
 
 
 void loop() {
-    switch (serial_state | transmission_format) {
-        case ReadCommands | Ascii:
-        case ReadCommands | Binary:
+    switch (serial_state) {
+        case ReadCommands: {
             while (Serial.available()) {
                 char inputChr = (char) Serial.read();
                 if (inputChr == '\n') {
@@ -206,37 +202,46 @@ void loop() {
                 }
             }
             break;
+        }
 
-        case SendBurstData | Ascii:
-            for (size_t i = 0; i < max_measurements; i++) Serial.println(buffers.burst[i]);
-            serial_state = ReadCommands;
-            break;
+        case SendBurstData: {
+            if (transmission_format == Ascii) {
+                for (size_t i = 0; i < max_measurements; i++) Serial.println(buffers.burst[i]);
+                serial_state = ReadCommands;
+                break;
+            }
 
-        case SendBurstData | Binary:
-            // We need to send a u16 array as bytes via the serial bus, but
-            // Serial.write only allows sending buffers of type const char*.
-            // This is one of the very few cases where `reinterpret_cast` is
-            // **actually needed**, yet using it still feels wrong
-            Serial.write(
-                reinterpret_cast<const char*>(buffers.burst),
-                max_measurements * sizeof(u16)
-            );
-            serial_state = ReadCommands;
-            break;
+            if (transmission_format == Binary) {
+                // We need to send a u16 array as bytes via the serial bus, but
+                // Serial.write only allows sending buffers of type const char*.
+                // This is one of the very few cases where `reinterpret_cast` is
+                // **actually needed**, yet using it still feels wrong
+                Serial.write(
+                    reinterpret_cast<const char*>(buffers.burst),
+                    max_measurements * sizeof(u16)
+                );
+                serial_state = ReadCommands;
+                break;
+            }
+        }
 
-        case SendStreamData | Ascii:
-            u16* values = buffers.stream.get_read_buffer();
-            for (size_t i = 0; i < buffers.stream.length(); i++) Serial.println(values[i]);
-            serial_state = ReadCommands;
-            break;
+        case SendStreamData: {
+            if (transmission_format == Ascii) {
+                u16* values = buffers.stream.get_read_buffer();
+                for (size_t i = 0; i < buffers.stream.length(); i++) Serial.println(values[i]);
+                serial_state = ReadCommands;
+                break;
+            }
 
-        case SendStreamData | Binary:
-            // Same thing here, we **actually need** reinterpret_cast...
-            Serial.write(
-                reinterpret_cast<const char*>(buffers.stream.get_read_buffer()),
-                buffers.stream.length() * sizeof(u16)
-            );
-            serial_state = ReadCommands;
-            break;
+            if (transmission_format == Binary) {
+                // Same thing here, we **actually need** reinterpret_cast...
+                Serial.write(
+                    reinterpret_cast<const char*>(buffers.stream.get_read_buffer()),
+                    buffers.stream.length() * sizeof(u16)
+                );
+                serial_state = ReadCommands;
+                break;
+            }
+        }
     }
 }
