@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import numpy as np
 import sys
 import threading
 
@@ -16,7 +17,7 @@ QML_IMPORT_MAJOR_VERSION = 1
 
 from sciduino import Sciduino
 
-sciduino = Sciduino(safety_check=False)
+sciduino = Sciduino('rbi-sciduino1k')
 
 
 @QmlElement
@@ -47,15 +48,34 @@ class Bridge(QObject):
         sciduino.conection.baudrate = new_baudrate
 
     @Slot(result=str)
+    def get_input_names(self):
+        shit_json = '['
+        for input in sciduino.analog_inputs:
+            shit_json += f'"{input.name.decode('utf8')}",'
+        shit_json = shit_json[:-1] + ']'
+        return shit_json
+
+    @Slot(result=str)
     def measure(self):
         return str(sciduino.measure()) + 'V'
 
     @Slot(QLineSeries, QValueAxis, int, float)
-    def burst(self, series, axis_x, measurements, frequency):
+    def burst(self, series, x_axis, measurements, frequency):
         raw_burst = sciduino.burst(measurements, frequency)
-        series.replace([QPointF(x, y) for (x, y) in raw_burst])
-        axis_x.setMax(raw_burst[-1][0])
-        axis_x.applyNiceNumbers()
+
+        time = np.linspace(
+            raw_burst.meta.initial_time,
+            raw_burst.meta.time_interval * raw_burst.meta.values_count,
+            raw_burst.meta.values_count
+        )
+
+        # series.replaceNp(time, raw_burst.data)
+        # x_axis.applyNiceNumbers()
+
+        formated_burst = raw_burst.data * 3.3 / 1024
+        fuck_qt = [QPointF(time[i], formated_burst[i]) for i in range(measurements)]
+        series.replace(fuck_qt)
+        x_axis.applyNiceNumbers()
 
     @Slot(float, QLineSeries, QValueAxis)
     def start_streaming(self, frequency, series, axis_x):

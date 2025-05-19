@@ -5,16 +5,66 @@ if __name__ == "__main__":
     print("If you are manually running this file you are doing something stupid.")
 
 
+import ctypes
 import time
 import threading
 
+import numpy as np
 import serial
+
+
+# NOTE: This is a Python representation of the AnalogInput type defined in the
+# sciduino firmware. Make sure those two definitions match.
+class AnalogInput(ctypes.Structure):
+    # The arduino returns a packed struct to minimize memory footprint.
+    # Setting this field to 1 ensures this structure is packed in the same way.
+    _pack_ = 1
+    _fields_ = [
+        ("name",      ctypes.ARRAY(ctypes.c_char, 16)),
+        ("unit",      ctypes.ARRAY(ctypes.c_char, 8)),
+        ("pin",       ctypes.c_uint8),
+        ("precision", ctypes.c_uint8),
+        ("gain",      ctypes.c_float),
+        ("offset",    ctypes.c_float),
+    ]
+
+    def from_reader(reader):
+        return AnalogInput.from_buffer_copy(reader.read(ctypes.sizeof(AnalogInput)))
+
+
+class Waveform:
+    class Header(ctypes.Structure):
+        _pack_ = 1
+        _fields_ = [
+            ("initial_time",  ctypes.c_float),
+            ("time_interval", ctypes.c_float),
+            ("values_count",  ctypes.c_uint32),
+            ("pin_index",     ctypes.c_uint8),
+        ]
+
+        def from_reader(reader):
+            return Waveform.Header.from_buffer_copy(reader.read(ctypes.sizeof(Waveform.Header)))
+
+
+    @staticmethod
+    def from_reader(reader):
+        rv = Waveform()
+        rv.meta = Waveform.Header.from_reader(reader)
+        raw_data = reader.read(2 * rv.meta.values_count)
+        rv.data = np.frombuffer(
+            raw_data,
+            dtype=np.uint16,
+            count=rv.meta.values_count
+        )
+        return rv
+
 
 class Sciduino():
     streaming_timer = None
     streaming_timer_interval = 0.2
+    analog_inputs = []
 
-    def __init__(self, safety_check=True):
+    def __init__(self, board_name):
         self.connection = serial.Serial (
             port     = '/dev/ttyACM0',
             baudrate = 115200,
@@ -31,8 +81,6 @@ class Sciduino():
             write_timeout = 1,
         )
 
-        if not safety_check: return
-
         print("Establishing connection to the board", end="", flush=True)
         for _ in range(3):
             time.sleep(1 / 4)
@@ -42,9 +90,14 @@ class Sciduino():
 
         self.connection.write(b'*idn?\n')
         response = self.connection.readline().decode('ascii').strip()
-        if response != 'rbi-sciduino1k':
+        if response != board_name:
             print("Wrong board, you’re connected to: ", response)
-            time.sleep(2)
+            raise ValueError()
+
+        self.connection.write(b':sources:get\n')
+        inputs_count = int.from_bytes(self.connection.read())
+        for i in range(inputs_count):
+            self.analog_inputs.append(AnalogInput.from_reader(self.connection))
 
     def read_u16_value(self, max_value=3.3, resolution=10, precision=3):
         binary_val = int.from_bytes(self.connection.read(2), "little")
@@ -55,7 +108,7 @@ class Sciduino():
         self.connection.write(bytes(':MEAS\n', 'ascii'))
         return self.read_u16_value()
 
-    def burst(self, measurements, frequency) -> list[tuple[float,float]]:
+    def burst(self, measurements, frequency) -> Waveform:
         """ Get a lot of mesurements in a small amount of time """
 
         self.connection.write(bytes(f':BURST {measurements},{frequency}\n', 'ascii'))
@@ -65,7 +118,7 @@ class Sciduino():
         # it’s measuring the input signal.
         time.sleep(measurements / frequency)
 
-        return [(i / frequency, self.read_u16_value()) for i in range(measurements)]
+        return Waveform.from_reader(self.connection)
 
     # HACK: This should be the same value as the buffer on the board.
     # FIXME: Remove this once we have a nice protocol to chare waveforms.

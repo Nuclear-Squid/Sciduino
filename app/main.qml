@@ -130,7 +130,10 @@ ApplicationWindow {
             }
 
             Component.onCompleted: {
-                chart.createSeries(ChartView.SeriesTypeLine, "Signal", axisX, axisY);
+                let input_json = bridge.get_input_names();
+                let input_names = JSON.parse(input_json);
+                for (const name of input_names)
+                    chart.createSeries(ChartView.SeriesTypeLine, name, axisX, axisY);
             }
         }
     }
