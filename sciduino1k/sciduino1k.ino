@@ -69,10 +69,12 @@ void processCommand(String cmd) {
     }
 
     if (try_pop_command(&cmd, ":sources:get", ":sources:get")) {
-        const size_t analog_inputs_count = sizeof(analog_inputs) / sizeof(AnalogInput);
+        const size_t ai_size = sizeof(AnalogInput);
+        const size_t analog_inputs_count = sizeof(analog_inputs) / ai_size;
         Serial.write(analog_inputs_count);
         for (auto i = 0; i < analog_inputs_count; i++) {
-            Serial.write(reinterpret_cast<const char*>(&analog_inputs[i]), sizeof(AnalogInput));
+            char buffer[ai_size];
+            Serial.write((char*) memcpy_P(buffer, &analog_inputs[i], ai_size), ai_size);
         }
         return;
     }
@@ -93,7 +95,7 @@ void processCommand(String cmd) {
             return;
         }
 
-        Serial.print("Err -- Unknown format: ");
+        Serial.print(F("Err -- Unknown format: "));
         Serial.print(cmd);
         return;
     }
@@ -106,29 +108,30 @@ void processCommand(String cmd) {
     if (try_pop_command(&cmd, ":burst", ":bur")) {
         u8 comma_index = cmd.indexOf(',');
         if (comma_index == -1 || comma_index != cmd.lastIndexOf(',')) {
-            Serial.println("Err -- :BURST command takes two arguments: meas,freq");
+            Serial.println(F("Err -- :BURST command takes two arguments: meas,freq"));
             return;
         }
 
         i16 measurements = cmd.substring(0, comma_index).toInt();
         if (measurements <= 0) {
-            Serial.println("Err -- Number of measurements should be a strictly positive integer");
+            Serial.println(F("Err -- Number of measurements should be a strictly positive integer"));
             return;
         }
 
         if (measurements > BURST_BUFFER_SIZE) {
-            Serial.print("Err -- Number of measurements exceds maximum allowed: ");
+            Serial.print(F("Err -- Number of measurements exceds maximum allowed: "));
             Serial.println(BURST_BUFFER_SIZE);
             return;
         }
 
         float frequency = cmd.substring(comma_index + 1).toFloat();
         if (frequency <= 0) {
-            Serial.println("Err -- Invalid frequency (Hz) requested, should be a strictly positive float");
+            Serial.println(F("Err -- Invalid frequency (Hz) requested, should be a strictly positive float"));
             return;
         }
 
         measure_count = 0;
+        // max_measurements = measurements;
         waveform_header = WaveformHeader {
             .initial_time = 0,
             .time_interval = 1 / frequency,
@@ -136,7 +139,7 @@ void processCommand(String cmd) {
             .pin_index = 0,
         };
         if (!ITimer3.attachInterrupt(frequency, TimerHandlerBurst)) {
-            Serial.println("Err -- Couldn’t attach interrupt timer 1");
+            Serial.println(F("Err -- Couldn’t attach interrupt timer 1"));
         }
         return;
     }
@@ -148,25 +151,25 @@ void processCommand(String cmd) {
         }
 
         if (cmd.indexOf(',') != -1 || cmd == "") {
-            Serial.println("Err -- STREAM command accepts exactly 1 argument: frequency");
+            Serial.println(F("Err -- STREAM command accepts exactly 1 argument: frequency"));
             return;
         }
 
         float frequency = cmd.toFloat();
         if (frequency <= 0) {
-            Serial.println("Err -- Invalid frequency (Hz) requested, should be a strictly positive float");
+            Serial.println(F("Err -- Invalid frequency (Hz) requested, should be a strictly positive float"));
             return;
         }
 
         measure_count = 0;
         if (!ITimer3.attachInterrupt(frequency, TimerHandlerStream)) {
-            Serial.println("Err -- Couldn’t attach interrupt timer 1");
+            Serial.println(F("Err -- Couldn’t attach interrupt timer 1"));
         }
 
         return;
     }
 
-    Serial.print("ERR -- unsupported command: ");
+    Serial.print(F("ERR -- unsupported command: "));
     Serial.println(cmd);
 }
 
@@ -200,7 +203,7 @@ void setup() {
 
     const size_t analog_inputs_count = sizeof(analog_inputs) / sizeof(AnalogInput);
     for (auto i = 0; i < analog_inputs_count; i++)
-        pinMode(analog_inputs[i].pin, INPUT);
+        pinMode(analog_inputs[i].get_pin(), INPUT);
 
     pinMode(LED_BUILTIN, OUTPUT);
 
@@ -235,6 +238,7 @@ void loop() {
                 // Serial.write only allows sending buffers of type const char*.
                 // This is one of the very few cases where `reinterpret_cast` is
                 // **actually needed**, yet using it still feels wrong
+                digitalWrite(LED_BUILTIN, HIGH);
                 Serial.write(reinterpret_cast<const char*>(&waveform_header), sizeof(WaveformHeader));
                 Serial.write(
                     reinterpret_cast<const char*>(buffers.burst),
