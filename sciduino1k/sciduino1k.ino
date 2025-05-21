@@ -9,17 +9,16 @@
 #define RBI "rbi-sciduino1k"
 #define VER "0.4"
 
-#define ADC_PIN A0
-
 #define STREAM_BUFFER_SIZE 100
 #define STREAM_FREQUENCY STREAM_BUFFER_SIZE
 
-#define BURST_BUFFER_SIZE 2000
+#define BURST_BUFFER_SIZE 1000
 #define BURST_FREQUENCY 5000
 
 String SerialInputStr = "";
 
 WaveformHeader waveform_header;
+WaveformHeader waveform_header2;
 
 enum: u8 {
     ReadCommands,
@@ -34,7 +33,10 @@ enum: u8 {
 
 union {
     FlipFlopBuffer<u16, STREAM_BUFFER_SIZE> stream;
-    u16 burst[BURST_BUFFER_SIZE];
+    struct {
+        u16 burst[BURST_BUFFER_SIZE];
+        u16 burst2[BURST_BUFFER_SIZE];
+    };
 } buffers;
 
 u32 measure_count = 0;
@@ -101,7 +103,7 @@ void processCommand(String cmd) {
     }
 
     if (try_pop_command(&cmd, ":measure", ":meas")) {
-        Serial.println(analogRead(ADC_PIN));
+        Serial.println(analogRead(analog_inputs[0].get_pin()));
         return;
     }
 
@@ -131,13 +133,20 @@ void processCommand(String cmd) {
         }
 
         measure_count = 0;
-        // max_measurements = measurements;
         waveform_header = WaveformHeader {
             .initial_time = 0,
             .time_interval = 1 / frequency,
             .values_count = measurements,
-            .pin_index = 0,
+            .pin = analog_inputs[0].get_pin(),
         };
+
+        waveform_header2 = WaveformHeader {
+            .initial_time = 0,
+            .time_interval = 1 / frequency,
+            .values_count = measurements,
+            .pin = analog_inputs[1].get_pin(),
+        };
+
         if (!ITimer3.attachInterrupt(frequency, TimerHandlerBurst)) {
             Serial.println(F("Err -- Couldn’t attach interrupt timer 1"));
         }
@@ -175,7 +184,7 @@ void processCommand(String cmd) {
 
 
 void TimerHandlerStream() {
-    buffers.stream.get_write_buffer()[measure_count++] = analogRead(ADC_PIN);
+    buffers.stream.get_write_buffer()[measure_count++] = analogRead(analog_inputs[0].get_pin());
 
     if (measure_count == buffers.stream.length()) {
         measure_count = 0;
@@ -186,7 +195,9 @@ void TimerHandlerStream() {
 
 
 void TimerHandlerBurst() {
-    buffers.burst[measure_count++] = analogRead(ADC_PIN);
+    buffers.burst[measure_count]  = analogRead(analog_inputs[0].get_pin());
+    buffers.burst2[measure_count] = analogRead(analog_inputs[1].get_pin());
+    measure_count++;
 
     if (measure_count == waveform_header.values_count) {
         ITimer3.stopTimer();
@@ -238,11 +249,15 @@ void loop() {
                 // Serial.write only allows sending buffers of type const char*.
                 // This is one of the very few cases where `reinterpret_cast` is
                 // **actually needed**, yet using it still feels wrong
-                digitalWrite(LED_BUILTIN, HIGH);
                 Serial.write(reinterpret_cast<const char*>(&waveform_header), sizeof(WaveformHeader));
                 Serial.write(
                     reinterpret_cast<const char*>(buffers.burst),
                     waveform_header.values_count * sizeof(u16)
+                );
+                Serial.write(reinterpret_cast<const char*>(&waveform_header2), sizeof(WaveformHeader));
+                Serial.write(
+                    reinterpret_cast<const char*>(buffers.burst2),
+                    waveform_header2.values_count * sizeof(u16)
                 );
                 serial_state = ReadCommands;
                 break;

@@ -22,10 +22,10 @@ class AnalogInput(ctypes.Structure):
     _fields_ = [
         ("name",      ctypes.ARRAY(ctypes.c_char, 16)),
         ("unit",      ctypes.ARRAY(ctypes.c_char, 8)),
-        ("pin",       ctypes.c_uint8),
-        ("precision", ctypes.c_uint8),
         ("gain",      ctypes.c_float),
         ("offset",    ctypes.c_float),
+        ("precision", ctypes.c_uint8),
+        ("pin",       ctypes.c_uint8),
     ]
 
     def from_reader(reader):
@@ -39,7 +39,7 @@ class Waveform:
             ("initial_time",  ctypes.c_float),
             ("time_interval", ctypes.c_float),
             ("values_count",  ctypes.c_uint32),
-            ("pin_index",     ctypes.c_uint8),
+            ("pin",           ctypes.c_uint8),
         ]
 
         def from_reader(reader):
@@ -99,6 +99,12 @@ class Sciduino():
         for i in range(inputs_count):
             self.analog_inputs.append(AnalogInput.from_reader(self.connection))
 
+    def find_input_by_pin(self, pin: int) -> AnalogInput | None:
+        for input in self.analog_inputs:
+            if input.pin == pin:
+                return input
+        return None
+
     def read_u16_value(self, max_value=3.3, resolution=10, precision=3):
         binary_val = int.from_bytes(self.connection.read(2), "little")
         return round(binary_val * max_value / (2 ** resolution), precision)
@@ -108,7 +114,7 @@ class Sciduino():
         self.connection.write(bytes(':MEAS\n', 'ascii'))
         return self.read_u16_value()
 
-    def burst(self, measurements, frequency) -> Waveform:
+    def burst(self, measurements, frequency) -> list[Waveform]:
         """ Get a lot of mesurements in a small amount of time """
 
         self.connection.write(bytes(f':BURST {measurements},{frequency}\n', 'ascii'))
@@ -118,7 +124,7 @@ class Sciduino():
         # it’s measuring the input signal.
         time.sleep(measurements / frequency)
 
-        return Waveform.from_reader(self.connection)
+        return [Waveform.from_reader(self.connection) for _ in range(2)]
 
     # HACK: This should be the same value as the buffer on the board.
     # FIXME: Remove this once we have a nice protocol to chare waveforms.

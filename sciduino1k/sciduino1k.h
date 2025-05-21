@@ -23,15 +23,13 @@ typedef struct {
 } AnalogInput;
 
 const AnalogInput analog_inputs[] PROGMEM = {
-    { "GBF",       "V", 3.3 / 1024.0, 0, 2, A0 },
-    { "GBF2",      "V", 3.3 / 1024.0, 0, 2, A1 },
-    { "Pression",  "P", 3.3 / 1024.0, 0, 2, A2 },
-    { "Pression2", "P", 3.3 / 1024.0, 0, 2, A3 },
+    { "GBF (base)",    "V", 3.3  / 1024.0, 0,   2, A0 },
+    { "GBF (inverse)", "V", -3.3 / 1024.0, 3.3, 2, A2 },
 };
 
 typedef struct {
     f32 initial_time;
     f32 time_interval;
     u32 values_count;
-    u8  pin_index;
+    u8  pin;
 } WaveformHeader;

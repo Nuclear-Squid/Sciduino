@@ -59,23 +59,33 @@ class Bridge(QObject):
     def measure(self):
         return str(sciduino.measure()) + 'V'
 
-    @Slot(QLineSeries, QValueAxis, int, float)
-    def burst(self, series, x_axis, measurements, frequency):
-        raw_burst = sciduino.burst(measurements, frequency)
+    @Slot(QLineSeries, QLineSeries, QValueAxis, int, float)
+    def burst(self, series, series2, x_axis, measurements, frequency):
+        raw_bursts = sciduino.burst(measurements, frequency)
 
         time = np.linspace(
-            raw_burst.meta.initial_time,
-            raw_burst.meta.time_interval * raw_burst.meta.values_count,
-            raw_burst.meta.values_count
+            raw_bursts[0].meta.initial_time,
+            raw_bursts[0].meta.time_interval * raw_bursts[0].meta.values_count,
+            raw_bursts[0].meta.values_count
         )
 
         # series.replaceNp(time, raw_burst.data)
         # x_axis.applyNiceNumbers()
 
-        formated_burst = raw_burst.data * 3.3 / 1024
-        fuck_qt = [QPointF(time[i], formated_burst[i]) for i in range(measurements)]
-        series.replace(fuck_qt)
-        x_axis.applyNiceNumbers()
+        for raw_burst in raw_bursts:
+            analog_input = sciduino.find_input_by_pin(raw_burst.meta.pin)
+
+            formated_burst = raw_burst.data * analog_input.gain + analog_input.offset
+            fuck_qt = [QPointF(time[i], formated_burst[i]) for i in range(measurements)]
+
+            test = analog_input.name.decode('utf8').strip()
+            if test == series.name():
+                series.replace(fuck_qt)
+            else:
+                series2.replace(fuck_qt)
+
+            x_axis.setMax(raw_burst.meta.time_interval * raw_burst.meta.values_count)
+            x_axis.applyNiceNumbers()
 
     @Slot(float, QLineSeries, QValueAxis)
     def start_streaming(self, frequency, series, axis_x):

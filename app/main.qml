@@ -87,7 +87,7 @@ ApplicationWindow {
                     onClicked: {
                         let measurements = Number(measurements_field.text)
                         let frequency = Number(frequency_field_burst.text)
-                        bridge.burst(chart.series(0), axisX, measurements, frequency)
+                        bridge.burst(chart.series(0), chart.series(1), axisX, measurements, frequency)
                     }
                 }
             }
