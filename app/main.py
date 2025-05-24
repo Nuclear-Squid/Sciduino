@@ -51,7 +51,7 @@ class Bridge(QObject):
     def get_input_names(self):
         shit_json = '['
         for input in sciduino.analog_inputs:
-            shit_json += f'"{input.name.decode('utf8')}",'
+            shit_json += f'"{input.name}",'
         shit_json = shit_json[:-1] + ']'
         return shit_json
 

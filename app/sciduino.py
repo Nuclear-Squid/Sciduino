@@ -6,6 +6,7 @@ if __name__ == "__main__":
 
 
 import ctypes
+import textwrap
 import time
 import threading
 
@@ -15,22 +16,121 @@ import serial
 
 # NOTE: This is a Python representation of the AnalogInput type defined in the
 # sciduino firmware. Make sure those two definitions match.
+# NOTE: This is a Python representation of the AnalogInput type defined in the
+# sciduino firmware. Make sure those two definitions match.
 class AnalogInput(ctypes.Structure):
-    # The arduino returns a packed struct to minimize memory footprint.
-    # Setting this field to 1 ensures this structure is packed in the same way.
+    # The board returrns a packed struct to ensure a consistant memory layout
+    # across different architectures
     _pack_ = 1
     _fields_ = [
-        ("name",      ctypes.ARRAY(ctypes.c_char, 16)),
-        ("unit",      ctypes.ARRAY(ctypes.c_char, 8)),
+        ("_name",     ctypes.c_char * 16),
+        ("_unit",     ctypes.c_char * 8),
         ("gain",      ctypes.c_float),
         ("offset",    ctypes.c_float),
         ("precision", ctypes.c_uint8),
         ("pin",       ctypes.c_uint8),
     ]
 
-    def from_reader(reader):
-        return AnalogInput.from_buffer_copy(reader.read(ctypes.sizeof(AnalogInput)))
+    def __str__(self):
+        return textwrap.dedent(f"""\
+            name:      {self.name}
+            unit:      {self.unit}
+            gain:      {self.gain}
+            offset:    {self.offset}
+            precision: {self.precision}
+            pin:       {self.pin}
+        """)
 
+    @property
+    def name(self): return self._name.decode('ascii')
+    @name.setter
+    def name(self, new_name): self._name = bytes(new_name, 'utf8')
+
+    @property
+    def unit(self): return self._unit.decode('utf8')
+    @unit.setter
+    def unit(self, new_unit): self._unit = bytes(new_unit, 'utf8')
+
+    @staticmethod
+    def from_reader(reader) -> list[any]:
+        input_count = int.from_bytes(reader.read())
+        size = ctypes.sizeof(AnalogInput)
+        return [AnalogInput.from_buffer_copy(reader.read(size)) for _ in range(input_count)]
+
+    @staticmethod
+    def from_scpi_str(input: str) -> list[any]:
+        command_body = input.removeprefix(':input:')
+        if input == command_body: raise ValueError('Wrong command, idiot')
+
+        rv = []
+        current_input = None
+        raw_tokens = map(lambda s: s.split(maxsplit=1) + [None], command_body.split(';'))
+
+        for arg, value, *_ in raw_tokens:
+            match arg:
+                case "begin":     current_input = AnalogInput()
+                case "end":       rv.append(current_input)
+                case "name":      current_input.name = value
+                case "unit":      current_input.unit = value
+                case "gain":      current_input.gain = float(value)
+                case "offset":    current_input.offset = float(value)
+                case "precision": current_input.precision = int(value)
+                case "pin":       current_input.pin = int(value)
+                case _: raise ValueError(f'Invalid field: {arg}')
+        return rv
+
+
+# class Waveform:
+#     class Header(ctypes.Structure):
+#         _pack_ = 1
+#         _fields_ = [
+#             ("_initial_time",  ctypes.c_float),
+#             ("_time_interval", ctypes.c_float),
+#             ("_values_count",  ctypes.c_uint32),
+#             ("_pin",           ctypes.c_uint16),
+#         ]
+#
+#         @property
+#         def initial_time(self): return float(self._initial_time)
+#
+#         @property
+#         def time_interval(self): return float(self._time_interval)
+#
+#         @property
+#         def values_count(self): return int(self._values_count)
+#
+#         @property
+#         def pin(self): return int(self._pin)
+#
+#         def __str__(self):
+#             return textwrap.dedent(f"""\
+#                 initial_time:  {self.initial_time}
+#                 time_interval: {self.time_interval}
+#                 values_count:  {self.values_count}
+#                 pin: {self.pin}
+#             """)
+#
+#         def from_reader(reader):
+#             return Waveform.Header.from_buffer_copy(reader.read(ctypes.sizeof(Waveform.Header)))
+#
+#
+#     @staticmethod
+#     def from_reader(reader):
+#         rv = Waveform()
+#         rv.meta = Waveform.Header.from_reader(reader)
+#         raw_data = reader.read(2 * rv.meta.values_count)
+#         print(rv.meta)
+#         print(len(raw_data))
+#         rv.data = np.frombuffer(
+#             raw_data,
+#             dtype=np.uint16,
+#             count=rv.meta.values_count
+#         )
+#
+#         # print(type(rv._initial_time))
+#         # print(type(rv._values_count))
+#         return rv
+#
 
 class Waveform:
     class Header(ctypes.Structure):
@@ -42,9 +142,19 @@ class Waveform:
             ("pin",           ctypes.c_uint8),
         ]
 
+        def __str__(self):
+            return textwrap.dedent(f"""\
+                initial_time:  {self.initial_time}
+                time_interval: {self.time_interval}
+                values_count:  {self.values_count}
+                pin: {self.pin}
+            """)
+
         def from_reader(reader):
             return Waveform.Header.from_buffer_copy(reader.read(ctypes.sizeof(Waveform.Header)))
 
+    def __str__(self):
+        return str(self.meta) + 'data:\n' + str(self.data) + '\n'
 
     @staticmethod
     def from_reader(reader):
@@ -94,10 +204,12 @@ class Sciduino():
             print("Wrong board, you’re connected to: ", response)
             raise ValueError()
 
+        self.connection.write(b':format:ascii\n')
         self.connection.write(b':sources:get\n')
-        inputs_count = int.from_bytes(self.connection.read())
-        for i in range(inputs_count):
-            self.analog_inputs.append(AnalogInput.from_reader(self.connection))
+        self.analog_inputs = AnalogInput.from_scpi_str(self.connection.readline().decode('ascii'))
+        # inputs_count = int.from_bytes(self.connection.read())
+        # for i in range(inputs_count):
+        #     self.analog_inputs.append(AnalogInput.from_reader(self.connection))
 
     def find_input_by_pin(self, pin: int) -> AnalogInput | None:
         for input in self.analog_inputs:

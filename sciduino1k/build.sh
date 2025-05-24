@@ -5,7 +5,8 @@ set -euo pipefail
 cd $(dirname "$0")
 
 # fqbn="arduino:mbed_giga:giga"
-fqbn="arduino:avr:mega"
+# fqbn="arduino:avr:mega"
+fqbn="arduino:sam:arduino_due_x"
 port="/dev/ttyACM0"
 baudrate=115200
 
