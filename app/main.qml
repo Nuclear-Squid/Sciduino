@@ -57,7 +57,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     onClicked: {
                         let frequency = Number(frequency_field_stream.text)
-                        bridge.start_streaming(frequency, chart.series(0), axisX)
+                        bridge.start_streaming(frequency, axisX)
                     }
                 }
             }
@@ -87,7 +87,7 @@ ApplicationWindow {
                     onClicked: {
                         let measurements = Number(measurements_field.text)
                         let frequency = Number(frequency_field_burst.text)
-                        bridge.burst(chart.series(0), chart.series(1), axisX, measurements, frequency)
+                        bridge.burst(measurements, frequency, axisX)
                     }
                 }
             }
@@ -132,8 +132,10 @@ ApplicationWindow {
             Component.onCompleted: {
                 let input_json = bridge.get_input_names();
                 let input_names = JSON.parse(input_json);
-                for (const name of input_names)
-                    chart.createSeries(ChartView.SeriesTypeLine, name, axisX, axisY);
+                for (const name of input_names) {
+                    let series = chart.createSeries(ChartView.SeriesTypeLine, name, axisX, axisY);
+                    bridge.register_series(name, series);
+                }
             }
         }
     }

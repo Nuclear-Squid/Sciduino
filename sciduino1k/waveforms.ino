@@ -31,16 +31,16 @@ void Waveform::read_subset(const u16** ptr, size_t* len, BufferSubset subset) co
         }
 
         case BufferSubset::SecondHalf: {
-            size_t half_point = this->meta.length / 2;
-            *ptr = this->data + half_point;
-            *len = this->meta.length - half_point;
+            size_t halfway_point = this->meta.length / 2;
+            *ptr = this->data + halfway_point;
+            *len = this->meta.length - halfway_point;
             break;
         }
     }
 }
 
 
-void send_waveform_array_ascii(const Waveform* arr, size_t array_length, BufferSubset subset) {
+size_t send_waveform_array_ascii(const Waveform* arr, size_t array_length, BufferSubset subset) {
     size_t len;
     const u16* buffer;
     char scientific_float_buffer[16];
@@ -52,7 +52,7 @@ void send_waveform_array_ascii(const Waveform* arr, size_t array_length, BufferS
         arr[i].read_subset(&buffer, &len, subset);
 
         Serial.print(F("begin;length "));
-        Serial.print(arr[i].meta.length);
+        Serial.print(len);
 
         Serial.print(F(";time "));
         sprintf(scientific_float_buffer, "%.6e", arr[i].meta.time);
@@ -74,19 +74,25 @@ void send_waveform_array_ascii(const Waveform* arr, size_t array_length, BufferS
         Serial.print(F(";end"));
         Serial.print(i == array_length - 1 ? '\n' : ';');
     }
+
+    return len;
 }
 
 
-void send_waveform_array_binary(const Waveform* arr, size_t array_length, BufferSubset subset) {
+size_t send_waveform_array_binary(const Waveform* arr, size_t array_length, BufferSubset subset) {
     size_t len;
     const u16* buffer;
 
     Serial.write(array_length);
     for (size_t i = 0; i < array_length; i++) {
         arr[i].read_subset(&buffer, &len, subset);
-        Serial.write((const char*) &arr[i].meta, sizeof(WaveformHeader));
+        WaveformHeader header = arr[i].meta;
+        header.length = len;
+        Serial.write((const char*) &header, sizeof(WaveformHeader));
         Serial.write((const char*) buffer, len * sizeof(u16));
     }
+
+    return len;
 }
 
 
@@ -95,15 +101,17 @@ void WaveformArray<ARRAY_LENGTH, BUFFER_SIZE>::process_scheduled_transmission() 
     if (!transmission.is_scheduled) return;
     this->transmission.is_scheduled = false;
 
+    Serial.print((char) this->transmission.format);
     auto fn = this->transmission.format == TransmissionFormat::Ascii
         ? send_waveform_array_ascii
         : send_waveform_array_binary
     ;
 
-    fn(this->arr, this->active_count, this->transmission.subset);
+    size_t values_sent = fn(this->arr, this->active_count, this->transmission.subset);
 
     for (size_t i = 0; i < this->active_count; i++)
-        this->arr[i].meta.time += this->arr[i].meta.length * this->arr[i].meta.interval;
+        // this->arr[i].meta.time += this->arr[i].meta.length * this->arr[i].meta.interval;
+        this->arr[i].meta.time += values_sent * this->arr[i].meta.interval;
 }
 
 template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>

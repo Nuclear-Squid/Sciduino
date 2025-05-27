@@ -60,7 +60,7 @@ class AnalogInput(ctypes.Structure):
     @staticmethod
     def from_scpi_str(input: str) -> list[any]:
         command_body = input.removeprefix(':input:')
-        if input == command_body: raise ValueError('Wrong command, idiot')
+        if input == command_body: raise ValueError(f'Wrong command, idiot:\n{input}')
 
         rv = []
         current_input = None
@@ -80,92 +80,70 @@ class AnalogInput(ctypes.Structure):
         return rv
 
 
-# class Waveform:
-#     class Header(ctypes.Structure):
-#         _pack_ = 1
-#         _fields_ = [
-#             ("_initial_time",  ctypes.c_float),
-#             ("_time_interval", ctypes.c_float),
-#             ("_values_count",  ctypes.c_uint32),
-#             ("_pin",           ctypes.c_uint16),
-#         ]
-#
-#         @property
-#         def initial_time(self): return float(self._initial_time)
-#
-#         @property
-#         def time_interval(self): return float(self._time_interval)
-#
-#         @property
-#         def values_count(self): return int(self._values_count)
-#
-#         @property
-#         def pin(self): return int(self._pin)
-#
-#         def __str__(self):
-#             return textwrap.dedent(f"""\
-#                 initial_time:  {self.initial_time}
-#                 time_interval: {self.time_interval}
-#                 values_count:  {self.values_count}
-#                 pin: {self.pin}
-#             """)
-#
-#         def from_reader(reader):
-#             return Waveform.Header.from_buffer_copy(reader.read(ctypes.sizeof(Waveform.Header)))
-#
-#
-#     @staticmethod
-#     def from_reader(reader):
-#         rv = Waveform()
-#         rv.meta = Waveform.Header.from_reader(reader)
-#         raw_data = reader.read(2 * rv.meta.values_count)
-#         print(rv.meta)
-#         print(len(raw_data))
-#         rv.data = np.frombuffer(
-#             raw_data,
-#             dtype=np.uint16,
-#             count=rv.meta.values_count
-#         )
-#
-#         # print(type(rv._initial_time))
-#         # print(type(rv._values_count))
-#         return rv
-#
-
 class Waveform:
     class Header(ctypes.Structure):
         _pack_ = 1
         _fields_ = [
-            ("initial_time",  ctypes.c_float),
-            ("time_interval", ctypes.c_float),
-            ("values_count",  ctypes.c_uint32),
-            ("pin",           ctypes.c_uint8),
+            ("length",   ctypes.c_uint32),
+            ("time",     ctypes.c_float),
+            ("interval", ctypes.c_float),
+            ("pin",      ctypes.c_uint8),
         ]
 
         def __str__(self):
             return textwrap.dedent(f"""\
-                initial_time:  {self.initial_time}
-                time_interval: {self.time_interval}
-                values_count:  {self.values_count}
-                pin: {self.pin}
+                length:   {self.length}
+                time:     {self.time}
+                interval: {self.interval}
+                pin:      {self.pin}
             """)
 
         def from_reader(reader):
             return Waveform.Header.from_buffer_copy(reader.read(ctypes.sizeof(Waveform.Header)))
 
+    def __init__(self):
+        self.meta = Waveform.Header()
+
     def __str__(self):
         return str(self.meta) + 'data:\n' + str(self.data) + '\n'
 
     @staticmethod
-    def from_reader(reader):
-        rv = Waveform()
-        rv.meta = Waveform.Header.from_reader(reader)
-        raw_data = reader.read(2 * rv.meta.values_count)
-        rv.data = np.frombuffer(
-            raw_data,
-            dtype=np.uint16,
-            count=rv.meta.values_count
-        )
+    def from_reader(reader) -> list[any]:
+        waveform_count = int.from_bytes(reader.read())
+        rv = []
+        for _ in range(waveform_count):
+            new_waveform = Waveform()
+            new_waveform.meta = Waveform.Header.from_reader(reader)
+            raw_data = reader.read(2 * new_waveform.meta.length)
+
+            new_waveform.data = np.frombuffer(
+                raw_data,
+                dtype=np.uint16,
+                count=new_waveform.meta.length
+            )
+            rv.append(new_waveform)
+        return rv
+
+    @staticmethod
+    def from_scpi_str(input: str) -> list[any]:
+        print(input)
+        command_body = input.removeprefix(':waveform:')
+        if input == command_body: raise ValueError(f'Wrong command, idiot:\n{input}')
+
+        rv = []
+        current_waveform = None
+        raw_tokens = map(lambda s: s.split(maxsplit=1) + [None], command_body.split(';'))
+
+        for arg, value, *_ in raw_tokens:
+            match arg:
+                case "begin":    current_waveform = Waveform()
+                case "end":      rv.append(current_waveform)
+                case "length":   current_waveform.meta.length = int(value)
+                case "time":     current_waveform.meta.time = float(value)
+                case "interval": current_waveform.meta.interval = float(value)
+                case "pin":      current_waveform.meta.pin = int(value)
+                case "data":     current_waveform.data = np.fromiter(map(int, value.split(',')), dtype=np.uint16)
+                case _: raise ValueError(f'Invalid field: {arg}')
         return rv
 
 
@@ -191,6 +169,7 @@ class Sciduino():
             write_timeout = 1,
         )
 
+        self.connection.reset_input_buffer()
         print("Establishing connection to the board", end="", flush=True)
         for _ in range(3):
             time.sleep(1 / 4)
@@ -205,7 +184,7 @@ class Sciduino():
             raise ValueError()
 
         self.connection.write(b':format:ascii\n')
-        self.connection.write(b':sources:get\n')
+        self.connection.write(b':inputs?\n')
         self.analog_inputs = AnalogInput.from_scpi_str(self.connection.readline().decode('ascii'))
         # inputs_count = int.from_bytes(self.connection.read())
         # for i in range(inputs_count):
@@ -226,9 +205,10 @@ class Sciduino():
         self.connection.write(bytes(':MEAS\n', 'ascii'))
         return self.read_u16_value()
 
-    def burst(self, measurements, frequency) -> list[Waveform]:
+    def burst(self, measurements, frequency) -> list[Waveform] | None:
         """ Get a lot of mesurements in a small amount of time """
 
+        self.connection.write(bytes(':format:binary\n', 'ascii'))
         self.connection.write(bytes(f':BURST {measurements},{frequency}\n', 'ascii'))
 
         # HACK: Wait for the data to come in, in order to not trigger the
@@ -236,34 +216,55 @@ class Sciduino():
         # it’s measuring the input signal.
         time.sleep(measurements / frequency)
 
-        return [Waveform.from_reader(self.connection) for _ in range(2)]
+        format = self.connection.read()
+        if format == b'A':
+            return Waveform.from_scpi_str(self.connection.readline().decode('ascii'))
+        if format == b'B':
+            return Waveform.from_reader(self.connection)
+        if format == b'E':
+            error_message = format + self.connection.readline()
+            print(error_message.decode('ascii'))
+            return None
+        raise ValueError(f'Invalid response format: {format}')
 
-    # HACK: This should be the same value as the buffer on the board.
-    # FIXME: Remove this once we have a nice protocol to chare waveforms.
-    STREAMING_BUFFER_SIZE = 100
     def streaming_timer_handler(self, callback, frequency):
         if self.connection.in_waiting > 0:
-            new_values = [(i / frequency, self.read_u16_value()) for i in range(self.STREAMING_BUFFER_SIZE)]
-            callback(new_values)
+            new_waveforms = None
+            format = self.connection.read()
+            if format == b'A':
+                new_waveforms = Waveform.from_scpi_str(self.connection.readline().decode('ascii'))
+            elif format == b'B':
+                new_waveforms = Waveform.from_reader(self.connection)
+            elif format == b'E':
+                error_message = format + self.connection.readline()
+                print(error_message.decode('ascii'))
+            else:
+                raise ValueError(f'Invalid response format: {format}')
 
-        self.streaming_timer = threading.Timer(
-            self.streaming_timer_interval,
-            self.streaming_timer_handler,
-            args=[callback, frequency]
-        )
-        self.streaming_timer.start()
+            callback(new_waveforms)
+
+        if self.timer_repeat:
+            self.streaming_timer = threading.Timer(
+                self.streaming_timer_interval,
+                self.streaming_timer_handler,
+                args=[callback, frequency]
+            )
+            self.streaming_timer.start()
 
     def start_streaming(self, frequency: float, callback):
+        self.connection.write(bytes(':format:binary\n', 'ascii'))
         self.connection.write(bytes(f':stream {frequency}\n', 'ascii'))
-        self.streaming_timer_interval = self.STREAMING_BUFFER_SIZE / frequency
+        self.streaming_timer_interval = 0.05
         self.streaming_timer = threading.Timer(
             self.streaming_timer_interval,
             self.streaming_timer_handler,
             args=[callback, frequency]
         )
         self.streaming_timer.start()
+        self.timer_repeat = True
 
     def stop_streaming(self):
-        self.streaming_timer.cancel()
+        # self.streaming_timer.cancel()
+        self.timer_repeat = False
         self.connection.write(b':stream:stop\n')
         self.connection.reset_input_buffer()

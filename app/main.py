@@ -27,6 +27,8 @@ class Bridge(QObject):
     port_changed = Signal()
     baudrate_changed = Signal()
 
+    chart_series: list[tuple[str, QLineSeries]] = []
+
     def __init__(self, parent=None):
         super(Bridge, self).__init__(parent)
         self.my_data = []
@@ -47,6 +49,16 @@ class Bridge(QObject):
     def baudrate(self, new_baudrate):
         sciduino.conection.baudrate = new_baudrate
 
+    @Slot(str, QLineSeries)
+    def register_series(self, name, series):
+        self.chart_series.append((name, series))
+
+    def find_series_by_name(self, wanted_name: str) -> QLineSeries | None:
+        for name, series in self.chart_series:
+            if name == wanted_name:
+                return series
+        return None
+
     @Slot(result=str)
     def get_input_names(self):
         shit_json = '['
@@ -59,14 +71,14 @@ class Bridge(QObject):
     def measure(self):
         return str(sciduino.measure()) + 'V'
 
-    @Slot(QLineSeries, QLineSeries, QValueAxis, int, float)
-    def burst(self, series, series2, x_axis, measurements, frequency):
+    @Slot(int, float, QValueAxis)
+    def burst(self, measurements, frequency, x_axis):
         raw_bursts = sciduino.burst(measurements, frequency)
 
         time = np.linspace(
-            raw_bursts[0].meta.initial_time,
-            raw_bursts[0].meta.time_interval * raw_bursts[0].meta.values_count,
-            raw_bursts[0].meta.values_count
+            raw_bursts[0].meta.time,
+            raw_bursts[0].meta.interval * raw_bursts[0].meta.length,
+            raw_bursts[0].meta.length
         )
 
         # series.replaceNp(time, raw_burst.data)
@@ -78,35 +90,44 @@ class Bridge(QObject):
             formated_burst = raw_burst.data * analog_input.gain + analog_input.offset
             fuck_qt = [QPointF(time[i], formated_burst[i]) for i in range(measurements)]
 
-            test = analog_input.name.decode('utf8').strip()
-            if test == series.name():
-                series.replace(fuck_qt)
-            else:
-                series2.replace(fuck_qt)
+            self.find_series_by_name(analog_input.name).replace(fuck_qt)
 
-            x_axis.setMax(raw_burst.meta.time_interval * raw_burst.meta.values_count)
+            x_axis.setMax(raw_burst.meta.interval * raw_burst.meta.length)
             x_axis.applyNiceNumbers()
 
-    @Slot(float, QLineSeries, QValueAxis)
-    def start_streaming(self, frequency, series, axis_x):
+
+    @Slot(float, QValueAxis)
+    def start_streaming(self, frequency, x_axis):
         self.graph_start_x_position = 0
-        axis_x.setMin(0)
-        axis_x.setMax(1)
+        x_axis.setMin(0)
+        x_axis.setMax(1)
 
-        def stream_callback(new_values):
-            fuck_qt = [QPointF(x + self.graph_start_x_position, y) for (x, y) in new_values]
-            series.append(fuck_qt)
+        self.points_in_series = None
 
-            overflow_x = new_values[-1][0] + self.graph_start_x_position - axis_x.max()
-            if overflow_x > 0:
-                axis_x.setMax(axis_x.max() + overflow_x)
-                axis_x.setMin(axis_x.min() + overflow_x)
+        def stream_callback(waveform_list):
+            max_index = int(1 / waveform_list[0].meta.interval)
+            header = waveform_list[0].meta
+            time = np.linspace(
+                header.time,
+                header.time + header.interval * header.length,
+                header.length
+            )
 
-            waveform_size_x = (new_values[1][0] - new_values[0][0]) * (len(new_values) + 1)
-            self.graph_start_x_position += waveform_size_x
+            if self.points_in_series is None:
+                self.points_in_series = [[] for _ in range(len(waveform_list))]
 
-        cancel_timer = threading.Timer(5.1, sciduino.stop_streaming)
-        cancel_timer.start()
+            for i, waveform in enumerate(waveform_list):
+                analog_input = sciduino.find_input_by_pin(waveform.meta.pin)
+                formated_stream = waveform.data * analog_input.gain + analog_input.offset
+                self.points_in_series[i] += [QPointF(x, y) for x, y in zip(time, formated_stream)]
+                self.find_series_by_name(analog_input.name).replace(self.points_in_series[i])
+
+            overflow = len(self.points_in_series[0]) - max_index
+            if overflow > 0:
+                self.points_in_series[0] = self.points_in_series[0][overflow:]
+                x_axis.setMin(self.points_in_series[0][0].x())
+                x_axis.setMax(self.points_in_series[0][-1].x())
+
         sciduino.start_streaming(1000, stream_callback)
 
 

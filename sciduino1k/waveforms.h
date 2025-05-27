@@ -3,9 +3,9 @@
 #include <cstddef>
 #include "stdint_aliases.h"
 
-enum class TransmissionFormat: u8 {
-    Ascii,
-    Binary,
+enum class TransmissionFormat: char {
+    Ascii  = 'A',
+    Binary = 'B',
 };
 
 enum class FillStatus: u8 {

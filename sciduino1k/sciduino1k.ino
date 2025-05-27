@@ -169,7 +169,7 @@ void processCommand(String cmd) {
         }
 
         WaveformHeader header = {
-            .length = 50,
+            .length = 250,
             .time = 0,
             .interval = 1 / frequency,
             .pin = 0,  // Default value, depends on the analog input
