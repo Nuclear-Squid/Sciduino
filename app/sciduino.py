@@ -126,7 +126,6 @@ class Waveform:
 
     @staticmethod
     def from_scpi_str(input: str) -> list[any]:
-        print(input)
         command_body = input.removeprefix(':waveform:')
         if input == command_body: raise ValueError(f'Wrong command, idiot:\n{input}')
 
@@ -197,13 +196,15 @@ class Sciduino():
         return None
 
     def read_u16_value(self, max_value=3.3, resolution=10, precision=3):
-        binary_val = int.from_bytes(self.connection.read(2), "little")
+        binary_val = int.from_bytes(self.connection.read(2), "big")
         return round(binary_val * max_value / (2 ** resolution), precision)
 
     def measure(self) -> float:
         """ Get current voltage read by the ADC """
-        self.connection.write(bytes(':MEAS\n', 'ascii'))
-        return self.read_u16_value()
+        self.connection.write(bytes(':MEASURE\n', 'ascii'))
+        # return self.read_u16_value()
+        binary_val = int(self.connection.readline())
+        return round(binary_val * 3.3 / (2 ** 10), 3)
 
     def burst(self, measurements, frequency) -> list[Waveform] | None:
         """ Get a lot of mesurements in a small amount of time """
@@ -243,15 +244,15 @@ class Sciduino():
 
             callback(new_waveforms)
 
-        if self.timer_repeat:
-            self.streaming_timer = threading.Timer(
-                self.streaming_timer_interval,
-                self.streaming_timer_handler,
-                args=[callback, frequency]
-            )
-            self.streaming_timer.start()
+        self.streaming_timer = threading.Timer(
+            self.streaming_timer_interval,
+            self.streaming_timer_handler,
+            args=[callback, frequency]
+        )
+        self.streaming_timer.start()
 
     def start_streaming(self, frequency: float, callback):
+        self.connection.reset_input_buffer()
         self.connection.write(bytes(':format:binary\n', 'ascii'))
         self.connection.write(bytes(f':stream {frequency}\n', 'ascii'))
         self.streaming_timer_interval = 0.05
@@ -264,7 +265,5 @@ class Sciduino():
         self.timer_repeat = True
 
     def stop_streaming(self):
-        # self.streaming_timer.cancel()
-        self.timer_repeat = False
+        self.streaming_timer.cancel()
         self.connection.write(b':stream:stop\n')
-        self.connection.reset_input_buffer()

@@ -4,7 +4,4 @@ set -euo pipefail
 
 cd $(dirname "$0")
 
-while true; do
-    echo '---------------------------------------'
-    ./main.py || sleep 2
-done
+while ./main.py; do clear; done

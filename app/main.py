@@ -69,7 +69,7 @@ class Bridge(QObject):
 
     @Slot(result=str)
     def measure(self):
-        return str(sciduino.measure()) + 'V'
+        return '{:.3f}'.format(sciduino.measure())
 
     @Slot(int, float, QValueAxis)
     def burst(self, measurements, frequency, x_axis):
@@ -92,20 +92,21 @@ class Bridge(QObject):
 
             self.find_series_by_name(analog_input.name).replace(fuck_qt)
 
+            x_axis.setMin(0)
             x_axis.setMax(raw_burst.meta.interval * raw_burst.meta.length)
             x_axis.applyNiceNumbers()
 
 
-    @Slot(float, QValueAxis)
-    def start_streaming(self, frequency, x_axis):
+    @Slot(float, float, QValueAxis)
+    def start_streaming(self, time_span, frequency, x_axis):
         self.graph_start_x_position = 0
         x_axis.setMin(0)
-        x_axis.setMax(1)
+        x_axis.setMax(time_span)
 
         self.points_in_series = None
 
         def stream_callback(waveform_list):
-            max_index = int(1 / waveform_list[0].meta.interval)
+            max_index = int(time_span / waveform_list[0].meta.interval)
             header = waveform_list[0].meta
             time = np.linspace(
                 header.time,
@@ -122,13 +123,17 @@ class Bridge(QObject):
                 self.points_in_series[i] += [QPointF(x, y) for x, y in zip(time, formated_stream)]
                 self.find_series_by_name(analog_input.name).replace(self.points_in_series[i])
 
-            overflow = len(self.points_in_series[0]) - max_index
-            if overflow > 0:
-                self.points_in_series[0] = self.points_in_series[0][overflow:]
-                x_axis.setMin(self.points_in_series[0][0].x())
-                x_axis.setMax(self.points_in_series[0][-1].x())
+                overflow = len(self.points_in_series[i]) - max_index
+                if overflow > 0:
+                    self.points_in_series[i] = self.points_in_series[i][overflow:]
+                    x_axis.setMin(self.points_in_series[i][0].x())
+                    x_axis.setMax(self.points_in_series[i][-1].x())
 
         sciduino.start_streaming(1000, stream_callback)
+
+    @Slot()
+    def stop_streaming(self):
+        sciduino.stop_streaming()
 
 
 def main() -> None:
