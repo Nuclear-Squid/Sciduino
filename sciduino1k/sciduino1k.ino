@@ -1,6 +1,6 @@
 #define USE_TIMER_1 true // NOTE: Needed by `TimerInterrupt`, keep above include statements
 
-// #include "3rd_parts/TimerInterrupt.h"
+// #include "3rd_part/TimerInterrupt.h"
 #include <DueTimer.h>
 
 #include "sciduino1k.h"
