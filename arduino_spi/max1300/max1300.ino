@@ -14,7 +14,8 @@
 #endif
 
 
-enum class ADCMode: byte {
+// clang-format off
+enum class ADCState: byte {
     ExternalClock       = 0b000,
     ExternalAcquisition = 0b001,
     InternalClock       = 0b010,
@@ -37,57 +38,112 @@ enum class InputRange: byte {
     Positive3Vref     = 0b110,
     Centered6Vref     = 0b111,
 };
+// clang-format on
 
 
-void adc_set_mode(ADCMode mode) {
-    byte command = (1 << 7) | (byte(mode) << 4) | (1 << 3);
-    #ifdef SPI_DEBUG
-    Serial.print(command, BIN);
-    #endif
-    digitalWrite(CS_PIN, LOW);
-    SPI.transfer(command);
-    SPI.transfer(0);
-    digitalWrite(CS_PIN, HIGH);
-}
+class MAX1300 {
+    const uint8_t resolution = 16;
+    uint8_t cs_pin;
+    bool debug;
+    InputRange input_range;
+    float vref;
 
-void adc_configure_channel(byte channel, ChannelMode mode, InputRange range) {
-    byte command = (1 << 7) | ((channel & 0b111) << 4) | (byte(mode) << 3) | byte(range);
-    #ifdef SPI_DEBUG
-    Serial.print(command, BIN);
-    #endif
-    digitalWrite(CS_PIN, LOW);
-    SPI.transfer(command);
-    SPI.transfer(0);
-    digitalWrite(CS_PIN, HIGH);
-}
+public:
+    void begin(int cs_pin, InputRange input_range, float vref=4.096, bool debug=false) {
+        this->cs_pin = cs_pin;
+        this->input_range = input_range;
+        this->vref = vref;
+        this->debug = debug;
 
-uint16_t adc_read_channel(byte channel) {
-    byte command = (1 << 7) | ((channel & 0b111) << 4);
-    #ifdef SPI_DEBUG
-    Serial.print(command, BIN);
-    #endif
-    digitalWrite(CS_PIN, LOW);
-    SPI.transfer16(command << 8);
-    uint16_t rv = SPI.transfer16(0);
-    digitalWrite(CS_PIN, HIGH);
-    return rv;
-}
+        SPI.begin();
+        pinMode(cs_pin, OUTPUT);
+        digitalWrite(cs_pin, HIGH);
+
+        SPI.begin();
+        SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
+
+        this->setState(ADCState::Reset);
+        this->setState(ADCState::ExternalClock);
+        for (size_t i = 0; i < 8; i++)
+            this->configureChannel(i, ChannelMode::SingleEnded, input_range);
+    }
+
+    void setState(ADCState state) {
+        byte command = (1 << 7) | (byte(state) << 4) | (1 << 3);
+        if (this->debug) Serial.print(command, BIN);
+        digitalWrite(CS_PIN, LOW);
+        SPI.transfer(command);
+        SPI.transfer(0);
+        digitalWrite(CS_PIN, HIGH);
+    }
+
+    void configureChannel(byte channel, ChannelMode mode, InputRange range) {
+        byte command = (1 << 7) | ((channel & 0b111) << 4) | (byte(mode) << 3) | byte(range);
+        if (this->debug) Serial.print(command, BIN);
+        digitalWrite(CS_PIN, LOW);
+        SPI.transfer16(command << 8);
+        digitalWrite(CS_PIN, HIGH);
+    }
+
+    uint16_t analogRead(byte channel) {
+        byte command = (1 << 7) | ((channel & 0b111) << 4);
+        if (this->debug) Serial.print(command, BIN);
+        digitalWrite(CS_PIN, LOW);
+        SPI.transfer16(command << 8);
+        uint16_t rv = SPI.transfer16(0);
+        digitalWrite(CS_PIN, HIGH);
+        return rv;
+    }
+
+    float analogToFloat(uint16_t analog_value) {
+        float full_scale_range, offset;
+        using IR = InputRange;
+        switch (this->input_range) {
+            case IR::Centered3HalfVref:
+            case IR::Negative3HalfVref:
+            case IR::Positive3HalfVref:
+                full_scale_range = this->vref;
+                break;
+
+            case IR::Centered3Vref:
+            case IR::Negative3Vref:
+            case IR::Positive3Vref:
+                full_scale_range = this->vref * 2;
+                break;
+
+            case IR::Centered6Vref: full_scale_range = this->vref * 4; break;
+        }
+
+        switch (this->input_range) {
+            case IR::Positive3HalfVref:
+            case IR::Positive3Vref:
+                offset = 0;
+                break;
+
+            case IR::Centered3HalfVref:
+            case IR::Centered3Vref:
+            case IR::Centered6Vref:
+                offset = full_scale_range / 2;
+                break;
+
+            case IR::Negative3HalfVref:
+            case IR::Negative3Vref:
+                offset = full_scale_range;
+                break;
+        }
+
+        return float(analog_value) * full_scale_range / pow(2, this->resolution) - offset;
+    }
+};
+
+
+MAX1300 adc;
 
 void setup() {
     Serial.begin(115200);
     while (!Serial);
-
-    pinMode(A0,     INPUT);
-    pinMode(CS_PIN, OUTPUT);
-    digitalWrite(CS_PIN, HIGH);
-
-    SPI.begin();
-    SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
-
-    adc_set_mode(ADCMode::Reset);
-    adc_set_mode(ADCMode::ExternalClock);
-    for (size_t i = 0; i < 8; i++)
-        adc_configure_channel(i, ChannelMode::SingleEnded, InputRange::Positive3HalfVref);
+    pinMode(A0, INPUT);
+    adc.begin(10, InputRange::Positive3HalfVref);
 }
 
 
@@ -95,11 +151,10 @@ void loop() {
 
     // Read channel every 100ms, compare to A0 pin
     #if 1
-    uint16_t spi_data = adc_read_channel(0);
     Serial.print("AnalogPin: ");
     Serial.print(analogRead(A0) * 3.3 / 1023);
     Serial.print("; MAX1300: ");
-    Serial.print(float(spi_data) * 4.096 / 65536);
+    Serial.print(adc.analogToFloat(adc.analogRead(0)));
     Serial.println();
     delay(100);
 
