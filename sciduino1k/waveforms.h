@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cstddef>
 #include "stdint_aliases.h"
 
 enum class TransmissionFormat: char {

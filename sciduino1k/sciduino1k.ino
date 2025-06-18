@@ -1,14 +1,17 @@
 #define USE_TIMER_1 true // NOTE: Needed by `TimerInterrupt`, keep above include statements
 
-// #include "3rd_part/TimerInterrupt.h"
-#include <DueTimer.h>
-
 #include "sciduino1k.h"
 #include "stdint_aliases.h"
+#include "timers.h"
 #include "waveforms.h"
 
 #define RBI "rbi-sciduino1k"
 #define VER "0.5"
+
+
+#if defined(__SAM3X8E__)
+#define Serial SerialUSB
+#endif
 
 
 String serial_input = "";
@@ -147,13 +150,14 @@ void processCommand(String cmd) {
             }
         }
 
-        Timer1.attachInterrupt(timer_handler_burst).setFrequency(frequency).start();
+        // Timer1.attachInterrupt(timer_handler_burst).setFrequency(frequency).start();
+        timer_attach_interrupt(timer_handler_burst, frequency);
         return;
     }
 
     if (try_pop_command(&cmd, ":stream", ":str")) {
         if (cmd.startsWith(":stop")) {
-            Timer1.stop();
+            timer_stop();
             return;
         }
 
@@ -185,7 +189,7 @@ void processCommand(String cmd) {
             }
         }
 
-        Timer1.attachInterrupt(timer_handler_stream).setFrequency(frequency).start();
+        timer_attach_interrupt(timer_handler_stream, frequency);
 
         return;
     }
@@ -221,7 +225,7 @@ void timer_handler_burst() {
     }
 
     if (status == FillStatus::CompletellyFull) {
-        Timer1.stop();
+        timer_stop();
         waveforms.schedule_transmission(transmission_format, BufferSubset::Full);
     }
 }
