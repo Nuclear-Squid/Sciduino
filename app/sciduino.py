@@ -202,10 +202,9 @@ class Sciduino():
     def measure(self) -> float:
         """ Get current voltage read by the ADC """
         self.connection.write(bytes(':MEASURE\n', 'ascii'))
-        # return self.read_u16_value()
         binary_val = int(self.connection.readline())
         ai = self.analog_inputs[0]
-        return round(binary_val * ai.gain / (2 ** 16) + ai.offset, ai.precision)
+        return round(binary_val * ai.gain + ai.offset, ai.precision)
 
     def burst(self, measurements, frequency) -> list[Waveform] | None:
         """ Get a lot of mesurements in a small amount of time """
