@@ -1,5 +1,10 @@
 #include "waveforms.h"
 
+#if defined(ARDUINO_SAM_DUE) || defined (ARDUINO_GIGA)
+#define ARM_ARDUINO
+#define Serial SerialUSB
+#endif
+
 
 FillStatus Waveform::push(u16 value) {
     this->data[this->current_index++] = value;
