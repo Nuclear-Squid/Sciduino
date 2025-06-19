@@ -1,15 +1,23 @@
 #define USE_TIMER_1 true // NOTE: Needed by `TimerInterrupt`, keep above include statements
 
-// #include "3rd_part/TimerInterrupt.h"
-#include <DueTimer.h>
-
+#include "adc.h"
 #include "sciduino1k.h"
 #include "stdint_aliases.h"
+#include "timers.h"
 #include "waveforms.h"
 
 #define RBI "rbi-sciduino1k"
 #define VER "0.5"
 
+
+#if defined(ARDUINO_SAM_DUE) || defined (ARDUINO_GIGA)
+#define ARM_ARDUINO
+#define Serial SerialUSB
+#endif
+
+
+MAX1300 adc;
+#define USE_MAX1300
 
 String serial_input = "";
 
@@ -62,16 +70,24 @@ void processCommand(String cmd) {
             for (auto i = 0; i < ANALOG_INPUT_COUNT; i++) {
                 Serial.print(F("begin"));
                 Serial.print(F(";name "));
-                Serial.print(analog_inputs[i].name);
+                Serial.print((__FlashStringHelper*) analog_inputs[i].name);
                 Serial.print(F(";unit "));
-                Serial.print(analog_inputs[i].unit);
+                Serial.print((__FlashStringHelper*) analog_inputs[i].unit);
 
                 Serial.print(F(";gain "));
+                #if defined(ARM_ARDUINO)
                 sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].gain);
+                #else
+                dtostre(analog_inputs[i].gain, scientific_float_buffer, 6, 0);
+                #endif
                 Serial.print(scientific_float_buffer);
 
                 Serial.print(F(";offset "));
+                #if defined(ARM_ARDUINO)
                 sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].offset);
+                #else
+                dtostre(analog_inputs[i].offset, scientific_float_buffer, 6, 0);
+                #endif
                 Serial.print(scientific_float_buffer);
 
                 Serial.print(F(";precision "));
@@ -107,7 +123,11 @@ void processCommand(String cmd) {
     }
 
     if (try_pop_command(&cmd, ":measure", ":meas")) {
+        #ifdef USE_MAX1300
+        Serial.println(adc.analogRead(analog_inputs[0].pin));
+        #else
         Serial.println(analogRead(analog_inputs[0].pin));
+        #endif
         return;
     }
 
@@ -147,13 +167,14 @@ void processCommand(String cmd) {
             }
         }
 
-        Timer1.attachInterrupt(timer_handler_burst).setFrequency(frequency).start();
+        // Timer1.attachInterrupt(timer_handler_burst).setFrequency(frequency).start();
+        timer_attach_interrupt(timer_handler_burst, frequency);
         return;
     }
 
     if (try_pop_command(&cmd, ":stream", ":str")) {
         if (cmd.startsWith(":stop")) {
-            Timer1.stop();
+            timer_stop();
             return;
         }
 
@@ -169,7 +190,7 @@ void processCommand(String cmd) {
         }
 
         WaveformHeader header = {
-            .length = 250,
+            .length = 500,
             .time = 0,
             .interval = 1 / frequency,
             .pin = 0,  // Default value, depends on the analog input
@@ -185,7 +206,7 @@ void processCommand(String cmd) {
             }
         }
 
-        Timer1.attachInterrupt(timer_handler_stream).setFrequency(frequency).start();
+        timer_attach_interrupt(timer_handler_stream, frequency);
 
         return;
     }
@@ -197,8 +218,13 @@ void processCommand(String cmd) {
 
 void timer_handler_stream() {
     FillStatus status;  // All waveforms are the same length and are in sync
-    for (size_t i = 0; i < waveforms.active_count; i++)
+    for (size_t i = 0; i < waveforms.active_count; i++) {
+        #ifdef USE_MAX1300
+        status = waveforms.arr[i].push(adc.analogRead(waveforms.arr[i].meta.pin));
+        #else
         status = waveforms.arr[i].push(analogRead(waveforms.arr[i].meta.pin));
+        #endif
+    }
 
     switch (status) {
         case FillStatus::DontWorry: break;
@@ -217,11 +243,15 @@ void timer_handler_stream() {
 void timer_handler_burst() {
     FillStatus status;  // All waveforms are the same length and are in sync
     for (size_t i = 0; i < waveforms.active_count; i++) {
+        #ifdef USE_MAX1300
+        status = waveforms.arr[i].push(adc.analogRead(waveforms.arr[i].meta.pin));
+        #else
         status = waveforms.arr[i].push(analogRead(waveforms.arr[i].meta.pin));
+        #endif
     }
 
     if (status == FillStatus::CompletellyFull) {
-        Timer1.stop();
+        timer_stop();
         waveforms.schedule_transmission(transmission_format, BufferSubset::Full);
     }
 }
@@ -231,8 +261,12 @@ void setup() {
     serial_input.reserve(256);
     Serial.begin(115200);
 
+    #ifdef USE_MAX1300
+    adc.begin(8, InputRange::Positive3HalfVref);
+    #else
     for (auto i = 0; i < ANALOG_INPUT_COUNT; i++)
         pinMode(analog_inputs[i].pin, INPUT);
+    #endif
 
     while (!Serial);
 }

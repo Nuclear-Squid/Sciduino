@@ -153,7 +153,7 @@ class Sciduino():
 
     def __init__(self, board_name):
         self.connection = serial.Serial (
-            port     = '/dev/ttyACM0',
+            port     = '/dev/ttyACM1',
             baudrate = 115200,
 
             bytesize = serial.EIGHTBITS,
@@ -204,7 +204,8 @@ class Sciduino():
         self.connection.write(bytes(':MEASURE\n', 'ascii'))
         # return self.read_u16_value()
         binary_val = int(self.connection.readline())
-        return round(binary_val * 3.3 / (2 ** 10), 3)
+        ai = self.analog_inputs[0]
+        return round(binary_val * ai.gain / (2 ** 16) + ai.offset, ai.precision)
 
     def burst(self, measurements, frequency) -> list[Waveform] | None:
         """ Get a lot of mesurements in a small amount of time """

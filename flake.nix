@@ -8,6 +8,13 @@
       buildInputs = with pkgs; [
         (pkgs.python3.withPackages (pypkgs: with pypkgs; [ pyserial pyside6 numpy ]))
         arduino-cli
+
+        kicad  # Electronics design suite
+
+        ## Dev tools
+        # Python
+        ty    # Lsp and type checker
+        ruff  # Linter and code formatter
       ];
 
       # Environment variable needed by QT to find the necessary libs and plugins
