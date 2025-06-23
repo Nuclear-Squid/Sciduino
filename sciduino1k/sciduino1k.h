@@ -1,6 +1,7 @@
 #include <avr/pgmspace.h>
 
 #include "stdint_aliases.h"
+#include "adc.h"
 
 // #define WAVEFORM_BUFFER_BYTE_SIZE 50000
 #define WAVEFORM_BUFFER_BYTE_SIZE 5000
@@ -18,9 +19,13 @@ typedef struct __attribute__ ((packed)) {
 } AnalogInput;
 
 const AnalogInput analog_inputs[] PROGMEM = {
-    { "GBF (base)",    "V",  1.5 * 2.5 / 65536, 0,   4, 0 },
-    // { "GBF (base)",    "V",  3.3 / 1024, 0,   2, A0 },
-    // { "GBF (inverse)", "V", -3.3 / 1024, 3.3, 2, A2 },
+    // { "GBF (base)",    "V",  1.5 * 2.5 / 65536, 0,   4, 0 },
+    { "GBF (base)",    "V",  3.3 / 1024, 0,   2, A0 },
+    { "GBF (inverse)", "V", -3.3 / 1024, 3.3, 2, A2 },
 };
+
+SciduinoADC* adc = new AnalogPins();
+// SciduinoADC* adc = new MAX1300();
+// #define USE_MAX1300
 
 #define ANALOG_INPUT_COUNT sizeof(analog_inputs) / sizeof(AnalogInput)

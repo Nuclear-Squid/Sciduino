@@ -16,9 +16,6 @@
 #endif
 
 
-MAX1300 adc;
-#define USE_MAX1300
-
 String serial_input = "";
 
 struct WaveformArray<ANALOG_INPUT_COUNT, WAVEFORM_BUFFER_BYTE_SIZE> waveforms;
@@ -123,11 +120,7 @@ void processCommand(String cmd) {
     }
 
     if (try_pop_command(&cmd, ":measure", ":meas")) {
-        #ifdef USE_MAX1300
-        Serial.println(adc.analogRead(analog_inputs[0].pin));
-        #else
-        Serial.println(analogRead(analog_inputs[0].pin));
-        #endif
+        Serial.println(adc->analogRead(analog_inputs[0].pin));
         return;
     }
 
@@ -150,16 +143,15 @@ void processCommand(String cmd) {
             return;
         }
 
-        WaveformHeader header = {
-            .length = measurements,
-            .time = 0,
-            .interval = 1 / frequency,
-            .pin = 0,  // Default value, depends on the analog input
-        };
-
         waveforms.clear();
         for (size_t i = 0; i < ANALOG_INPUT_COUNT; i++) {
-            header.pin = analog_inputs[i].pin;
+            WaveformHeader header = {
+                .length = measurements,
+                .time = 0,
+                .interval = 1 / frequency,
+                .pin = analog_inputs[i].pin,
+            };
+
             if (!waveforms.add_waveform(header)) {
                 Serial.println("Err -- could not allocate enough memory for waveforms");
                 waveforms.clear();
@@ -219,11 +211,7 @@ void processCommand(String cmd) {
 void timer_handler_stream() {
     FillStatus status;  // All waveforms are the same length and are in sync
     for (size_t i = 0; i < waveforms.active_count; i++) {
-        #ifdef USE_MAX1300
-        status = waveforms.arr[i].push(adc.analogRead(waveforms.arr[i].meta.pin));
-        #else
-        status = waveforms.arr[i].push(analogRead(waveforms.arr[i].meta.pin));
-        #endif
+        status = waveforms.arr[i].push(adc->analogRead(waveforms.arr[i].meta.pin));
     }
 
     switch (status) {
@@ -243,11 +231,7 @@ void timer_handler_stream() {
 void timer_handler_burst() {
     FillStatus status;  // All waveforms are the same length and are in sync
     for (size_t i = 0; i < waveforms.active_count; i++) {
-        #ifdef USE_MAX1300
-        status = waveforms.arr[i].push(adc.analogRead(waveforms.arr[i].meta.pin));
-        #else
-        status = waveforms.arr[i].push(analogRead(waveforms.arr[i].meta.pin));
-        #endif
+        status = waveforms.arr[i].push(adc->analogRead(waveforms.arr[i].meta.pin));
     }
 
     if (status == FillStatus::CompletellyFull) {
@@ -262,7 +246,7 @@ void setup() {
     Serial.begin(115200);
 
     #ifdef USE_MAX1300
-    adc.begin(8, InputRange::Positive3HalfVref);
+    static_cast<MAX1300*>(adc)->begin(8, InputRange::Positive3HalfVref);
     #else
     for (auto i = 0; i < ANALOG_INPUT_COUNT; i++)
         pinMode(analog_inputs[i].pin, INPUT);

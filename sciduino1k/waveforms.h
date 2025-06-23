@@ -30,6 +30,22 @@ typedef struct __attribute__ ((packed)) {
 //          │                        Waveform                         │
 //          ╰─────────────────────────────────────────────────────────╯
 
+template<size_t const BUFFER_SIZE>
+struct StaticArenaAllocator {
+    size_t currently_allocated;
+    u8 buffer[BUFFER_SIZE];
+
+    inline size_t available() { return BUFFER_SIZE - currently_allocated; }
+    inline void clear() { currently_allocated = 0; }
+
+    u8* alloc(size_t size) {
+        if (size > BUFFER_SIZE - currently_allocated) return nullptr;
+        u8* rv = ((u8*) buffer) + currently_allocated;
+        currently_allocated += size;
+        return rv;
+    }
+};
+
 typedef struct Waveform {
     WaveformHeader meta;
     size_t current_index;
@@ -44,25 +60,13 @@ template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>
 struct WaveformArray {
     size_t active_count;
     Waveform arr[ARRAY_LENGTH];
+    struct StaticArenaAllocator<BUFFER_SIZE> static_arena;
 
     struct {
         TransmissionFormat format;
         BufferSubset subset;
         bool is_scheduled;
     } transmission;
-
-    struct {
-        size_t currently_allocated;
-        u8 buffer[BUFFER_SIZE];
-
-        inline size_t available() { return BUFFER_SIZE - currently_allocated; }
-        u8* alloc(size_t size) {
-            if (size > BUFFER_SIZE - currently_allocated) return nullptr;
-            u8* rv = ((u8*) buffer) + currently_allocated;
-            currently_allocated += size;
-            return rv;
-        }
-    } static_arena;
 
     bool add_waveform(WaveformHeader);
     void process_scheduled_transmission();
@@ -72,7 +76,7 @@ struct WaveformArray {
     }
 
     void clear() {
+        this->static_arena.clear();
         this->active_count = 0;
-        this->static_arena.currently_allocated = 0;
     }
 };
