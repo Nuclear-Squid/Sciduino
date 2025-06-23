@@ -19,13 +19,15 @@ typedef struct __attribute__ ((packed)) {
 } AnalogInput;
 
 const AnalogInput analog_inputs[] PROGMEM = {
-    // { "GBF (base)",    "V",  1.5 * 2.5 / 65536, 0,   4, 0 },
-    { "GBF (base)",    "V",  3.3 / 1024, 0,   2, A0 },
-    { "GBF (inverse)", "V", -3.3 / 1024, 3.3, 2, A2 },
+    { "GBF (base)",    "V",  1.5 * 2.5 / 65536, 0,   4, 0 },
+    // { "GBF (base)",    "V",  3.3 / 1024, 0,   2, A0 },
+    // { "GBF (inverse)", "V", -3.3 / 1024, 3.3, 2, A2 },
 };
 
-SciduinoADC* adc = new AnalogPins();
+// SciduinoADC* adc = new AnalogPins();
 // SciduinoADC* adc = new MAX1300();
 // #define USE_MAX1300
+SciduinoADC* adc = new LTC1859();
+#define USE_LTC1859
 
 #define ANALOG_INPUT_COUNT sizeof(analog_inputs) / sizeof(AnalogInput)

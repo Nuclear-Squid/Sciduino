@@ -1,6 +1,5 @@
 #include "adc.h"
 
-
 void MAX1300::begin(int cs_pin, InputRange input_range, f32 vref, bool debug) {
     this->cs_pin = cs_pin;
     this->input_range = input_range;

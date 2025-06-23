@@ -8,11 +8,11 @@
 // #define SPI_DEBUG
 
 // Arduino Giga
-#if 0
-#define CS_PIN 10
+// #if 0
+// #define CS_PIN 10
 #define Serial SerialUSB
-#define SPI SPI1
-#endif
+// #define SPI SPI1
+// #endif
 
 // clang-format off
 enum class ADCState: u8 {
@@ -80,6 +80,63 @@ public:
     void configureChannel(u8 channel, ChannelMode mode, InputRange range);
     u16 analogRead(u8 channel);
     f32 analogToFloat(u16 analog_value);
+};
+
+class LTC1859: public SciduinoADC {
+public:
+    const u8 resolution{16};
+    const u8 cs_pin{10};
+    const u8 conversion_start_pin{9};
+    const u8 busy_pin{3};
+
+    void begin() {
+        SPI.begin();
+        pinMode(this->cs_pin, OUTPUT);
+        digitalWrite(this->cs_pin, HIGH);
+
+        pinMode(this->conversion_start_pin, OUTPUT);
+        digitalWrite(this->conversion_start_pin, LOW);
+
+        pinMode(this->busy_pin, INPUT);
+    }
+
+    u16 analogRead(u8 channel) {
+        static u8 command =
+            (1 << 7)  // single ended
+            | ((channel & 0b111) << 4)  // Channel select
+            | (0b00 << 2)  // Input range: 0-5V
+            | 0b00  // Keep awake after operation.
+        ;
+
+        Serial.print("cmd: ");
+        Serial.print(command, BIN);
+        Serial.print("; value: ");
+
+        digitalWrite(this->conversion_start_pin, HIGH);
+        while (digitalRead(this->busy_pin) == LOW) {}
+        digitalWrite(this->conversion_start_pin, LOW);
+        digitalWrite(this->cs_pin, LOW);
+
+        SPI.transfer16(command << 8);
+
+        digitalWrite(this->cs_pin, HIGH);
+
+
+        digitalWrite(this->conversion_start_pin, HIGH);
+        while (digitalRead(this->busy_pin) == LOW) {}
+        digitalWrite(this->conversion_start_pin, LOW);
+        digitalWrite(this->cs_pin, LOW);
+
+        u16 rv = SPI.transfer16(command << 8);
+
+        digitalWrite(this->cs_pin, HIGH);
+
+        return rv;
+    }
+
+    f32 analogToFloat(u16 analog_value) {
+        return analog_value * 5 / 65536;
+    }
 };
 
 // vim:ft=arduino

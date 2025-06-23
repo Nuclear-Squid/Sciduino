@@ -245,7 +245,9 @@ void setup() {
     serial_input.reserve(256);
     Serial.begin(115200);
 
-    #ifdef USE_MAX1300
+    #ifdef USE_LTC1859
+    static_cast<LTC1859*>(adc)->begin();
+    #elif defined USE_MAX1300
     static_cast<MAX1300*>(adc)->begin(8, InputRange::Positive3HalfVref);
     #else
     for (auto i = 0; i < ANALOG_INPUT_COUNT; i++)
