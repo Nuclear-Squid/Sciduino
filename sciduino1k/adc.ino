@@ -1,25 +1,21 @@
 #include "adc.h"
 
-void MAX1300::begin(int cs_pin, InputRange input_range, f32 vref, bool debug) {
-    this->cs_pin = cs_pin;
-    this->input_range = input_range;
-    this->vref = vref;
-    this->debug = debug;
-
+// void MAX1300::begin(int cs_pin, InputRange input_range, f32 vref, bool debug) {
+void MAX1300::begin() {
     SPI.begin();
-    pinMode(cs_pin, OUTPUT);
-    digitalWrite(cs_pin, HIGH);
+    pinMode(this->cs_pin, OUTPUT);
+    digitalWrite(this->cs_pin, HIGH);
 
     SPI.begin();
     SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
 
-    this->setState(ADCState::Reset);
-    this->setState(ADCState::ExternalClock);
+    this->setState(MAX1300::State::Reset);
+    this->setState(MAX1300::State::ExternalClock);
     for (size_t i = 0; i < 8; i++)
         this->configureChannel(i, ChannelMode::SingleEnded, input_range);
 }
 
-void MAX1300::setState(ADCState state) {
+void MAX1300::setState(MAX1300::State state) {
     u8 command = (1 << 7) | (u8(state) << 4) | (1 << 3);
     if (this->debug) Serial.print(command, BIN);
     digitalWrite(this->cs_pin, LOW);
@@ -48,7 +44,9 @@ u16 MAX1300::analogRead(u8 channel) {
 
 f32 MAX1300::analogToFloat(u16 analog_value) {
     f32 full_scale_range, offset;
-    using IR = InputRange;
+    auto a = MAX1300::InputRange::Centered3HalfVref;
+    Serial.println(byte(a));
+    using IR = MAX1300::InputRange;
     switch (this->input_range) {
         case IR::Centered3HalfVref:
         case IR::Negative3HalfVref:
@@ -84,4 +82,37 @@ f32 MAX1300::analogToFloat(u16 analog_value) {
     }
 
     return f32(analog_value) * full_scale_range / pow(2, this->resolution) - offset;
+}
+
+
+void LTC1859::begin() {
+    SPI.begin();
+    pinMode(this->cs_pin, OUTPUT);
+    digitalWrite(this->cs_pin, HIGH);
+
+    pinMode(this->conversion_start_pin, OUTPUT);
+    digitalWrite(this->conversion_start_pin, LOW);
+
+    pinMode(this->busy_pin, INPUT);
+}
+
+
+u16 LTC1859::analogReadFast(u8 channel) {
+    LTC1859::SpiCommand command = {
+        .power = 0,
+        .input_range = 2,
+        .channel = channel,
+        .single_ended = true,
+    };
+
+    digitalWrite(this->conversion_start_pin, HIGH);
+    while (digitalRead(this->busy_pin) == LOW) {}
+    digitalWrite(this->conversion_start_pin, LOW);
+    digitalWrite(this->cs_pin, LOW);
+
+    u16 rv = SPI.transfer16(command.to_byte() << 8);
+
+    digitalWrite(this->cs_pin, HIGH);
+
+    return rv;
 }

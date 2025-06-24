@@ -120,7 +120,7 @@ void processCommand(String cmd) {
     }
 
     if (try_pop_command(&cmd, ":measure", ":meas")) {
-        Serial.println(adc->analogRead(analog_inputs[0].pin));
+        Serial.println(adc->analogRead(adc->inputs[0].pin));
         return;
     }
 
@@ -244,16 +244,7 @@ void timer_handler_burst() {
 void setup() {
     serial_input.reserve(256);
     Serial.begin(115200);
-
-    #ifdef USE_LTC1859
-    static_cast<LTC1859*>(adc)->begin();
-    #elif defined USE_MAX1300
-    static_cast<MAX1300*>(adc)->begin(8, InputRange::Positive3HalfVref);
-    #else
-    for (auto i = 0; i < ANALOG_INPUT_COUNT; i++)
-        pinMode(analog_inputs[i].pin, INPUT);
-    #endif
-
+    adc->begin();
     while (!Serial);
 }
 

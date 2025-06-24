@@ -15,35 +15,33 @@
 // #endif
 
 // clang-format off
-enum class ADCState: u8 {
-    ExternalClock       = 0b000,
-    ExternalAcquisition = 0b001,
-    InternalClock       = 0b010,
-    Reset               = 0b100,
-    PartialPowerDown    = 0b110,
-    FullPowerDown       = 0b111,
-};
-
-enum class ChannelMode: u8 {
-    SingleEnded  = 0,
-    Differential = 1,
-};
-
-enum class InputRange: u8 {
-    Centered3HalfVref = 0b001,
-    Negative3HalfVref = 0b010,
-    Positive3HalfVref = 0b011,
-    Centered3Vref     = 0b100,
-    Negative3Vref     = 0b101,
-    Positive3Vref     = 0b110,
-    Centered6Vref     = 0b111,
-};
+// We pack the structs to make sure there are no difference in padding / alignment
+// between 16 bits AVR, 32 bits ARM and 64 bits desktops when transmitting them
+// as binary data.
+typedef struct __attribute__ ((packed)) AnalogInput {
+    char name[16];
+    char unit[8];
+    f32  gain;
+    f32  offset;
+    u8   precision;
+    u8   pin;
+} AnalogInput;
 // clang-format on
 
+// // Forwar declare the `AnalogInput` type, so that it can be defined in the
+// // `sciduino.h` file and keep this type easy to document.
+// struct AnalogInput;
 
 class SciduinoADC {
 public:
+    AnalogInput* inputs;
+    const size_t input_count;
+
+    SciduinoADC(AnalogInput* inputs, size_t input_count): inputs(inputs), input_count(input_count) {}
+
+    virtual void begin() = 0;
     virtual u16 analogRead(u8 channel) = 0;
+    // virtual u16 analogReadFast(u8 channel) { this->analogRead(channel); }
     virtual f32 analogToFloat(u16 analog_value) = 0;
 
     // template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>
@@ -58,80 +56,89 @@ class AnalogPins: public SciduinoADC {
     // void setState(ADCState state);
     // void configureChannel(u8 channel, ChannelMode mode, InputRange range);
 
+    using SciduinoADC::SciduinoADC;
+
+    void begin() {
+        for (auto i = 0; i < this->input_count; i++) pinMode(this->inputs[i].pin, INPUT);
+    }
+
     u16 analogRead(u8 channel) {
         // Explicitaly use analogRead from global namespace, otherwise
         // it causes an infinite recursion.
         return ::analogRead(channel);
     }
 
-    f32 analogToFloat(u16 analog_value) { return analog_value * 3.3 / 1024; }
+    f32 analogToFloat(u16 analog_value) {
+        return analog_value * 3.3 / 1024;
+    }
 };
 
 class MAX1300: public SciduinoADC {
+public:
+    // clang-format off
+    enum class State: u8 {
+        ExternalClock       = 0b000,
+        ExternalAcquisition = 0b001,
+        InternalClock       = 0b010,
+        Reset               = 0b100,
+        PartialPowerDown    = 0b110,
+        FullPowerDown       = 0b111,
+    };
+
+    enum class ChannelMode: u8 {
+        SingleEnded  = 0,
+        Differential = 1,
+    };
+
+    enum class InputRange: u8 {
+        Centered3HalfVref = 0b001,
+        Negative3HalfVref = 0b010,
+        Positive3HalfVref = 0b011,
+        Centered3Vref     = 0b100,
+        Negative3Vref     = 0b101,
+        Positive3Vref     = 0b110,
+        Centered6Vref     = 0b111,
+    };
+    // clang-format on
     const u8 resolution = 16;
     u8 cs_pin;
     bool debug;
     InputRange input_range;
     f32 vref;
 
-public:
-    void begin(int cs_pin, InputRange input_range, f32 vref=4.096, bool debug=false);
-    void setState(ADCState state);
+    using SciduinoADC::SciduinoADC;
+    void begin();
+    void setState(State state);
     void configureChannel(u8 channel, ChannelMode mode, InputRange range);
     u16 analogRead(u8 channel);
     f32 analogToFloat(u16 analog_value);
 };
 
 class LTC1859: public SciduinoADC {
+protected:
+    typedef struct {
+        u8 power: 2;
+        u8 input_range: 2;
+        u8 channel: 3;
+        bool single_ended: 1;
+        u8 to_byte() { return * (u8*) this; }
+    } SpiCommand;
+
 public:
     const u8 resolution{16};
     const u8 cs_pin{10};
     const u8 conversion_start_pin{9};
     const u8 busy_pin{3};
 
-    void begin() {
-        SPI.begin();
-        pinMode(this->cs_pin, OUTPUT);
-        digitalWrite(this->cs_pin, HIGH);
+    using SciduinoADC::SciduinoADC;
 
-        pinMode(this->conversion_start_pin, OUTPUT);
-        digitalWrite(this->conversion_start_pin, LOW);
-
-        pinMode(this->busy_pin, INPUT);
-    }
+    void begin();
+    u16 analogReadFast(u8 channel);
 
     u16 analogRead(u8 channel) {
-        static u8 command =
-            (1 << 7)  // single ended
-            | ((channel & 0b111) << 4)  // Channel select
-            | (0b00 << 2)  // Input range: 0-5V
-            | 0b00  // Keep awake after operation.
-        ;
-
-        Serial.print("cmd: ");
-        Serial.print(command, BIN);
-        Serial.print("; value: ");
-
-        digitalWrite(this->conversion_start_pin, HIGH);
-        while (digitalRead(this->busy_pin) == LOW) {}
-        digitalWrite(this->conversion_start_pin, LOW);
-        digitalWrite(this->cs_pin, LOW);
-
-        SPI.transfer16(command << 8);
-
-        digitalWrite(this->cs_pin, HIGH);
-
-
-        digitalWrite(this->conversion_start_pin, HIGH);
-        while (digitalRead(this->busy_pin) == LOW) {}
-        digitalWrite(this->conversion_start_pin, LOW);
-        digitalWrite(this->cs_pin, LOW);
-
-        u16 rv = SPI.transfer16(command << 8);
-
-        digitalWrite(this->cs_pin, HIGH);
-
-        return rv;
+        // Run the command twice, since the first will return the previous measurement.
+        this->analogReadFast(channel);
+        return this->analogReadFast(channel);
     }
 
     f32 analogToFloat(u16 analog_value) {

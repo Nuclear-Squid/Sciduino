@@ -6,28 +6,15 @@
 // #define WAVEFORM_BUFFER_BYTE_SIZE 50000
 #define WAVEFORM_BUFFER_BYTE_SIZE 5000
 
-// We pack the structs to make sure there are no difference in padding / alignment
-// between 16 bits AVR, 32 bits ARM and 64 bits desktops when transmitting them
-// as binary data.
-typedef struct __attribute__ ((packed)) {
-    char name[16];
-    char unit[8];
-    f32  gain;
-    f32  offset;
-    u8   precision;
-    u8   pin;
-} AnalogInput;
-
-const AnalogInput analog_inputs[] PROGMEM = {
-    { "GBF (base)",    "V",  1.5 * 2.5 / 65536, 0,   4, 0 },
+// const AnalogInput analog_inputs[] PROGMEM = {
+AnalogInput analog_inputs[] = {
+    { "GBF (base)",    "V",  2 * 2.5 / 65536, 0,   4, 0 },
     // { "GBF (base)",    "V",  3.3 / 1024, 0,   2, A0 },
     // { "GBF (inverse)", "V", -3.3 / 1024, 3.3, 2, A2 },
 };
 
-// SciduinoADC* adc = new AnalogPins();
-// SciduinoADC* adc = new MAX1300();
-// #define USE_MAX1300
-SciduinoADC* adc = new LTC1859();
-#define USE_LTC1859
-
 #define ANALOG_INPUT_COUNT sizeof(analog_inputs) / sizeof(AnalogInput)
+
+// SciduinoADC* adc = new AnalogPins(analog_inputs, ANALOG_INPUT_COUNT);
+// SciduinoADC* adc = new MAX1300(analog_inputs, ANALOG_INPUT_COUNT);
+SciduinoADC* adc = new LTC1859(analog_inputs, ANALOG_INPUT_COUNT);
