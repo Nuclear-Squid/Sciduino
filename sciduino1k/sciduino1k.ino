@@ -71,9 +71,12 @@ void processCommand(String cmd) {
                 Serial.print(F(";unit "));
                 Serial.print((__FlashStringHelper*) analog_inputs[i].unit);
 
+                // auto input_range = static_cast<LTC1859*>(adc)->available_input_ranges[adc->inputs[i].input_range_id];
+                auto input_range = adc->getAvailableInputRanges()[adc->inputs[i].input_range_id];
                 Serial.print(F(";gain "));
                 #if defined(ARM_ARDUINO)
-                sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].gain);
+                // sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].gain);
+                sprintf(scientific_float_buffer, "%.6e", input_range.gain);
                 #else
                 dtostre(analog_inputs[i].gain, scientific_float_buffer, 6, 0);
                 #endif
@@ -81,7 +84,8 @@ void processCommand(String cmd) {
 
                 Serial.print(F(";offset "));
                 #if defined(ARM_ARDUINO)
-                sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].offset);
+                // sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].offset);
+                sprintf(scientific_float_buffer, "%.6e", input_range.offset);
                 #else
                 dtostre(analog_inputs[i].offset, scientific_float_buffer, 6, 0);
                 #endif
