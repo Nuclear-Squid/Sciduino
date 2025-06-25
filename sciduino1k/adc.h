@@ -40,23 +40,18 @@ public:
     AnalogInput* inputs;
     const size_t input_count;
 
-    SciduinoADC(AnalogInput* inputs, size_t input_count): inputs(inputs), input_count(input_count) {}
+    SciduinoADC(AnalogInput* inputs, size_t input_count): inputs(inputs), input_count(input_count) { }
 
     virtual void begin() = 0;
     virtual u16 analogRead(u8 channel) = 0;
-    // virtual u16 analogReadFast(u8 channel) { this->analogRead(channel); }
+    virtual void analogReadBurst(WaveformArray* waveforms, size_t measurements, float frequency);
+    virtual void analogReadStream(WaveformArray* waveforms, size_t measurements, float frequency);
     virtual f32 analogToFloat(u16 analog_value) = 0;
 
     virtual const GlobalInputRange* getAvailableInputRanges() = 0;
     GlobalInputRange getInputRange(u8 channel) {
         return this->getAvailableInputRanges()[this->inputs[channel].input_range_id];
     }
-
-    // template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>
-    // void analogReadBurst(WaveformArray<ARRAY_LENGTH, BUFFER_SIZE>* waveforms, size_t measurements, float frequency);
-
-// protected:
-//     static void timerHandlerBurst();
 };
 
 class AnalogPins: public SciduinoADC {

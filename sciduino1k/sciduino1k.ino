@@ -18,7 +18,7 @@
 
 String serial_input = "";
 
-struct WaveformArray<ANALOG_INPUT_COUNT, WAVEFORM_BUFFER_BYTE_SIZE> waveforms;
+WaveformArray waveforms;
 
 TransmissionFormat transmission_format = TransmissionFormat::Binary;
 
@@ -147,24 +147,7 @@ void processCommand(String cmd) {
             return;
         }
 
-        waveforms.clear();
-        for (size_t i = 0; i < ANALOG_INPUT_COUNT; i++) {
-            WaveformHeader header = {
-                .length = measurements,
-                .time = 0,
-                .interval = 1 / frequency,
-                .pin = analog_inputs[i].pin,
-            };
-
-            if (!waveforms.add_waveform(header)) {
-                Serial.println("Err -- could not allocate enough memory for waveforms");
-                waveforms.clear();
-                return;
-            }
-        }
-
-        // Timer1.attachInterrupt(timer_handler_burst).setFrequency(frequency).start();
-        timer_attach_interrupt(timer_handler_burst, frequency);
+        adc->analogReadBurst(&waveforms, measurements, frequency);
         return;
     }
 
@@ -185,63 +168,12 @@ void processCommand(String cmd) {
             return;
         }
 
-        WaveformHeader header = {
-            .length = 500,
-            .time = 0,
-            .interval = 1 / frequency,
-            .pin = 0,  // Default value, depends on the analog input
-        };
-
-        waveforms.clear();
-        for (size_t i = 0; i < ANALOG_INPUT_COUNT; i++) {
-            header.pin = analog_inputs[i].pin;
-            if (!waveforms.add_waveform(header)) {
-                Serial.println("Err -- could not allocate enough memory for waveforms");
-                waveforms.clear();
-                return;
-            }
-        }
-
-        timer_attach_interrupt(timer_handler_stream, frequency);
-
+        adc->analogReadStream(&waveforms, 250, frequency);
         return;
     }
 
     Serial.print(F("ERR -- unsupported command: "));
     Serial.println(cmd);
-}
-
-
-void timer_handler_stream() {
-    FillStatus status;  // All waveforms are the same length and are in sync
-    for (size_t i = 0; i < waveforms.active_count; i++) {
-        status = waveforms.arr[i].push(adc->analogRead(waveforms.arr[i].meta.pin));
-    }
-
-    switch (status) {
-        case FillStatus::DontWorry: break;
-
-        case FillStatus::HalfFull:
-            waveforms.schedule_transmission(transmission_format, BufferSubset::FirstHalf);
-            break;
-
-        case FillStatus::CompletellyFull:
-            waveforms.schedule_transmission(transmission_format, BufferSubset::SecondHalf);
-            break;
-    }
-}
-
-
-void timer_handler_burst() {
-    FillStatus status;  // All waveforms are the same length and are in sync
-    for (size_t i = 0; i < waveforms.active_count; i++) {
-        status = waveforms.arr[i].push(adc->analogRead(waveforms.arr[i].meta.pin));
-    }
-
-    if (status == FillStatus::CompletellyFull) {
-        timer_stop();
-        waveforms.schedule_transmission(transmission_format, BufferSubset::Full);
-    }
 }
 
 

@@ -1,10 +1,12 @@
-#include <avr/pgmspace.h>
+// #include <avr/pgmspace.h>
+
+#pragma once
 
 #include "stdint_aliases.h"
 #include "adc.h"
 
 // #define WAVEFORM_BUFFER_BYTE_SIZE 50000
-#define WAVEFORM_BUFFER_BYTE_SIZE 5000
+// #define WAVEFORM_BUFFER_BYTE_SIZE 5000
 
 // // const AnalogInput analog_inputs[] PROGMEM = {
 // AnalogInput analog_inputs[] = {

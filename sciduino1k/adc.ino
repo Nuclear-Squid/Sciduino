@@ -1,6 +1,85 @@
 #include "adc.h"
+#include "waveforms.h"
 
-// void MAX1300::begin(int cs_pin, InputRange input_range, f32 vref, bool debug) {
+void SciduinoADC::analogReadBurst(WaveformArray* waveforms, size_t measurements, float frequency) {
+    waveforms->clear();
+    for (size_t i = 0; i < this->input_count; i++) {
+        WaveformHeader header = {
+            .length = measurements,
+            .time = 0,
+            .interval = 1 / frequency,
+            .pin = analog_inputs[i].pin,
+        };
+
+        if (!waveforms->add_waveform(header)) {
+            Serial.println("Err -- could not allocate enough memory for waveforms");
+            waveforms->clear();
+            return;
+        }
+    }
+
+    auto timer_handler_burst = []() {
+        extern SciduinoADC* adc;
+        extern WaveformArray waveforms;
+
+        FillStatus status;
+        for (size_t i = 0; i < waveforms.active_count; i++) {
+            status = waveforms.arr[i].push(adc->analogRead(waveforms.arr[i].meta.pin));
+        }
+
+        if (status == FillStatus::CompletellyFull) {
+            timer_stop();
+            waveforms.schedule_transmission(transmission_format, BufferSubset::Full);
+        }
+    };
+
+    timer_attach_interrupt(timer_handler_burst, frequency);
+}
+
+
+void SciduinoADC::analogReadStream(WaveformArray* waveforms, size_t measurements, float frequency) {
+    waveforms->clear();
+    for (size_t i = 0; i < this->input_count; i++) {
+        WaveformHeader header = {
+            .length = measurements,
+            .time = 0,
+            .interval = 1 / frequency,
+            .pin = analog_inputs[i].pin,
+        };
+
+        if (!waveforms->add_waveform(header)) {
+            Serial.println("Err -- could not allocate enough memory for waveforms");
+            waveforms->clear();
+            return;
+        }
+    }
+
+    auto timer_handler_stream = []() {
+        extern SciduinoADC* adc;
+        extern WaveformArray waveforms;
+
+        FillStatus status;
+        for (size_t i = 0; i < waveforms.active_count; i++) {
+            status = waveforms.arr[i].push(adc->analogRead(waveforms.arr[i].meta.pin));
+        }
+
+        switch (status) {
+            case FillStatus::DontWorry: break;
+
+            case FillStatus::HalfFull:
+                waveforms.schedule_transmission(transmission_format, BufferSubset::FirstHalf);
+                break;
+
+            case FillStatus::CompletellyFull:
+                waveforms.schedule_transmission(transmission_format, BufferSubset::SecondHalf);
+                break;
+        }
+    };
+
+    timer_attach_interrupt(timer_handler_stream, frequency);
+}
+
+
 void MAX1300::begin() {
     SPI.begin();
     pinMode(this->cs_pin, OUTPUT);
@@ -100,7 +179,6 @@ void LTC1859::begin() {
 u16 LTC1859::analogReadFast(u8 channel) {
     LTC1859::SpiCommand command = {
         .power = 0,
-        // .input_range = this->available_input_ranges[this->inputs[channel].input_range_id].code,
         .input_range = this->getInputRange(channel).code,
         .channel = channel,
         .single_ended = true,

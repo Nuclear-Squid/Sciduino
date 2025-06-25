@@ -2,6 +2,8 @@
 
 #include "stdint_aliases.h"
 
+#define WAVEFORM_BUFFER_BYTE_SIZE 5000
+
 enum class TransmissionFormat: char {
     Ascii  = 'A',
     Binary = 'B',
@@ -56,11 +58,12 @@ typedef struct Waveform {
 } Waveform;
 
 
-template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>
-struct WaveformArray {
+// template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>
+typedef struct WaveformArray {
     size_t active_count;
-    Waveform arr[ARRAY_LENGTH];
-    struct StaticArenaAllocator<BUFFER_SIZE> static_arena;
+    Waveform arr[16];
+    // struct StaticArenaAllocator<BUFFER_SIZE> static_arena;
+    struct StaticArenaAllocator<WAVEFORM_BUFFER_BYTE_SIZE> static_arena;
 
     struct {
         TransmissionFormat format;
@@ -79,4 +82,4 @@ struct WaveformArray {
         this->static_arena.clear();
         this->active_count = 0;
     }
-};
+} WaveformArray;

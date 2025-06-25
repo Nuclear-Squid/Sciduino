@@ -101,8 +101,7 @@ size_t send_waveform_array_binary(const Waveform* arr, size_t array_length, Buff
 }
 
 
-template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>
-void WaveformArray<ARRAY_LENGTH, BUFFER_SIZE>::process_scheduled_transmission() {
+void WaveformArray::process_scheduled_transmission() {
     if (!transmission.is_scheduled) return;
     this->transmission.is_scheduled = false;
 
@@ -119,8 +118,7 @@ void WaveformArray<ARRAY_LENGTH, BUFFER_SIZE>::process_scheduled_transmission() 
         this->arr[i].meta.time += values_sent * this->arr[i].meta.interval;
 }
 
-template<size_t const ARRAY_LENGTH, size_t const BUFFER_SIZE>
-bool WaveformArray<ARRAY_LENGTH, BUFFER_SIZE>::add_waveform(WaveformHeader header) {
+bool WaveformArray::add_waveform(WaveformHeader header) {
     size_t alloc_size = header.length * sizeof(u16);
 
     if (alloc_size > static_arena.available()) return false;
