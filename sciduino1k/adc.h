@@ -26,6 +26,7 @@ typedef struct __attribute__ ((packed)) AnalogInput {
     // f32  offset;
     u8   precision;
     u8   pin;
+    bool enabled;
 } AnalogInput;
 // clang-format on
 
@@ -40,7 +41,7 @@ public:
     AnalogInput* inputs;
     const size_t input_count;
 
-    SciduinoADC(AnalogInput* inputs, size_t input_count): inputs(inputs), input_count(input_count) { }
+    SciduinoADC(AnalogInput* inputs, size_t input_count): inputs(inputs), input_count(input_count) {}
 
     virtual void begin() = 0;
     virtual u16 analogRead(u8 channel) = 0;
@@ -119,15 +120,15 @@ public:
 
 class LTC1859: public SciduinoADC {
 protected:
+public:
     typedef struct {
         u8 power: 2;
         u8 input_range: 2;
         u8 channel: 3;
         bool single_ended: 1;
-        u8 to_byte() { return * (u8*) this; }
+        inline u8 to_byte() { return * (u8*) this; }
     } SpiCommand;
 
-public:
 
     enum class InputRange: u8 {
         ZeroTo2Vref,
@@ -161,7 +162,7 @@ public:
     void begin();
     u16 analogReadFast(u8 channel);
 
-    u16 analogRead(u8 channel) {
+    inline u16 analogRead(u8 channel) {
         // Run the command twice, since the first will return the previous measurement.
         this->analogReadFast(channel);
         return this->analogReadFast(channel);

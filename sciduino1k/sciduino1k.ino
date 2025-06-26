@@ -52,54 +52,81 @@ void processCommand(String cmd) {
         return;
     }
 
-    if (try_pop_command(&cmd, ":inputs?", ":in?")) {
-        if (transmission_format == TransmissionFormat::Binary) {
-            Serial.write(ANALOG_INPUT_COUNT);
-            for (auto i = 0; i < ANALOG_INPUT_COUNT; i++) {
-                const size_t input_size = sizeof(AnalogInput);
-                char buffer[input_size];
-                Serial.write((char*) memcpy_P(buffer, &analog_inputs[i], input_size), input_size);
+    if (try_pop_command(&cmd, ":inputs", ":in")) {
+        if (try_pop_command(&cmd, ":enable", ":enab")) {
+            if (cmd == "all") {
+                for (size_t i = 0; i < adc->input_count; i++) {
+                    adc->inputs[i].enabled = true;
+                }
+                return;
             }
-        }
-        else {
-            char scientific_float_buffer[16];
-            Serial.print(F(":input:"));
-            for (auto i = 0; i < ANALOG_INPUT_COUNT; i++) {
-                Serial.print(F("begin"));
-                Serial.print(F(";name "));
-                Serial.print((__FlashStringHelper*) analog_inputs[i].name);
-                Serial.print(F(";unit "));
-                Serial.print((__FlashStringHelper*) analog_inputs[i].unit);
 
-                // auto input_range = static_cast<LTC1859*>(adc)->available_input_ranges[adc->inputs[i].input_range_id];
-                auto input_range = adc->getAvailableInputRanges()[adc->inputs[i].input_range_id];
-                Serial.print(F(";gain "));
-                #if defined(ARM_ARDUINO)
-                // sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].gain);
-                sprintf(scientific_float_buffer, "%.6e", input_range.gain);
-                #else
-                dtostre(analog_inputs[i].gain, scientific_float_buffer, 6, 0);
-                #endif
-                Serial.print(scientific_float_buffer);
-
-                Serial.print(F(";offset "));
-                #if defined(ARM_ARDUINO)
-                // sprintf(scientific_float_buffer, "%.6e", analog_inputs[i].offset);
-                sprintf(scientific_float_buffer, "%.6e", input_range.offset);
-                #else
-                dtostre(analog_inputs[i].offset, scientific_float_buffer, 6, 0);
-                #endif
-                Serial.print(scientific_float_buffer);
-
-                Serial.print(F(";precision "));
-                Serial.print(analog_inputs[i].precision);
-                Serial.print(F(";pin "));
-                Serial.print(analog_inputs[i].pin);
-                Serial.print(F( ";end" ));
-                Serial.print(i == ANALOG_INPUT_COUNT - 1 ? '\n' : ';');
+            // XXX: channel ids are considered to fit on a sigle digit, and
+            // followed by a comma. Parser is not robust yet.
+            while (cmd != "") {
+                u8 channel = cmd.toInt() - 1;
+                adc->inputs[channel].enabled = true;
+                cmd.remove(0, 2);
             }
+
+            return;
         }
-        return;
+
+        if (try_pop_command(&cmd, ":disable", ":disab")) {
+            if (cmd == "all") {
+                for (size_t i = 0; i < adc->input_count; i++) {
+                    adc->inputs[i].enabled = false;
+                }
+                return;
+            }
+
+            // XXX: channel ids are considered to fit on a sigle digit, and
+            // followed by a comma. Parser is not robust yet.
+            while (cmd != "") {
+                u8 channel = cmd.toInt() - 1;
+                adc->inputs[channel].enabled = false;
+                cmd.remove(0, 2);
+            }
+
+            return;
+        }
+
+        if (try_pop_command(&cmd, "?", "?")) {
+            if (transmission_format == TransmissionFormat::Binary) {
+                Serial.write(ANALOG_INPUT_COUNT);
+                for (auto i = 0; i < ANALOG_INPUT_COUNT; i++) {
+                    const size_t input_size = sizeof(AnalogInput);
+                    char buffer[input_size];
+                    Serial.write((char*) memcpy(buffer, &analog_inputs[i], input_size), input_size);
+                }
+            }
+            else {
+                char scientific_float_buffer[16];
+                Serial.print(F(":input:"));
+                for (auto i = 0; i < ANALOG_INPUT_COUNT; i++) {
+                    Serial.print(F("begin"));
+                    Serial.print(F(";name "));
+                    Serial.print(analog_inputs[i].name);
+                    Serial.print(F(";unit "));
+                    Serial.print(analog_inputs[i].unit);
+
+                    Serial.print(F(";range "));
+                    Serial.print(analog_inputs[i].input_range_id);
+
+                    Serial.print(F(";precision "));
+                    Serial.print(analog_inputs[i].precision);
+                    Serial.print(F(";pin "));
+                    Serial.print(analog_inputs[i].pin);
+
+                    Serial.print(F(";enabled "));
+                    Serial.print(analog_inputs[i].enabled ? "true" : "false");
+
+                    Serial.print(F( ";end" ));
+                    Serial.print(i == ANALOG_INPUT_COUNT - 1 ? '\n' : ';');
+                }
+            }
+            return;
+        }
     }
 
     if (try_pop_command(&cmd, ":format", ":for")) {

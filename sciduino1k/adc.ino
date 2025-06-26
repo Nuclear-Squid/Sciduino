@@ -4,6 +4,7 @@
 void SciduinoADC::analogReadBurst(WaveformArray* waveforms, size_t measurements, float frequency) {
     waveforms->clear();
     for (size_t i = 0; i < this->input_count; i++) {
+        if (!this->inputs[i].enabled) continue;
         WaveformHeader header = {
             .length = measurements,
             .time = 0,
@@ -40,6 +41,7 @@ void SciduinoADC::analogReadBurst(WaveformArray* waveforms, size_t measurements,
 void SciduinoADC::analogReadStream(WaveformArray* waveforms, size_t measurements, float frequency) {
     waveforms->clear();
     for (size_t i = 0; i < this->input_count; i++) {
+        if (!this->inputs[i].enabled) continue;
         WaveformHeader header = {
             .length = measurements,
             .time = 0,
@@ -166,6 +168,8 @@ f32 MAX1300::analogToFloat(u16 analog_value) {
 
 void LTC1859::begin() {
     SPI.begin();
+    SPI.beginTransaction(SPISettings(25000000, MSBFIRST, SPI_MODE0));
+
     pinMode(this->cs_pin, OUTPUT);
     digitalWrite(this->cs_pin, HIGH);
 
@@ -184,13 +188,8 @@ u16 LTC1859::analogReadFast(u8 channel) {
         .single_ended = true,
     };
 
-    digitalWrite(this->conversion_start_pin, HIGH);
-    while (digitalRead(this->busy_pin) == LOW) {}
-    digitalWrite(this->conversion_start_pin, LOW);
     digitalWrite(this->cs_pin, LOW);
-
     u16 rv = SPI.transfer16(command.to_byte() << 8);
-
     digitalWrite(this->cs_pin, HIGH);
 
     return rv;
