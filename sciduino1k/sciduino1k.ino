@@ -51,7 +51,7 @@ u32 parse_channel_mask(String* channels) {
 }
 
 // SCPI-like command handling
-void processCommand(String cmd) {
+void process_single_command(String cmd) {
     cmd.trim();
     cmd.toLowerCase();
 
@@ -190,6 +190,15 @@ void processCommand(String cmd) {
     Serial.println(cmd);
 }
 
+void process_all_commands(String commands) {
+    size_t semicolon_position;
+    while ((semicolon_position = commands.indexOf(';')) != -1) {
+        process_single_command(commands.substring(0, semicolon_position));
+        commands.remove(0, semicolon_position + 1);
+    }
+    process_single_command(commands);
+}
+
 
 void setup() {
     serial_input.reserve(256);
@@ -205,7 +214,7 @@ void loop() {
     while (Serial.available()) {
         char input = (char) Serial.read();
         if (input == '\n') {
-            processCommand(serial_input);
+            process_all_commands(serial_input);
             serial_input = "";
         } else {
             serial_input += input;
