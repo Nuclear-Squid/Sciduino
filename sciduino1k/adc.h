@@ -22,8 +22,6 @@ typedef struct __attribute__ ((packed)) AnalogInput {
     char name[16];
     char unit[8];
     u8   input_range_id;
-    // f32  gain;
-    // f32  offset;
     u8   precision;
     u8   pin;
     bool enabled;
@@ -52,6 +50,16 @@ public:
     virtual const GlobalInputRange* getAvailableInputRanges() = 0;
     GlobalInputRange getInputRange(u8 channel) {
         return this->getAvailableInputRanges()[this->inputs[channel].input_range_id];
+    }
+
+    void enable_inputs(u32 input_mask) {
+        for (size_t i = 0; i < this->input_count; i++)
+            if (input_mask & (1 << i)) this->inputs[i].enabled = true;
+    }
+
+    void disable_inputs(u32 input_mask) {
+        for (size_t i = 0; i < this->input_count; i++)
+            if (input_mask & (1 << i)) this->inputs[i].enabled = false;
     }
 };
 

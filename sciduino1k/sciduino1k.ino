@@ -38,6 +38,18 @@ bool try_pop_command(String* str, const String& long_command, const String& shor
     return false;
 }
 
+u32 parse_channel_mask(String* channels) {
+    if (*channels == "all") return -1;
+
+    u32 mask = 0;
+    while (*channels != "") {
+        mask |= 1 << (u8((*channels)[0]) - u8('a'));
+        channels->remove(0, 2);  // Remove channel ID and following comma
+    }
+
+    return mask;
+}
+
 // SCPI-like command handling
 void processCommand(String cmd) {
     cmd.trim();
@@ -54,51 +66,25 @@ void processCommand(String cmd) {
 
     if (try_pop_command(&cmd, ":inputs", ":in")) {
         if (try_pop_command(&cmd, ":enable", ":enab")) {
-            if (cmd == "all") {
-                for (size_t i = 0; i < adc->input_count; i++) {
-                    adc->inputs[i].enabled = true;
-                }
-                return;
-            }
-
-            // XXX: channel ids are considered to fit on a sigle digit, and
-            // followed by a comma. Parser is not robust yet.
-            while (cmd != "") {
-                u8 channel = cmd.toInt() - 1;
-                adc->inputs[channel].enabled = true;
-                cmd.remove(0, 2);
-            }
-
+            adc->enable_inputs(parse_channel_mask(&cmd));
             return;
         }
 
         if (try_pop_command(&cmd, ":disable", ":disab")) {
-            if (cmd == "all") {
-                for (size_t i = 0; i < adc->input_count; i++) {
-                    adc->inputs[i].enabled = false;
-                }
-                return;
-            }
+            adc->disable_inputs(parse_channel_mask(&cmd));
+            return;
+        }
 
-            // XXX: channel ids are considered to fit on a sigle digit, and
-            // followed by a comma. Parser is not robust yet.
-            while (cmd != "") {
-                u8 channel = cmd.toInt() - 1;
-                adc->inputs[channel].enabled = false;
-                cmd.remove(0, 2);
-            }
-
+        if (try_pop_command(&cmd, ":set", ":set")) {
+            adc->disable_inputs(-1);  // Disable all
+            adc->enable_inputs(parse_channel_mask(&cmd));
             return;
         }
 
         if (try_pop_command(&cmd, "?", "?")) {
             if (transmission_format == TransmissionFormat::Binary) {
                 Serial.write(ANALOG_INPUT_COUNT);
-                for (auto i = 0; i < ANALOG_INPUT_COUNT; i++) {
-                    const size_t input_size = sizeof(AnalogInput);
-                    char buffer[input_size];
-                    Serial.write((char*) memcpy(buffer, &analog_inputs[i], input_size), input_size);
-                }
+                Serial.write((char*) analog_inputs, sizeof(analog_inputs));
             }
             else {
                 char scientific_float_buffer[16];
@@ -123,6 +109,7 @@ void processCommand(String cmd) {
 
                     Serial.print(F( ";end" ));
                     Serial.print(i == ANALOG_INPUT_COUNT - 1 ? '\n' : ';');
+                    Serial.println();
                 }
             }
             return;
