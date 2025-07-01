@@ -59,17 +59,32 @@ class Bridge(QObject):
                 return series
         return None
 
-    @Slot(result=str)
+
+    @Slot(result=list)
     def get_input_names(self):
-        shit_json = '['
-        for input in sciduino.analog_inputs:
-            shit_json += f'"{input.name}",'
-        shit_json = shit_json[:-1] + ']'
-        return shit_json
+        return list(map(lambda x: x.name, sciduino.analog_inputs))
+
+    @Slot(result=list)
+    def get_active_channels(self):
+        rv = []
+        for i, x in enumerate(sciduino.analog_inputs):
+            if x.enabled:
+                rv.append(chr(ord('a') + i))
+        return rv
+
+    @Slot(list)
+    def set_active_inputs(self, inputs):
+        sciduino.set_active_inputs(inputs)
 
     @Slot(result=str)
     def measure(self):
-        return '{:.3f}'.format(sciduino.measure())
+        def pretty_print(channel, raw_value):
+            input = sciduino.analog_inputs[ord(channel) - ord('A')]
+            voltage = raw_value * 5 / 2 ** 16
+            return f'{input.name}: {voltage:.{input.precision}f}{input.unit}    '
+
+        return ''.join(map(lambda x: pretty_print(*x), sciduino.measure()))
+
 
     @Slot(int, float, QValueAxis)
     def burst(self, measurements, frequency, x_axis):
@@ -129,7 +144,7 @@ class Bridge(QObject):
                     x_axis.setMin(self.points_in_series[i][0].x())
                     x_axis.setMax(self.points_in_series[i][-1].x())
 
-        sciduino.start_streaming(1000, stream_callback)
+        sciduino.start_streaming(frequency, stream_callback)
 
     @Slot()
     def stop_streaming(self):

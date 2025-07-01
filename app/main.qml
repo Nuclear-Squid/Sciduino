@@ -30,40 +30,38 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
         }
 
-        GridLayout {
-            id: inputs
-            columns: 3
+        RowLayout {
             Layout.alignment: Qt.AlignHCenter
             Layout.maximumWidth: page.Layout.maximumWidth
             Layout.fillWidth: true
 
-            Component.onCompleted: {
-                let input_json = bridge.get_input_names();
-                let input_names = JSON.parse(input_json);
-                for (const name of input_names) {
-                    Qt.createQmlObject(`Text {
-                        text: "${name}:"
-                        horizontalAlignment: Text.AlignRight
-                        Layout.fillWidth: true
-                    }`, inputs)
-                    Qt.createQmlObject(`Text { text: "0.000" }`, inputs)
-                    Qt.createQmlObject(`Text { text: "V" }`, inputs)
+            Label { text: "Active inputs:" }
+
+            TextField {
+                text: bridge.get_active_channels()
+                Layout.maximumWidth: 75
+                validator: RegularExpressionValidator { regularExpression: /[A-Za-z]+/ }
+                onAcceptableInputChanged: color = acceptableInput ? "black" : "red";
+                onTextEdited: {
+                    bridge.set_active_inputs(text.toUpperCase().split(''));
+                    chart.set_visible_series(text.split(''));
                 }
             }
 
+            Text { id: inputs }
+
             Timer {
-                id: read_inputs_timer
                 interval: 250
                 repeat: true
                 running: true
-                onTriggered: {
-                    const children = inputs.children;
-                    for (let i = 1; i < children.length; i += 3) {
-                        children[i].text = bridge.measure();
-                        // console.log(bridge.measure());
-                    }
-                }
+                triggeredOnStart: true
+                onTriggered: inputs.text = bridge.measure()
             }
+
+            // XXX: This useless item is needed to **actually** align the other
+            // elements to the left, otherwise there’s a shit ton of padding
+            // added for no fucking reason. Wtf QT, why ?
+            Item { Layout.fillWidth: true }
         }
 
         ChartView {
@@ -86,16 +84,23 @@ ApplicationWindow {
             ValueAxis {
                 id: axisY
                 titleText: "Voltage [V]"
-                min: -1
-                max: 4
+                min: 0
+                max: 5
             }
 
             Component.onCompleted: {
-                let input_json = bridge.get_input_names();
-                let input_names = JSON.parse(input_json);
-                for (const name of input_names) {
+                for (const name of bridge.get_input_names()) {
                     let series = chart.createSeries(ChartView.SeriesTypeLine, name, axisX, axisY);
                     bridge.register_series(name, series);
+                }
+
+                this.set_visible_series(bridge.get_active_channels());
+            }
+
+            function set_visible_series(visible_series) {
+                const visible_series_indexes = visible_series.map(c => c.charCodeAt(0) - 'a'.charCodeAt(0))
+                for (let i = 0; i < this.count; i++) {
+                    this.series(i).visible = visible_series_indexes.includes(i);
                 }
             }
         }
@@ -173,7 +178,7 @@ ApplicationWindow {
 
                     TextField {
                         id: stream_time_span_field
-                        text: "0.5"
+                        text: "0.05"
                         validator: DoubleValidator { bottom: 0; locale: "en_EN" }
                         onAcceptableInputChanged: color = acceptableInput ? "black" : "red";
                         horizontalAlignment: Text.AlignRight
@@ -188,7 +193,7 @@ ApplicationWindow {
 
                     TextField {
                         id: stream_frequency_field
-                        text: "1000"
+                        text: "5000"
                         validator: DoubleValidator { bottom: 1 }
                         onAcceptableInputChanged: color = acceptableInput ? "black" : "red";
                         horizontalAlignment: Text.AlignRight
@@ -203,21 +208,21 @@ ApplicationWindow {
                     property bool is_streaming: false
 
                     onClicked: {
-                        let time = Number(stream_time_span_field.text);
-                        let frequency = Number(stream_frequency_field.text);
-
                         if (is_streaming) {
-                            text = "Stream"
-                            is_streaming = false
-                            burst_column.enabled = true
-                            read_inputs_timer.running = true
+                            text = "Stream";
+                            is_streaming = false;
+                            burst_column.enabled = true;
+                            read_inputs_timer.running = true;
                             bridge.stop_streaming();
                         }
                         else {
+                            let time = Number(stream_time_span_field.text);
+                            let frequency = Number(stream_frequency_field.text);
+
                             text = "Stop";
-                            is_streaming = true
-                            burst_column.enabled = false
-                            read_inputs_timer.running = false
+                            is_streaming = true;
+                            burst_column.enabled = false;
+                            read_inputs_timer.running = false;
                             bridge.start_streaming(time, frequency, axisX);
                         }
                     }

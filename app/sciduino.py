@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 
-if __name__ == "__main__":
-    print("This is a module.")
-    print("If you are manually running this file you are doing something stupid.")
-
-
 import ctypes
 import textwrap
 import time
@@ -16,29 +11,27 @@ import serial
 
 # NOTE: This is a Python representation of the AnalogInput type defined in the
 # sciduino firmware. Make sure those two definitions match.
-# NOTE: This is a Python representation of the AnalogInput type defined in the
-# sciduino firmware. Make sure those two definitions match.
 class AnalogInput(ctypes.Structure):
     # The board returrns a packed struct to ensure a consistant memory layout
     # across different architectures
     _pack_ = 1
     _fields_ = [
-        ("_name",     ctypes.c_char * 16),
-        ("_unit",     ctypes.c_char * 8),
-        ("gain",      ctypes.c_float),
-        ("offset",    ctypes.c_float),
-        ("precision", ctypes.c_uint8),
-        ("pin",       ctypes.c_uint8),
+        ("_name",          ctypes.c_char * 16),
+        ("_unit",          ctypes.c_char * 8),
+        ("input_range_id", ctypes.c_uint8),
+        ("precision",      ctypes.c_uint8),
+        ("pin",            ctypes.c_uint8),
+        ("enabled",        ctypes.c_bool),
     ]
 
     def __str__(self):
         return textwrap.dedent(f"""\
-            name:      {self.name}
-            unit:      {self.unit}
-            gain:      {self.gain}
-            offset:    {self.offset}
-            precision: {self.precision}
-            pin:       {self.pin}
+            name:           {self.name}
+            unit:           {self.unit}
+            input_range_id: {self.input_range_id}
+            precision:      {self.precision}
+            pin:            {self.pin}
+            enabled:        {self.enabled}
         """)
 
     @property
@@ -67,15 +60,18 @@ class AnalogInput(ctypes.Structure):
         raw_tokens = map(lambda s: s.split(maxsplit=1) + [None], command_body.split(';'))
 
         for arg, value, *_ in raw_tokens:
+            # print(arg, value)
             match arg:
                 case "begin":     current_input = AnalogInput()
                 case "end":       rv.append(current_input)
                 case "name":      current_input.name = value
                 case "unit":      current_input.unit = value
-                case "gain":      current_input.gain = float(value)
-                case "offset":    current_input.offset = float(value)
+                case "range":     current_input.input_range_id = int(value)
+                # case "gain":      current_input.gain = float(value)
+                # case "offset":    current_input.offset = float(value)
                 case "precision": current_input.precision = int(value)
                 case "pin":       current_input.pin = int(value)
+                case "enabled":   current_input.enabled = value.lower() == "true"
                 case _: raise ValueError(f'Invalid field: {arg}')
         return rv
 
@@ -165,6 +161,7 @@ class Sciduino():
             rtscts  = False,
 
             timeout       = 1,
+            # timeout       = 1,
             write_timeout = 1,
         )
 
@@ -195,16 +192,34 @@ class Sciduino():
                 return input
         return None
 
+    def set_active_inputs(self, inputs):
+        self.connection.write(bytes(f':inputs:set {','.join(inputs)}\n', 'ascii'));
+
     def read_u16_value(self, max_value=3.3, resolution=10, precision=3):
         binary_val = int.from_bytes(self.connection.read(2), "big")
         return round(binary_val * max_value / (2 ** resolution), precision)
 
-    def measure(self) -> float:
+    def measure(self) -> list[tuple[str, float]]:
         """ Get current voltage read by the ADC """
-        self.connection.write(bytes(':MEASURE\n', 'ascii'))
-        binary_val = int(self.connection.readline())
-        ai = self.analog_inputs[0]
-        return round(binary_val * ai.gain + ai.offset, ai.precision)
+        self.connection.write(b':format:binary;:measure\n')
+
+        format = self.connection.read()
+        if format == b'A':
+            raise NotImplementedError
+        if format == b'B':
+            values_count = int.from_bytes(self.connection.read())
+            rv = [(self.connection.read().decode('ascii'), int.from_bytes(self.connection.read(2))) for _ in range(values_count)]
+            return rv
+
+        if format == b'E':
+            error_message = b'E' + self.connection.readline()
+            print(error_message.decode('ascii'))
+            raise ValueError(error_message.decode('ascii'))
+
+        # self.connection.write(bytes(':MEASURE\n', 'ascii'))
+        # binary_val = int(self.connection.readline())
+        # ai = self.analog_inputs[0]
+        # return round(binary_val * ai.gain + ai.offset, ai.precision)
 
     def burst(self, measurements, frequency) -> list[Waveform] | None:
         """ Get a lot of mesurements in a small amount of time """
@@ -255,6 +270,7 @@ class Sciduino():
         self.connection.reset_input_buffer()
         self.connection.write(bytes(':format:binary\n', 'ascii'))
         self.connection.write(bytes(f':stream {frequency}\n', 'ascii'))
+        print(f':stream {frequency}\n')
         self.streaming_timer_interval = 0.05
         self.streaming_timer = threading.Timer(
             self.streaming_timer_interval,
@@ -267,3 +283,16 @@ class Sciduino():
     def stop_streaming(self):
         self.streaming_timer.cancel()
         self.connection.write(b':stream:stop\n')
+
+
+
+if __name__ == "__main__":
+    # print("This is a module.")
+    # print("If you are manually running this file you are doing something stupid.")
+
+    sciduino = Sciduino('rbi-sciduino1k')
+    sciduino.set_active_inputs(['A'])
+    print(sciduino.measure())
+    sciduino.set_active_inputs(['A', 'B'])
+    print(sciduino.measure())
+

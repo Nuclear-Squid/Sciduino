@@ -15,7 +15,6 @@
 #define Serial SerialUSB
 #endif
 
-
 String serial_input = "";
 
 WaveformArray waveforms;
@@ -109,7 +108,6 @@ void process_single_command(String cmd) {
 
                     Serial.print(F( ";end" ));
                     Serial.print(i == ANALOG_INPUT_COUNT - 1 ? '\n' : ';');
-                    Serial.println();
                 }
             }
             return;
@@ -138,7 +136,36 @@ void process_single_command(String cmd) {
     }
 
     if (try_pop_command(&cmd, ":measure", ":meas")) {
-        Serial.println(adc->analogRead(adc->inputs[0].pin));
+        // We push the response in a buffer to send it in one go, in part to
+        // get fast and reliable transmission, but mostly to minimise the delay
+        // between measurements.
+        u8 buffer[2 + 3 * (ANALOG_INPUT_COUNT)];
+
+        if (transmission_format == TransmissionFormat::Ascii) {
+            Serial.println("Err -- todo");
+        }
+        else {
+            buffer[0] = 'B';
+            u8 active_input_count = 0;
+            for (size_t i = 0; i < adc->input_count; i++) {
+                if (adc->inputs[i].enabled) active_input_count++;
+            }
+
+            buffer[1] = active_input_count;
+
+            size_t channels_read = 0;
+            for (size_t i = 0; i < adc->input_count; i++) {
+                if (adc->inputs[i].enabled) {
+                    buffer[2 + channels_read * 3] = 'A' + i;
+                    u16 value = adc->analogRead(i);
+                    buffer[3 + channels_read * 3] = value >> 8;
+                    buffer[4 + channels_read * 3] = value;
+                    channels_read++;
+                }
+            }
+
+            Serial.write((char*) buffer, 2 + 3 * channels_read);
+        }
         return;
     }
 
