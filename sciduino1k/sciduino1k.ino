@@ -217,13 +217,24 @@ void process_single_command(String cmd) {
     Serial.println(cmd);
 }
 
+String expand_abbreviations(const String& prev_cmd, const String& curr_cmd) {
+    if (curr_cmd[0] == ':' || curr_cmd[0] == '*') return curr_cmd;
+    size_t last_colon_index = prev_cmd.lastIndexOf(':');
+    return prev_cmd.substring(0, last_colon_index) + curr_cmd;
+}
+
 void process_all_commands(String commands) {
     size_t semicolon_position;
+    String prev_cmd = "";
+
     while ((semicolon_position = commands.indexOf(';')) != -1) {
-        process_single_command(commands.substring(0, semicolon_position));
+        String curr_cmd = commands.substring(0, semicolon_position);
+        process_single_command(expand_abbreviations(prev_cmd, curr_cmd));
         commands.remove(0, semicolon_position + 1);
+        prev_cmd = curr_cmd;
     }
-    process_single_command(commands);
+
+    process_single_command(expand_abbreviations(prev_cmd, commands));
 }
 
 
