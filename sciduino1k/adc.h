@@ -15,6 +15,7 @@
 // #endif
 
 // clang-format off
+
 // We pack the structs to make sure there are no difference in padding / alignment
 // between 16 bits AVR, 32 bits ARM and 64 bits desktops when transmitting them
 // as binary data.
@@ -31,7 +32,6 @@ typedef struct __attribute__ ((packed)) AnalogInput {
 typedef struct {
     f32 gain;
     f32 offset;
-    u8 code;
 } GlobalInputRange;
 
 class SciduinoADC {
@@ -47,9 +47,16 @@ public:
     virtual void analogReadStream(WaveformArray* waveforms, size_t measurements, float frequency);
     virtual f32 analogToFloat(u16 analog_value) = 0;
 
-    virtual const GlobalInputRange* getAvailableInputRanges() = 0;
+    // virtual const GlobalInputRange* getAvailableInputRanges() = 0;
+    virtual void getAvailableInputRanges(const GlobalInputRange** arr, size_t* len) = 0;
+
+
     GlobalInputRange getInputRange(u8 channel) {
-        return this->getAvailableInputRanges()[this->inputs[channel].input_range_id];
+        const GlobalInputRange* arr;
+        size_t len;
+        // return this->getAvailableInputRanges()[this->inputs[channel].input_range_id];
+        this->getAvailableInputRanges(&arr, &len);
+        return arr[this->inputs[channel].input_range_id];
     }
 
     void enable_inputs(u32 input_mask) {
@@ -139,27 +146,13 @@ public:
 
 
     enum class InputRange: u8 {
-        ZeroTo2Vref,
-        ZeroTo4Vref,
-        PlusMinus2Vref,
-        PlusMinus4Vref,
+        PlusMinus2Vref = 0b00,
+        PlusMinus4Vref = 0b01,
+        ZeroTo2Vref    = 0b10,
+        ZeroTo4Vref    = 0b11,
     };
 
     const float vref{2.5};
-    const GlobalInputRange available_input_ranges[4] = {
-        [(u8) LTC1859::InputRange::ZeroTo2Vref]
-            = { .gain = 2 * this->vref / pow(2, 16), .offset = 0, .code = 0b10 },
-
-        [(u8) LTC1859::InputRange::ZeroTo4Vref]
-            = { .gain = 4 * this->vref / pow(2, 16), .offset = 0, .code = 0b11 },
-
-        [(u8) LTC1859::InputRange::PlusMinus2Vref]
-            = { .gain = 4 * this->vref / pow(2, 16), .offset = -2 * this->vref, .code = 0b00 },
-
-        [(u8) LTC1859::InputRange::PlusMinus4Vref]
-            = { .gain = 8 * this->vref / pow(2, 16), .offset = -4 * this->vref, .code = 0b01 },
-    };
-
     const u8 resolution{16};
     const u8 cs_pin{10};
     const u8 conversion_start_pin{9};
@@ -177,7 +170,21 @@ public:
     }
 
     f32 analogToFloat(u16 analog_value) { return analog_value * 5 / 65536; }
-    const GlobalInputRange* getAvailableInputRanges() { return this->available_input_ranges; }
+
+    // const GlobalInputRange* getAvailableInputRanges() { return this->available_input_ranges; }
+    void getAvailableInputRanges(const GlobalInputRange** arr, size_t* len) {
+        using IR = LTC1859::InputRange;
+        const f32 step = this->vref / pow(2, this->resolution);
+        static const GlobalInputRange available_input_ranges[] = {
+            [(u8) IR::PlusMinus2Vref] = { .gain = 4 * step, .offset = -2 * this->vref },
+            [(u8) IR::PlusMinus4Vref] = { .gain = 8 * step, .offset = -4 * this->vref },
+            [(u8) IR::ZeroTo2Vref]    = { .gain = 2 * step, .offset = 0 },
+            [(u8) IR::ZeroTo4Vref]    = { .gain = 4 * step, .offset = 0 },
+        };
+
+        *arr = available_input_ranges;
+        *len = sizeof(available_input_ranges) / sizeof(GlobalInputRange);
+    }
 };
 
 // vim:ft=arduino

@@ -183,7 +183,7 @@ void LTC1859::begin() {
 u16 LTC1859::analogReadFast(u8 channel) {
     LTC1859::SpiCommand command = {
         .power = 0,
-        .input_range = this->getInputRange(channel).code,
+        .input_range = (u8) this->inputs[channel].input_range_id,
         .channel = channel,
         .single_ended = true,
     };

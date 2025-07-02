@@ -112,6 +112,20 @@ void process_single_command(String cmd) {
             }
             return;
         }
+
+        if (try_pop_command(&cmd, ":ranges?", ":ran?")) {
+            const GlobalInputRange* arr;
+            size_t len;
+            adc->getAvailableInputRanges(&arr, &len);
+            if (transmission_format == TransmissionFormat::Binary) {
+                Serial.write((u8) len);
+                Serial.write((char*) arr, sizeof(GlobalInputRange) * len);
+            }
+            else {
+                Serial.println("Err -- todo");
+            }
+            return;
+        }
     }
 
     if (try_pop_command(&cmd, ":format", ":for")) {
@@ -209,7 +223,7 @@ void process_single_command(String cmd) {
             return;
         }
 
-        adc->analogReadStream(&waveforms, 250, frequency);
+        adc->analogReadStream(&waveforms, 500, frequency);
         return;
     }
 

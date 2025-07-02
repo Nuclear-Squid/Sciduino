@@ -1,4 +1,5 @@
 import QtQuick 2.0
+
 import QtQuick.Layouts 1.11
 import QtQuick.Controls 2.1
 import QtQuick.Window 2.1
@@ -35,34 +36,70 @@ ApplicationWindow {
             Layout.maximumWidth: page.Layout.maximumWidth
             Layout.fillWidth: true
 
-            Label { text: "Active inputs:" }
+            Label { text: "active inputs:" }
 
             TextField {
                 text: bridge.get_active_channels()
-                Layout.maximumWidth: 75
+                width: 75
                 validator: RegularExpressionValidator { regularExpression: /[A-Za-z]+/ }
                 onAcceptableInputChanged: color = acceptableInput ? "black" : "red";
                 onTextEdited: {
                     bridge.set_active_inputs(text.toUpperCase().split(''));
                     chart.set_visible_series(text.split(''));
+                    channel_list.set_visible_channels(text.toUpperCase().split(''));
                 }
             }
 
-            Text { id: inputs }
+            ListView {
+                id: channel_list
 
-            Timer {
-                interval: 250
-                repeat: true
-                running: true
-                triggeredOnStart: true
-                onTriggered: inputs.text = bridge.measure()
+                Layout.leftMargin: 10
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: true
+                height: 25
+
+                orientation: ListView.Horizontal
+                spacing: 20
+
+                model: ListModel {}
+
+                delegate: Text {
+                    required property string name
+                    required property real   value
+                    required property int    precision
+                    required property string unit
+                    required property bool   enabled
+                    visible: enabled
+                    width: enabled ? contentWidth : -channel_list.spacing
+                    text: name + '\n' + value.toFixed(precision) + unit
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                Component.onCompleted: {
+                    for (const { name, unit, precision, enabled } of bridge.analog_inputs)
+                        model.append({ name, unit, precision, value: 0, enabled });
+                }
+
+                function set_visible_channels(channel_list) {
+                    const indexes = channel_list.map(c => c.charCodeAt(0) - 'A'.charCodeAt(0));
+                    for (let i = 0; i < count; i++)
+                        model.setProperty(i, "enabled", indexes.includes(i));
+                }
+
+                Timer {
+                    id: read_inputs_timer
+                    interval: 250
+                    repeat: true
+                    running: true
+                    triggeredOnStart: true
+                    onTriggered: {
+                        for (const [i, value] of bridge.measure())
+                            parent.model.setProperty(i, "value", value)
+                    }
+                }
             }
-
-            // XXX: This useless item is needed to **actually** align the other
-            // elements to the left, otherwise there’s a shit ton of padding
-            // added for no fucking reason. Wtf QT, why ?
-            Item { Layout.fillWidth: true }
         }
+
 
         ChartView {
             id: chart
@@ -84,7 +121,7 @@ ApplicationWindow {
             ValueAxis {
                 id: axisY
                 titleText: "Voltage [V]"
-                min: 0
+                min: -5
                 max: 5
             }
 
@@ -156,7 +193,7 @@ ApplicationWindow {
                         let frequency = Number(burst_frequency_field.text);
                         stream_column.enabled = false;
                         read_inputs_timer.running = false
-                        bridge.burst(points, frequency, axisX);
+                        bridge.burst(points, frequency, axisX, axisY);
                         stream_column.enabled = true;
                         read_inputs_timer.running = true
                     }
@@ -178,7 +215,7 @@ ApplicationWindow {
 
                     TextField {
                         id: stream_time_span_field
-                        text: "0.05"
+                        text: "0.5"
                         validator: DoubleValidator { bottom: 0; locale: "en_EN" }
                         onAcceptableInputChanged: color = acceptableInput ? "black" : "red";
                         horizontalAlignment: Text.AlignRight
@@ -212,8 +249,8 @@ ApplicationWindow {
                             text = "Stream";
                             is_streaming = false;
                             burst_column.enabled = true;
-                            read_inputs_timer.running = true;
                             bridge.stop_streaming();
+                            read_inputs_timer.start();
                         }
                         else {
                             let time = Number(stream_time_span_field.text);
@@ -222,8 +259,8 @@ ApplicationWindow {
                             text = "Stop";
                             is_streaming = true;
                             burst_column.enabled = false;
-                            read_inputs_timer.running = false;
-                            bridge.start_streaming(time, frequency, axisX);
+                            read_inputs_timer.stop();
+                            bridge.start_streaming(time, frequency, axisX, axisY);
                         }
                     }
                 }

@@ -44,6 +44,16 @@ class AnalogInput(ctypes.Structure):
     @unit.setter
     def unit(self, new_unit): self._unit = bytes(new_unit, 'utf8')
 
+    def as_dict(self):
+        return {
+            "name":           self.name,
+            "unit":           self.unit,
+            "input_range_id": self.input_range_id,
+            "precision":      self.precision,
+            "pin":            self.pin,
+            "enabled":        self.enabled,
+        }
+
     @staticmethod
     def from_reader(reader) -> list[any]:
         input_count = int.from_bytes(reader.read())
@@ -114,7 +124,8 @@ class Waveform:
 
             new_waveform.data = np.frombuffer(
                 raw_data,
-                dtype=np.uint16,
+                # dtype=np.uint16,
+                dtype=np.int16,
                 count=new_waveform.meta.length
             )
             rv.append(new_waveform)
@@ -142,6 +153,22 @@ class Waveform:
         return rv
 
 
+class InputRange(ctypes.Structure):
+    _pack_ = 1
+    _fields_ = [
+        ("gain",   ctypes.c_float),
+        ("offset", ctypes.c_float),
+    ]
+
+    def __str__(self):
+        return f"{{ gain: {self.gain}, offset: {self.offset} }}"
+
+    @staticmethod
+    def from_reader(reader):
+        input_range_count = int.from_bytes(reader.read())
+        return [InputRange.from_buffer_copy(reader.read(ctypes.sizeof(InputRange))) for _ in range(input_range_count)]
+
+
 class Sciduino():
     streaming_timer = None
     streaming_timer_interval = 0.2
@@ -161,7 +188,6 @@ class Sciduino():
             rtscts  = False,
 
             timeout       = 1,
-            # timeout       = 1,
             write_timeout = 1,
         )
 
@@ -182,9 +208,10 @@ class Sciduino():
         self.connection.write(b':format:ascii\n')
         self.connection.write(b':inputs?\n')
         self.analog_inputs = AnalogInput.from_scpi_str(self.connection.readline().decode('ascii'))
-        # inputs_count = int.from_bytes(self.connection.read())
-        # for i in range(inputs_count):
-        #     self.analog_inputs.append(AnalogInput.from_reader(self.connection))
+        self.connection.write(b':format:binary;:inputs:ranges?\n')
+        self.available_input_ranges = InputRange.from_reader(self.connection)
+        self.input_range = self.available_input_ranges[self.analog_inputs[0].input_range_id]
+
 
     def find_input_by_pin(self, pin: int) -> AnalogInput | None:
         for input in self.analog_inputs:
@@ -192,12 +219,16 @@ class Sciduino():
                 return input
         return None
 
+    def find_input_by_channel_name(self, channel: str) -> AnalogInput | None:
+        index = ord(channel) - ord('A')
+        return self.analog_inputs[index] if index < len(self.analog_inputs) else None
+
+    def analog_to_float(self, value: int):
+        # return value * self.input_range.gain + self.input_range.offset
+        return value * self.input_range.gain
+
     def set_active_inputs(self, inputs):
         self.connection.write(bytes(f':inputs:set {','.join(inputs)}\n', 'ascii'));
-
-    def read_u16_value(self, max_value=3.3, resolution=10, precision=3):
-        binary_val = int.from_bytes(self.connection.read(2), "big")
-        return round(binary_val * max_value / (2 ** resolution), precision)
 
     def measure(self) -> list[tuple[str, float]]:
         """ Get current voltage read by the ADC """
@@ -206,6 +237,7 @@ class Sciduino():
         format = self.connection.read()
         if format == b'A':
             raise NotImplementedError
+
         if format == b'B':
             values_count = int.from_bytes(self.connection.read())
             rv = [(self.connection.read().decode('ascii'), int.from_bytes(self.connection.read(2))) for _ in range(values_count)]
@@ -270,8 +302,7 @@ class Sciduino():
         self.connection.reset_input_buffer()
         self.connection.write(bytes(':format:binary\n', 'ascii'))
         self.connection.write(bytes(f':stream {frequency}\n', 'ascii'))
-        print(f':stream {frequency}\n')
-        self.streaming_timer_interval = 0.05
+        self.streaming_timer_interval = 0.01
         self.streaming_timer = threading.Timer(
             self.streaming_timer_interval,
             self.streaming_timer_handler,
@@ -283,16 +314,3 @@ class Sciduino():
     def stop_streaming(self):
         self.streaming_timer.cancel()
         self.connection.write(b':stream:stop\n')
-
-
-
-if __name__ == "__main__":
-    # print("This is a module.")
-    # print("If you are manually running this file you are doing something stupid.")
-
-    sciduino = Sciduino('rbi-sciduino1k')
-    sciduino.set_active_inputs(['A'])
-    print(sciduino.measure())
-    sciduino.set_active_inputs(['A', 'B'])
-    print(sciduino.measure())
-
