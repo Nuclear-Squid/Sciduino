@@ -192,5 +192,18 @@ u16 LTC1859::analogReadFast(u8 channel) {
     u16 rv = SPI.transfer16(command.to_byte() << 8);
     digitalWrite(this->cs_pin, HIGH);
 
+    // The LTC1859’s symetric input range modes return a `i16`, so we need to
+    // convert it back to a `u16` by flipping the most significant bit. Doing
+    // so essentialy swaps the positive / negative sections back to the
+    // "intended" order.
+    //
+    // Having an `i16` in those cases *is* a better way of encoding the data,
+    // but for our use case it’s much better to have a consistant system.
+    u8 range = this->inputs[channel].input_range_id;
+    using IR = LTC1859::InputRange;
+    if (range == (u8) IR::PlusMinus2Vref || range == (u8) IR::PlusMinus4Vref) {
+        rv ^= 1 << 15;
+    }
+
     return rv;
 }

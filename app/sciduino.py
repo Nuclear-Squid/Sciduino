@@ -124,8 +124,7 @@ class Waveform:
 
             new_waveform.data = np.frombuffer(
                 raw_data,
-                # dtype=np.uint16,
-                dtype=np.int16,
+                dtype=np.uint16,
                 count=new_waveform.meta.length
             )
             rv.append(new_waveform)
@@ -223,9 +222,10 @@ class Sciduino():
         index = ord(channel) - ord('A')
         return self.analog_inputs[index] if index < len(self.analog_inputs) else None
 
-    def analog_to_float(self, value: int):
-        # return value * self.input_range.gain + self.input_range.offset
-        return value * self.input_range.gain
+    def analog_to_float(self, channel: str, value: int):
+        analog_input = self.find_input_by_channel_name(channel)
+        input_range = self.available_input_ranges[analog_input.input_range_id]
+        return value * input_range.gain + input_range.offset
 
     def set_active_inputs(self, inputs):
         self.connection.write(bytes(f':inputs:set {','.join(inputs)}\n', 'ascii'));

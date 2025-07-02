@@ -98,11 +98,7 @@ class Bridge(QObject):
 
     @Slot(result=list)
     def measure(self):
-        return list(map(lambda x: [ord(x[0]) - ord('A'), sciduino.analog_to_float(x[1])], sciduino.measure()))
-
-    @Slot(result='QVariant')
-    def test(self):
-        return { "a": 12, "b": 42 }
+        return list(map(lambda x: [ord(x[0]) - ord('A'), sciduino.analog_to_float(x[0], x[1])], sciduino.measure()))
 
     @Slot(int, float, QValueAxis, QValueAxis)
     def burst(self, measurements, frequency, x_axis, y_axis):
@@ -123,7 +119,9 @@ class Bridge(QObject):
             analog_input = sciduino.find_input_by_pin(raw_burst.meta.pin)
 
             # formated_burst = raw_burst.data * analog_input.gain + analog_input.offset
-            formated_burst = sciduino.analog_to_float(raw_burst.data)
+            input_range = sciduino.available_input_ranges[analog_input.input_range_id]
+            formated_burst = raw_burst.data * input_range.gain + input_range.offset
+            # formated_burst = sciduino.analog_to_float(raw_burst.data)
             volts_per_channel.append(formated_burst)
             fuck_qt = [QPointF(time[i], formated_burst[i]) for i in range(measurements)]
 
