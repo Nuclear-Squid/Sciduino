@@ -1,0 +1,5729 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "8ef3ef8b-f81e-4fc9-90ca-b84ae90faab2")
+	(paper "A4")
+	(lib_symbols
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Diode:1N4148WT"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "1N4148WT"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Diode_SMD:D_SOD-523"
+				(at 0 -4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "D*SOD?523*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "1N4148WT_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "1N4148WT_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Transistor_BJT:MMBT2222A"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "MMBT2222A"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+				(at 5.08 -1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "NPN Transistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "MMBT2222A_0_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy 0.635 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 1.905) (xy 0.635 -1.905)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.27 0)
+					(radius 2.8194)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "MMBT2222A_1_1"
+				(polyline
+					(pts
+						(xy 0.635 0.635) (xy 2.54 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 -0.635) (xy 2.54 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "E"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(junction
+		(at 68.58 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "006f5493-80f8-4130-a085-2aa1e8171e45")
+	)
+	(junction
+		(at 119.38 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "01f91541-b39e-445f-9580-54e42e407e87")
+	)
+	(junction
+		(at 238.76 68.58)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1218d37c-3e62-4c08-a81a-24ffc9e45c66")
+	)
+	(junction
+		(at 187.96 68.58)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "124fa367-0df2-4a9f-a860-4f2f11f833a2")
+	)
+	(junction
+		(at 175.26 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "191d8d46-8fb3-4c00-a393-d62662891c75")
+	)
+	(junction
+		(at 226.06 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "379867ac-1fe1-4647-bf7f-b45b67c181d8")
+	)
+	(junction
+		(at 175.26 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3fe4a8f3-79d0-49b7-b98c-f7c7af3436ac")
+	)
+	(junction
+		(at 68.58 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4aa52a69-fc87-445b-a072-bbc579f38a62")
+	)
+	(junction
+		(at 170.18 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "56a805b1-75e3-4d7e-b11f-29f01371bdec")
+	)
+	(junction
+		(at 238.76 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "845171a6-b2d5-45f9-ae29-e2ca5ffd93cc")
+	)
+	(junction
+		(at 73.66 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8628cdc4-03b3-441c-8776-f39b9248d6ba")
+	)
+	(junction
+		(at 137.16 68.58)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "921bbaa6-303b-4b92-a1cd-2c856f499e1e")
+	)
+	(junction
+		(at 124.46 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "aa727774-f621-40e3-bdbd-9a618462e83c")
+	)
+	(junction
+		(at 119.38 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b7d2f732-699f-4107-808c-4d01315c3b1c")
+	)
+	(junction
+		(at 220.98 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bb406d0a-44f7-44cc-8c02-ab10011942fe")
+	)
+	(junction
+		(at 124.46 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c165c5b2-ccf6-413f-8ac3-d6b4b19ce385")
+	)
+	(junction
+		(at 86.36 68.58)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cafa171c-60c7-47b3-8a25-d9f065065d20")
+	)
+	(junction
+		(at 86.36 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d03331b4-a052-4c43-98c1-cb1d83534153")
+	)
+	(junction
+		(at 137.16 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d6a484fd-000f-41aa-b599-baeb1281f358")
+	)
+	(junction
+		(at 220.98 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d891c74a-f3c0-47b5-a2f4-a0bd9366cd27")
+	)
+	(junction
+		(at 73.66 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "daab23b8-2ced-427f-a7e5-e49911359126")
+	)
+	(junction
+		(at 170.18 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e92b3f9b-7b37-4913-bbd2-306aed4dcac3")
+	)
+	(junction
+		(at 226.06 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "eada141b-0d9c-4d79-b3c8-8e651c9c2ad9")
+	)
+	(junction
+		(at 187.96 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "efd6d271-cf30-494f-91a6-c999701f06fe")
+	)
+	(wire
+		(pts
+			(xy 187.96 68.58) (xy 189.23 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0128238c-dbb4-481f-bfd0-5bf71cd053e5")
+	)
+	(wire
+		(pts
+			(xy 120.65 99.06) (xy 119.38 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "015f19eb-a8a9-434b-9b08-526855a03f7e")
+	)
+	(wire
+		(pts
+			(xy 229.87 64.77) (xy 228.6 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0693a673-2918-4163-b42f-db2432225890")
+	)
+	(wire
+		(pts
+			(xy 120.65 72.39) (xy 120.65 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08670932-703a-4cd4-94c2-b91d3c5eef4e")
+	)
+	(wire
+		(pts
+			(xy 238.76 82.55) (xy 238.76 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c5176ce-0c7a-4be1-9b55-b14917e71385")
+	)
+	(wire
+		(pts
+			(xy 69.85 76.2) (xy 68.58 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e6b001b-5a75-49e7-a977-74904ea3c162")
+	)
+	(wire
+		(pts
+			(xy 86.36 105.41) (xy 85.09 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e8c65ad-05e3-43c1-a4a5-6c559f534570")
+	)
+	(wire
+		(pts
+			(xy 71.12 88.9) (xy 73.66 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f20b545-8004-4dcc-938a-d5792984410d")
+	)
+	(wire
+		(pts
+			(xy 171.45 76.2) (xy 170.18 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13ef233d-9692-46ff-9dbd-55a57d30c283")
+	)
+	(wire
+		(pts
+			(xy 58.42 100.33) (xy 59.69 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1638d1ed-42f7-4d1b-ab7d-9849a71ab1ea")
+	)
+	(wire
+		(pts
+			(xy 187.96 67.31) (xy 187.96 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b791cb5-4a9a-4b55-8cec-a0a98af21f4d")
+	)
+	(wire
+		(pts
+			(xy 187.96 105.41) (xy 186.69 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b843b1b-c6e5-4d05-9316-43bd1d524ece")
+	)
+	(wire
+		(pts
+			(xy 222.25 76.2) (xy 220.98 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2125ce8f-9b25-468c-be92-f2cd0c66a485")
+	)
+	(wire
+		(pts
+			(xy 69.85 80.01) (xy 69.85 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21ed3df5-ae73-471f-893a-dd92776818ac")
+	)
+	(wire
+		(pts
+			(xy 109.22 74.93) (xy 110.49 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "24ee5678-feae-4566-9470-314bbb638266")
+	)
+	(wire
+		(pts
+			(xy 137.16 67.31) (xy 137.16 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "255c8820-e7c0-4161-b0e9-f2f6a6e69bb6")
+	)
+	(wire
+		(pts
+			(xy 226.06 87.63) (xy 226.06 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27fbbb45-8099-452f-93f7-6612426f1a33")
+	)
+	(wire
+		(pts
+			(xy 124.46 88.9) (xy 127 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "291a400b-c857-4f13-b260-5f2cd21a5750")
+	)
+	(wire
+		(pts
+			(xy 58.42 74.93) (xy 59.69 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a088cc7-4734-49df-a646-5f9737591494")
+	)
+	(wire
+		(pts
+			(xy 223.52 63.5) (xy 226.06 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b743449-eb6f-43c4-9afb-88ab35403ba4")
+	)
+	(wire
+		(pts
+			(xy 121.92 88.9) (xy 124.46 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d282870-6280-4586-9072-36f72640f5eb")
+	)
+	(wire
+		(pts
+			(xy 69.85 105.41) (xy 69.85 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2dc7692c-23d5-4293-a742-913959e03c52")
+	)
+	(wire
+		(pts
+			(xy 137.16 68.58) (xy 137.16 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30eb134d-ffdf-47d3-bd02-579f3b741ad8")
+	)
+	(wire
+		(pts
+			(xy 175.26 88.9) (xy 177.8 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36525533-ef48-486d-b402-23f3153ac996")
+	)
+	(wire
+		(pts
+			(xy 171.45 105.41) (xy 171.45 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36ef853e-9c42-492d-85bf-29177f727f11")
+	)
+	(wire
+		(pts
+			(xy 226.06 63.5) (xy 228.6 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "398a1fd9-b3b7-4cc0-aa74-4a506b10c937")
+	)
+	(wire
+		(pts
+			(xy 69.85 72.39) (xy 69.85 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3bb8235a-ab5f-4646-9c39-a7814a99e1bb")
+	)
+	(wire
+		(pts
+			(xy 86.36 92.71) (xy 86.36 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3bd5efae-9048-4c1b-b5bd-44a5a886ffc6")
+	)
+	(wire
+		(pts
+			(xy 171.45 72.39) (xy 171.45 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c3ce235-f0c1-40ed-99aa-2fb63a2464a2")
+	)
+	(wire
+		(pts
+			(xy 86.36 68.58) (xy 87.63 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3dc266c3-a8a9-42ce-8c4d-e9179ec5c3c2")
+	)
+	(wire
+		(pts
+			(xy 229.87 97.79) (xy 229.87 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f7ea8a0-18c4-46ae-9b10-826089c45c14")
+	)
+	(wire
+		(pts
+			(xy 135.89 81.28) (xy 121.92 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4178bbc7-d1ec-477f-ac30-8506b1ba8049")
+	)
+	(wire
+		(pts
+			(xy 119.38 74.93) (xy 118.11 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41d0dc91-3edf-468b-bd44-56009afe3b12")
+	)
+	(wire
+		(pts
+			(xy 160.02 74.93) (xy 161.29 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4242033f-1f27-4b66-a1d0-62d4845b889e")
+	)
+	(wire
+		(pts
+			(xy 73.66 88.9) (xy 76.2 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "437a0db3-91ac-4788-93ea-1a60b7912619")
+	)
+	(wire
+		(pts
+			(xy 86.36 57.15) (xy 86.36 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "438761f5-105a-4138-ac6a-c992009121d8")
+	)
+	(wire
+		(pts
+			(xy 172.72 88.9) (xy 175.26 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45669a39-065f-4c77-a3f7-8b4e58941a9c")
+	)
+	(wire
+		(pts
+			(xy 171.45 73.66) (xy 170.18 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "466d7896-cc4e-4fba-9314-38936d580f2e")
+	)
+	(wire
+		(pts
+			(xy 172.72 63.5) (xy 175.26 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47724392-438a-4bcf-b048-6519f74815c6")
+	)
+	(wire
+		(pts
+			(xy 120.65 97.79) (xy 120.65 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47d156f3-a834-4785-8e9e-18b69fbd1550")
+	)
+	(wire
+		(pts
+			(xy 86.36 93.98) (xy 87.63 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4819a64e-5f75-4f77-b22a-d1c035127b69")
+	)
+	(wire
+		(pts
+			(xy 86.36 68.58) (xy 86.36 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "489176f8-7316-4e0e-94c9-830075f4b129")
+	)
+	(wire
+		(pts
+			(xy 170.18 100.33) (xy 168.91 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48fe5867-1fcd-40ad-8ef1-9190f3330918")
+	)
+	(wire
+		(pts
+			(xy 128.27 73.66) (xy 129.54 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "494e10ee-e7e5-41da-af7c-55f57f32a540")
+	)
+	(wire
+		(pts
+			(xy 238.76 92.71) (xy 238.76 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a629ae5-cf4b-40bd-8275-dd9db0de0a39")
+	)
+	(wire
+		(pts
+			(xy 71.12 81.28) (xy 69.85 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b3f02e8-c9cf-420c-a0e4-aa33f307e069")
+	)
+	(wire
+		(pts
+			(xy 171.45 97.79) (xy 171.45 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4e7cb25a-b498-4d70-acc6-e0844d412f87")
+	)
+	(wire
+		(pts
+			(xy 71.12 88.9) (xy 69.85 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4fe7ebd3-56f3-41c5-938a-2d41cb63cef4")
+	)
+	(wire
+		(pts
+			(xy 109.22 100.33) (xy 110.49 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5845bcf2-1455-490c-aac7-573a56fbcee7")
+	)
+	(wire
+		(pts
+			(xy 187.96 57.15) (xy 187.96 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "587135f1-659b-4ad2-a17a-cf61b4d60f64")
+	)
+	(wire
+		(pts
+			(xy 137.16 93.98) (xy 137.16 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5997fee8-a1e6-4bf4-8b50-05868dff21a0")
+	)
+	(wire
+		(pts
+			(xy 128.27 97.79) (xy 128.27 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59a99dca-dc20-468f-93e4-4fb54ad2afa5")
+	)
+	(wire
+		(pts
+			(xy 222.25 73.66) (xy 220.98 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ab68381-43b7-4bb4-8ac3-aa56eaa90990")
+	)
+	(wire
+		(pts
+			(xy 238.76 80.01) (xy 237.49 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b6fa736-a52e-4f90-8bf8-e3e0228868b1")
+	)
+	(wire
+		(pts
+			(xy 124.46 62.23) (xy 124.46 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bf312ce-210c-42dd-aea1-059e4deff660")
+	)
+	(wire
+		(pts
+			(xy 226.06 88.9) (xy 228.6 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e851272-93c6-4674-935a-9d6ef875f6de")
+	)
+	(wire
+		(pts
+			(xy 68.58 74.93) (xy 67.31 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5fb4357a-cf93-463e-8cbb-2ffb4e11d85c")
+	)
+	(wire
+		(pts
+			(xy 85.09 81.28) (xy 71.12 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60de9c01-4b90-46c9-93d2-dbdb4904df31")
+	)
+	(wire
+		(pts
+			(xy 175.26 62.23) (xy 175.26 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63cdc0b5-bbfd-4120-a294-7e3be54f372c")
+	)
+	(wire
+		(pts
+			(xy 71.12 63.5) (xy 73.66 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63f01c35-d263-4185-87dd-10dfef3ea167")
+	)
+	(wire
+		(pts
+			(xy 77.47 90.17) (xy 76.2 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6520cd17-e71a-4d34-97a3-99b7aad6764a")
+	)
+	(wire
+		(pts
+			(xy 238.76 93.98) (xy 240.03 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65315c8f-fcd6-4eda-a6c6-1df424162068")
+	)
+	(wire
+		(pts
+			(xy 86.36 93.98) (xy 86.36 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "654fc4ce-d04c-4305-9d78-764acbd58713")
+	)
+	(wire
+		(pts
+			(xy 210.82 100.33) (xy 212.09 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65ce5cdc-7e0e-42b7-be58-d6adb8cd5108")
+	)
+	(wire
+		(pts
+			(xy 77.47 64.77) (xy 76.2 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6730b7cf-0eeb-4eca-9092-a57fe4d47451")
+	)
+	(wire
+		(pts
+			(xy 229.87 72.39) (xy 229.87 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "680af220-bd9f-473d-8f29-b5c27f8fa168")
+	)
+	(wire
+		(pts
+			(xy 187.96 80.01) (xy 186.69 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a0b669e-daa8-409a-982b-bf74a702b191")
+	)
+	(wire
+		(pts
+			(xy 171.45 80.01) (xy 171.45 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b640ff0-7caf-4b52-b585-7af6eb9bb816")
+	)
+	(wire
+		(pts
+			(xy 120.65 105.41) (xy 120.65 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bb1ea39-6d6e-42bc-adc6-9f24293aed0a")
+	)
+	(wire
+		(pts
+			(xy 210.82 74.93) (xy 212.09 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bd983c7-b5a5-47f4-b258-d9e42249db93")
+	)
+	(wire
+		(pts
+			(xy 86.36 80.01) (xy 85.09 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c29d842-e412-434b-8499-888c619ff88b")
+	)
+	(wire
+		(pts
+			(xy 170.18 74.93) (xy 168.91 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c3f064a-f949-40a0-9c40-91e8bcb18b98")
+	)
+	(wire
+		(pts
+			(xy 172.72 88.9) (xy 171.45 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c94c2a0-2398-428d-8864-9d481f600701")
+	)
+	(wire
+		(pts
+			(xy 223.52 81.28) (xy 222.25 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6dc65ab9-334a-463d-acca-49915908ffbd")
+	)
+	(wire
+		(pts
+			(xy 238.76 105.41) (xy 237.49 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e4de743-1a27-41d1-9b57-f0f439a0b6e9")
+	)
+	(wire
+		(pts
+			(xy 71.12 63.5) (xy 69.85 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f7d5759-5deb-4546-9567-e29cbbcf1a96")
+	)
+	(wire
+		(pts
+			(xy 137.16 82.55) (xy 137.16 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "710533f4-6ebe-4c44-9428-83a2c03a1125")
+	)
+	(wire
+		(pts
+			(xy 238.76 93.98) (xy 238.76 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "718c2fff-c96c-47ca-8994-0ca7a92009ff")
+	)
+	(wire
+		(pts
+			(xy 187.96 68.58) (xy 187.96 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72b156da-d726-4a9b-a276-453dbbfceb2b")
+	)
+	(wire
+		(pts
+			(xy 121.92 88.9) (xy 120.65 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7541811f-f0f7-4359-a8a8-b11320e6111b")
+	)
+	(wire
+		(pts
+			(xy 77.47 97.79) (xy 77.47 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77899349-7101-4bd0-86ad-ea21256c7cb1")
+	)
+	(wire
+		(pts
+			(xy 238.76 57.15) (xy 238.76 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a7d8275-c842-45e9-8575-882ed6479584")
+	)
+	(wire
+		(pts
+			(xy 238.76 67.31) (xy 238.76 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c047d86-9be9-4248-b041-9c2a93add22a")
+	)
+	(wire
+		(pts
+			(xy 69.85 73.66) (xy 68.58 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7cd52d95-225b-402c-871a-3b96adba733e")
+	)
+	(wire
+		(pts
+			(xy 137.16 68.58) (xy 138.43 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7d7e5711-696b-41b0-b92e-e9ab9d93f84a")
+	)
+	(wire
+		(pts
+			(xy 238.76 68.58) (xy 240.03 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7db30464-880f-411a-89b7-47540bced15e")
+	)
+	(wire
+		(pts
+			(xy 86.36 67.31) (xy 86.36 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7dcc4456-1eb6-4a21-ad42-a20d01225d94")
+	)
+	(wire
+		(pts
+			(xy 68.58 100.33) (xy 67.31 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80d754ab-b90e-4aa3-96ca-ca2891ef9742")
+	)
+	(wire
+		(pts
+			(xy 137.16 105.41) (xy 135.89 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80f22c99-0cac-41a6-b27a-88a5f10a407e")
+	)
+	(wire
+		(pts
+			(xy 121.92 106.68) (xy 120.65 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86f7e0af-a013-40b2-9596-3348189fe2cd")
+	)
+	(wire
+		(pts
+			(xy 77.47 73.66) (xy 78.74 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87863209-7d7c-4550-80f0-e6c325f0805e")
+	)
+	(wire
+		(pts
+			(xy 119.38 100.33) (xy 118.11 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a2ad0e5-0208-433a-81bd-218a0b9e4124")
+	)
+	(wire
+		(pts
+			(xy 171.45 99.06) (xy 170.18 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b705663-e72c-43e3-bbb4-21a8b440c458")
+	)
+	(wire
+		(pts
+			(xy 223.52 106.68) (xy 222.25 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c87c340-494c-4e9d-90ef-65e97497b692")
+	)
+	(wire
+		(pts
+			(xy 73.66 63.5) (xy 76.2 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ce75c16-3901-4d4a-9d9d-9bc898df0577")
+	)
+	(wire
+		(pts
+			(xy 223.52 63.5) (xy 222.25 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d0fedc0-a7d4-4f36-a7d4-9880c83037ed")
+	)
+	(wire
+		(pts
+			(xy 222.25 80.01) (xy 222.25 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ee65a28-8ab5-4064-a992-15d36fdbfcb9")
+	)
+	(wire
+		(pts
+			(xy 238.76 68.58) (xy 238.76 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90a5af80-a834-49aa-8f8e-d3b26febbda6")
+	)
+	(wire
+		(pts
+			(xy 137.16 93.98) (xy 138.43 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90cc4b7b-0e06-492f-8ffc-492081ae07d8")
+	)
+	(wire
+		(pts
+			(xy 186.69 106.68) (xy 172.72 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "910f2b18-0dd5-4db7-82fd-0e417b59c093")
+	)
+	(wire
+		(pts
+			(xy 77.47 99.06) (xy 78.74 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "959bcdbb-5f37-4741-860e-83e3cd1ac26a")
+	)
+	(wire
+		(pts
+			(xy 223.52 88.9) (xy 226.06 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96ce5662-e6d1-43fc-a0a8-51c7546bf33b")
+	)
+	(wire
+		(pts
+			(xy 128.27 90.17) (xy 127 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9845425f-49a0-4105-891c-5fee0451486e")
+	)
+	(wire
+		(pts
+			(xy 186.69 81.28) (xy 172.72 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99422bfa-9b95-400b-bbd6-6c52c71c5b42")
+	)
+	(wire
+		(pts
+			(xy 187.96 93.98) (xy 189.23 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9dd810fd-dcd1-4b96-af8a-23b8f15ea05e")
+	)
+	(wire
+		(pts
+			(xy 179.07 72.39) (xy 179.07 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9fd04167-a67e-4e4d-a09c-2e6aaae886a8")
+	)
+	(wire
+		(pts
+			(xy 179.07 64.77) (xy 177.8 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a041ffa1-eecb-48f5-92b0-7dca52300ad3")
+	)
+	(wire
+		(pts
+			(xy 222.25 99.06) (xy 220.98 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a15f9c35-e9ff-4bae-8c5f-31cf037eb8cd")
+	)
+	(wire
+		(pts
+			(xy 124.46 63.5) (xy 127 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3aeb49c-1f78-4d99-97bd-8444f1bbbfbc")
+	)
+	(wire
+		(pts
+			(xy 179.07 97.79) (xy 179.07 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a41fe926-e4af-48a1-9521-3123f34da00b")
+	)
+	(wire
+		(pts
+			(xy 160.02 100.33) (xy 161.29 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a517325b-77cd-4070-9059-9700e2e588fb")
+	)
+	(wire
+		(pts
+			(xy 226.06 62.23) (xy 226.06 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a6108f47-49c3-4f32-9dc6-34099b59be88")
+	)
+	(wire
+		(pts
+			(xy 120.65 101.6) (xy 119.38 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a6f52e58-aef1-47f4-849c-7516416a4213")
+	)
+	(wire
+		(pts
+			(xy 120.65 76.2) (xy 119.38 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7bbb5d3-b552-46b3-8e7b-0fa4e457a9e6")
+	)
+	(wire
+		(pts
+			(xy 237.49 106.68) (xy 223.52 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa3bd201-21d5-4131-bbd5-bcba6c9da40d")
+	)
+	(wire
+		(pts
+			(xy 175.26 63.5) (xy 177.8 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "acd133bf-59ad-4de1-8991-3e52cb2b7b68")
+	)
+	(wire
+		(pts
+			(xy 128.27 99.06) (xy 129.54 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae74285a-c29a-48cf-a93d-3281952cd18e")
+	)
+	(wire
+		(pts
+			(xy 137.16 57.15) (xy 137.16 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b575252d-5150-4219-a4fb-9e047c3a32a7")
+	)
+	(wire
+		(pts
+			(xy 73.66 87.63) (xy 73.66 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc16a56c-8c53-4b34-8960-e4f9f090ceb5")
+	)
+	(wire
+		(pts
+			(xy 71.12 106.68) (xy 69.85 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc5870b6-e224-4be7-9b95-243453c99485")
+	)
+	(wire
+		(pts
+			(xy 237.49 81.28) (xy 223.52 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bdd4f8ef-b19f-4b83-8451-485cc2dfbba9")
+	)
+	(wire
+		(pts
+			(xy 222.25 105.41) (xy 222.25 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be635ec3-3219-4d8b-afac-d2d4d6e6ccc2")
+	)
+	(wire
+		(pts
+			(xy 121.92 63.5) (xy 124.46 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c1a7b205-ffe8-420f-b2d8-fcf44806e441")
+	)
+	(wire
+		(pts
+			(xy 137.16 92.71) (xy 137.16 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2bc2d7d-8d1d-4540-a01c-0ba146d14224")
+	)
+	(wire
+		(pts
+			(xy 179.07 90.17) (xy 177.8 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3c43a68-91da-451f-a310-3a10c20a98a1")
+	)
+	(wire
+		(pts
+			(xy 171.45 101.6) (xy 170.18 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3ca68b9-4fb5-4cc1-9c2f-afcb6f660389")
+	)
+	(wire
+		(pts
+			(xy 137.16 80.01) (xy 135.89 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c40c711d-af2a-4c92-b84a-429d17f67760")
+	)
+	(wire
+		(pts
+			(xy 220.98 100.33) (xy 219.71 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c58d65af-6abf-44ca-a2a5-556453b4c294")
+	)
+	(wire
+		(pts
+			(xy 77.47 72.39) (xy 77.47 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6733129-e1a8-45c6-925e-e53f8acc984f")
+	)
+	(wire
+		(pts
+			(xy 222.25 72.39) (xy 222.25 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c79a12d3-9c1a-45f2-b282-c292dce7a751")
+	)
+	(wire
+		(pts
+			(xy 222.25 97.79) (xy 222.25 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7a42c0b-11a5-4fe1-b9de-ac3bff7ba091")
+	)
+	(wire
+		(pts
+			(xy 229.87 73.66) (xy 231.14 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7b8d33a-4d4e-422a-a27e-33f246f8ac5e")
+	)
+	(wire
+		(pts
+			(xy 69.85 99.06) (xy 68.58 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9382f7f-b1d3-4117-8905-20e0d1acc635")
+	)
+	(wire
+		(pts
+			(xy 229.87 99.06) (xy 231.14 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb8b0b5d-8f98-4c83-99d5-3044102d26c3")
+	)
+	(wire
+		(pts
+			(xy 120.65 80.01) (xy 120.65 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cfb484a1-df1d-4c8c-b65d-e8bdd57478a9")
+	)
+	(wire
+		(pts
+			(xy 229.87 90.17) (xy 228.6 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d3a6c3de-0e13-4bea-b3cd-87ae3c103d65")
+	)
+	(wire
+		(pts
+			(xy 69.85 101.6) (xy 68.58 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d43f9d0f-251d-47e6-ba16-98cd956bfe11")
+	)
+	(wire
+		(pts
+			(xy 179.07 73.66) (xy 180.34 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d65c951d-7bb4-4237-b383-dae99b481da5")
+	)
+	(wire
+		(pts
+			(xy 121.92 63.5) (xy 120.65 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d6c612a1-0dcf-4ac2-8055-74cf7be9d204")
+	)
+	(wire
+		(pts
+			(xy 124.46 87.63) (xy 124.46 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd793490-7ea5-40c2-8a18-474e701ce8a4")
+	)
+	(wire
+		(pts
+			(xy 175.26 87.63) (xy 175.26 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddb4b787-1f07-4416-863d-e0e4a81d507c")
+	)
+	(wire
+		(pts
+			(xy 69.85 97.79) (xy 69.85 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e0e9c7ca-3e55-4352-83ea-5adc159b2892")
+	)
+	(wire
+		(pts
+			(xy 73.66 62.23) (xy 73.66 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e2a14172-afc4-4cdf-b326-ad6cba1c4f85")
+	)
+	(wire
+		(pts
+			(xy 187.96 82.55) (xy 187.96 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5405b8f-4d15-48fe-9db2-ffe5430a81db")
+	)
+	(wire
+		(pts
+			(xy 128.27 72.39) (xy 128.27 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5f7aa8a-cc7b-44cb-9047-2f2561d4932b")
+	)
+	(wire
+		(pts
+			(xy 120.65 73.66) (xy 119.38 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5fef9fc-e023-4731-a376-2389c3514054")
+	)
+	(wire
+		(pts
+			(xy 172.72 106.68) (xy 171.45 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6ce142d-bf73-4967-8e5d-86a4c8664336")
+	)
+	(wire
+		(pts
+			(xy 135.89 106.68) (xy 121.92 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e921ac65-9ce7-4fad-9eb3-79675bdcdc14")
+	)
+	(wire
+		(pts
+			(xy 86.36 82.55) (xy 86.36 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e952362c-5700-4571-8afd-1828481b5f02")
+	)
+	(wire
+		(pts
+			(xy 172.72 63.5) (xy 171.45 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec5d356e-b43f-4f18-8558-a39744bbb124")
+	)
+	(wire
+		(pts
+			(xy 223.52 88.9) (xy 222.25 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee427ab6-9293-4bfd-a9cc-45e2f7add72f")
+	)
+	(wire
+		(pts
+			(xy 121.92 81.28) (xy 120.65 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef94265c-f0d9-4997-8fe2-edeac40c0726")
+	)
+	(wire
+		(pts
+			(xy 179.07 99.06) (xy 180.34 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f0bd9819-ddd8-4d54-81ca-b5a713464e9b")
+	)
+	(wire
+		(pts
+			(xy 222.25 101.6) (xy 220.98 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3ea2cfe-4062-4bf1-9179-b842e7a209d4")
+	)
+	(wire
+		(pts
+			(xy 187.96 92.71) (xy 187.96 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5934eec-e14c-4a42-a4ae-ea0c1716e5af")
+	)
+	(wire
+		(pts
+			(xy 85.09 106.68) (xy 71.12 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8fd3c45-1ed6-4378-a61a-cad710142426")
+	)
+	(wire
+		(pts
+			(xy 187.96 93.98) (xy 187.96 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc4438ec-6cee-4839-a87e-26847f3fce0b")
+	)
+	(wire
+		(pts
+			(xy 220.98 74.93) (xy 219.71 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fdf11d69-c207-44ae-991d-929d6795ffe0")
+	)
+	(wire
+		(pts
+			(xy 172.72 81.28) (xy 171.45 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ffa3c7ef-8186-4c50-b242-b243ea0a37b0")
+	)
+	(wire
+		(pts
+			(xy 128.27 64.77) (xy 127 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ffa5eede-1a64-45b4-924b-3022b0c04ba2")
+	)
+	(hierarchical_label "DATA_IN4"
+		(shape input)
+		(at 109.22 100.33 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0015e90a-d5bf-442d-a741-34e3c37a4c8d")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 175.26 87.63 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "00bca524-a731-4aeb-9108-1e1aa41ab5c2")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 73.66 87.63 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "03918311-2d78-488f-bf38-4128513fc089")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 175.26 62.23 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0658b21c-0e19-4d9a-98f8-e9523d44a418")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 226.06 62.23 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "139b3a91-0cc4-4cf5-a06b-7d017a5c199e")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 226.06 87.63 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "26ae75f6-1e90-4e2a-915f-5d9a9abac588")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 187.96 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "28757c88-924d-4ccf-bca7-5bc1026c01a4")
+	)
+	(hierarchical_label "DATA_OUT1"
+		(shape output)
+		(at 87.63 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3071b370-cdb7-4135-b121-13962833e9bb")
+	)
+	(hierarchical_label "DATA_OUT2"
+		(shape output)
+		(at 87.63 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "354051ad-6735-4f81-9253-37ded2f53374")
+	)
+	(hierarchical_label "DATA_IN1"
+		(shape input)
+		(at 58.42 74.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4db0dc1e-4d88-47b6-847f-97c188bd09a8")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 238.76 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4fd8623f-b324-4579-a515-c8d02a2bdf07")
+	)
+	(hierarchical_label "DATA_IN2"
+		(shape input)
+		(at 58.42 100.33 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6ef3d79d-dbbc-4827-960d-290094e2d168")
+	)
+	(hierarchical_label "DATA_OUT4"
+		(shape output)
+		(at 138.43 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "73598996-4b57-46da-ba2b-5bd5fe83d962")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 86.36 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "764c62eb-78ee-4f00-b654-ec43df06a969")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 187.96 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "76cd6317-47d4-4842-b6d2-8336e9a0b5ef")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 137.16 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7f014099-5d51-461e-9400-50d58f532aaa")
+	)
+	(hierarchical_label "DATA_IN3"
+		(shape input)
+		(at 109.22 74.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "85d62fb4-3dd7-459f-90d5-a66eb65b0e65")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 73.66 62.23 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8f847ac0-e7e5-4dbe-8d12-4b45c664bf64")
+	)
+	(hierarchical_label "DATA_OUT3"
+		(shape output)
+		(at 138.43 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9601d201-d12e-4dd5-b3be-4cf0f591d1dd")
+	)
+	(hierarchical_label "DATA_IN7"
+		(shape input)
+		(at 210.82 74.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9e0e8bdd-832f-4648-9be2-1e38ebcbec4c")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 137.16 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b3154aff-126e-4260-8671-40dea7e72074")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 238.76 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b85307aa-6305-4c8d-9b26-0fd016e03fdc")
+	)
+	(hierarchical_label "DATA_IN5"
+		(shape input)
+		(at 160.02 74.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bf1bca98-ccb8-4d92-a349-0b773a3f5cab")
+	)
+	(hierarchical_label "DATA_OUT6"
+		(shape output)
+		(at 189.23 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c7b25968-3133-4f4a-9284-370730ae7f13")
+	)
+	(hierarchical_label "DATA_IN6"
+		(shape input)
+		(at 160.02 100.33 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "cbca48a4-fa67-4a74-870b-b783a49d21b7")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 124.46 62.23 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "cfb92db1-2df3-45fc-917d-0417071aced0")
+	)
+	(hierarchical_label "DATA_OUT5"
+		(shape output)
+		(at 189.23 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d3a2ae0a-f83a-47c3-b4ec-918a47848305")
+	)
+	(hierarchical_label "DATA_OUT7"
+		(shape output)
+		(at 240.03 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d4e6c170-ed2c-4fe5-8ac6-710e74c00155")
+	)
+	(hierarchical_label "DATA_OUT8"
+		(shape output)
+		(at 240.03 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d8360109-eee2-4646-949d-7bba96be8ed0")
+	)
+	(hierarchical_label "5V"
+		(shape input)
+		(at 86.36 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e13f6f05-7eb4-4cc3-a8c8-68efa1f7dc4c")
+	)
+	(hierarchical_label "DATA_IN8"
+		(shape input)
+		(at 210.82 100.33 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ff85e3a3-1b13-4746-8bdd-1d8c4c132585")
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 124.46 87.63 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ffdfd133-8ed3-4aeb-9949-44a7a27452a2")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 137.16 88.9 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "050094f5-3ef8-497a-bed2-3e69e95525ee")
+		(property "Reference" "R15"
+			(at 135.89 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 135.89 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 138.938 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 137.16 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 137.16 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f42d8fb8-2559-46d5-9815-b20e6bb77fbf")
+		)
+		(pin "2"
+			(uuid "94c37926-a98f-4f04-bea7-cb469e794cce")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R15")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R39")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 171.45 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0f379dcb-795b-44d4-a100-bbb26aef329d")
+		(property "Reference" "R17"
+			(at 170.18 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 170.18 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 173.228 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 171.45 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 171.45 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "640502fe-5a3e-4243-b2fa-90a9d80c994a")
+		)
+		(pin "2"
+			(uuid "52cd736f-f0e9-464e-8c90-aa09cd4de05f")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R17")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R41")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 120.65 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "112378ac-d774-4641-972d-4e6d6c119e82")
+		(property "Reference" "R11"
+			(at 119.38 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 119.38 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 122.428 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 120.65 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 120.65 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "14a9e373-9040-446a-86f5-e4dbd6e70762")
+		)
+		(pin "2"
+			(uuid "de69d4e5-bcd6-4ef8-ac62-4230da2c92e0")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R11")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R35")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 238.76 63.5 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "19ede7d6-9f58-40bc-967d-19ebe9a979c3")
+		(property "Reference" "R26"
+			(at 237.49 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 237.49 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 240.538 63.5 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 238.76 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 238.76 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d827a7cd-6ec3-42de-8aa7-d7a185499bf0")
+		)
+		(pin "2"
+			(uuid "9d144a3e-5153-4d27-8a9d-7bbfd528c340")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R26")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R50")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 114.3 74.93 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1b2ce8d2-4efa-4af9-9dcc-7b12d891229e")
+		(property "Reference" "D3"
+			(at 113.03 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 113.03 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 114.3 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 114.3 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 114.3 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 114.3 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 114.3 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "770f3c5c-3975-4530-920d-c46ef2b540cc")
+		)
+		(pin "1"
+			(uuid "258618ce-628b-40d4-af9e-bc2e85b83cc6")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D3")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 165.1 74.93 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2af50f7b-e7b1-4a66-b951-288033f9008d")
+		(property "Reference" "D5"
+			(at 163.83 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 163.83 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 165.1 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 165.1 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 165.1 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 165.1 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 165.1 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "49067782-c592-4528-9643-f81149fa2a4e")
+		)
+		(pin "1"
+			(uuid "c757a477-8035-4426-b124-e285b59c8314")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D5")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 187.96 88.9 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2f257e92-cee8-44ad-85a9-a6e81b31b588")
+		(property "Reference" "R21"
+			(at 186.69 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 186.69 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 189.738 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 187.96 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 187.96 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "33827388-deb4-4473-90aa-ef92401a3a21")
+		)
+		(pin "2"
+			(uuid "1825aa41-5804-4368-ba4e-59b7f0911faa")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R21")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R45")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 120.65 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "325a8962-2d71-4c72-b067-249fb60855be")
+		(property "Reference" "R10"
+			(at 119.38 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 119.38 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 122.428 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 120.65 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 120.65 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c4d82fdd-7886-43f9-aa7a-51b03f33dd09")
+		)
+		(pin "2"
+			(uuid "f18b20c1-e006-47ef-ba59-16bc7c5e7531")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R10")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 137.16 63.5 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3aab55ef-6b6d-483a-9162-e6b5fd1989c6")
+		(property "Reference" "R14"
+			(at 135.89 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 135.89 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 138.938 63.5 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 137.16 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 137.16 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3ae948e5-2d1a-489d-a8a4-8bf513d2e96a")
+		)
+		(pin "2"
+			(uuid "a11c6384-d4d9-4b7d-b87c-78d47638ef06")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R14")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R38")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 229.87 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4b8a665c-fc19-43d8-8c44-e66be97f4fcf")
+		(property "Reference" "R25"
+			(at 228.6 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 228.6 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 231.648 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 229.87 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 229.87 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b530fea6-786e-41c6-885f-e6b561492cd3")
+		)
+		(pin "2"
+			(uuid "daba514c-9d5f-4cd7-827a-f2ee56cfad6c")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R25")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R49")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 165.1 100.33 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "501285a3-5c4f-4dbb-bd2b-8865f494d36e")
+		(property "Reference" "D6"
+			(at 163.83 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 163.83 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 165.1 95.885 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 165.1 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 165.1 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 165.1 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 165.1 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7acff542-bace-4dbf-94f6-3147b47190c9")
+		)
+		(pin "1"
+			(uuid "c538c787-1065-4ae3-b41c-41d5b4203dc3")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D6")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 187.96 63.5 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5c86bea2-1234-4247-b77d-61e38ebb2e2d")
+		(property "Reference" "R20"
+			(at 186.69 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 186.69 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 189.738 63.5 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 187.96 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 187.96 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f6363d85-2307-4ee3-904f-2b91f56c4397")
+		)
+		(pin "2"
+			(uuid "70db348c-66e4-4769-b78e-348412558a56")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R20")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R44")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 215.9 74.93 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5d3bb317-733e-482b-ae52-03850d62ec92")
+		(property "Reference" "D7"
+			(at 214.63 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 214.63 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 215.9 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 215.9 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 215.9 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 215.9 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 215.9 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "137b6015-f1ea-4f2a-adf4-48ead313d06e")
+		)
+		(pin "1"
+			(uuid "641c0ec6-0987-4d05-bbd3-cb96c15940a5")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D7")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 86.36 63.5 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "60844e6e-f9ab-4d25-8fa0-5ce65cb00340")
+		(property "Reference" "R8"
+			(at 85.09 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 85.09 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 88.138 63.5 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 86.36 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 86.36 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4ee4aaee-31dc-4222-8ee6-527d23688e0b")
+		)
+		(pin "2"
+			(uuid "01fd5e16-c62e-401c-8fa4-598a0a03b2c2")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R8")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R32")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 86.36 88.9 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61de8f78-8b57-47cd-b324-1216a4c3b47d")
+		(property "Reference" "R9"
+			(at 85.09 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 85.09 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 88.138 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 86.36 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 86.36 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "adccfcab-d9fe-4c29-b25e-9e44773d63ef")
+		)
+		(pin "2"
+			(uuid "f20f628c-4fc2-4d2d-8251-540adee95116")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R9")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R33")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 69.85 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6851feb7-def6-40ac-89d6-29fddd107534")
+		(property "Reference" "R4"
+			(at 68.58 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 68.58 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 71.628 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 69.85 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 69.85 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "634a98e4-c9c7-410c-bd2a-db431137d7bb")
+		)
+		(pin "2"
+			(uuid "8d0deb34-2295-439d-93ca-e289a9ddaaa2")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R4")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 215.9 100.33 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "779e3fd0-2fe5-4d9d-9e10-0a824934cabf")
+		(property "Reference" "D8"
+			(at 214.63 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 214.63 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 215.9 95.885 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 215.9 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 215.9 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 215.9 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 215.9 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1cb4438a-a387-41ee-9701-2257ef2a3287")
+		)
+		(pin "1"
+			(uuid "4d8c6deb-d4f3-4c0d-8970-9e1856679624")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D8")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 83.82 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "77e7a462-e7f3-466c-966b-0b322d6a0124")
+		(property "Reference" "Q1"
+			(at 88.265 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 88.265 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 88.9 76.835 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 83.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 83.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "073c663a-8f7a-4b21-9916-8e81be896a5a")
+		)
+		(pin "2"
+			(uuid "874f2118-686f-415d-9d8b-f46140867635")
+		)
+		(pin "1"
+			(uuid "bd79fb1b-3aed-4e70-9bbf-ccb6766e42e6")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q1")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 128.27 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7c364c7e-ade1-453a-b085-eba992cbf403")
+		(property "Reference" "R12"
+			(at 127 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 127 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 130.048 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 128.27 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 128.27 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "50c65704-b653-417d-8aef-9c5737105412")
+		)
+		(pin "2"
+			(uuid "c0b2992a-ea09-41fe-a565-89027d690218")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R12")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R36")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 236.22 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8ce078e9-2dcd-4996-95c9-d8ead79279c4")
+		(property "Reference" "Q8"
+			(at 240.665 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 240.665 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 241.3 102.235 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 236.22 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 236.22 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "7247eb46-22e0-4432-b3f2-8c4ad490cbf4")
+		)
+		(pin "2"
+			(uuid "694fe280-6b6a-4502-95ba-fc4172d17b2e")
+		)
+		(pin "1"
+			(uuid "94bf8048-396b-4cba-abb4-65eaafce09c4")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q8")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 77.47 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8f6b6581-07c3-4f19-9d25-f3180863826d")
+		(property "Reference" "R7"
+			(at 76.2 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 76.2 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 79.248 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 77.47 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 77.47 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3a1245e5-d0af-4476-965d-af3292a390a1")
+		)
+		(pin "2"
+			(uuid "8529ca79-0a74-4900-a038-3270544e77dc")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R7")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 63.5 100.33 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9b6b1141-7ce1-4e87-a0b9-40fba86e63e6")
+		(property "Reference" "D2"
+			(at 62.23 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 62.23 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 63.5 95.885 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 63.5 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 63.5 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 63.5 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 63.5 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "6dcfe1f9-68e7-4748-913c-90c33b476abe")
+		)
+		(pin "1"
+			(uuid "4bb4bed6-1378-4f24-857a-21d02ccc3448")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D2")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 236.22 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "af03cdf9-e943-4655-9e63-5c1069aa39f3")
+		(property "Reference" "Q7"
+			(at 240.665 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 240.665 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 241.3 76.835 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 236.22 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 236.22 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "270ff20d-914a-425d-98bd-d8cbb6dd0405")
+		)
+		(pin "2"
+			(uuid "6e322213-3156-4f4a-9fe1-a7e65b916f0b")
+		)
+		(pin "1"
+			(uuid "6b3258dd-aa6d-4923-aab5-fba6ab71a255")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q7")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 114.3 100.33 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "af2a6622-6ccf-44d2-9419-4c6ff92bdebb")
+		(property "Reference" "D4"
+			(at 113.03 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 113.03 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 114.3 95.885 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 114.3 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 114.3 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 114.3 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 114.3 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "4d3b6e03-b4ec-4211-a8ed-e38d6920fcea")
+		)
+		(pin "1"
+			(uuid "1f6b985d-d2a8-4a5a-9f02-3b7af9d8399f")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D4")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148WT")
+		(at 63.5 74.93 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ba3d527a-c878-4d89-9b7c-97c8357a891c")
+		(property "Reference" "D1"
+			(at 62.23 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WT"
+			(at 62.23 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-523"
+			(at 63.5 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
+			(at 63.5 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
+			(at 63.5 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 63.5 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 63.5 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "dfa50732-6600-4ad0-9a11-79c49cfb356f")
+		)
+		(pin "1"
+			(uuid "7e827dce-27e1-47d5-94b2-7c787d6ac7f6")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "D1")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "D9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 229.87 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bb08f82c-3d9f-4867-b531-67db2be68157")
+		(property "Reference" "R24"
+			(at 228.6 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 228.6 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 231.648 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 229.87 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 229.87 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d86498ac-ecb2-45ed-a050-7e540b3a9188")
+		)
+		(pin "2"
+			(uuid "3f99578c-9e79-456e-82ff-948ba4621a7c")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R24")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R48")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 134.62 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bd405dde-3612-4735-927e-a4e464c72a35")
+		(property "Reference" "Q4"
+			(at 139.065 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 139.065 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 139.7 102.235 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 134.62 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 134.62 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "32b04b63-b123-449b-8d05-d1b7a0341286")
+		)
+		(pin "2"
+			(uuid "cf587bdf-6124-43ee-b0d2-fdc55c5df777")
+		)
+		(pin "1"
+			(uuid "5bf3013b-5fb8-480c-b6b8-bc203e1c318b")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q4")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 185.42 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c26bc4cf-84fd-4ca5-a9b1-350ad5909e2a")
+		(property "Reference" "Q6"
+			(at 189.865 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 189.865 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 190.5 102.235 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 185.42 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 185.42 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "e411ecb3-3504-4594-aeb8-c4943dc9a238")
+		)
+		(pin "2"
+			(uuid "1fc41f31-2107-47dc-bde7-0508c69e61d0")
+		)
+		(pin "1"
+			(uuid "e84890de-63ea-4474-8d70-0209916f7626")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q6")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 222.25 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c4e055b2-4156-425e-aa15-47a7d260360d")
+		(property "Reference" "R22"
+			(at 220.98 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 220.98 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 224.028 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 222.25 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 222.25 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "193d3495-0253-4204-9ef1-4da367b52732")
+		)
+		(pin "2"
+			(uuid "7fe64c85-b5c3-4082-8e83-a76613281b6e")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R22")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R46")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 69.85 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c77ea222-1cde-447c-9c4f-3828bdf69d70")
+		(property "Reference" "R5"
+			(at 68.58 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 68.58 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 71.628 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 69.85 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 69.85 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d6443e29-6d23-48f0-910c-126386bf9dc3")
+		)
+		(pin "2"
+			(uuid "615e72a1-556e-4cda-8c38-35d56dbd89b9")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R5")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 134.62 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c9eded34-7bf1-4acb-8af9-d5a3a1bcb26f")
+		(property "Reference" "Q3"
+			(at 139.065 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 139.065 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 139.7 76.835 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 134.62 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 134.62 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "45f6046a-119a-44a9-a116-2387b298fbb1")
+		)
+		(pin "2"
+			(uuid "c452eea7-b0ff-452f-b9e3-8d7b8b8b41b7")
+		)
+		(pin "1"
+			(uuid "474bbd84-56ba-4a69-8c15-3e86b8e05691")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q3")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 171.45 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d204db57-a44a-4deb-b072-2cac03f1bee6")
+		(property "Reference" "R16"
+			(at 170.18 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 170.18 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 173.228 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 171.45 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 171.45 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f14d5824-187a-4fe3-8931-9194fa655c3a")
+		)
+		(pin "2"
+			(uuid "9c162f6d-711a-4e46-aa5a-27c9ec08b3f9")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R16")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R40")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 77.47 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d3e481e6-623a-43b2-b460-1fbd236038b0")
+		(property "Reference" "R6"
+			(at 76.2 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 76.2 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 79.248 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 77.47 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 77.47 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f45e64e6-ca9d-44dd-a7ef-afded4501f06")
+		)
+		(pin "2"
+			(uuid "2394a973-0fd1-444e-a64e-273dde7f7ff5")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R30")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 185.42 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d5756520-c070-41e5-9b01-d60708c5cf23")
+		(property "Reference" "Q5"
+			(at 189.865 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 189.865 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 190.5 76.835 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 185.42 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 185.42 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "5f0c4972-9320-48d5-b1f3-3d4149f8592b")
+		)
+		(pin "2"
+			(uuid "ff0a168e-fced-4257-9914-6c5f979b58d6")
+		)
+		(pin "1"
+			(uuid "6bc0b97c-3fbc-438a-82da-6a3cff3e714a")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q5")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 179.07 68.58 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d887344a-e637-4570-a49f-a1620967f8ea")
+		(property "Reference" "R18"
+			(at 177.8 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 177.8 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 180.848 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 179.07 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 179.07 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2742c1fc-9179-4153-973d-25dc212ec5fb")
+		)
+		(pin "2"
+			(uuid "65afc6f0-3606-4214-9187-a281281fc83f")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R18")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R42")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 222.25 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e11c00e7-0ab6-43f8-b8e4-a6291d09360c")
+		(property "Reference" "R23"
+			(at 220.98 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 220.98 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 224.028 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 222.25 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 222.25 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ca02e243-29af-4d54-bfc6-589a8ebd8295")
+		)
+		(pin "2"
+			(uuid "479bf9e4-d2ef-4e3a-a8a4-47158c86ce84")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R23")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R47")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 179.07 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e18d7430-aa9c-49de-aeff-586dc1bcaed6")
+		(property "Reference" "R19"
+			(at 177.8 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 177.8 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 180.848 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 179.07 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 179.07 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dfe6f8f6-2750-4fcf-9857-50ac747523ad")
+		)
+		(pin "2"
+			(uuid "671fbef1-f626-493c-861e-94c43caed5fd")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R19")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R43")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 128.27 93.98 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e749f2fe-132e-45de-b816-5ee02315d241")
+		(property "Reference" "R13"
+			(at 127 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22k"
+			(at 127 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 130.048 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 128.27 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 128.27 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5dac9732-16e8-4f09-b717-37568242773e")
+		)
+		(pin "2"
+			(uuid "ce40c234-449e-4f5b-80a5-9586d95ec88b")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R13")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R37")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 238.76 88.9 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f28e82e7-2746-4c48-a363-d77b9df38102")
+		(property "Reference" "R27"
+			(at 237.49 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 237.49 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 240.538 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 238.76 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 238.76 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8d545735-c31a-404b-a036-000c50a0f076")
+		)
+		(pin "2"
+			(uuid "f46c78ee-f9ac-4823-9884-69a96a55588f")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "R27")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "R51")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_BJT:MMBT2222A")
+		(at 83.82 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ffec4e9f-7fa0-468f-946e-861695a1900b")
+		(property "Reference" "Q2"
+			(at 88.265 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 88.265 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 88.9 102.235 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 83.82 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 83.82 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "26d80b5d-a30d-4a07-88da-fbebc5680fb4")
+		)
+		(pin "2"
+			(uuid "a66c5966-562f-4000-8e22-d26fc87bed61")
+		)
+		(pin "1"
+			(uuid "9854c7f2-3155-4e51-ba01-ba928ee279a9")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/269365ac-ba9a-43bf-9cec-29b610dce135"
+					(reference "Q2")
+					(unit 1)
+				)
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/9b3c878f-6949-4a81-a7e1-58f2b9b492c8"
+					(reference "Q10")
+					(unit 1)
+				)
+			)
+		)
+	)
+)

@@ -1,0 +1,57 @@
+
+(footprint SOD882_T_ (layer F.Cu) (tedit 686E7036)
+  (descr "<li><b>SOD882(T)</b><hr> <ul><li>Leadless ultra small plastic package; 2 terminals; body 1.0 x 0.6 x 0.5 mm<li><u>JEDEC</u>: -- <li><u>IEC</u>: -- <li><u>JEITA</u>: --</ul>")
+  (attr smd)
+  (fp_text reference REF** (at 3.5 -1.0 0) (layer F.SilkS)
+    (effects (font (size 0.787401574803 0.787401574803) (thickness 0.15)))
+  )
+  (fp_text value SOD882_T_ (at 5.5 0.5 0) (layer F.Fab)
+    (effects (font (size 0.787401574803 0.787401574803) (thickness 0.15)))
+  )
+  (pad 1 smd roundrect (roundrect_rratio 0.125) (at -0.35 0.0) (size 0.4 0.7) (layers F.Cu))
+  (pad 2 smd roundrect (roundrect_rratio 0.125) (at 0.35 0.0) (size 0.4 0.7) (layers F.Cu))
+  (fp_line (start -0.5 -0.3) (end 0.5 -0.3) (layer F.Fab) (width 0.127))
+  (fp_line (start 0.5 -0.3) (end 0.5 0.3) (layer F.Fab) (width 0.127))
+  (fp_line (start 0.5 0.3) (end -0.5 0.3) (layer F.Fab) (width 0.127))
+  (fp_line (start -0.5 0.3) (end -0.5 -0.3) (layer F.Fab) (width 0.127))
+  (fp_poly
+    (pts
+      (xy -0.5 -0.3)
+      (xy -0.2 -0.3)
+      (xy -0.2 0.3)
+      (xy -0.5 0.3)
+    ) (layer F.Paste) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 0.2 -0.3)
+      (xy 0.5 -0.3)
+      (xy 0.5 0.3)
+      (xy 0.2 0.3)
+    ) (layer F.Paste) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -0.6 -0.4)
+      (xy -0.1 -0.4)
+      (xy -0.1 0.4)
+      (xy -0.6 0.4)
+    ) (layer F.Mask) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy 0.1 -0.4)
+      (xy 0.6 -0.4)
+      (xy 0.6 0.4)
+      (xy 0.1 0.4)
+    ) (layer F.Mask) (width 0.01)
+  )
+  (fp_poly
+    (pts
+      (xy -0.45 -0.35)
+      (xy -0.15 -0.35)
+      (xy -0.15 0.35)
+      (xy -0.45 0.35)
+    ) (layer F.Fab) (width 0.01)
+  )
+)

@@ -1,0 +1,7 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "LT6654AIS6-2.5_TRPBF")(type "KiCad")(uri "${KIPRJMOD}/imported_components/LT6654AIS6-2.5_TRPBF.kicad_sym")(options "")(descr ""))
+  (lib (name "LTC1859IG_PBF")(type "KiCad")(uri "${KIPRJMOD}/imported_components/LTC1859IG_PBF.kicad_sym")(options "")(descr ""))
+  (lib (name "PESD12VS1UL")(type "KiCad")(uri "${KIPRJMOD}/imported_components/PESD12VS1UL.kicad_sym")(options "")(descr ""))
+  (lib (name "PESD12VL1BA")(type "KiCad")(uri "${KIPRJMOD}/imported_components/PESD12VL1BA.kicad_sym")(options "")(descr ""))
+)
