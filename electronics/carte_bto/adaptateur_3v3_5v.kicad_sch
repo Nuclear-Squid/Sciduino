@@ -502,153 +502,220 @@
 			(embedded_fonts no)
 		)
 	)
+	(rectangle
+		(start 104.14 41.91)
+		(end 209.55 76.2)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 08d8fb3a-0f20-45f5-9a1c-b91edf8ab38f)
+	)
+	(text "Ce même modèle est répetté sur chacun\ndes 8 bits du bus. Les montages sont \ntous les mêmes à l’exception du bit\nsur lequel il est installé (soit les\nlabels INx et OUTx, où x est\nl’indice du bit)."
+		(exclude_from_sim no)
+		(at 105.41 49.53 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "41a44f38-9a8c-4b71-868f-56746002e839")
+	)
+	(text "Adaptation de niveau: entrée ≥3.3V, sortie 5V"
+		(exclude_from_sim no)
+		(at 104.14 40.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5c5ec187-4bdb-4ffd-a1c4-2c1aade7fb2a")
+	)
+	(text "Pour le montage transistor:\n- Si entrée = 0V\n  => transistor passant\n  => sortie = 0V\n- Si entrée ≥ 3.3V\n  => transistor bloqué\n  => sortie = 5V"
+		(exclude_from_sim no)
+		(at 153.67 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "647bd1ed-50aa-4139-bfdc-b88abed4f57d")
+	)
+	(text "Une diode pour ne pas tirer de\ncourant sur le micro-contrôleur,\net juste garder l’écart de tension\nà 3.3V."
+		(exclude_from_sim no)
+		(at 142.24 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "95e902f2-9f05-416e-8217-e0d0c1604e20")
+	)
+	(text "Signal numérique\n(3.3V ou 5V)\nenvoyé par le\nmicro-contrôleur"
+		(exclude_from_sim no)
+		(at 121.92 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b9e69e73-0643-4a16-aee6-b0645174e208")
+	)
 	(junction
-		(at 68.58 74.93)
+		(at 66.04 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "006f5493-80f8-4130-a085-2aa1e8171e45")
 	)
 	(junction
-		(at 119.38 74.93)
+		(at 116.84 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "01f91541-b39e-445f-9580-54e42e407e87")
 	)
 	(junction
-		(at 238.76 68.58)
+		(at 236.22 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1218d37c-3e62-4c08-a81a-24ffc9e45c66")
 	)
 	(junction
-		(at 187.96 68.58)
+		(at 185.42 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "124fa367-0df2-4a9f-a860-4f2f11f833a2")
 	)
 	(junction
-		(at 175.26 63.5)
+		(at 172.72 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "191d8d46-8fb3-4c00-a393-d62662891c75")
 	)
 	(junction
-		(at 226.06 88.9)
+		(at 182.88 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "379867ac-1fe1-4647-bf7f-b45b67c181d8")
 	)
 	(junction
-		(at 175.26 88.9)
+		(at 200.66 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "3fe4a8f3-79d0-49b7-b98c-f7c7af3436ac")
 	)
 	(junction
-		(at 68.58 100.33)
+		(at 93.98 111.76)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4aa52a69-fc87-445b-a072-bbc579f38a62")
 	)
 	(junction
-		(at 170.18 100.33)
+		(at 195.58 111.76)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "56a805b1-75e3-4d7e-b11f-29f01371bdec")
 	)
 	(junction
-		(at 238.76 93.98)
+		(at 195.58 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "845171a6-b2d5-45f9-ae29-e2ca5ffd93cc")
 	)
 	(junction
-		(at 73.66 88.9)
+		(at 99.06 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8628cdc4-03b3-441c-8776-f39b9248d6ba")
 	)
 	(junction
-		(at 137.16 68.58)
+		(at 134.62 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "921bbaa6-303b-4b92-a1cd-2c856f499e1e")
 	)
 	(junction
-		(at 124.46 88.9)
+		(at 149.86 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "aa727774-f621-40e3-bdbd-9a618462e83c")
 	)
 	(junction
-		(at 119.38 100.33)
+		(at 144.78 111.76)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b7d2f732-699f-4107-808c-4d01315c3b1c")
 	)
 	(junction
-		(at 220.98 100.33)
+		(at 177.8 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bb406d0a-44f7-44cc-8c02-ab10011942fe")
 	)
 	(junction
-		(at 124.46 63.5)
+		(at 121.92 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c165c5b2-ccf6-413f-8ac3-d6b4b19ce385")
 	)
 	(junction
-		(at 86.36 68.58)
+		(at 83.82 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cafa171c-60c7-47b3-8a25-d9f065065d20")
 	)
 	(junction
-		(at 86.36 93.98)
+		(at 111.76 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d03331b4-a052-4c43-98c1-cb1d83534153")
 	)
 	(junction
-		(at 137.16 93.98)
+		(at 162.56 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d6a484fd-000f-41aa-b599-baeb1281f358")
 	)
 	(junction
-		(at 220.98 74.93)
+		(at 218.44 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d891c74a-f3c0-47b5-a2f4-a0bd9366cd27")
 	)
 	(junction
-		(at 73.66 63.5)
+		(at 71.12 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "daab23b8-2ced-427f-a7e5-e49911359126")
 	)
 	(junction
-		(at 170.18 74.93)
+		(at 167.64 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e92b3f9b-7b37-4913-bbd2-306aed4dcac3")
 	)
 	(junction
-		(at 226.06 63.5)
+		(at 223.52 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "eada141b-0d9c-4d79-b3c8-8e651c9c2ad9")
 	)
 	(junction
-		(at 187.96 93.98)
+		(at 213.36 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "efd6d271-cf30-494f-91a6-c999701f06fe")
 	)
 	(wire
 		(pts
-			(xy 187.96 68.58) (xy 189.23 68.58)
+			(xy 185.42 129.54) (xy 186.69 129.54)
 		)
 		(stroke
 			(width 0)
@@ -658,7 +725,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 99.06) (xy 119.38 100.33)
+			(xy 146.05 110.49) (xy 144.78 111.76)
 		)
 		(stroke
 			(width 0)
@@ -668,7 +735,7 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 64.77) (xy 228.6 63.5)
+			(xy 227.33 125.73) (xy 226.06 124.46)
 		)
 		(stroke
 			(width 0)
@@ -678,7 +745,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 72.39) (xy 120.65 73.66)
+			(xy 118.11 133.35) (xy 118.11 134.62)
 		)
 		(stroke
 			(width 0)
@@ -688,7 +755,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 82.55) (xy 238.76 85.09)
+			(xy 195.58 48.26) (xy 195.58 50.8)
 		)
 		(stroke
 			(width 0)
@@ -698,7 +765,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 76.2) (xy 68.58 74.93)
+			(xy 67.31 137.16) (xy 66.04 135.89)
 		)
 		(stroke
 			(width 0)
@@ -708,7 +775,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 105.41) (xy 85.09 106.68)
+			(xy 111.76 116.84) (xy 110.49 118.11)
 		)
 		(stroke
 			(width 0)
@@ -718,7 +785,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 88.9) (xy 73.66 88.9)
+			(xy 96.52 100.33) (xy 99.06 100.33)
 		)
 		(stroke
 			(width 0)
@@ -728,7 +795,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 76.2) (xy 170.18 74.93)
+			(xy 168.91 137.16) (xy 167.64 135.89)
 		)
 		(stroke
 			(width 0)
@@ -738,7 +805,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 100.33) (xy 59.69 100.33)
+			(xy 83.82 111.76) (xy 85.09 111.76)
 		)
 		(stroke
 			(width 0)
@@ -748,7 +815,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 67.31) (xy 187.96 68.58)
+			(xy 185.42 128.27) (xy 185.42 129.54)
 		)
 		(stroke
 			(width 0)
@@ -758,7 +825,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 105.41) (xy 186.69 106.68)
+			(xy 213.36 116.84) (xy 212.09 118.11)
 		)
 		(stroke
 			(width 0)
@@ -768,7 +835,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 76.2) (xy 220.98 74.93)
+			(xy 219.71 137.16) (xy 218.44 135.89)
 		)
 		(stroke
 			(width 0)
@@ -778,7 +845,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 80.01) (xy 69.85 76.2)
+			(xy 67.31 140.97) (xy 67.31 137.16)
 		)
 		(stroke
 			(width 0)
@@ -788,7 +855,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 74.93) (xy 110.49 74.93)
+			(xy 106.68 135.89) (xy 107.95 135.89)
 		)
 		(stroke
 			(width 0)
@@ -798,7 +865,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 67.31) (xy 137.16 68.58)
+			(xy 134.62 128.27) (xy 134.62 129.54)
 		)
 		(stroke
 			(width 0)
@@ -808,7 +875,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 87.63) (xy 226.06 88.9)
+			(xy 182.88 53.34) (xy 182.88 54.61)
 		)
 		(stroke
 			(width 0)
@@ -818,7 +885,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 88.9) (xy 127 88.9)
+			(xy 149.86 100.33) (xy 152.4 100.33)
 		)
 		(stroke
 			(width 0)
@@ -828,7 +895,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 74.93) (xy 59.69 74.93)
+			(xy 55.88 135.89) (xy 57.15 135.89)
 		)
 		(stroke
 			(width 0)
@@ -838,7 +905,7 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 63.5) (xy 226.06 63.5)
+			(xy 220.98 124.46) (xy 223.52 124.46)
 		)
 		(stroke
 			(width 0)
@@ -848,7 +915,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 88.9) (xy 124.46 88.9)
+			(xy 147.32 100.33) (xy 149.86 100.33)
 		)
 		(stroke
 			(width 0)
@@ -858,7 +925,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 105.41) (xy 69.85 101.6)
+			(xy 95.25 116.84) (xy 95.25 113.03)
 		)
 		(stroke
 			(width 0)
@@ -868,7 +935,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 68.58) (xy 137.16 69.85)
+			(xy 134.62 129.54) (xy 134.62 130.81)
 		)
 		(stroke
 			(width 0)
@@ -878,7 +945,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 88.9) (xy 177.8 88.9)
+			(xy 200.66 100.33) (xy 203.2 100.33)
 		)
 		(stroke
 			(width 0)
@@ -888,7 +955,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 105.41) (xy 171.45 101.6)
+			(xy 196.85 116.84) (xy 196.85 113.03)
 		)
 		(stroke
 			(width 0)
@@ -898,7 +965,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 63.5) (xy 228.6 63.5)
+			(xy 223.52 124.46) (xy 226.06 124.46)
 		)
 		(stroke
 			(width 0)
@@ -908,7 +975,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 72.39) (xy 69.85 73.66)
+			(xy 67.31 133.35) (xy 67.31 134.62)
 		)
 		(stroke
 			(width 0)
@@ -918,7 +985,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 92.71) (xy 86.36 93.98)
+			(xy 111.76 104.14) (xy 111.76 105.41)
 		)
 		(stroke
 			(width 0)
@@ -928,7 +995,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 72.39) (xy 171.45 73.66)
+			(xy 168.91 133.35) (xy 168.91 134.62)
 		)
 		(stroke
 			(width 0)
@@ -938,7 +1005,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 68.58) (xy 87.63 68.58)
+			(xy 83.82 129.54) (xy 85.09 129.54)
 		)
 		(stroke
 			(width 0)
@@ -948,7 +1015,7 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 97.79) (xy 229.87 99.06)
+			(xy 186.69 63.5) (xy 186.69 64.77)
 		)
 		(stroke
 			(width 0)
@@ -958,7 +1025,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 81.28) (xy 121.92 81.28)
+			(xy 133.35 142.24) (xy 119.38 142.24)
 		)
 		(stroke
 			(width 0)
@@ -968,7 +1035,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 74.93) (xy 118.11 74.93)
+			(xy 116.84 135.89) (xy 115.57 135.89)
 		)
 		(stroke
 			(width 0)
@@ -978,7 +1045,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 74.93) (xy 161.29 74.93)
+			(xy 157.48 135.89) (xy 158.75 135.89)
 		)
 		(stroke
 			(width 0)
@@ -988,7 +1055,7 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 88.9) (xy 76.2 88.9)
+			(xy 99.06 100.33) (xy 101.6 100.33)
 		)
 		(stroke
 			(width 0)
@@ -998,17 +1065,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 57.15) (xy 86.36 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "438761f5-105a-4138-ac6a-c992009121d8")
-	)
-	(wire
-		(pts
-			(xy 172.72 88.9) (xy 175.26 88.9)
+			(xy 198.12 100.33) (xy 200.66 100.33)
 		)
 		(stroke
 			(width 0)
@@ -1018,7 +1075,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 73.66) (xy 170.18 74.93)
+			(xy 168.91 134.62) (xy 167.64 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1028,7 +1085,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 63.5) (xy 175.26 63.5)
+			(xy 170.18 124.46) (xy 172.72 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1038,7 +1095,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 97.79) (xy 120.65 99.06)
+			(xy 146.05 109.22) (xy 146.05 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1048,7 +1105,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 93.98) (xy 87.63 93.98)
+			(xy 111.76 105.41) (xy 113.03 105.41)
 		)
 		(stroke
 			(width 0)
@@ -1058,7 +1115,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 68.58) (xy 86.36 69.85)
+			(xy 83.82 129.54) (xy 83.82 130.81)
 		)
 		(stroke
 			(width 0)
@@ -1068,7 +1125,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 100.33) (xy 168.91 100.33)
+			(xy 195.58 111.76) (xy 194.31 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1078,7 +1135,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 73.66) (xy 129.54 74.93)
+			(xy 125.73 134.62) (xy 127 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1088,7 +1145,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 92.71) (xy 238.76 93.98)
+			(xy 195.58 58.42) (xy 195.58 59.69)
 		)
 		(stroke
 			(width 0)
@@ -1098,7 +1155,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 81.28) (xy 69.85 80.01)
+			(xy 68.58 142.24) (xy 67.31 140.97)
 		)
 		(stroke
 			(width 0)
@@ -1108,7 +1165,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 97.79) (xy 171.45 99.06)
+			(xy 196.85 109.22) (xy 196.85 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1118,7 +1175,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 88.9) (xy 69.85 90.17)
+			(xy 96.52 100.33) (xy 95.25 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1128,7 +1185,17 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 100.33) (xy 110.49 100.33)
+			(xy 140.97 66.04) (xy 153.67 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "540c50e4-69d6-43e2-829f-078003464000")
+	)
+	(wire
+		(pts
+			(xy 134.62 111.76) (xy 135.89 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1138,7 +1205,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 57.15) (xy 187.96 59.69)
+			(xy 185.42 118.11) (xy 185.42 120.65)
 		)
 		(stroke
 			(width 0)
@@ -1148,7 +1215,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 93.98) (xy 137.16 95.25)
+			(xy 162.56 105.41) (xy 162.56 106.68)
 		)
 		(stroke
 			(width 0)
@@ -1158,7 +1225,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 97.79) (xy 128.27 99.06)
+			(xy 153.67 109.22) (xy 153.67 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1168,7 +1235,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 73.66) (xy 220.98 74.93)
+			(xy 219.71 134.62) (xy 218.44 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1178,7 +1245,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 80.01) (xy 237.49 81.28)
+			(xy 236.22 140.97) (xy 234.95 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1188,7 +1255,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 62.23) (xy 124.46 63.5)
+			(xy 121.92 123.19) (xy 121.92 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1198,7 +1265,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 88.9) (xy 228.6 88.9)
+			(xy 182.88 54.61) (xy 185.42 54.61)
 		)
 		(stroke
 			(width 0)
@@ -1208,7 +1275,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 74.93) (xy 67.31 74.93)
+			(xy 66.04 135.89) (xy 64.77 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1218,7 +1285,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 81.28) (xy 71.12 81.28)
+			(xy 82.55 142.24) (xy 68.58 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1228,7 +1295,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 62.23) (xy 175.26 63.5)
+			(xy 172.72 123.19) (xy 172.72 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1238,7 +1305,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 63.5) (xy 73.66 63.5)
+			(xy 68.58 124.46) (xy 71.12 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1248,7 +1315,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 90.17) (xy 76.2 88.9)
+			(xy 102.87 101.6) (xy 101.6 100.33)
 		)
 		(stroke
 			(width 0)
@@ -1258,7 +1325,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 93.98) (xy 240.03 93.98)
+			(xy 195.58 59.69) (xy 196.85 59.69)
 		)
 		(stroke
 			(width 0)
@@ -1268,7 +1335,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 93.98) (xy 86.36 95.25)
+			(xy 111.76 105.41) (xy 111.76 106.68)
 		)
 		(stroke
 			(width 0)
@@ -1278,17 +1345,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 100.33) (xy 212.09 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "65ce5cdc-7e0e-42b7-be58-d6adb8cd5108")
-	)
-	(wire
-		(pts
-			(xy 77.47 64.77) (xy 76.2 63.5)
+			(xy 74.93 125.73) (xy 73.66 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1298,7 +1355,7 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 72.39) (xy 229.87 73.66)
+			(xy 227.33 133.35) (xy 227.33 134.62)
 		)
 		(stroke
 			(width 0)
@@ -1308,7 +1365,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 80.01) (xy 186.69 81.28)
+			(xy 185.42 140.97) (xy 184.15 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1318,7 +1375,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 80.01) (xy 171.45 76.2)
+			(xy 168.91 140.97) (xy 168.91 137.16)
 		)
 		(stroke
 			(width 0)
@@ -1328,7 +1385,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 105.41) (xy 120.65 101.6)
+			(xy 146.05 116.84) (xy 146.05 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1338,7 +1395,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 74.93) (xy 212.09 74.93)
+			(xy 208.28 135.89) (xy 209.55 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1348,7 +1405,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 80.01) (xy 85.09 81.28)
+			(xy 83.82 140.97) (xy 82.55 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1358,7 +1415,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 74.93) (xy 168.91 74.93)
+			(xy 167.64 135.89) (xy 166.37 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1368,7 +1425,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 88.9) (xy 171.45 90.17)
+			(xy 198.12 100.33) (xy 196.85 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1378,7 +1435,7 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 81.28) (xy 222.25 80.01)
+			(xy 220.98 142.24) (xy 219.71 140.97)
 		)
 		(stroke
 			(width 0)
@@ -1388,7 +1445,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 105.41) (xy 237.49 106.68)
+			(xy 195.58 71.12) (xy 194.31 72.39)
 		)
 		(stroke
 			(width 0)
@@ -1398,7 +1455,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 63.5) (xy 69.85 64.77)
+			(xy 68.58 124.46) (xy 67.31 125.73)
 		)
 		(stroke
 			(width 0)
@@ -1408,7 +1465,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 82.55) (xy 137.16 85.09)
+			(xy 162.56 93.98) (xy 162.56 96.52)
 		)
 		(stroke
 			(width 0)
@@ -1418,7 +1475,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 93.98) (xy 238.76 95.25)
+			(xy 195.58 59.69) (xy 195.58 60.96)
 		)
 		(stroke
 			(width 0)
@@ -1428,7 +1485,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 68.58) (xy 187.96 69.85)
+			(xy 185.42 129.54) (xy 185.42 130.81)
 		)
 		(stroke
 			(width 0)
@@ -1438,7 +1495,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 88.9) (xy 120.65 90.17)
+			(xy 147.32 100.33) (xy 146.05 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1448,7 +1505,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 97.79) (xy 77.47 99.06)
+			(xy 102.87 109.22) (xy 102.87 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1458,7 +1515,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 57.15) (xy 238.76 59.69)
+			(xy 236.22 118.11) (xy 236.22 120.65)
 		)
 		(stroke
 			(width 0)
@@ -1468,7 +1525,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 67.31) (xy 238.76 68.58)
+			(xy 236.22 128.27) (xy 236.22 129.54)
 		)
 		(stroke
 			(width 0)
@@ -1478,7 +1535,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 73.66) (xy 68.58 74.93)
+			(xy 67.31 134.62) (xy 66.04 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1488,7 +1545,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 68.58) (xy 138.43 68.58)
+			(xy 134.62 129.54) (xy 135.89 129.54)
 		)
 		(stroke
 			(width 0)
@@ -1498,7 +1555,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 68.58) (xy 240.03 68.58)
+			(xy 236.22 129.54) (xy 237.49 129.54)
 		)
 		(stroke
 			(width 0)
@@ -1508,7 +1565,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 67.31) (xy 86.36 68.58)
+			(xy 83.82 128.27) (xy 83.82 129.54)
 		)
 		(stroke
 			(width 0)
@@ -1518,7 +1575,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 100.33) (xy 67.31 100.33)
+			(xy 93.98 111.76) (xy 92.71 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1528,7 +1585,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 105.41) (xy 135.89 106.68)
+			(xy 162.56 116.84) (xy 161.29 118.11)
 		)
 		(stroke
 			(width 0)
@@ -1538,7 +1595,17 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 106.68) (xy 120.65 105.41)
+			(xy 83.82 118.11) (xy 83.82 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83f95ba8-58b9-4cf8-9be9-e185d044b996")
+	)
+	(wire
+		(pts
+			(xy 147.32 118.11) (xy 146.05 116.84)
 		)
 		(stroke
 			(width 0)
@@ -1548,7 +1615,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 73.66) (xy 78.74 74.93)
+			(xy 74.93 134.62) (xy 76.2 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1558,7 +1625,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 100.33) (xy 118.11 100.33)
+			(xy 144.78 111.76) (xy 143.51 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1568,7 +1635,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 99.06) (xy 170.18 100.33)
+			(xy 196.85 110.49) (xy 195.58 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1578,7 +1645,7 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 106.68) (xy 222.25 105.41)
+			(xy 180.34 72.39) (xy 179.07 71.12)
 		)
 		(stroke
 			(width 0)
@@ -1588,7 +1655,7 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 63.5) (xy 76.2 63.5)
+			(xy 71.12 124.46) (xy 73.66 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1598,7 +1665,7 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 63.5) (xy 222.25 64.77)
+			(xy 220.98 124.46) (xy 219.71 125.73)
 		)
 		(stroke
 			(width 0)
@@ -1608,7 +1675,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 80.01) (xy 222.25 76.2)
+			(xy 219.71 140.97) (xy 219.71 137.16)
 		)
 		(stroke
 			(width 0)
@@ -1618,7 +1685,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 68.58) (xy 238.76 69.85)
+			(xy 236.22 129.54) (xy 236.22 130.81)
 		)
 		(stroke
 			(width 0)
@@ -1628,7 +1695,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 93.98) (xy 138.43 93.98)
+			(xy 162.56 105.41) (xy 163.83 105.41)
 		)
 		(stroke
 			(width 0)
@@ -1638,7 +1705,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 106.68) (xy 172.72 106.68)
+			(xy 212.09 118.11) (xy 198.12 118.11)
 		)
 		(stroke
 			(width 0)
@@ -1648,7 +1715,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 99.06) (xy 78.74 100.33)
+			(xy 102.87 110.49) (xy 104.14 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1658,7 +1725,7 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 88.9) (xy 226.06 88.9)
+			(xy 180.34 54.61) (xy 182.88 54.61)
 		)
 		(stroke
 			(width 0)
@@ -1668,7 +1735,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 90.17) (xy 127 88.9)
+			(xy 153.67 101.6) (xy 152.4 100.33)
 		)
 		(stroke
 			(width 0)
@@ -1678,7 +1745,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 81.28) (xy 172.72 81.28)
+			(xy 184.15 142.24) (xy 170.18 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1688,7 +1755,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 93.98) (xy 189.23 93.98)
+			(xy 213.36 105.41) (xy 214.63 105.41)
 		)
 		(stroke
 			(width 0)
@@ -1698,7 +1765,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 72.39) (xy 179.07 73.66)
+			(xy 176.53 133.35) (xy 176.53 134.62)
 		)
 		(stroke
 			(width 0)
@@ -1708,7 +1775,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 64.77) (xy 177.8 63.5)
+			(xy 176.53 125.73) (xy 175.26 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1718,7 +1785,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 99.06) (xy 220.98 100.33)
+			(xy 179.07 64.77) (xy 177.8 66.04)
 		)
 		(stroke
 			(width 0)
@@ -1728,7 +1795,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 63.5) (xy 127 63.5)
+			(xy 121.92 124.46) (xy 124.46 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1738,7 +1805,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 97.79) (xy 179.07 99.06)
+			(xy 204.47 109.22) (xy 204.47 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1748,7 +1815,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 100.33) (xy 161.29 100.33)
+			(xy 185.42 111.76) (xy 186.69 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1758,7 +1825,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 62.23) (xy 226.06 63.5)
+			(xy 223.52 123.19) (xy 223.52 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1768,7 +1835,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 101.6) (xy 119.38 100.33)
+			(xy 146.05 113.03) (xy 144.78 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1778,7 +1845,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 76.2) (xy 119.38 74.93)
+			(xy 118.11 137.16) (xy 116.84 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1788,7 +1855,7 @@
 	)
 	(wire
 		(pts
-			(xy 237.49 106.68) (xy 223.52 106.68)
+			(xy 194.31 72.39) (xy 180.34 72.39)
 		)
 		(stroke
 			(width 0)
@@ -1798,7 +1865,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 63.5) (xy 177.8 63.5)
+			(xy 172.72 124.46) (xy 175.26 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1808,7 +1875,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 99.06) (xy 129.54 100.33)
+			(xy 153.67 110.49) (xy 154.94 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1818,7 +1885,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 57.15) (xy 137.16 59.69)
+			(xy 134.62 118.11) (xy 134.62 120.65)
 		)
 		(stroke
 			(width 0)
@@ -1828,7 +1895,7 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 87.63) (xy 73.66 88.9)
+			(xy 99.06 99.06) (xy 99.06 100.33)
 		)
 		(stroke
 			(width 0)
@@ -1838,7 +1905,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 106.68) (xy 69.85 105.41)
+			(xy 96.52 118.11) (xy 95.25 116.84)
 		)
 		(stroke
 			(width 0)
@@ -1848,7 +1915,7 @@
 	)
 	(wire
 		(pts
-			(xy 237.49 81.28) (xy 223.52 81.28)
+			(xy 234.95 142.24) (xy 220.98 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1858,7 +1925,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 105.41) (xy 222.25 101.6)
+			(xy 179.07 71.12) (xy 179.07 67.31)
 		)
 		(stroke
 			(width 0)
@@ -1868,7 +1935,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 63.5) (xy 124.46 63.5)
+			(xy 119.38 124.46) (xy 121.92 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1878,7 +1945,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 92.71) (xy 137.16 93.98)
+			(xy 162.56 104.14) (xy 162.56 105.41)
 		)
 		(stroke
 			(width 0)
@@ -1888,7 +1955,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 90.17) (xy 177.8 88.9)
+			(xy 204.47 101.6) (xy 203.2 100.33)
 		)
 		(stroke
 			(width 0)
@@ -1898,7 +1965,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 101.6) (xy 170.18 100.33)
+			(xy 196.85 113.03) (xy 195.58 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1908,7 +1975,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 80.01) (xy 135.89 81.28)
+			(xy 134.62 140.97) (xy 133.35 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1918,7 +1985,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 100.33) (xy 219.71 100.33)
+			(xy 177.8 66.04) (xy 161.29 66.04)
 		)
 		(stroke
 			(width 0)
@@ -1928,7 +1995,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 72.39) (xy 77.47 73.66)
+			(xy 74.93 133.35) (xy 74.93 134.62)
 		)
 		(stroke
 			(width 0)
@@ -1938,7 +2005,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 72.39) (xy 222.25 73.66)
+			(xy 219.71 133.35) (xy 219.71 134.62)
 		)
 		(stroke
 			(width 0)
@@ -1948,7 +2015,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 97.79) (xy 222.25 99.06)
+			(xy 179.07 63.5) (xy 179.07 64.77)
 		)
 		(stroke
 			(width 0)
@@ -1958,7 +2025,7 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 73.66) (xy 231.14 74.93)
+			(xy 227.33 134.62) (xy 228.6 135.89)
 		)
 		(stroke
 			(width 0)
@@ -1968,7 +2035,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 99.06) (xy 68.58 100.33)
+			(xy 95.25 110.49) (xy 93.98 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1978,7 +2045,7 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 99.06) (xy 231.14 100.33)
+			(xy 186.69 64.77) (xy 187.96 66.04)
 		)
 		(stroke
 			(width 0)
@@ -1988,7 +2055,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 80.01) (xy 120.65 76.2)
+			(xy 118.11 140.97) (xy 118.11 137.16)
 		)
 		(stroke
 			(width 0)
@@ -1998,7 +2065,7 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 90.17) (xy 228.6 88.9)
+			(xy 186.69 55.88) (xy 185.42 54.61)
 		)
 		(stroke
 			(width 0)
@@ -2008,7 +2075,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 101.6) (xy 68.58 100.33)
+			(xy 95.25 113.03) (xy 93.98 111.76)
 		)
 		(stroke
 			(width 0)
@@ -2018,7 +2085,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 73.66) (xy 180.34 74.93)
+			(xy 176.53 134.62) (xy 177.8 135.89)
 		)
 		(stroke
 			(width 0)
@@ -2028,7 +2095,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 63.5) (xy 120.65 64.77)
+			(xy 119.38 124.46) (xy 118.11 125.73)
 		)
 		(stroke
 			(width 0)
@@ -2038,7 +2105,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 87.63) (xy 124.46 88.9)
+			(xy 149.86 99.06) (xy 149.86 100.33)
 		)
 		(stroke
 			(width 0)
@@ -2048,7 +2115,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 87.63) (xy 175.26 88.9)
+			(xy 200.66 99.06) (xy 200.66 100.33)
 		)
 		(stroke
 			(width 0)
@@ -2058,7 +2125,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 97.79) (xy 69.85 99.06)
+			(xy 95.25 109.22) (xy 95.25 110.49)
 		)
 		(stroke
 			(width 0)
@@ -2068,7 +2135,7 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 62.23) (xy 73.66 63.5)
+			(xy 71.12 123.19) (xy 71.12 124.46)
 		)
 		(stroke
 			(width 0)
@@ -2078,7 +2145,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 82.55) (xy 187.96 85.09)
+			(xy 213.36 93.98) (xy 213.36 96.52)
 		)
 		(stroke
 			(width 0)
@@ -2088,7 +2155,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 72.39) (xy 128.27 73.66)
+			(xy 125.73 133.35) (xy 125.73 134.62)
 		)
 		(stroke
 			(width 0)
@@ -2098,7 +2165,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 73.66) (xy 119.38 74.93)
+			(xy 118.11 134.62) (xy 116.84 135.89)
 		)
 		(stroke
 			(width 0)
@@ -2108,7 +2175,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 106.68) (xy 171.45 105.41)
+			(xy 198.12 118.11) (xy 196.85 116.84)
 		)
 		(stroke
 			(width 0)
@@ -2118,7 +2185,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 106.68) (xy 121.92 106.68)
+			(xy 161.29 118.11) (xy 147.32 118.11)
 		)
 		(stroke
 			(width 0)
@@ -2128,7 +2195,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 82.55) (xy 86.36 85.09)
+			(xy 111.76 93.98) (xy 111.76 96.52)
 		)
 		(stroke
 			(width 0)
@@ -2138,7 +2205,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 63.5) (xy 171.45 64.77)
+			(xy 170.18 124.46) (xy 168.91 125.73)
 		)
 		(stroke
 			(width 0)
@@ -2148,7 +2215,7 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 88.9) (xy 222.25 90.17)
+			(xy 180.34 54.61) (xy 179.07 55.88)
 		)
 		(stroke
 			(width 0)
@@ -2158,7 +2225,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 81.28) (xy 120.65 80.01)
+			(xy 119.38 142.24) (xy 118.11 140.97)
 		)
 		(stroke
 			(width 0)
@@ -2168,7 +2235,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 99.06) (xy 180.34 100.33)
+			(xy 204.47 110.49) (xy 205.74 111.76)
 		)
 		(stroke
 			(width 0)
@@ -2178,7 +2245,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 101.6) (xy 220.98 100.33)
+			(xy 179.07 67.31) (xy 177.8 66.04)
 		)
 		(stroke
 			(width 0)
@@ -2188,7 +2255,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 92.71) (xy 187.96 93.98)
+			(xy 213.36 104.14) (xy 213.36 105.41)
 		)
 		(stroke
 			(width 0)
@@ -2198,7 +2265,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 106.68) (xy 71.12 106.68)
+			(xy 110.49 118.11) (xy 96.52 118.11)
 		)
 		(stroke
 			(width 0)
@@ -2208,7 +2275,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 93.98) (xy 187.96 95.25)
+			(xy 213.36 105.41) (xy 213.36 106.68)
 		)
 		(stroke
 			(width 0)
@@ -2218,7 +2285,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 74.93) (xy 219.71 74.93)
+			(xy 218.44 135.89) (xy 217.17 135.89)
 		)
 		(stroke
 			(width 0)
@@ -2228,7 +2295,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 81.28) (xy 171.45 80.01)
+			(xy 170.18 142.24) (xy 168.91 140.97)
 		)
 		(stroke
 			(width 0)
@@ -2238,7 +2305,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 64.77) (xy 127 63.5)
+			(xy 125.73 125.73) (xy 124.46 124.46)
 		)
 		(stroke
 			(width 0)
@@ -2246,9 +2313,9 @@
 		)
 		(uuid "ffa5eede-1a64-45b4-924b-3022b0c04ba2")
 	)
-	(hierarchical_label "DATA_IN4"
+	(hierarchical_label "IN4"
 		(shape input)
-		(at 109.22 100.33 180)
+		(at 134.62 111.76 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2259,7 +2326,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 175.26 87.63 180)
+		(at 200.66 99.06 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2270,7 +2337,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 73.66 87.63 180)
+		(at 99.06 99.06 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2281,7 +2348,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 175.26 62.23 180)
+		(at 172.72 123.19 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2292,7 +2359,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 226.06 62.23 180)
+		(at 223.52 123.19 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2303,7 +2370,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 226.06 87.63 180)
+		(at 182.88 53.34 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2314,7 +2381,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 187.96 57.15 0)
+		(at 185.42 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2323,9 +2390,9 @@
 		)
 		(uuid "28757c88-924d-4ccf-bca7-5bc1026c01a4")
 	)
-	(hierarchical_label "DATA_OUT1"
+	(hierarchical_label "OUT1"
 		(shape output)
-		(at 87.63 68.58 0)
+		(at 85.09 129.54 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2334,9 +2401,9 @@
 		)
 		(uuid "3071b370-cdb7-4135-b121-13962833e9bb")
 	)
-	(hierarchical_label "DATA_OUT2"
+	(hierarchical_label "OUT2"
 		(shape output)
-		(at 87.63 93.98 0)
+		(at 113.03 105.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2345,9 +2412,9 @@
 		)
 		(uuid "354051ad-6735-4f81-9253-37ded2f53374")
 	)
-	(hierarchical_label "DATA_IN1"
+	(hierarchical_label "IN1"
 		(shape input)
-		(at 58.42 74.93 180)
+		(at 55.88 135.89 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2358,7 +2425,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 238.76 82.55 0)
+		(at 195.58 48.26 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2367,9 +2434,9 @@
 		)
 		(uuid "4fd8623f-b324-4579-a515-c8d02a2bdf07")
 	)
-	(hierarchical_label "DATA_IN2"
+	(hierarchical_label "IN2"
 		(shape input)
-		(at 58.42 100.33 180)
+		(at 83.82 111.76 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2378,9 +2445,9 @@
 		)
 		(uuid "6ef3d79d-dbbc-4827-960d-290094e2d168")
 	)
-	(hierarchical_label "DATA_OUT4"
+	(hierarchical_label "OUT4"
 		(shape output)
-		(at 138.43 93.98 0)
+		(at 163.83 105.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2391,7 +2458,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 86.36 82.55 0)
+		(at 111.76 93.98 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2402,7 +2469,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 187.96 82.55 0)
+		(at 213.36 93.98 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2413,7 +2480,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 137.16 82.55 0)
+		(at 162.56 93.98 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2422,9 +2489,9 @@
 		)
 		(uuid "7f014099-5d51-461e-9400-50d58f532aaa")
 	)
-	(hierarchical_label "DATA_IN3"
+	(hierarchical_label "IN3"
 		(shape input)
-		(at 109.22 74.93 180)
+		(at 106.68 135.89 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2435,7 +2502,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 73.66 62.23 180)
+		(at 71.12 123.19 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2444,9 +2511,9 @@
 		)
 		(uuid "8f847ac0-e7e5-4dbe-8d12-4b45c664bf64")
 	)
-	(hierarchical_label "DATA_OUT3"
+	(hierarchical_label "OUT3"
 		(shape output)
-		(at 138.43 68.58 0)
+		(at 135.89 129.54 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2455,9 +2522,9 @@
 		)
 		(uuid "9601d201-d12e-4dd5-b3be-4cf0f591d1dd")
 	)
-	(hierarchical_label "DATA_IN7"
+	(hierarchical_label "IN7"
 		(shape input)
-		(at 210.82 74.93 180)
+		(at 208.28 135.89 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2468,7 +2535,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 137.16 57.15 0)
+		(at 134.62 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2479,7 +2546,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 238.76 57.15 0)
+		(at 236.22 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2488,9 +2555,9 @@
 		)
 		(uuid "b85307aa-6305-4c8d-9b26-0fd016e03fdc")
 	)
-	(hierarchical_label "DATA_IN5"
+	(hierarchical_label "IN5"
 		(shape input)
-		(at 160.02 74.93 180)
+		(at 157.48 135.89 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2499,9 +2566,9 @@
 		)
 		(uuid "bf1bca98-ccb8-4d92-a349-0b773a3f5cab")
 	)
-	(hierarchical_label "DATA_OUT6"
+	(hierarchical_label "OUT6"
 		(shape output)
-		(at 189.23 93.98 0)
+		(at 214.63 105.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2510,9 +2577,9 @@
 		)
 		(uuid "c7b25968-3133-4f4a-9284-370730ae7f13")
 	)
-	(hierarchical_label "DATA_IN6"
+	(hierarchical_label "IN6"
 		(shape input)
-		(at 160.02 100.33 180)
+		(at 185.42 111.76 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2523,7 +2590,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 124.46 62.23 180)
+		(at 121.92 123.19 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2532,9 +2599,9 @@
 		)
 		(uuid "cfb92db1-2df3-45fc-917d-0417071aced0")
 	)
-	(hierarchical_label "DATA_OUT5"
+	(hierarchical_label "OUT5"
 		(shape output)
-		(at 189.23 68.58 0)
+		(at 186.69 129.54 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2543,9 +2610,9 @@
 		)
 		(uuid "d3a2ae0a-f83a-47c3-b4ec-918a47848305")
 	)
-	(hierarchical_label "DATA_OUT7"
+	(hierarchical_label "OUT7"
 		(shape output)
-		(at 240.03 68.58 0)
+		(at 237.49 129.54 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2554,9 +2621,9 @@
 		)
 		(uuid "d4e6c170-ed2c-4fe5-8ac6-710e74c00155")
 	)
-	(hierarchical_label "DATA_OUT8"
+	(hierarchical_label "OUT0"
 		(shape output)
-		(at 240.03 93.98 0)
+		(at 196.85 59.69 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2567,7 +2634,7 @@
 	)
 	(hierarchical_label "5V"
 		(shape input)
-		(at 86.36 57.15 0)
+		(at 83.82 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2576,9 +2643,9 @@
 		)
 		(uuid "e13f6f05-7eb4-4cc3-a8c8-68efa1f7dc4c")
 	)
-	(hierarchical_label "DATA_IN8"
+	(hierarchical_label "IN0"
 		(shape input)
-		(at 210.82 100.33 180)
+		(at 140.97 66.04 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2589,7 +2656,7 @@
 	)
 	(hierarchical_label "3V3"
 		(shape input)
-		(at 124.46 87.63 180)
+		(at 149.86 99.06 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2600,7 +2667,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 137.16 88.9 0)
+		(at 162.56 100.33 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2609,7 +2676,7 @@
 		(dnp no)
 		(uuid "050094f5-3ef8-497a-bed2-3e69e95525ee")
 		(property "Reference" "R15"
-			(at 135.89 87.63 0)
+			(at 161.29 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2618,7 +2685,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 135.89 90.17 0)
+			(at 161.29 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2627,7 +2694,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 138.938 88.9 90)
+			(at 164.338 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2636,7 +2703,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 137.16 88.9 0)
+			(at 162.56 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2645,7 +2712,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 137.16 88.9 0)
+			(at 162.56 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2654,10 +2721,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "f42d8fb8-2559-46d5-9815-b20e6bb77fbf")
+			(uuid "e55e947d-9621-418b-b9ad-f541698c636b")
 		)
 		(pin "2"
-			(uuid "94c37926-a98f-4f04-bea7-cb469e794cce")
+			(uuid "3a60af29-2b38-42b7-ba7a-e3f46b8d03ec")
 		)
 		(instances
 			(project "carte_bto"
@@ -2674,7 +2741,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 171.45 93.98 0)
+		(at 196.85 105.41 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2683,7 +2750,7 @@
 		(dnp no)
 		(uuid "0f379dcb-795b-44d4-a100-bbb26aef329d")
 		(property "Reference" "R17"
-			(at 170.18 92.71 0)
+			(at 195.58 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2692,7 +2759,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 170.18 95.25 0)
+			(at 195.58 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2701,7 +2768,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 173.228 93.98 90)
+			(at 198.628 105.41 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2710,7 +2777,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 171.45 93.98 0)
+			(at 196.85 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2719,7 +2786,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 171.45 93.98 0)
+			(at 196.85 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2728,10 +2795,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "640502fe-5a3e-4243-b2fa-90a9d80c994a")
+			(uuid "edd8cef1-0b8e-4342-b758-76f6f333dc42")
 		)
 		(pin "2"
-			(uuid "52cd736f-f0e9-464e-8c90-aa09cd4de05f")
+			(uuid "df759a09-a0ab-4bd2-b811-1786866bbbeb")
 		)
 		(instances
 			(project "carte_bto"
@@ -2748,7 +2815,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 120.65 93.98 0)
+		(at 146.05 105.41 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2757,7 +2824,7 @@
 		(dnp no)
 		(uuid "112378ac-d774-4641-972d-4e6d6c119e82")
 		(property "Reference" "R11"
-			(at 119.38 92.71 0)
+			(at 144.78 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2766,7 +2833,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 119.38 95.25 0)
+			(at 144.78 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2775,7 +2842,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 122.428 93.98 90)
+			(at 147.828 105.41 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2784,7 +2851,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 120.65 93.98 0)
+			(at 146.05 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2793,7 +2860,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 120.65 93.98 0)
+			(at 146.05 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2802,10 +2869,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "14a9e373-9040-446a-86f5-e4dbd6e70762")
+			(uuid "4f575c7f-e87f-435e-bff3-902b48884747")
 		)
 		(pin "2"
-			(uuid "de69d4e5-bcd6-4ef8-ac62-4230da2c92e0")
+			(uuid "43c1b9bb-2168-4525-9e8d-3fd3e4d17999")
 		)
 		(instances
 			(project "carte_bto"
@@ -2822,7 +2889,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 238.76 63.5 0)
+		(at 236.22 124.46 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2831,7 +2898,7 @@
 		(dnp no)
 		(uuid "19ede7d6-9f58-40bc-967d-19ebe9a979c3")
 		(property "Reference" "R26"
-			(at 237.49 62.23 0)
+			(at 234.95 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2840,7 +2907,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 237.49 64.77 0)
+			(at 234.95 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2849,7 +2916,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 240.538 63.5 90)
+			(at 237.998 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2858,7 +2925,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 238.76 63.5 0)
+			(at 236.22 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2867,7 +2934,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 238.76 63.5 0)
+			(at 236.22 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2876,10 +2943,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "d827a7cd-6ec3-42de-8aa7-d7a185499bf0")
+			(uuid "2c125c4f-8532-456b-b254-dabfa9aeeb50")
 		)
 		(pin "2"
-			(uuid "9d144a3e-5153-4d27-8a9d-7bbfd528c340")
+			(uuid "53562450-1188-4c2b-83a7-60b1a7c38c89")
 		)
 		(instances
 			(project "carte_bto"
@@ -2896,7 +2963,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 114.3 74.93 0)
+		(at 111.76 135.89 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2905,7 +2972,7 @@
 		(dnp no)
 		(uuid "1b2ce8d2-4efa-4af9-9dcc-7b12d891229e")
 		(property "Reference" "D3"
-			(at 113.03 69.85 0)
+			(at 110.49 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2913,7 +2980,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 113.03 72.39 0)
+			(at 110.49 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2921,7 +2988,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 114.3 70.485 0)
+			(at 111.76 131.445 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2930,7 +2997,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 114.3 74.93 0)
+			(at 111.76 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2939,7 +3006,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 114.3 74.93 0)
+			(at 111.76 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2948,7 +3015,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 114.3 74.93 0)
+			(at 111.76 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2957,7 +3024,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 114.3 74.93 0)
+			(at 111.76 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2966,10 +3033,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "770f3c5c-3975-4530-920d-c46ef2b540cc")
+			(uuid "ce046825-e086-4295-b0b6-e2d2ac38fa25")
 		)
 		(pin "1"
-			(uuid "258618ce-628b-40d4-af9e-bc2e85b83cc6")
+			(uuid "0983cca6-d920-4ad8-92f9-5e581b9ae6d1")
 		)
 		(instances
 			(project "carte_bto"
@@ -2986,7 +3053,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 165.1 74.93 0)
+		(at 162.56 135.89 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2995,7 +3062,7 @@
 		(dnp no)
 		(uuid "2af50f7b-e7b1-4a66-b951-288033f9008d")
 		(property "Reference" "D5"
-			(at 163.83 69.85 0)
+			(at 161.29 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3003,7 +3070,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 163.83 72.39 0)
+			(at 161.29 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3011,7 +3078,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 165.1 70.485 0)
+			(at 162.56 131.445 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3020,7 +3087,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 165.1 74.93 0)
+			(at 162.56 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3029,7 +3096,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 165.1 74.93 0)
+			(at 162.56 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3038,7 +3105,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 165.1 74.93 0)
+			(at 162.56 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3047,7 +3114,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 165.1 74.93 0)
+			(at 162.56 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3056,10 +3123,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "49067782-c592-4528-9643-f81149fa2a4e")
+			(uuid "b2ec9a1b-e963-4623-b17c-2d676a0ba3f3")
 		)
 		(pin "1"
-			(uuid "c757a477-8035-4426-b124-e285b59c8314")
+			(uuid "fc9b4ac4-cd3e-4c67-92b6-0623c8e6d6f2")
 		)
 		(instances
 			(project "carte_bto"
@@ -3076,7 +3143,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 187.96 88.9 0)
+		(at 213.36 100.33 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3085,7 +3152,7 @@
 		(dnp no)
 		(uuid "2f257e92-cee8-44ad-85a9-a6e81b31b588")
 		(property "Reference" "R21"
-			(at 186.69 87.63 0)
+			(at 212.09 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3094,7 +3161,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 186.69 90.17 0)
+			(at 212.09 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3103,7 +3170,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 189.738 88.9 90)
+			(at 215.138 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3112,7 +3179,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 187.96 88.9 0)
+			(at 213.36 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3121,7 +3188,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 187.96 88.9 0)
+			(at 213.36 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3130,10 +3197,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "33827388-deb4-4473-90aa-ef92401a3a21")
+			(uuid "429c254d-2649-45b7-9f55-fd30e430cefe")
 		)
 		(pin "2"
-			(uuid "1825aa41-5804-4368-ba4e-59b7f0911faa")
+			(uuid "dcdcb2d5-8cd6-4555-816d-79657aaf4a6b")
 		)
 		(instances
 			(project "carte_bto"
@@ -3150,7 +3217,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 120.65 68.58 0)
+		(at 118.11 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3159,7 +3226,7 @@
 		(dnp no)
 		(uuid "325a8962-2d71-4c72-b067-249fb60855be")
 		(property "Reference" "R10"
-			(at 119.38 67.31 0)
+			(at 116.84 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3168,7 +3235,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 119.38 69.85 0)
+			(at 116.84 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3177,7 +3244,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 122.428 68.58 90)
+			(at 119.888 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3186,7 +3253,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 120.65 68.58 0)
+			(at 118.11 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3195,7 +3262,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 120.65 68.58 0)
+			(at 118.11 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3204,10 +3271,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "c4d82fdd-7886-43f9-aa7a-51b03f33dd09")
+			(uuid "df856d16-5d84-40bf-a800-d2af52a5de8c")
 		)
 		(pin "2"
-			(uuid "f18b20c1-e006-47ef-ba59-16bc7c5e7531")
+			(uuid "1447989f-51ba-4e85-97f7-6d47f0fed4fd")
 		)
 		(instances
 			(project "carte_bto"
@@ -3224,7 +3291,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 137.16 63.5 0)
+		(at 134.62 124.46 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3233,7 +3300,7 @@
 		(dnp no)
 		(uuid "3aab55ef-6b6d-483a-9162-e6b5fd1989c6")
 		(property "Reference" "R14"
-			(at 135.89 62.23 0)
+			(at 133.35 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3242,7 +3309,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 135.89 64.77 0)
+			(at 133.35 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3251,7 +3318,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 138.938 63.5 90)
+			(at 136.398 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3260,7 +3327,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 137.16 63.5 0)
+			(at 134.62 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3269,7 +3336,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 137.16 63.5 0)
+			(at 134.62 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3278,10 +3345,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "3ae948e5-2d1a-489d-a8a4-8bf513d2e96a")
+			(uuid "8cd8f112-9b91-45d9-bfba-aa7b34fecce2")
 		)
 		(pin "2"
-			(uuid "a11c6384-d4d9-4b7d-b87c-78d47638ef06")
+			(uuid "7ac2fd97-25ea-4519-9e77-d6bf4458b081")
 		)
 		(instances
 			(project "carte_bto"
@@ -3298,7 +3365,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 229.87 93.98 0)
+		(at 186.69 59.69 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3307,7 +3374,7 @@
 		(dnp no)
 		(uuid "4b8a665c-fc19-43d8-8c44-e66be97f4fcf")
 		(property "Reference" "R25"
-			(at 228.6 92.71 0)
+			(at 185.42 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3316,7 +3383,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 228.6 95.25 0)
+			(at 185.42 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3325,7 +3392,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 231.648 93.98 90)
+			(at 188.468 59.69 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3334,7 +3401,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 229.87 93.98 0)
+			(at 186.69 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3343,7 +3410,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 229.87 93.98 0)
+			(at 186.69 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3352,10 +3419,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "b530fea6-786e-41c6-885f-e6b561492cd3")
+			(uuid "3c4731d0-bebe-4b4a-8dce-de73e6053864")
 		)
 		(pin "2"
-			(uuid "daba514c-9d5f-4cd7-827a-f2ee56cfad6c")
+			(uuid "d6637d0f-4580-4cab-a837-46c0a3155a10")
 		)
 		(instances
 			(project "carte_bto"
@@ -3372,7 +3439,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 165.1 100.33 0)
+		(at 190.5 111.76 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3381,7 +3448,7 @@
 		(dnp no)
 		(uuid "501285a3-5c4f-4dbb-bd2b-8865f494d36e")
 		(property "Reference" "D6"
-			(at 163.83 95.25 0)
+			(at 189.23 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3389,7 +3456,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 163.83 97.79 0)
+			(at 189.23 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3397,7 +3464,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 165.1 95.885 0)
+			(at 190.5 107.315 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3406,7 +3473,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 165.1 100.33 0)
+			(at 190.5 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3415,7 +3482,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 165.1 100.33 0)
+			(at 190.5 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3424,7 +3491,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 165.1 100.33 0)
+			(at 190.5 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3433,7 +3500,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 165.1 100.33 0)
+			(at 190.5 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3442,10 +3509,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "7acff542-bace-4dbf-94f6-3147b47190c9")
+			(uuid "2541342a-0553-4234-98a1-361b222b6611")
 		)
 		(pin "1"
-			(uuid "c538c787-1065-4ae3-b41c-41d5b4203dc3")
+			(uuid "d5c01a77-f07b-4156-9077-128f547799dd")
 		)
 		(instances
 			(project "carte_bto"
@@ -3462,7 +3529,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 187.96 63.5 0)
+		(at 185.42 124.46 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3471,7 +3538,7 @@
 		(dnp no)
 		(uuid "5c86bea2-1234-4247-b77d-61e38ebb2e2d")
 		(property "Reference" "R20"
-			(at 186.69 62.23 0)
+			(at 184.15 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3480,7 +3547,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 186.69 64.77 0)
+			(at 184.15 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3489,7 +3556,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 189.738 63.5 90)
+			(at 187.198 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3498,7 +3565,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 187.96 63.5 0)
+			(at 185.42 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3507,7 +3574,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 187.96 63.5 0)
+			(at 185.42 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3516,10 +3583,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "f6363d85-2307-4ee3-904f-2b91f56c4397")
+			(uuid "62336037-8b3b-4d77-bfeb-cd474102602f")
 		)
 		(pin "2"
-			(uuid "70db348c-66e4-4769-b78e-348412558a56")
+			(uuid "d1c1ddcf-6ed7-47c6-a590-b4a91bf2d1a6")
 		)
 		(instances
 			(project "carte_bto"
@@ -3536,7 +3603,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 215.9 74.93 0)
+		(at 213.36 135.89 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3545,7 +3612,7 @@
 		(dnp no)
 		(uuid "5d3bb317-733e-482b-ae52-03850d62ec92")
 		(property "Reference" "D7"
-			(at 214.63 69.85 0)
+			(at 212.09 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3553,7 +3620,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 214.63 72.39 0)
+			(at 212.09 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3561,7 +3628,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 215.9 70.485 0)
+			(at 213.36 131.445 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3570,7 +3637,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 215.9 74.93 0)
+			(at 213.36 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3579,7 +3646,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 215.9 74.93 0)
+			(at 213.36 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3588,7 +3655,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 215.9 74.93 0)
+			(at 213.36 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3597,7 +3664,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 215.9 74.93 0)
+			(at 213.36 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3606,10 +3673,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "137b6015-f1ea-4f2a-adf4-48ead313d06e")
+			(uuid "7332db38-aa8f-423b-97d6-b653b3f7b557")
 		)
 		(pin "1"
-			(uuid "641c0ec6-0987-4d05-bbd3-cb96c15940a5")
+			(uuid "b9d000fc-cee0-4a3a-9445-321054e30ca1")
 		)
 		(instances
 			(project "carte_bto"
@@ -3626,7 +3693,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 86.36 63.5 0)
+		(at 83.82 124.46 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3635,7 +3702,7 @@
 		(dnp no)
 		(uuid "60844e6e-f9ab-4d25-8fa0-5ce65cb00340")
 		(property "Reference" "R8"
-			(at 85.09 62.23 0)
+			(at 82.55 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3644,7 +3711,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 85.09 64.77 0)
+			(at 82.55 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3653,7 +3720,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.138 63.5 90)
+			(at 85.598 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3662,7 +3729,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 86.36 63.5 0)
+			(at 83.82 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3671,7 +3738,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 86.36 63.5 0)
+			(at 83.82 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3680,10 +3747,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "4ee4aaee-31dc-4222-8ee6-527d23688e0b")
+			(uuid "8b58e014-d37e-4d42-82db-fc467dbbeb35")
 		)
 		(pin "2"
-			(uuid "01fd5e16-c62e-401c-8fa4-598a0a03b2c2")
+			(uuid "f6a40ae8-85e3-4fb3-84f7-69ee135fbeb2")
 		)
 		(instances
 			(project "carte_bto"
@@ -3700,7 +3767,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 86.36 88.9 0)
+		(at 111.76 100.33 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3709,7 +3776,7 @@
 		(dnp no)
 		(uuid "61de8f78-8b57-47cd-b324-1216a4c3b47d")
 		(property "Reference" "R9"
-			(at 85.09 87.63 0)
+			(at 110.49 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3718,7 +3785,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 85.09 90.17 0)
+			(at 110.49 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3727,7 +3794,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.138 88.9 90)
+			(at 113.538 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3736,7 +3803,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 86.36 88.9 0)
+			(at 111.76 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3745,7 +3812,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 86.36 88.9 0)
+			(at 111.76 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3754,10 +3821,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "adccfcab-d9fe-4c29-b25e-9e44773d63ef")
+			(uuid "7b5a2b4a-995d-4aa5-8c56-ca9d2f3c7746")
 		)
 		(pin "2"
-			(uuid "f20f628c-4fc2-4d2d-8251-540adee95116")
+			(uuid "1191d89d-b487-4c51-9095-f8b5353da39c")
 		)
 		(instances
 			(project "carte_bto"
@@ -3774,7 +3841,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 69.85 68.58 0)
+		(at 67.31 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3783,7 +3850,7 @@
 		(dnp no)
 		(uuid "6851feb7-def6-40ac-89d6-29fddd107534")
 		(property "Reference" "R4"
-			(at 68.58 67.31 0)
+			(at 66.04 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3792,7 +3859,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 68.58 69.85 0)
+			(at 66.04 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3801,7 +3868,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.628 68.58 90)
+			(at 69.088 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3810,7 +3877,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 69.85 68.58 0)
+			(at 67.31 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3819,7 +3886,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 69.85 68.58 0)
+			(at 67.31 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3828,10 +3895,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "634a98e4-c9c7-410c-bd2a-db431137d7bb")
+			(uuid "22908167-a468-46ce-b6c2-383f88c3fc68")
 		)
 		(pin "2"
-			(uuid "8d0deb34-2295-439d-93ca-e289a9ddaaa2")
+			(uuid "74859463-679f-4435-a759-56cbc4b33d42")
 		)
 		(instances
 			(project "carte_bto"
@@ -3848,7 +3915,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 215.9 100.33 0)
+		(at 157.48 66.04 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3857,7 +3924,7 @@
 		(dnp no)
 		(uuid "779e3fd0-2fe5-4d9d-9e10-0a824934cabf")
 		(property "Reference" "D8"
-			(at 214.63 95.25 0)
+			(at 156.21 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3865,7 +3932,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 214.63 97.79 0)
+			(at 156.21 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3873,7 +3940,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 215.9 95.885 0)
+			(at 157.48 61.595 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3882,7 +3949,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 215.9 100.33 0)
+			(at 157.48 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3891,7 +3958,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 215.9 100.33 0)
+			(at 157.48 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3900,7 +3967,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 215.9 100.33 0)
+			(at 157.48 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3909,7 +3976,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 215.9 100.33 0)
+			(at 157.48 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3918,10 +3985,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "1cb4438a-a387-41ee-9701-2257ef2a3287")
+			(uuid "1bf2210e-1b89-4ff6-bcd0-bc8acd714399")
 		)
 		(pin "1"
-			(uuid "4d8c6deb-d4f3-4c0d-8970-9e1856679624")
+			(uuid "e0653012-a824-4b36-996e-bd0962873727")
 		)
 		(instances
 			(project "carte_bto"
@@ -3938,7 +4005,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 83.82 74.93 0)
+		(at 81.28 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3946,7 +4013,7 @@
 		(dnp no)
 		(uuid "77e7a462-e7f3-466c-966b-0b322d6a0124")
 		(property "Reference" "Q1"
-			(at 88.265 73.66 0)
+			(at 85.725 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3955,7 +4022,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 88.265 76.2 0)
+			(at 85.725 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3964,7 +4031,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 88.9 76.835 0)
+			(at 86.36 137.795 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3975,7 +4042,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 83.82 74.93 0)
+			(at 81.28 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3985,7 +4052,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 83.82 74.93 0)
+			(at 81.28 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3994,13 +4061,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "073c663a-8f7a-4b21-9916-8e81be896a5a")
+			(uuid "3eed215d-d833-458e-832b-be81254179a4")
 		)
 		(pin "2"
-			(uuid "874f2118-686f-415d-9d8b-f46140867635")
+			(uuid "6db2b0ba-6689-414a-9f41-f50e18fb108e")
 		)
 		(pin "1"
-			(uuid "bd79fb1b-3aed-4e70-9bbf-ccb6766e42e6")
+			(uuid "9b87d228-df7e-4635-9892-6e8997171ebf")
 		)
 		(instances
 			(project "carte_bto"
@@ -4017,7 +4084,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 128.27 68.58 0)
+		(at 125.73 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4026,7 +4093,7 @@
 		(dnp no)
 		(uuid "7c364c7e-ade1-453a-b085-eba992cbf403")
 		(property "Reference" "R12"
-			(at 127 67.31 0)
+			(at 124.46 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4035,7 +4102,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 127 69.85 0)
+			(at 124.46 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4044,7 +4111,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 130.048 68.58 90)
+			(at 127.508 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4053,7 +4120,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 128.27 68.58 0)
+			(at 125.73 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4062,7 +4129,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 128.27 68.58 0)
+			(at 125.73 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4071,10 +4138,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "50c65704-b653-417d-8aef-9c5737105412")
+			(uuid "25444643-ac63-4c75-b819-73ef345231c1")
 		)
 		(pin "2"
-			(uuid "c0b2992a-ea09-41fe-a565-89027d690218")
+			(uuid "6f662c8e-03b2-4d97-914f-fa892573c050")
 		)
 		(instances
 			(project "carte_bto"
@@ -4091,7 +4158,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 236.22 100.33 0)
+		(at 193.04 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4099,7 +4166,7 @@
 		(dnp no)
 		(uuid "8ce078e9-2dcd-4996-95c9-d8ead79279c4")
 		(property "Reference" "Q8"
-			(at 240.665 99.06 0)
+			(at 197.485 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4108,7 +4175,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 240.665 101.6 0)
+			(at 197.485 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4117,7 +4184,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 241.3 102.235 0)
+			(at 198.12 67.945 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4128,7 +4195,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 236.22 100.33 0)
+			(at 193.04 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4138,7 +4205,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 236.22 100.33 0)
+			(at 193.04 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4147,13 +4214,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "7247eb46-22e0-4432-b3f2-8c4ad490cbf4")
+			(uuid "3e1ce920-5eac-4bc1-89b5-3e57ae0c6c39")
 		)
 		(pin "2"
-			(uuid "694fe280-6b6a-4502-95ba-fc4172d17b2e")
+			(uuid "44e3c9c5-297f-4b07-8a26-da88a849c33e")
 		)
 		(pin "1"
-			(uuid "94bf8048-396b-4cba-abb4-65eaafce09c4")
+			(uuid "7c600f71-9569-4a7a-8ac7-51fc3231eec5")
 		)
 		(instances
 			(project "carte_bto"
@@ -4170,7 +4237,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 77.47 93.98 0)
+		(at 102.87 105.41 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4179,7 +4246,7 @@
 		(dnp no)
 		(uuid "8f6b6581-07c3-4f19-9d25-f3180863826d")
 		(property "Reference" "R7"
-			(at 76.2 92.71 0)
+			(at 101.6 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4188,7 +4255,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 76.2 95.25 0)
+			(at 101.6 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4197,7 +4264,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 79.248 93.98 90)
+			(at 104.648 105.41 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4206,7 +4273,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 77.47 93.98 0)
+			(at 102.87 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4215,7 +4282,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 77.47 93.98 0)
+			(at 102.87 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4224,10 +4291,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "3a1245e5-d0af-4476-965d-af3292a390a1")
+			(uuid "f41798ab-23b1-44fc-8987-363ea48484db")
 		)
 		(pin "2"
-			(uuid "8529ca79-0a74-4900-a038-3270544e77dc")
+			(uuid "069bb1f4-b7bb-4a16-9110-f0a3c473815e")
 		)
 		(instances
 			(project "carte_bto"
@@ -4244,7 +4311,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 63.5 100.33 0)
+		(at 88.9 111.76 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4253,7 +4320,7 @@
 		(dnp no)
 		(uuid "9b6b1141-7ce1-4e87-a0b9-40fba86e63e6")
 		(property "Reference" "D2"
-			(at 62.23 95.25 0)
+			(at 87.63 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4261,7 +4328,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 62.23 97.79 0)
+			(at 87.63 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4269,7 +4336,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 63.5 95.885 0)
+			(at 88.9 107.315 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4278,7 +4345,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 63.5 100.33 0)
+			(at 88.9 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4287,7 +4354,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 63.5 100.33 0)
+			(at 88.9 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4296,7 +4363,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 63.5 100.33 0)
+			(at 88.9 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4305,7 +4372,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 63.5 100.33 0)
+			(at 88.9 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4314,10 +4381,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "6dcfe1f9-68e7-4748-913c-90c33b476abe")
+			(uuid "9ba931ac-3702-464b-af96-f488af8ee32b")
 		)
 		(pin "1"
-			(uuid "4bb4bed6-1378-4f24-857a-21d02ccc3448")
+			(uuid "4eda797f-4416-4d69-85cd-cac924fdf79a")
 		)
 		(instances
 			(project "carte_bto"
@@ -4334,7 +4401,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 236.22 74.93 0)
+		(at 233.68 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4342,7 +4409,7 @@
 		(dnp no)
 		(uuid "af03cdf9-e943-4655-9e63-5c1069aa39f3")
 		(property "Reference" "Q7"
-			(at 240.665 73.66 0)
+			(at 238.125 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4351,7 +4418,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 240.665 76.2 0)
+			(at 238.125 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4360,7 +4427,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 241.3 76.835 0)
+			(at 238.76 137.795 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4371,7 +4438,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 236.22 74.93 0)
+			(at 233.68 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4381,7 +4448,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 236.22 74.93 0)
+			(at 233.68 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4390,13 +4457,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "270ff20d-914a-425d-98bd-d8cbb6dd0405")
+			(uuid "3a69fb6f-ab04-4994-95ba-9cc71299ca58")
 		)
 		(pin "2"
-			(uuid "6e322213-3156-4f4a-9fe1-a7e65b916f0b")
+			(uuid "00247841-57ff-4436-977c-92e1a64ea0a0")
 		)
 		(pin "1"
-			(uuid "6b3258dd-aa6d-4923-aab5-fba6ab71a255")
+			(uuid "1015a9db-69e0-497a-93f7-22ca268f24f1")
 		)
 		(instances
 			(project "carte_bto"
@@ -4413,7 +4480,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 114.3 100.33 0)
+		(at 139.7 111.76 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4422,7 +4489,7 @@
 		(dnp no)
 		(uuid "af2a6622-6ccf-44d2-9419-4c6ff92bdebb")
 		(property "Reference" "D4"
-			(at 113.03 95.25 0)
+			(at 138.43 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4430,7 +4497,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 113.03 97.79 0)
+			(at 138.43 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4438,7 +4505,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 114.3 95.885 0)
+			(at 139.7 107.315 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4447,7 +4514,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 114.3 100.33 0)
+			(at 139.7 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4456,7 +4523,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 114.3 100.33 0)
+			(at 139.7 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4465,7 +4532,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 114.3 100.33 0)
+			(at 139.7 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4474,7 +4541,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 114.3 100.33 0)
+			(at 139.7 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4483,10 +4550,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "4d3b6e03-b4ec-4211-a8ed-e38d6920fcea")
+			(uuid "80b0dfe7-806a-456b-b725-e498b9fe94f4")
 		)
 		(pin "1"
-			(uuid "1f6b985d-d2a8-4a5a-9f02-3b7af9d8399f")
+			(uuid "2cfe4365-ed16-4168-8f13-4facded4c2d7")
 		)
 		(instances
 			(project "carte_bto"
@@ -4503,7 +4570,7 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148WT")
-		(at 63.5 74.93 0)
+		(at 60.96 135.89 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4512,7 +4579,7 @@
 		(dnp no)
 		(uuid "ba3d527a-c878-4d89-9b7c-97c8357a891c")
 		(property "Reference" "D1"
-			(at 62.23 69.85 0)
+			(at 59.69 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4520,7 +4587,7 @@
 			)
 		)
 		(property "Value" "1N4148WT"
-			(at 62.23 72.39 0)
+			(at 59.69 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4528,7 +4595,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 63.5 70.485 0)
+			(at 60.96 131.445 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4537,7 +4604,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 63.5 74.93 0)
+			(at 60.96 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4546,7 +4613,7 @@
 			)
 		)
 		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 63.5 74.93 0)
+			(at 60.96 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4555,7 +4622,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 63.5 74.93 0)
+			(at 60.96 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4564,7 +4631,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 63.5 74.93 0)
+			(at 60.96 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4573,10 +4640,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "dfa50732-6600-4ad0-9a11-79c49cfb356f")
+			(uuid "a586918c-83b9-49f3-88b2-17e01ca443ef")
 		)
 		(pin "1"
-			(uuid "7e827dce-27e1-47d5-94b2-7c787d6ac7f6")
+			(uuid "eb67dab3-3d4f-4ee4-a85a-e3f334a3ffb5")
 		)
 		(instances
 			(project "carte_bto"
@@ -4593,7 +4660,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 229.87 68.58 0)
+		(at 227.33 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4602,7 +4669,7 @@
 		(dnp no)
 		(uuid "bb08f82c-3d9f-4867-b531-67db2be68157")
 		(property "Reference" "R24"
-			(at 228.6 67.31 0)
+			(at 226.06 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4611,7 +4678,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 228.6 69.85 0)
+			(at 226.06 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4620,7 +4687,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 231.648 68.58 90)
+			(at 229.108 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4629,7 +4696,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 229.87 68.58 0)
+			(at 227.33 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4638,7 +4705,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 229.87 68.58 0)
+			(at 227.33 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4647,10 +4714,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "d86498ac-ecb2-45ed-a050-7e540b3a9188")
+			(uuid "730b5b4a-d18e-4e92-bb7a-46cb5f05d620")
 		)
 		(pin "2"
-			(uuid "3f99578c-9e79-456e-82ff-948ba4621a7c")
+			(uuid "e157da22-fc4a-4a14-82c0-38a82ef1ffea")
 		)
 		(instances
 			(project "carte_bto"
@@ -4667,7 +4734,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 134.62 100.33 0)
+		(at 160.02 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4675,7 +4742,7 @@
 		(dnp no)
 		(uuid "bd405dde-3612-4735-927e-a4e464c72a35")
 		(property "Reference" "Q4"
-			(at 139.065 99.06 0)
+			(at 164.465 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4684,7 +4751,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 139.065 101.6 0)
+			(at 164.465 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4693,7 +4760,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 139.7 102.235 0)
+			(at 165.1 113.665 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4704,7 +4771,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 134.62 100.33 0)
+			(at 160.02 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4714,7 +4781,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 134.62 100.33 0)
+			(at 160.02 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4723,13 +4790,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "32b04b63-b123-449b-8d05-d1b7a0341286")
+			(uuid "c4572a20-4af5-4cee-a0e2-8aaf62996b75")
 		)
 		(pin "2"
-			(uuid "cf587bdf-6124-43ee-b0d2-fdc55c5df777")
+			(uuid "6c4f4b08-c3a2-4e2a-b801-1c346923a28c")
 		)
 		(pin "1"
-			(uuid "5bf3013b-5fb8-480c-b6b8-bc203e1c318b")
+			(uuid "534fabbf-747a-4ac0-8a8c-2a964c40ce02")
 		)
 		(instances
 			(project "carte_bto"
@@ -4746,7 +4813,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 185.42 100.33 0)
+		(at 210.82 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4754,7 +4821,7 @@
 		(dnp no)
 		(uuid "c26bc4cf-84fd-4ca5-a9b1-350ad5909e2a")
 		(property "Reference" "Q6"
-			(at 189.865 99.06 0)
+			(at 215.265 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4763,7 +4830,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 189.865 101.6 0)
+			(at 215.265 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4772,7 +4839,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 190.5 102.235 0)
+			(at 215.9 113.665 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4783,7 +4850,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 185.42 100.33 0)
+			(at 210.82 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4793,7 +4860,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 185.42 100.33 0)
+			(at 210.82 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4802,13 +4869,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "e411ecb3-3504-4594-aeb8-c4943dc9a238")
+			(uuid "bed3178d-1c28-44f9-89a8-17453acb2f18")
 		)
 		(pin "2"
-			(uuid "1fc41f31-2107-47dc-bde7-0508c69e61d0")
+			(uuid "bd7276e6-1eae-4fef-8b4d-a1c904f3802d")
 		)
 		(pin "1"
-			(uuid "e84890de-63ea-4474-8d70-0209916f7626")
+			(uuid "0d5743f6-d255-4194-969c-265cf7a288d7")
 		)
 		(instances
 			(project "carte_bto"
@@ -4825,7 +4892,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 222.25 68.58 0)
+		(at 219.71 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4834,7 +4901,7 @@
 		(dnp no)
 		(uuid "c4e055b2-4156-425e-aa15-47a7d260360d")
 		(property "Reference" "R22"
-			(at 220.98 67.31 0)
+			(at 218.44 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4843,7 +4910,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 220.98 69.85 0)
+			(at 218.44 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4852,7 +4919,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 224.028 68.58 90)
+			(at 221.488 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4861,7 +4928,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 222.25 68.58 0)
+			(at 219.71 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4870,7 +4937,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 222.25 68.58 0)
+			(at 219.71 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4879,10 +4946,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "193d3495-0253-4204-9ef1-4da367b52732")
+			(uuid "06092e19-9d16-4bb5-a668-7f189cc1b45a")
 		)
 		(pin "2"
-			(uuid "7fe64c85-b5c3-4082-8e83-a76613281b6e")
+			(uuid "443f317b-67dd-494f-8a0c-bd6ee3417a0b")
 		)
 		(instances
 			(project "carte_bto"
@@ -4899,7 +4966,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 69.85 93.98 0)
+		(at 95.25 105.41 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4908,7 +4975,7 @@
 		(dnp no)
 		(uuid "c77ea222-1cde-447c-9c4f-3828bdf69d70")
 		(property "Reference" "R5"
-			(at 68.58 92.71 0)
+			(at 93.98 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4917,7 +4984,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 68.58 95.25 0)
+			(at 93.98 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4926,7 +4993,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.628 93.98 90)
+			(at 97.028 105.41 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4935,7 +5002,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 69.85 93.98 0)
+			(at 95.25 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4944,7 +5011,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 69.85 93.98 0)
+			(at 95.25 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4953,10 +5020,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "d6443e29-6d23-48f0-910c-126386bf9dc3")
+			(uuid "3b024218-1dca-42b0-8535-22877dca3aad")
 		)
 		(pin "2"
-			(uuid "615e72a1-556e-4cda-8c38-35d56dbd89b9")
+			(uuid "3adff9a9-9e47-4228-a7f1-834338c92172")
 		)
 		(instances
 			(project "carte_bto"
@@ -4973,7 +5040,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 134.62 74.93 0)
+		(at 132.08 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4981,7 +5048,7 @@
 		(dnp no)
 		(uuid "c9eded34-7bf1-4acb-8af9-d5a3a1bcb26f")
 		(property "Reference" "Q3"
-			(at 139.065 73.66 0)
+			(at 136.525 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4990,7 +5057,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 139.065 76.2 0)
+			(at 136.525 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4999,7 +5066,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 139.7 76.835 0)
+			(at 137.16 137.795 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5010,7 +5077,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 134.62 74.93 0)
+			(at 132.08 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5020,7 +5087,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 134.62 74.93 0)
+			(at 132.08 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5029,13 +5096,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "45f6046a-119a-44a9-a116-2387b298fbb1")
+			(uuid "af4a26f2-ce03-472e-bae4-d46ae467f734")
 		)
 		(pin "2"
-			(uuid "c452eea7-b0ff-452f-b9e3-8d7b8b8b41b7")
+			(uuid "42a30928-c1b5-496e-9acf-112108f5bdbd")
 		)
 		(pin "1"
-			(uuid "474bbd84-56ba-4a69-8c15-3e86b8e05691")
+			(uuid "4a170beb-6a74-4e9e-b2de-7ddbd4e9c7b3")
 		)
 		(instances
 			(project "carte_bto"
@@ -5052,7 +5119,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 171.45 68.58 0)
+		(at 168.91 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5061,7 +5128,7 @@
 		(dnp no)
 		(uuid "d204db57-a44a-4deb-b072-2cac03f1bee6")
 		(property "Reference" "R16"
-			(at 170.18 67.31 0)
+			(at 167.64 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5070,7 +5137,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 170.18 69.85 0)
+			(at 167.64 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5079,7 +5146,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 173.228 68.58 90)
+			(at 170.688 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5088,7 +5155,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 171.45 68.58 0)
+			(at 168.91 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5097,7 +5164,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 171.45 68.58 0)
+			(at 168.91 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5106,10 +5173,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "f14d5824-187a-4fe3-8931-9194fa655c3a")
+			(uuid "d4cd626c-497f-4581-910e-f4c0934ae3fd")
 		)
 		(pin "2"
-			(uuid "9c162f6d-711a-4e46-aa5a-27c9ec08b3f9")
+			(uuid "7e6d7957-1c0d-45d5-8d4b-0f7eb6c87fe8")
 		)
 		(instances
 			(project "carte_bto"
@@ -5126,7 +5193,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 77.47 68.58 0)
+		(at 74.93 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5135,7 +5202,7 @@
 		(dnp no)
 		(uuid "d3e481e6-623a-43b2-b460-1fbd236038b0")
 		(property "Reference" "R6"
-			(at 76.2 67.31 0)
+			(at 73.66 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5144,7 +5211,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 76.2 69.85 0)
+			(at 73.66 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5153,7 +5220,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 79.248 68.58 90)
+			(at 76.708 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5162,7 +5229,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 77.47 68.58 0)
+			(at 74.93 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5171,7 +5238,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 77.47 68.58 0)
+			(at 74.93 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5180,10 +5247,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "f45e64e6-ca9d-44dd-a7ef-afded4501f06")
+			(uuid "144449ba-8dee-467b-a323-e6024c84d77c")
 		)
 		(pin "2"
-			(uuid "2394a973-0fd1-444e-a64e-273dde7f7ff5")
+			(uuid "0821b492-c778-4c8d-8978-6b23ec0fca05")
 		)
 		(instances
 			(project "carte_bto"
@@ -5200,7 +5267,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 185.42 74.93 0)
+		(at 182.88 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5208,7 +5275,7 @@
 		(dnp no)
 		(uuid "d5756520-c070-41e5-9b01-d60708c5cf23")
 		(property "Reference" "Q5"
-			(at 189.865 73.66 0)
+			(at 187.325 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5217,7 +5284,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 189.865 76.2 0)
+			(at 187.325 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5226,7 +5293,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 190.5 76.835 0)
+			(at 187.96 137.795 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5237,7 +5304,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 185.42 74.93 0)
+			(at 182.88 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5247,7 +5314,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 185.42 74.93 0)
+			(at 182.88 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5256,13 +5323,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "5f0c4972-9320-48d5-b1f3-3d4149f8592b")
+			(uuid "071b6efc-4473-4060-8e47-9fa2e85e8a5c")
 		)
 		(pin "2"
-			(uuid "ff0a168e-fced-4257-9914-6c5f979b58d6")
+			(uuid "d7b76a66-90b2-48d0-a805-0e2557903181")
 		)
 		(pin "1"
-			(uuid "6bc0b97c-3fbc-438a-82da-6a3cff3e714a")
+			(uuid "7e2b839f-f51b-4210-a24d-3d37c124404a")
 		)
 		(instances
 			(project "carte_bto"
@@ -5279,7 +5346,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 179.07 68.58 0)
+		(at 176.53 129.54 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5288,7 +5355,7 @@
 		(dnp no)
 		(uuid "d887344a-e637-4570-a49f-a1620967f8ea")
 		(property "Reference" "R18"
-			(at 177.8 67.31 0)
+			(at 175.26 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5297,7 +5364,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 177.8 69.85 0)
+			(at 175.26 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5306,7 +5373,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 180.848 68.58 90)
+			(at 178.308 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5315,7 +5382,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 179.07 68.58 0)
+			(at 176.53 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5324,7 +5391,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 179.07 68.58 0)
+			(at 176.53 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5333,10 +5400,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "2742c1fc-9179-4153-973d-25dc212ec5fb")
+			(uuid "45da77d2-1e44-4416-aafc-fc4b9c3bf532")
 		)
 		(pin "2"
-			(uuid "65afc6f0-3606-4214-9187-a281281fc83f")
+			(uuid "649533e3-c1fc-4090-bb4d-2763800b81df")
 		)
 		(instances
 			(project "carte_bto"
@@ -5353,7 +5420,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 222.25 93.98 0)
+		(at 179.07 59.69 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5362,7 +5429,7 @@
 		(dnp no)
 		(uuid "e11c00e7-0ab6-43f8-b8e4-a6291d09360c")
 		(property "Reference" "R23"
-			(at 220.98 92.71 0)
+			(at 177.8 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5371,7 +5438,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 220.98 95.25 0)
+			(at 177.8 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5380,7 +5447,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 224.028 93.98 90)
+			(at 180.848 59.69 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5389,7 +5456,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 222.25 93.98 0)
+			(at 179.07 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5398,7 +5465,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 222.25 93.98 0)
+			(at 179.07 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5407,10 +5474,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "ca02e243-29af-4d54-bfc6-589a8ebd8295")
+			(uuid "e255283c-0403-46c7-a588-8847d823290d")
 		)
 		(pin "2"
-			(uuid "479bf9e4-d2ef-4e3a-a8a4-47158c86ce84")
+			(uuid "9034ee7d-9a5c-4f70-b6b6-9d600b1c3b1e")
 		)
 		(instances
 			(project "carte_bto"
@@ -5427,7 +5494,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 179.07 93.98 0)
+		(at 204.47 105.41 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5436,7 +5503,7 @@
 		(dnp no)
 		(uuid "e18d7430-aa9c-49de-aeff-586dc1bcaed6")
 		(property "Reference" "R19"
-			(at 177.8 92.71 0)
+			(at 203.2 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5445,7 +5512,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 177.8 95.25 0)
+			(at 203.2 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5454,7 +5521,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 180.848 93.98 90)
+			(at 206.248 105.41 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5463,7 +5530,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 179.07 93.98 0)
+			(at 204.47 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5472,7 +5539,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 179.07 93.98 0)
+			(at 204.47 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5481,10 +5548,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "dfe6f8f6-2750-4fcf-9857-50ac747523ad")
+			(uuid "46362e93-97de-4fd3-af52-0a4b89280f15")
 		)
 		(pin "2"
-			(uuid "671fbef1-f626-493c-861e-94c43caed5fd")
+			(uuid "5976b808-68c0-47a4-b6ba-93f121709075")
 		)
 		(instances
 			(project "carte_bto"
@@ -5501,7 +5568,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 128.27 93.98 0)
+		(at 153.67 105.41 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5510,7 +5577,7 @@
 		(dnp no)
 		(uuid "e749f2fe-132e-45de-b816-5ee02315d241")
 		(property "Reference" "R13"
-			(at 127 92.71 0)
+			(at 152.4 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5519,7 +5586,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 127 95.25 0)
+			(at 152.4 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5528,7 +5595,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 130.048 93.98 90)
+			(at 155.448 105.41 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5537,7 +5604,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 128.27 93.98 0)
+			(at 153.67 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5546,7 +5613,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 128.27 93.98 0)
+			(at 153.67 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5555,10 +5622,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "5dac9732-16e8-4f09-b717-37568242773e")
+			(uuid "2133bf71-022c-468d-912d-aa3e9bffa6a9")
 		)
 		(pin "2"
-			(uuid "ce40c234-449e-4f5b-80a5-9586d95ec88b")
+			(uuid "ea8d5011-ae6b-4f8d-809b-9f09be5db32e")
 		)
 		(instances
 			(project "carte_bto"
@@ -5575,7 +5642,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 238.76 88.9 0)
+		(at 195.58 54.61 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5584,7 +5651,7 @@
 		(dnp no)
 		(uuid "f28e82e7-2746-4c48-a363-d77b9df38102")
 		(property "Reference" "R27"
-			(at 237.49 87.63 0)
+			(at 194.31 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5593,7 +5660,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 237.49 90.17 0)
+			(at 194.31 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5602,7 +5669,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 240.538 88.9 90)
+			(at 197.358 54.61 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5611,7 +5678,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 238.76 88.9 0)
+			(at 195.58 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5620,7 +5687,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 238.76 88.9 0)
+			(at 195.58 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5629,10 +5696,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "8d545735-c31a-404b-a036-000c50a0f076")
+			(uuid "4ec3f394-de80-4b07-a2d9-f20bb5eb5558")
 		)
 		(pin "2"
-			(uuid "f46c78ee-f9ac-4823-9884-69a96a55588f")
+			(uuid "f248bb93-fa10-46a7-a597-b3cc8ff3f019")
 		)
 		(instances
 			(project "carte_bto"
@@ -5649,7 +5716,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:MMBT2222A")
-		(at 83.82 100.33 0)
+		(at 109.22 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5657,7 +5724,7 @@
 		(dnp no)
 		(uuid "ffec4e9f-7fa0-468f-946e-861695a1900b")
 		(property "Reference" "Q2"
-			(at 88.265 99.06 0)
+			(at 113.665 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5666,7 +5733,7 @@
 			)
 		)
 		(property "Value" "MMBT2222A"
-			(at 88.265 101.6 0)
+			(at 113.665 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5675,7 +5742,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 88.9 102.235 0)
+			(at 114.3 113.665 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5686,7 +5753,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
-			(at 83.82 100.33 0)
+			(at 109.22 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5696,7 +5763,7 @@
 			)
 		)
 		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
-			(at 83.82 100.33 0)
+			(at 109.22 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5705,13 +5772,13 @@
 			)
 		)
 		(pin "3"
-			(uuid "26d80b5d-a30d-4a07-88da-fbebc5680fb4")
+			(uuid "f0bf2190-ded0-4b02-abc6-b03884f73576")
 		)
 		(pin "2"
-			(uuid "a66c5966-562f-4000-8e22-d26fc87bed61")
+			(uuid "532f5c18-c3de-46eb-917a-669859f5bfa5")
 		)
 		(pin "1"
-			(uuid "9854c7f2-3155-4e51-ba01-ba928ee279a9")
+			(uuid "d874c2f4-ffe6-497b-8103-6aef5263b524")
 		)
 		(instances
 			(project "carte_bto"
