@@ -51,7 +51,13 @@
           "min_clearance": 0.5
         }
       },
-      "diff_pair_dimensions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
       "drc_exclusions": [],
       "meta": {
         "version": 2
@@ -125,7 +131,7 @@
         "min_hole_to_hole": 0.25,
         "min_microvia_diameter": 0.2,
         "min_microvia_drill": 0.1,
-        "min_resolved_spokes": 2,
+        "min_resolved_spokes": 1,
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
@@ -180,7 +186,9 @@
           "td_width_to_size_filter_ratio": 0.9
         }
       ],
-      "track_widths": [],
+      "track_widths": [
+        0.0
+      ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
           "corner_radius_percentage": 80,
@@ -207,7 +215,12 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -457,7 +470,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.15,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -736,16 +749,16 @@
       "Root"
     ],
     [
-      "269365ac-ba9a-43bf-9cec-29b610dce135",
-      "Adaptateur 3v3 - 5v 8voies (1)"
+      "5a6cc8f7-4f66-47ab-bef0-ab268b485df1",
+      "Protections 8voies analogiques"
     ],
     [
-      "9b3c878f-6949-4a81-a7e1-58f2b9b492c8",
+      "3327feed-7b0e-4b74-8ef6-d1ed3bd69f7d",
       "Adaptateur 3v3 - 5v 8voies (2)"
     ],
     [
-      "bb9a6e72-4bf7-4732-ad24-4620ddebbd6f",
-      "Protections 8voies analogiques"
+      "cbb2a63c-9a5d-420a-a77a-5aacf40d820e",
+      "Adaptateur 3v3 - 5v 8voies (1)"
     ]
   ],
   "text_variables": {}

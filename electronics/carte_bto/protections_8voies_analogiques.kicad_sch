@@ -268,43 +268,35 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "PESD12VL1BA:PESD12VL1BA"
+		(symbol "Diode:SMAJ12CA"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 1.016)
+				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "D"
-				(at -2.9464 2.6416 0)
+				(at 0 2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
 				)
 			)
-			(property "Value" "PESD12VL1BA"
-				(at -4.4704 -4.4958 0)
+			(property "Value" "SMAJ12CA"
+				(at 0 -2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
 				)
 			)
-			(property "Footprint" "PESD12VL1BA:SOD323"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
+			(property "Footprint" "Diode_SMD:D_SMA"
+				(at 0 -5.08 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -312,7 +304,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
+			(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
 				(at 0 0 0)
 				(effects
 					(font
@@ -321,93 +313,40 @@
 					(hide yes)
 				)
 			)
-			(property "MF" "Nexperia"
+			(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
+			(property "ki_keywords" "bidirectional diode TVS voltage suppressor"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
+			(property "ki_fp_filters" "D*SMA*"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "PESD12VL1BA"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "Not in stock"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "PESD12VL1BA_0_0"
+			(symbol "SMAJ12CA_0_1"
 				(polyline
 					(pts
-						(xy -1.27 0) (xy 3.81 0)
+						(xy -2.54 -1.27) (xy 0 0) (xy -2.54 1.27) (xy -2.54 -1.27)
 					)
 					(stroke
-						(width 0.254)
+						(width 0.2032)
 						(type default)
 					)
 					(fill
@@ -416,33 +355,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.27 -1.905) (xy 1.27 0)
+						(xy 0.508 1.27) (xy 0 1.27) (xy 0 -1.27) (xy -0.508 -1.27)
 					)
 					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.2519 -1.905)
-					(end 3.8281 1.905)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 1.905)
-					)
-					(stroke
-						(width 0.254)
+						(width 0.2032)
 						(type default)
 					)
 					(fill
@@ -451,10 +367,10 @@
 				)
 				(polyline
 					(pts
-						(xy 1.27 0) (xy 3.81 1.905)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -463,60 +379,50 @@
 				)
 				(polyline
 					(pts
-						(xy 1.397 1.905) (xy 1.397 -1.905)
+						(xy 2.54 1.27) (xy 2.54 -1.27) (xy 0 0) (xy 2.54 1.27)
 					)
 					(stroke
-						(width 0.254)
+						(width 0.2032)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 3.81 -1.905) (xy 1.27 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
+			)
+			(symbol "SMAJ12CA_1_1"
 				(pin passive line
-					(at -2.54 0 0)
+					(at -3.81 0 0)
 					(length 2.54)
-					(name "~"
+					(name "A1"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "A"
+					(number "1"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 5.08 0 180)
+					(at 3.81 0 180)
 					(length 2.54)
-					(name "~"
+					(name "A2"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "C"
+					(number "2"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -2717,7 +2623,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "00f0bef2-a2a8-457c-b824-8c9bc3ca214f")
-		(property "Reference" "R100"
+		(property "Reference" "R79"
 			(at 208.28 134.62 0)
 			(effects
 				(font
@@ -2735,7 +2641,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 205.232 135.89 90)
 			(effects
 				(font
@@ -2763,15 +2669,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "92ed0097-a79a-4415-86b1-1fbc75c5e339")
+			(uuid "9cfc31ed-5bdb-4ffb-aef0-ae811e795268")
 		)
 		(pin "2"
-			(uuid "5ee9688b-7669-4d13-99d7-90720d7ecd2e")
+			(uuid "946fb147-1ddf-4741-b179-4316115f401b")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R100")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R79")
 					(unit 1)
 				)
 			)
@@ -2786,7 +2692,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0b537c64-cc30-4651-b59b-39ad80f99eaa")
-		(property "Reference" "R102"
+		(property "Reference" "R80"
 			(at 213.36 144.78 0)
 			(effects
 				(font
@@ -2804,7 +2710,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 210.312 146.05 90)
 			(effects
 				(font
@@ -2832,15 +2738,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "dedf4b8b-66dd-4030-93fd-c2968b68bd99")
+			(uuid "6f59ad3c-ed3e-49b5-8e5d-7d5fa6273e82")
 		)
 		(pin "2"
-			(uuid "6c58c1d4-ed73-458e-9395-f7d5265a932f")
+			(uuid "7d379930-5472-4e7b-9540-b0aa2dd7a713")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R102")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R80")
 					(unit 1)
 				)
 			)
@@ -2855,7 +2761,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1373a6ea-4c99-4571-bbc4-ab3cc61f1b93")
-		(property "Reference" "C20"
+		(property "Reference" "C12"
 			(at 89.535 134.62 0)
 			(effects
 				(font
@@ -2873,7 +2779,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 87.3252 139.7 0)
 			(effects
 				(font
@@ -2901,15 +2807,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "955c6991-b394-4187-a3a7-a1b16249ac97")
+			(uuid "6dcde5d4-db20-4024-8ce6-bd22c29f1b41")
 		)
 		(pin "2"
-			(uuid "256dbc1f-7ecf-4993-a132-bb18d6c0f8a4")
+			(uuid "97c3d23b-39a8-4212-a985-8f6f4d111b73")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C20")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -2924,7 +2830,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1d09f740-8aec-46fe-afe0-471490200559")
-		(property "Reference" "R98"
+		(property "Reference" "R75"
 			(at 168.91 126.365 90)
 			(effects
 				(font
@@ -2940,7 +2846,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 168.91 132.588 90)
 			(effects
 				(font
@@ -2968,165 +2874,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "fef25f42-62e5-4c46-bde1-adb9715ed6b7")
+			(uuid "41f9a86e-62eb-4421-b77c-4f07d227adbb")
 		)
 		(pin "2"
-			(uuid "52faaf56-5a15-4f17-b35a-e1b44be31468")
+			(uuid "05260620-520d-4755-a6c9-12fb60428bf7")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R98")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 157.48 134.62 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "1dbbbfaf-5275-4ca9-9395-11d724bd7181")
-		(property "Reference" "D30"
-			(at 146.685 135.255 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "PESD12VL1BA"
-			(at 141.605 137.16 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Nexperia"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PESD12VL1BA"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 157.48 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "60be1d21-d978-4b2d-8c1d-4fd9bb21e6ef")
-		)
-		(pin "A"
-			(uuid "0df22ce9-ceea-417d-9717-54315f0a6f95")
-		)
-		(instances
-			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D30")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R75")
 					(unit 1)
 				)
 			)
@@ -3141,7 +2897,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2509950d-e356-4c9f-b3d3-5108a6c52ee2")
-		(property "Reference" "R104"
+		(property "Reference" "R81"
 			(at 213.36 126.365 90)
 			(effects
 				(font
@@ -3157,7 +2913,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 213.36 132.588 90)
 			(effects
 				(font
@@ -3185,59 +2941,50 @@
 			)
 		)
 		(pin "1"
-			(uuid "a13f3b99-d8d2-44c5-a8c2-d108d5b0b82e")
+			(uuid "cd2c21e3-ef12-422f-82c5-8ab00066f52f")
 		)
 		(pin "2"
-			(uuid "71439dca-7412-437e-a463-bd428908b3c7")
+			(uuid "6408b6d2-bb85-4b7a-8f15-adfad13c5fc1")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R104")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R81")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 201.93 134.62 270)
+		(lib_id "Diode:SMAJ12CA")
+		(at 68.58 135.89 270)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "28a94455-7d5a-4100-a642-fafa3327a671")
-		(property "Reference" "D32"
-			(at 191.135 135.255 90)
+		(uuid "2c25f7e5-77c8-4bb9-8a12-8e5a437924b3")
+		(property "Reference" "D17"
+			(at 66.04 134.6199 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "PESD12VL1BA"
-			(at 186.055 137.16 90)
+		(property "Value" "SMAJ12CA"
+			(at 66.04 137.1599 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 201.93 134.62 0)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 63.5 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3245,8 +2992,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 201.93 134.62 0)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 68.58 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3254,96 +3001,95 @@
 				(hide yes)
 			)
 		)
-		(property "MF" "Nexperia"
-			(at 201.93 134.62 0)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 68.58 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
+		(pin "1"
+			(uuid "da8f745d-7c11-4eb2-b937-c0b23e75d2ea")
 		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PESD12VL1BA"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 201.93 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "6d0d26c7-b7b3-4b8c-9fb1-b34a96f21fe3")
-		)
-		(pin "A"
-			(uuid "99998fe0-be59-4d7a-8b50-a50ef3cfe5f6")
+		(pin "2"
+			(uuid "15e166ba-bde6-4420-b9fe-1709c25d1684")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D32")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:SMAJ12CA")
+		(at 106.68 52.07 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "32c443dd-60d6-4f3e-8299-fe4be284067c")
+		(property "Reference" "D19"
+			(at 104.14 50.7999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SMAJ12CA"
+			(at 104.14 53.3399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 101.6 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 106.68 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 106.68 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cb17c663-6bda-454a-b9cd-794b392347c5")
+		)
+		(pin "2"
+			(uuid "b816608b-9486-4ace-9384-4f7baac7f31a")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D19")
 					(unit 1)
 				)
 			)
@@ -3358,7 +3104,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "36910728-6f72-4185-870a-29d3bf5728f6")
-		(property "Reference" "R94"
+		(property "Reference" "R73"
 			(at 163.83 134.62 0)
 			(effects
 				(font
@@ -3376,7 +3122,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 160.782 135.89 90)
 			(effects
 				(font
@@ -3404,15 +3150,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "a6e31d27-2c0c-43ee-9975-610bccc76cbc")
+			(uuid "ebedee8b-3004-4b85-9eb1-4ce0a6a743eb")
 		)
 		(pin "2"
-			(uuid "447866b0-0ddc-4d57-bbb4-4a10b558057e")
+			(uuid "04d82335-31ea-4387-97f1-0dc00890c5da")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R94")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R73")
 					(unit 1)
 				)
 			)
@@ -3427,7 +3173,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "376b98d0-61d7-4375-8e46-d4d52c498a73")
-		(property "Reference" "R87"
+		(property "Reference" "R61"
 			(at 92.71 102.87 0)
 			(effects
 				(font
@@ -3445,7 +3191,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 89.662 104.14 90)
 			(effects
 				(font
@@ -3473,15 +3219,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "a65bc410-3e48-4fd2-9c4f-2bf67bd5ed6c")
+			(uuid "7ee17271-f151-492b-8541-bb78d1b714c8")
 		)
 		(pin "2"
-			(uuid "e8358014-a665-4be6-a3cd-46da7ed12395")
+			(uuid "1676e787-fef9-4818-a81e-d75eb149dbf8")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R87")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R61")
 					(unit 1)
 				)
 			)
@@ -3496,7 +3242,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4543bffd-b6e1-4818-a49b-38d4595716d3")
-		(property "Reference" "C19"
+		(property "Reference" "C16"
 			(at 154.305 50.8 0)
 			(effects
 				(font
@@ -3514,7 +3260,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 152.0952 55.88 0)
 			(effects
 				(font
@@ -3542,15 +3288,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "7f8447e4-0c85-435c-a376-a37ea3ab698f")
+			(uuid "1346fdd6-522b-41ca-81cb-c3fb5f4253e7")
 		)
 		(pin "2"
-			(uuid "822b1d6f-8e7a-4e3f-94bc-ea81b2d768cc")
+			(uuid "79de59bc-9589-44a4-8af2-cf74ade8d881")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C19")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C16")
 					(unit 1)
 				)
 			)
@@ -3565,7 +3311,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "563510bf-ec80-474a-adf1-0d3f667a7bb3")
-		(property "Reference" "R76"
+		(property "Reference" "R58"
 			(at 74.93 134.62 0)
 			(effects
 				(font
@@ -3583,7 +3329,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 71.882 135.89 90)
 			(effects
 				(font
@@ -3611,15 +3357,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "2d4476ae-145a-48fc-8352-aadf77bf67d6")
+			(uuid "e13b0a02-e145-4796-9363-1a9f4374101f")
 		)
 		(pin "2"
-			(uuid "396365ef-9c86-4e05-b267-b2252c896690")
+			(uuid "07d25d32-d82e-4b37-86cd-de34ec2592b4")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R76")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R58")
 					(unit 1)
 				)
 			)
@@ -3634,7 +3380,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "58650e9a-95a3-440a-8972-fe8e8593f543")
-		(property "Reference" "R86"
+		(property "Reference" "R60"
 			(at 80.01 126.365 90)
 			(effects
 				(font
@@ -3650,7 +3396,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 80.01 132.588 90)
 			(effects
 				(font
@@ -3678,165 +3424,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "aeb1fb58-a73b-4437-8192-6d90d3749a68")
+			(uuid "6bb931f8-fdcc-4942-aa54-aef7b2a88c19")
 		)
 		(pin "2"
-			(uuid "01af49dc-feed-48e9-ae5d-b51d69bf24ae")
+			(uuid "cbce0c8f-a427-4228-a4c5-f2b6f8ded721")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R86")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 113.03 134.62 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "591253da-fdc7-40e0-b184-4196da8ee36b")
-		(property "Reference" "D28"
-			(at 102.235 135.255 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "PESD12VL1BA"
-			(at 97.155 137.16 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Nexperia"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PESD12VL1BA"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 113.03 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "129459c0-26e7-4c81-b26b-7790f8a2b0c5")
-		)
-		(pin "A"
-			(uuid "0b81c1b0-b691-45cf-9ecd-24f1d556ab36")
-		)
-		(instances
-			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D28")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R60")
 					(unit 1)
 				)
 			)
@@ -3851,7 +3447,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "65db3aa7-c102-4c1d-8086-166358a8b748")
-		(property "Reference" "R93"
+		(property "Reference" "R69"
 			(at 137.16 102.87 0)
 			(effects
 				(font
@@ -3869,7 +3465,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 134.112 104.14 90)
 			(effects
 				(font
@@ -3897,15 +3493,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "186d34f7-e080-41c6-9afc-bb5c92066930")
+			(uuid "0dab8645-e7f1-4849-929c-564349a999cd")
 		)
 		(pin "2"
-			(uuid "cfcce2ac-33f7-4b57-82e6-b7f59fca53ab")
+			(uuid "c2eee5de-75f0-44df-8744-1fa7f6ace9ce")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R93")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R69")
 					(unit 1)
 				)
 			)
@@ -3920,7 +3516,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6fb98bdc-2f51-47d3-85eb-109251646ee1")
-		(property "Reference" "C26"
+		(property "Reference" "C19"
 			(at 222.885 134.62 0)
 			(effects
 				(font
@@ -3938,7 +3534,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 220.6752 139.7 0)
 			(effects
 				(font
@@ -3966,15 +3562,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "58a8c917-f8db-4fb2-9e3e-c3253d830bb9")
+			(uuid "8cd18a89-375d-497e-9abd-eecf3411b06e")
 		)
 		(pin "2"
-			(uuid "5b901b0f-64ab-4e46-b8d4-8ea1096b1025")
+			(uuid "bfd46a85-2500-4f2c-ad88-6956690ea0da")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C26")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -3989,7 +3585,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "74cb1f59-ea7a-4909-8327-7e2c2dc1ccbe")
-		(property "Reference" "R88"
+		(property "Reference" "R64"
 			(at 119.38 134.62 0)
 			(effects
 				(font
@@ -4007,7 +3603,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 116.332 135.89 90)
 			(effects
 				(font
@@ -4035,15 +3631,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "225796be-3b3d-43a8-840a-0c0881bae1a1")
+			(uuid "62426ab2-6705-4e89-a4fa-db1e1a01f300")
 		)
 		(pin "2"
-			(uuid "c05e31b9-4493-4c98-bb6a-0f0937588556")
+			(uuid "90a9685e-1fd3-42f5-be8a-62b23b326033")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R88")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R64")
 					(unit 1)
 				)
 			)
@@ -4058,7 +3654,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7bf15f25-69fe-4108-b536-e8dac9d79ea6")
-		(property "Reference" "R91"
+		(property "Reference" "R63"
 			(at 97.79 94.615 90)
 			(effects
 				(font
@@ -4074,7 +3670,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 97.79 100.838 90)
 			(effects
 				(font
@@ -4102,15 +3698,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "483d32c7-e308-4147-8376-c85c4b7b54d4")
+			(uuid "9e402f0f-f52e-49bd-87b2-6c025b13fc1e")
 		)
 		(pin "2"
-			(uuid "56c33b4d-2d1e-438a-9b95-a620322dd804")
+			(uuid "8becf735-c8d8-4e55-a094-d238130bd978")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R91")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R63")
 					(unit 1)
 				)
 			)
@@ -4125,7 +3721,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7c3907fb-f667-419e-b29c-cfc20559aa00")
-		(property "Reference" "C22"
+		(property "Reference" "C14"
 			(at 133.985 134.62 0)
 			(effects
 				(font
@@ -4143,7 +3739,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 131.7752 139.7 0)
 			(effects
 				(font
@@ -4171,15 +3767,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "cbb94f87-3bdf-4c58-83a4-9676e1ecbbf8")
+			(uuid "538a3044-013d-433c-bfe3-14ed995ab8e8")
 		)
 		(pin "2"
-			(uuid "67600425-3a57-41f3-8ba3-863a19115a7d")
+			(uuid "fb464d00-60d1-4dd4-bc79-5dbf5442d99f")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C22")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C14")
 					(unit 1)
 				)
 			)
@@ -4194,7 +3790,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "85802ad5-0e0e-4683-8eb2-b3e6a030b22d")
-		(property "Reference" "R97"
+		(property "Reference" "R71"
 			(at 142.24 94.615 90)
 			(effects
 				(font
@@ -4210,7 +3806,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 142.24 100.838 90)
 			(effects
 				(font
@@ -4238,15 +3834,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "40caea6c-5abe-436c-834f-c5a9b5d2c9b4")
+			(uuid "5aea056d-4ca7-4cfc-ba92-eaa7fa344028")
 		)
 		(pin "2"
-			(uuid "51aa312e-1982-4067-a15c-5cbe06512739")
+			(uuid "76fa6984-cf03-4e94-af16-607df7e10346")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R97")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R71")
 					(unit 1)
 				)
 			)
@@ -4261,7 +3857,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "85ab3374-b0dc-416e-b334-54f6211b307d")
-		(property "Reference" "C21"
+		(property "Reference" "C13"
 			(at 107.315 102.87 0)
 			(effects
 				(font
@@ -4279,7 +3875,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 105.1052 107.95 0)
 			(effects
 				(font
@@ -4307,15 +3903,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "5a387f65-73c3-4c2e-9589-ca7db1ce4c26")
+			(uuid "2cf2ae19-fb8d-4bff-ade5-e2369d6b3a87")
 		)
 		(pin "2"
-			(uuid "18583e18-c3ee-4cdf-b645-b67d3188684e")
+			(uuid "52ef24f6-14bf-4363-a3c6-90894c4ee7bb")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C21")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -4330,7 +3926,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "89ae42f9-a2fb-4055-a3f4-2bca9b83abd3")
-		(property "Reference" "R75"
+		(property "Reference" "R65"
 			(at 120.65 50.8 0)
 			(effects
 				(font
@@ -4348,7 +3944,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 117.602 52.07 90)
 			(effects
 				(font
@@ -4376,15 +3972,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "ba9eaebf-7af2-4ed1-8723-630e4dc825ae")
+			(uuid "738d1ef1-96a9-4327-99c4-3a3e80e3a568")
 		)
 		(pin "2"
-			(uuid "5779eba6-423d-485b-a278-6b4e505b7cec")
+			(uuid "1aaf55ff-9c51-4610-8299-8307c4c1ffa4")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R75")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R65")
 					(unit 1)
 				)
 			)
@@ -4399,7 +3995,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8ac9e5d0-20fc-41b0-8d88-4ed35eb1864b")
-		(property "Reference" "R96"
+		(property "Reference" "R74"
 			(at 168.91 144.78 0)
 			(effects
 				(font
@@ -4417,7 +4013,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 165.862 146.05 90)
 			(effects
 				(font
@@ -4445,15 +4041,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "ea7f8614-d66a-4f20-b033-9315590614b4")
+			(uuid "c4b0b56d-ba46-49ae-a446-e72b4ca25d44")
 		)
 		(pin "2"
-			(uuid "584e3658-ac30-4531-868f-d6d6f4fc300a")
+			(uuid "a4b76ffe-7b7f-4b42-b9ee-338bb66afdb8")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R96")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R74")
 					(unit 1)
 				)
 			)
@@ -4468,7 +4064,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8b98ce81-5676-4323-87fe-e4dbb24dab18")
-		(property "Reference" "R85"
+		(property "Reference" "R72"
 			(at 144.78 42.545 90)
 			(effects
 				(font
@@ -4484,7 +4080,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 144.78 48.768 90)
 			(effects
 				(font
@@ -4512,15 +4108,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "f935d2c1-29d7-4325-8423-e5fc13b99414")
+			(uuid "39752e45-ff1f-4d43-bd56-6e436a17d0f0")
 		)
 		(pin "2"
-			(uuid "e4f9fa73-6524-44cc-80ca-f298e9a37922")
+			(uuid "e6927d66-7682-47ac-a875-84474abdb4dd")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R85")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R72")
 					(unit 1)
 				)
 			)
@@ -4535,7 +4131,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8c6745a2-7168-4a31-891d-489612343397")
-		(property "Reference" "R84"
+		(property "Reference" "R59"
 			(at 80.01 144.78 0)
 			(effects
 				(font
@@ -4553,7 +4149,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 76.962 146.05 90)
 			(effects
 				(font
@@ -4581,15 +4177,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "21ce1214-010c-4aba-a59a-8a6a67c96805")
+			(uuid "1bc31a2c-168d-4cf7-833d-4fffd1d338b9")
 		)
 		(pin "2"
-			(uuid "3b2d0144-7b52-403d-8700-75c4b6ce0514")
+			(uuid "8bdcb8d5-d449-48c3-a4e8-eee21aa25e96")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R84")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R59")
 					(unit 1)
 				)
 			)
@@ -4604,7 +4200,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "975834fd-621a-4b45-8634-5e28c0831d18")
-		(property "Reference" "R99"
+		(property "Reference" "R76"
 			(at 181.61 102.87 0)
 			(effects
 				(font
@@ -4622,7 +4218,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 178.562 104.14 90)
 			(effects
 				(font
@@ -4650,15 +4246,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "bfbfc66c-14fd-453c-a851-6837cf1a606b")
+			(uuid "57133527-e205-4a5b-bcd4-a09e1dac90d5")
 		)
 		(pin "2"
-			(uuid "f30488fe-0f14-4170-971a-c3b7b71ad1e2")
+			(uuid "0d7c5b08-06b2-4cf1-b5dd-c6489700cbe6")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R99")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R76")
 					(unit 1)
 				)
 			)
@@ -4673,7 +4269,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9853d4f9-0388-4846-b060-76e441d40f42")
-		(property "Reference" "R101"
+		(property "Reference" "R77"
 			(at 186.69 113.03 0)
 			(effects
 				(font
@@ -4691,7 +4287,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 183.642 114.3 90)
 			(effects
 				(font
@@ -4719,15 +4315,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "1406074a-93de-47d4-aa9e-4a235d8cc29e")
+			(uuid "d807d008-0c11-424f-b04a-a276f3fef64c")
 		)
 		(pin "2"
-			(uuid "ca0f3ce8-7e1a-4074-9e79-05c3edb961c1")
+			(uuid "29eb066b-cd4d-4b55-be4e-78fab9e35022")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R101")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R77")
 					(unit 1)
 				)
 			)
@@ -4742,7 +4338,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9a909d61-621d-4095-90e4-dd03af0dfc83")
-		(property "Reference" "R103"
+		(property "Reference" "R78"
 			(at 186.69 94.615 90)
 			(effects
 				(font
@@ -4758,7 +4354,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 186.69 100.838 90)
 			(effects
 				(font
@@ -4786,15 +4382,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "bad73240-b7ea-4c22-baac-73c904bbdca2")
+			(uuid "004fdde5-106d-4684-8600-61430d882fec")
 		)
 		(pin "2"
-			(uuid "5aecb517-07c0-409c-9960-4bdecaeb6c67")
+			(uuid "165f2d26-9af4-4d44-8684-eb21035f85f5")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R103")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R78")
 					(unit 1)
 				)
 			)
@@ -4809,7 +4405,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9c6d5a80-3565-4ef6-8ca7-58ba664333bb")
-		(property "Reference" "R92"
+		(property "Reference" "R67"
 			(at 124.46 126.365 90)
 			(effects
 				(font
@@ -4825,7 +4421,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 124.46 132.588 90)
 			(effects
 				(font
@@ -4853,15 +4449,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "6f97e0bb-d8d9-47e7-a3c3-6220fbca2d7d")
+			(uuid "c20b99ac-06e2-45a1-a882-a352c660b15c")
 		)
 		(pin "2"
-			(uuid "5441e1e2-93f2-4693-b81d-44bf97f46a91")
+			(uuid "8ec06deb-baae-4599-96d9-17d9cab3ffb8")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R92")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R67")
 					(unit 1)
 				)
 			)
@@ -4876,7 +4472,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9fa9a15a-2252-4cca-abb5-4c0f706b0fdb")
-		(property "Reference" "C25"
+		(property "Reference" "C18"
 			(at 196.215 102.87 0)
 			(effects
 				(font
@@ -4894,7 +4490,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 194.0052 107.95 0)
 			(effects
 				(font
@@ -4922,15 +4518,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "a0dd9dae-1d1f-41b0-9770-98fa04d7f167")
+			(uuid "3e0e545f-f6f7-41bd-8846-8d82b97014ca")
 		)
 		(pin "2"
-			(uuid "cbf6965d-cfcd-4ded-87dd-fd2f7c8e39d3")
+			(uuid "949527c6-fccb-4787-a8ae-dea20a4171bb")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C25")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -4945,7 +4541,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b64e9054-0af7-4121-b735-f96f740ce983")
-		(property "Reference" "R83"
+		(property "Reference" "R68"
 			(at 130.81 63.5 0)
 			(effects
 				(font
@@ -4963,7 +4559,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 127.762 64.77 90)
 			(effects
 				(font
@@ -4991,15 +4587,85 @@
 			)
 		)
 		(pin "1"
-			(uuid "b2b3b1ce-23a1-4ccb-914c-4b909d977e91")
+			(uuid "d0592419-269b-4546-925c-b1c91295bf9a")
 		)
 		(pin "2"
-			(uuid "521359df-608d-4e5f-92bf-eaae0afa45c3")
+			(uuid "ca95baea-e9c9-413b-8541-205dcb94d5e0")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R83")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R68")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:SMAJ12CA")
+		(at 157.48 135.89 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b69b6229-8f32-42e6-8843-97935ec09e8d")
+		(property "Reference" "D21"
+			(at 154.94 134.6199 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SMAJ12CA"
+			(at 154.94 137.1599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 152.4 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 157.48 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 157.48 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "051c1ace-df43-4559-8b23-2e9dd07f6515")
+		)
+		(pin "2"
+			(uuid "f345f25f-74b8-4e78-8ad2-c697bf85ae2c")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D21")
 					(unit 1)
 				)
 			)
@@ -5014,7 +4680,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b79159c2-c18b-4e5d-9f06-8840a3b46d76")
-		(property "Reference" "R89"
+		(property "Reference" "R62"
 			(at 97.79 113.03 0)
 			(effects
 				(font
@@ -5032,7 +4698,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 94.742 114.3 90)
 			(effects
 				(font
@@ -5060,15 +4726,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "b0626681-26ef-4587-95f4-19c1a8a33aab")
+			(uuid "525eeec7-8e12-4251-8c9d-abc599f2a2e7")
 		)
 		(pin "2"
-			(uuid "5c0289f2-5d8f-41fb-8d13-c3bc91593139")
+			(uuid "6c80bce6-c7a9-479d-acd6-edffe7256904")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R89")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R62")
 					(unit 1)
 				)
 			)
@@ -5083,7 +4749,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bee36f54-a453-485f-9d29-45f0809e94a8")
-		(property "Reference" "C24"
+		(property "Reference" "C17"
 			(at 178.435 134.62 0)
 			(effects
 				(font
@@ -5101,7 +4767,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 176.2252 139.7 0)
 			(effects
 				(font
@@ -5129,59 +4795,50 @@
 			)
 		)
 		(pin "1"
-			(uuid "74ca3393-0fc1-4134-9706-092e88b35b00")
+			(uuid "6fb8481b-6166-4120-a90f-a2fa62faece3")
 		)
 		(pin "2"
-			(uuid "b6c29fd7-83ad-4187-a2fa-89e3ff023133")
+			(uuid "350a2892-839c-47e9-aec3-411e1bfbdfd2")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C24")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C17")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 86.36 102.87 270)
+		(lib_id "Diode:SMAJ12CA")
+		(at 113.03 135.89 270)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d8802f3b-4c3a-4e7b-acd7-adb42b42554e")
-		(property "Reference" "D27"
-			(at 75.565 103.505 90)
+		(uuid "d350e14c-2cd6-45fb-8b34-824ead3f8124")
+		(property "Reference" "D18"
+			(at 110.49 134.6199 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "PESD12VL1BA"
-			(at 70.485 105.41 90)
+		(property "Value" "SMAJ12CA"
+			(at 110.49 137.1599 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 86.36 102.87 0)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 107.95 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5189,8 +4846,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 86.36 102.87 0)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 113.03 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5198,96 +4855,25 @@
 				(hide yes)
 			)
 		)
-		(property "MF" "Nexperia"
-			(at 86.36 102.87 0)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 113.03 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
+		(pin "1"
+			(uuid "6ddf4388-3864-4479-b82f-e732fc51f854")
 		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PESD12VL1BA"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 86.36 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "7fa0b60c-ceb0-488e-9e89-e710d0d70383")
-		)
-		(pin "A"
-			(uuid "1b763a8a-a449-4a9a-8472-68005c7cade4")
+		(pin "2"
+			(uuid "089f38ee-478d-4f98-acb2-7e3e15a64ee4")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D27")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D18")
 					(unit 1)
 				)
 			)
@@ -5302,7 +4888,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d91d4b8c-9610-4a71-8007-a5e82ce301c9")
-		(property "Reference" "R90"
+		(property "Reference" "R66"
 			(at 124.46 144.78 0)
 			(effects
 				(font
@@ -5320,7 +4906,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 121.412 146.05 90)
 			(effects
 				(font
@@ -5348,165 +4934,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "1ad70db1-71c6-4d81-95a5-414c434519ce")
+			(uuid "9c6d0da1-28bb-425a-8ef4-7f6a31e614b7")
 		)
 		(pin "2"
-			(uuid "869e2f0e-a551-4b82-9aec-c4bd71859ec2")
+			(uuid "fee76e67-3c90-4943-b509-74cdf89568df")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R90")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 130.81 102.87 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "db229455-1b72-4e52-86a7-e21adb7dcc5d")
-		(property "Reference" "D29"
-			(at 120.015 103.505 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "PESD12VL1BA"
-			(at 114.935 105.41 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Nexperia"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PESD12VL1BA"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 130.81 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "97fab18d-68ce-4eca-9a3f-167d8eb5a7db")
-		)
-		(pin "A"
-			(uuid "9c2257f2-4523-44a9-bd29-8492d45db9a6")
-		)
-		(instances
-			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D29")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R66")
 					(unit 1)
 				)
 			)
@@ -5521,7 +4957,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e0689c50-c12b-4bd2-8745-1bd942a12544")
-		(property "Reference" "R95"
+		(property "Reference" "R70"
 			(at 142.24 113.03 0)
 			(effects
 				(font
@@ -5539,7 +4975,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 139.192 114.3 90)
 			(effects
 				(font
@@ -5567,15 +5003,85 @@
 			)
 		)
 		(pin "1"
-			(uuid "00134186-1124-4f42-a315-e6607b35ad20")
+			(uuid "6e03d1a4-e4ad-44ed-8c75-37eea56990ad")
 		)
 		(pin "2"
-			(uuid "c0ec75ed-cb9b-4f9a-8589-e688ad212c6b")
+			(uuid "744d3983-9f20-46df-93a0-dd1a89c1ea04")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "R95")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "R70")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:SMAJ12CA")
+		(at 130.81 104.14 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e5e4c770-f94e-405d-b778-692d81179c3f")
+		(property "Reference" "D20"
+			(at 128.27 102.8699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SMAJ12CA"
+			(at 128.27 105.4099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 125.73 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 130.81 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 130.81 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "723824ca-7520-4caf-adcc-84489cf925da")
+		)
+		(pin "2"
+			(uuid "a9c2edb2-ff74-44c1-b296-e29ccc39fb18")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D20")
 					(unit 1)
 				)
 			)
@@ -5590,7 +5096,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f1f704e4-325d-4f3b-a304-de6d9083862e")
-		(property "Reference" "C23"
+		(property "Reference" "C15"
 			(at 151.765 102.87 0)
 			(effects
 				(font
@@ -5608,7 +5114,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 149.5552 107.95 0)
 			(effects
 				(font
@@ -5636,59 +5142,50 @@
 			)
 		)
 		(pin "1"
-			(uuid "d7ab3f29-0bc4-4128-87a2-34d74439e3eb")
+			(uuid "7096d502-0418-4f27-95a3-16c1f6f31104")
 		)
 		(pin "2"
-			(uuid "aec3cd4f-9006-4da2-b793-58360f213760")
+			(uuid "e0c5451b-dee6-4a58-8327-6b74ced75a56")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "C23")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "C15")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 106.68 50.8 270)
+		(lib_id "Diode:SMAJ12CA")
+		(at 201.93 135.89 270)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f35eb5fc-ae2b-415d-9308-4d2573a10d9a")
-		(property "Reference" "D25"
-			(at 96.52 51.435 90)
+		(uuid "f21a7c20-f120-44cf-8e58-6ade52d28b01")
+		(property "Reference" "D22"
+			(at 199.39 134.6199 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "PESD12VL1BA"
-			(at 91.44 53.34 90)
+		(property "Value" "SMAJ12CA"
+			(at 199.39 137.1599 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 106.68 50.8 0)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 196.85 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5696,8 +5193,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 106.68 50.8 0)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 201.93 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5705,290 +5202,60 @@
 				(hide yes)
 			)
 		)
-		(property "MF" "Nexperia"
-			(at 106.68 50.8 0)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 201.93 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
+		(pin "1"
+			(uuid "55e8dd17-6650-4f81-8324-56021c548b8d")
 		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PESD12VL1BA"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 106.68 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "39c1c2b3-cc26-4a65-95fa-998d259b6f49")
-		)
-		(pin "A"
-			(uuid "fb56eb5f-74bb-4678-8a36-1828871d035d")
+		(pin "2"
+			(uuid "a389ff7c-27f9-411b-835d-773234dc1413")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D25")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D22")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 175.26 102.87 270)
+		(lib_id "Diode:SMAJ12CA")
+		(at 86.36 104.14 270)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f3aff6e6-6306-455d-b42d-41229c907e9d")
-		(property "Reference" "D31"
-			(at 164.465 103.505 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "PESD12VL1BA"
-			(at 159.385 105.41 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Nexperia"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "PESD12VL1BA"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 175.26 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "0aa6fcdd-60cd-4199-8b94-6849b0c6daa6")
-		)
-		(pin "A"
-			(uuid "971bbd80-f072-4241-9dc8-6f0a76c35a6e")
-		)
-		(instances
-			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D31")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "PESD12VL1BA:PESD12VL1BA")
-		(at 68.58 134.62 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f9b87310-ac6b-4714-af7e-871ba15d835c")
+		(uuid "f3647818-39ce-438e-b161-d38f574eb19a")
 		(property "Reference" "D26"
-			(at 57.785 135.255 90)
+			(at 83.82 102.8699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "PESD12VL1BA"
-			(at 52.705 137.16 90)
+		(property "Value" "SMAJ12CA"
+			(at 83.82 105.4099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Footprint" "PESD12VL1BA:SOD323"
-			(at 68.58 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 68.58 134.62 0)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 81.28 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5996,8 +5263,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 68.58 134.62 0)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 86.36 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6005,96 +5272,95 @@
 				(hide yes)
 			)
 		)
-		(property "MF" "Nexperia"
-			(at 68.58 134.62 0)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 86.36 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Description_1" "37V Clamp 5A (8/20µs) Ipp Tvs Diode Surface Mount SOD-323"
-			(at 68.58 134.62 0)
+		(pin "1"
+			(uuid "8fa95b86-b42e-4039-bf13-130945202214")
+		)
+		(pin "2"
+			(uuid "8f41b67c-4e99-44ae-8517-f4fce81d54d0")
+		)
+		(instances
+			(project ""
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:SMAJ12CA")
+		(at 175.26 104.14 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f78c0653-cb19-4428-89cc-be904a9a4cd9")
+		(property "Reference" "D23"
+			(at 172.72 102.8699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
-				(hide yes)
+				(justify right)
 			)
 		)
-		(property "Package" "SOD-323 Vishay Semiconductor Diodes Division"
-			(at 68.58 134.62 0)
+		(property "Value" "SMAJ12CA"
+			(at 172.72 105.4099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
-				(hide yes)
+				(justify right)
 			)
 		)
-		(property "Price" "None"
-			(at 68.58 134.62 0)
+		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+			(at 170.18 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=snap"
-			(at 68.58 134.62 0)
+		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
+			(at 175.26 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "MP" "PESD12VL1BA"
-			(at 68.58 134.62 0)
+		(property "Description" "400W bidirectional Transient Voltage Suppressor, 12.0Vr, SMA(DO-214AC)"
+			(at 175.26 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Availability" "Not in stock"
-			(at 68.58 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
+		(pin "1"
+			(uuid "c7a0a053-8307-4bd7-b590-3c0fa94d7ab2")
 		)
-		(property "Check_prices" "https://www.snapeda.com/parts/PESD12VL1BA/Nexperia/view-part/?ref=eda"
-			(at 68.58 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "C"
-			(uuid "cd72a18f-531b-4628-a1c3-fec334cab886")
-		)
-		(pin "A"
-			(uuid "a795bd6c-9ffe-45c6-a19d-ef3776e1bd9c")
+		(pin "2"
+			(uuid "9e6ac1ca-3cf7-4427-a120-1c303107337b")
 		)
 		(instances
 			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa/bb9a6e72-4bf7-4732-ad24-4620ddebbd6f"
-					(reference "D26")
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa/5a6cc8f7-4f66-47ab-bef0-ab268b485df1"
+					(reference "D23")
 					(unit 1)
 				)
 			)
