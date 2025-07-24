@@ -2324,7 +2324,7 @@
 		)
 		(uuid "0015e90a-d5bf-442d-a741-34e3c37a4c8d")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 200.66 99.06 180)
 		(effects
@@ -2335,7 +2335,7 @@
 		)
 		(uuid "00bca524-a731-4aeb-9108-1e1aa41ab5c2")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 99.06 99.06 180)
 		(effects
@@ -2346,7 +2346,7 @@
 		)
 		(uuid "03918311-2d78-488f-bf38-4128513fc089")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 172.72 123.19 180)
 		(effects
@@ -2357,7 +2357,7 @@
 		)
 		(uuid "0658b21c-0e19-4d9a-98f8-e9523d44a418")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 223.52 123.19 180)
 		(effects
@@ -2368,7 +2368,7 @@
 		)
 		(uuid "139b3a91-0cc4-4cf5-a06b-7d017a5c199e")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 182.88 53.34 180)
 		(effects
@@ -2500,7 +2500,7 @@
 		)
 		(uuid "85d62fb4-3dd7-459f-90d5-a66eb65b0e65")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 71.12 123.19 180)
 		(effects
@@ -2588,7 +2588,7 @@
 		)
 		(uuid "cbca48a4-fa67-4a74-870b-b783a49d21b7")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 121.92 123.19 180)
 		(effects
@@ -2654,7 +2654,7 @@
 		)
 		(uuid "ff85e3a3-1b13-4746-8bdd-1d8c4c132585")
 	)
-	(hierarchical_label "3V3"
+	(hierarchical_label "REF"
 		(shape input)
 		(at 149.86 99.06 180)
 		(effects

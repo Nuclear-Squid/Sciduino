@@ -5,4 +5,5 @@
   (lib (name "PESD12VS1UL")(type "KiCad")(uri "${KIPRJMOD}/imported_components/PESD12VS1UL.kicad_sym")(options "")(descr ""))
   (lib (name "PESD12VL1BA")(type "KiCad")(uri "${KIPRJMOD}/imported_components/PESD12VL1BA.kicad_sym")(options "")(descr ""))
   (lib (name "New_Library")(type "KiCad")(uri "${KIPRJMOD}/New_Library.kicad_sym")(options "")(descr ""))
+  (lib (name "930224100")(type "KiCad")(uri "${KIPRJMOD}/imported_components/930224100.kicad_sym")(options "")(descr ""))
 )
