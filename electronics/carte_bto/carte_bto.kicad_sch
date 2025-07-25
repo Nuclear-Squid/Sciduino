@@ -6652,7 +6652,7 @@
 	)
 	(text "Buffer 8 bits:\n- protection surtensions\n- sortie haute impédence\n   quand hors-tension."
 		(exclude_from_sim no)
-		(at 176.53 22.86 0)
+		(at 173.99 22.86 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -15645,7 +15645,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-882"
+		(property "Footprint" "Diode_SMD:D_SOD-523"
 			(at 64.77 181.61 0)
 			(effects
 				(font
@@ -16416,6 +16416,71 @@
 			(project "carte_bto"
 				(path "/b37cf66c-5553-4962-b28a-30df843edffa"
 					(reference "#PWR044")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 77.47 22.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2e705d55-9f5c-470e-8341-8ff546c10a39")
+		(property "Reference" "#PWR012"
+			(at 77.47 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 77.47 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 77.47 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 77.47 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f67bf003-6882-4b37-b1a4-d1d9022afe80")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa"
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -17243,71 +17308,6 @@
 			(project ""
 				(path "/b37cf66c-5553-4962-b28a-30df843edffa"
 					(reference "LD2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 72.39 22.86 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5afe9854-7825-4a33-ac8b-d2f620349eae")
-		(property "Reference" "#PWR030"
-			(at 72.39 26.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 72.39 19.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 72.39 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 72.39 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 72.39 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "413c6d48-4d3e-4801-90be-efb5c211d6c2")
-		)
-		(instances
-			(project "carte_bto"
-				(path "/b37cf66c-5553-4962-b28a-30df843edffa"
-					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -19090,6 +19090,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 207.01 22.86 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "86e23c5b-e0ed-4774-bf27-b0447ef0fc1b")
+		(property "Reference" "R82"
+			(at 207.01 21.082 90)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 207.01 22.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 207.01 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 207.01 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 207.01 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0fcedf08-6b6d-482e-8ba6-2274380c8b1f")
+		)
+		(pin "2"
+			(uuid "6f6fd9e5-5676-4ade-a92a-2ba3d230310e")
+		)
+		(instances
+			(project ""
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa"
+					(reference "R82")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GNDD")
 		(at 217.17 69.85 0)
 		(unit 1)
@@ -19413,6 +19480,73 @@
 			(project "carte_bto"
 				(path "/b37cf66c-5553-4962-b28a-30df843edffa"
 					(reference "#PWR022")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 74.93 22.86 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8e8196a3-8ca2-40be-ae5c-cdb6f6cc0b3b")
+		(property "Reference" "R83"
+			(at 74.93 21.082 90)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 74.93 22.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 74.93 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 74.93 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 74.93 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8cdbb716-c642-4807-8b5d-1ecbbd756856")
+		)
+		(pin "2"
+			(uuid "9f3c83f0-0104-4e07-9f65-d1284d95e49e")
+		)
+		(instances
+			(project "carte_bto"
+				(path "/b37cf66c-5553-4962-b28a-30df843edffa"
+					(reference "R83")
 					(unit 1)
 				)
 			)
@@ -21200,7 +21334,7 @@
 		(dnp no)
 		(uuid "ba9a1ac8-6200-40e9-8651-4c9fda33bff1")
 		(property "Reference" "U1"
-			(at 72.39 24.13 0)
+			(at 72.39 24.892 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22214,7 +22348,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 204.47 22.86 0)
+		(at 209.55 22.86 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -22222,7 +22356,7 @@
 		(dnp no)
 		(uuid "d7149bd9-eaa8-4e91-9879-474a5e138c53")
 		(property "Reference" "#PWR031"
-			(at 204.47 26.67 0)
+			(at 209.55 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22231,7 +22365,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 204.47 19.05 0)
+			(at 209.55 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22239,7 +22373,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 204.47 22.86 0)
+			(at 209.55 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22248,7 +22382,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 204.47 22.86 0)
+			(at 209.55 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22257,7 +22391,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 204.47 22.86 0)
+			(at 209.55 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22736,7 +22870,7 @@
 		(dnp no)
 		(uuid "dce9ee0e-0ee1-411e-a01e-866be49c540f")
 		(property "Reference" "U4"
-			(at 204.47 24.13 0)
+			(at 204.47 24.892 0)
 			(effects
 				(font
 					(size 1.27 1.27)
