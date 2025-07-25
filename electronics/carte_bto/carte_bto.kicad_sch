@@ -6650,7 +6650,7 @@
 		)
 		(uuid "1d613fc9-212e-43f1-b28f-45f81c497cb5")
 	)
-	(text "Buffer 8 bits:\n- protection surtensions\n- Sortie haute impédence\n   quand hors-tension."
+	(text "Buffer 8 bits:\n- protection surtensions\n- sortie haute impédence\n   quand hors-tension."
 		(exclude_from_sim no)
 		(at 176.53 22.86 0)
 		(effects
@@ -6682,7 +6682,7 @@
 		)
 		(uuid "5004c141-18dd-4114-8cf3-a5dccdc582a1")
 	)
-	(text "Activer les sorties quand\nla carte est sous tension.\n(+ LED de status)"
+	(text "Activer les sorties quand\nla carte est sous tension\n(+ LED de status)."
 		(exclude_from_sim no)
 		(at 233.045 69.85 0)
 		(effects
@@ -14673,6 +14673,126 @@
 			(justify left bottom)
 		)
 		(uuid "f9ef8fe7-1879-4084-822f-04d29359608a")
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 45.72 166.37 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1a4a45fc-63f6-4956-86b4-7b5229888a58")
+		(property "Netclass" "Big track"
+			(at 33.274 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 63.5 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 45.72 163.83 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "23f94889-c1f1-4d24-9fae-bc9de60f97e8")
+		(property "Netclass" "Big track"
+			(at 33.274 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 63.5 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 45.72 149.86 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9c4bdf92-7f88-4f03-a296-904d37b54ab2")
+		(property "Netclass" "Big track"
+			(at 33.274 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 63.5 16.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 45.72 158.75 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "fbfa0faa-c970-4916-9b0f-ae6700d64f5e")
+		(property "Netclass" "Big track"
+			(at 33.274 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 63.5 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
