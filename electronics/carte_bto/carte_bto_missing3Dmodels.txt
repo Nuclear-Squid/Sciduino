@@ -1,0 +1,27 @@
+### Missing 3D models - created on 2025-07-28 10:50
+### Printed by checking_3D_models plugin
+Board file: /home/nuclear-squid/Code/Snorbi/sciduino/electronics/carte_bto/carte_bto.kicad_pcb
+3D missing models written to:
+/home/nuclear-squid/Code/Snorbi/sciduino/electronics/carte_bto/carte_bto_missing3Dmodels.txt
+-------
+('J1', '/nix/store/r72zvaq2p2byfkizbrrnf7zk8m28c8zk-kicad-packages3d-26e8886b30/share/kicad/3dmodels/Connector_DIN.3dshapes/DIN41612_B_2x32_Male_Horizontal_THT.step')
+('A1', '/nix/store/r72zvaq2p2byfkizbrrnf7zk8m28c8zk-kicad-packages3d-26e8886b30/share/kicad/3dmodels/Module.3dshapes/Arduino_Nano_WithMountingHoles.step')
+('D1', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D2', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D3', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D4', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D5', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D6', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D7', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D8', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D9', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D10', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D11', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D12', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D13', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D14', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D15', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+('D16', '${KICAD6_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.wrl')
+-------
+NUM of 3D missing models:18
+checked extensions ['.stp', '.step', '.stpZ']

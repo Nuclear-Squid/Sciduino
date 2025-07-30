@@ -1,0 +1,25 @@
+### Module positions - created on 2025-07-28 10:51
+### Printed by pcb_positions plugin
+## Unit = mm, Angle = deg.
+## Pcb Height 100.050mm, Pcb Width 160.053mm [based on Edge bounding box]
+## Side : top
+## Board Aux Origin: 0.000mm ,0.000mm
+# Ref         Val                 Package                       PosX       PosY       Pin1_PosX  Pin1_PosY    Rot     Side      Type
+Z1            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       150.8173   -62.7310   150.8173   -62.3810     -9.0    top       VIRTUAL
+Z2            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       151.8173   -60.6010   151.8173   -60.2510     -9.0    top       VIRTUAL
+Z3            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       152.8173   -62.7310   152.8173   -62.3810     -9.0    top       VIRTUAL
+Z4            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       153.8173   -60.6010   153.8173   -60.2510     -9.0    top       VIRTUAL
+Z5            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       154.8173   -62.7510   154.8173   -62.4010     -9.0    top       VIRTUAL
+Z6            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       155.8173   -60.5610   155.8173   -60.2110     -9.0    top       VIRTUAL
+Z7            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       156.8173   -62.7510   156.8173   -62.4010     -9.0    top       VIRTUAL
+Z8            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       157.8173   -60.5610   157.8173   -60.2110     -9.0    top       VIRTUAL
+Z9            PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       79.0000    -105.1000  79.0000    -105.4500     9.0    top       VIRTUAL
+Z13           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       150.6190   -92.9010   150.6190   -92.5510     -9.0    top       VIRTUAL
+Z14           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       151.6190   -90.8010   151.6190   -90.4510     -9.0    top       VIRTUAL
+Z15           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       152.6190   -92.9010   152.6190   -92.5510     -9.0    top       VIRTUAL
+Z16           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       153.6190   -90.8010   153.6190   -90.4510     -9.0    top       VIRTUAL
+Z17           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       154.6190   -92.9010   154.6190   -92.5510     -9.0    top       VIRTUAL
+Z18           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       155.6190   -90.8010   155.6190   -90.4510     -9.0    top       VIRTUAL
+Z19           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       156.6190   -92.9010   156.6190   -92.5510     -9.0    top       VIRTUAL
+Z20           PESD5V0L1UL         D_SOD-882_DFN1006-2_TVS       157.6190   -90.8010   157.6190   -90.4510     -9.0    top       VIRTUAL
+## End
