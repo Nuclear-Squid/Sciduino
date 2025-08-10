@@ -351,21 +351,20 @@ Cette carte BTO est l’occasion de réduire la dépendance de RBI à NI.
 
 ### Choix du matériel
 
-Arduino possède une gamme de cartes au format Nano comportant une dizaine de produits ; la plupart étant basés sur des architectures ARM, mais certains sont encore en AVR. Cette distinction est importante, car non seulement les cartes AVR n’ont pas la puissance de calcul des cartes ARM, mais leurs GPIOs fonctionnent à une tension de référence (ioref) différente (5V pour AVR, 3.3V pour ARM).
+Arduino possède une gamme de cartes au format Nano comportant une dizaine de produits ; la plupart sont basés sur des architectures ARM, mais certains sont encore en AVR. Cette distinction est importante, car non seulement les cartes AVR n’ont pas la puissance de calcul des cartes ARM, mais leurs GPIOs fonctionnent à une tension de référence (ioref) différente : 5V pour AVR, 3.3V pour ARM.
 
-Nous avons choisi l’Arduino Nano RP2040 Connect pour sa puissance de calcul (et pour découvrir les capacités du RP2040), mais nous avons aussi approvisionné un Arduino Nano Every (un AVR) pour s’assurer que la carte BTO BTO fonctionne avec les cartes AVR, que RBI a l’habitude d’utiliser.
+Nous avons choisi l’Arduino [Nano RP2040] Connect pour sa puissance de calcul (et pour découvrir les capacités du RP2040), mais nous avons aussi approvisionné un Arduino [Nano Every] (AVR) pour s’assurer que la carte BTO fonctionne avec les AVR que RBI a l’habitude d’utiliser.
 
-En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un MAX1300. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. Le composant à déjà utilisé auparavent au sein de la boutique, et en théorie il remplit confortablement les besoins de la carte BTO. Cependant, nous avons vite repéré de nombreux problèmes en pratique :
+En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un MAX1300. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. L’équipe a l’habitude des MAX, et sur le papier, le MAX1300 remplit largement les besoins de la carte BTO. Cependant, nous avons vite repéré de nombreux problèmes en pratique :
 
-- le signal mesuré comportait beaucoup de bruit, rendant la résolution de 16 bits inutile
-- le protocol SPI n’a pas été correctement implémenté : il est incapable d’envoyer et recevoir des informations en même temps, divisant par deux la fréquence d’acquisition.
-- dans certains cas, l’ADC renvoyait des valeurs complètement abhérentes : sur des tensions négatives le MAX1300 renvoyait parfois des valeurs binaires où les `n` bits de poids fort sont à `1` et les autres à `0` (`n` étant *vaguement* proportionnel au niveau de tension)
+- le signal mesuré comportait beaucoup de bruit, rendant la résolution de 16 bits inutile ;
+- le protocole SPI est un standard très laxe, et la façon dont il a été implémenté nous limite : notamment, il est incapable d’envoyer et recevoir des informations en même temps, divisant par deux la fréquence d’acquisition.
 
-Le MAX1300 est donc pratiquement inutile pour les besoins de RBI sur la carte BTO. Nous avons donc choisi de le remplacer par un LTC1859 : un autre ADC ayant les mêmes specs que le MAX1300, mais ne comportant aucun des problèmes cité précédemment, en plus d’être bien plus simple à piloter et pouvant théoriquement atteindre une fréquence d’acquisition de 250kHz.
+On a donc choisi de le remplacer par un LTC1859 : un autre ADC ayant les mêmes specs que le MAX1300, mais ne comportant aucun des problèmes cités précédemment, en plus d’être bien plus simple à piloter et pouvant théoriquement atteindre une fréquence d’acquisition de 250 kHz.
 
-Ces fréquences d’acquisition de 50, 100 voir 250kHz semblent démesurées, mais c’est ce qui nous permet de garantir d’avoir non seulement les 1kHz sur 8 voies, mais aussi de pouvoir aller jusque 10kHz sur de l’AVR (pour certains signaux plus rapides) ou effectuer des traitements plus complexes sur de l’ARM (typiquement des transformées de Fourier).
+Ces fréquences d’acquisition de 50, 100 voire 250 kHz semblent démesurées, mais c’est ce qui nous permet de garantir une parité de fonctionnement avec la carte NI‑6212 actuellement utilisée : s’il fallait implémenter un test à 10 kHz sur l’AVR ou effectuer des traitements plus complexes (par exemple, une transormée de Fourier avec un ARM), le matériel ne nous limitera pas.
 
-Pour finir, bien que les deux ADC utilisés possèdent une tension de référence interne, celles-ci ne sont pas assez précise, donc nous avons utilisé un composant externe dédié – un LT6654AIS6-2.5 – pour obtenir une tension de référence à 2.5V ±0.05%.
+Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié – un LT6654AIS6-2.5 – pour obtenir une tension de référence à 2.5 V ±0.05%.
 
 (Pour l’anecdote, le MAX1300 *avec* la vref externe avait un signal plus bruité que le LTC1859 *sans*…)
 
