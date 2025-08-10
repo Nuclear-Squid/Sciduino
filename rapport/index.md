@@ -222,11 +222,13 @@ L’objectif de cette stack logicielle est de limiter le couplage entre les diff
 
 **Firmware Arduino**
 
-Le firmware tournant sur le micro-controlleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner.
+Le firmware tournant sur le micro-controlleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [PlatformIO] et [MicroPython], mais furent rejetées à cause de leur matériel plus limité.
 
 Aujourd’hui, le code contient une API faisant abstraction de différents ADC communément utilisés dans la boutique, une structure de donnée pour représenter les entrées analogique / sorties numérique utiliés et une structure `Waveform` qui stoque une fenêtre sur le signal.
 
 La carte peut effectuer une mesure « one-shot », mesurer une fenêtre ou mesurer en continu sur toutes les voies activées et les stoquer dans différentes waveforms avant de les envoyer à l’ordinateur.
+
+![Les types de données importants de Sciduino](./data_types.png)
 
 Afin d’échanger des instructions et informations entre la carte et l’ordinateur, on utilise le protocol SCPI, car cela permet d’écrire des instructions à la main pour du débug, mais aussi ne pas dépendre d’un pilote spécifique dans l’application desktop. Cependant, la carte permet aussi de renvoyer les mesures et informations en binaire pour de meilleurs performances.
 
@@ -247,6 +249,9 @@ Pour l’interface graphique on utilise QML (un langage de description basé sur
 
 En plus du code QML nécessaire pour créer l’interface graphique, un second module Python défini les bindings nécessaire pour transmettre les commandes de l’interface au pilote de la carte, puis mettre en forme les réponses avant de les afficher dans l’interface.
 
+![Graph de la vue d’ensemble de la stack logicielle](./graph_stack_soft.png)
+
+<!-- TODO: Rajouter un screenshot de l’appli -->
 
 <!-- TODO: fusionner ici le document « stack logicielle » -->
 <!---->
@@ -273,18 +278,19 @@ En plus du code QML nécessaire pour créer l’interface graphique, un second m
 [PlatformIO]:  https://platformio.org/
 [MicroPython]: https://micropython.org/
 
-[TODO: à réserver au chapiter suivant ?]
-
-> L’approche SCPI illustre bien la différence de démarche avec les produits NI : au lieu d’acquérir directement les données brutes via le PC, c’est le MCU qui est en charge de l’essentiel de l’acquisition *et du traitement*. Les données remontées au PC sont donc minimes, et le développement desktop se concentre sur la présentation des données.
->
-> L’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée paur un SBC type Raspberry Pi, contrairement à LabVIEW — et, grâce à Python, sans nécessiter de recompilation.
-
 ### Mise en œuvre
-=> utilisation d’Arduino comme périphériques DAQ, en utilisant les ADC intégrés ou des ADC externes
 
-> *[TODO: donner des détails, notamment sur le bridge]*
+Grâce à Sciduino, un Arduino peut rapidement devenir un périphérique DAQ : les abstractions sur les ADCs permettent d’utiliser l’ADC interne de l’Arduino pour rapidement prototyper une application, puis passer à un ADC externe plus précis sans aucun changement majeur danas le code. Les cartes Arduino ARM possèdent aussi une API nommée `SerialUSB`, qui nous permet d’échanger des données avec l’ordinateur directement via le bus USB, ce qui augemente drastiquement les viteses d’échange.
 
-> *[TODO: intégrer des copies d’écran]*
+L’approche SCPI illustre bien la différence de démarche avec les produits NI : au lieu d’acquérir directement les données brutes via le PC, c’est le MCU qui est en charge de l’essentiel de l’acquisition *et du traitement*. Les données remontées au PC sont donc minimes, et le développement desktop se concentre sur la présentation des données.
+
+Pour présenter les informations dans l’interface graphique QML, nous avons créé des bindings entre l’interface et le driver Python. Bien que l’environnement Qt soit originellement codé en C++, la librairie `PySide6` nous permet de lancer une application QML et développer des éléments graphique custom en Python. Un paterne récurent est de définir un élément `Bridge`, chargé de faire l’interface entre l’interface graphique et le backend Python / C++ de l’application.
+
+![Morceau du Bridge utilisé pour l’interface](./bridge.png)
+
+La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce au décorateur `QmlElement`, et défini des proriété et méthodes via les décorateurs `property` et `slot` respectivement. Une fois mis en place, l’élément `Bridge` peut être intégré au code d’interface, et ses propriété / méthodes peuvent être utilisés comme n’importe quel autre élément QML.
+
+Grâce à Python l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée paur un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
 
 - LabVIEW est l’option la plus rapide pour prototyper
 - Python/QML reste simple (cf. Qt Creator pour le design à la souris) et permet de livrer des apps mieux finies :
