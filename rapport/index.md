@@ -209,27 +209,66 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 **SPI pour les fonctions critiques en performance :** c’est notamment le choix qu’on a retenu pour les ADC mis en œuvre. C’est un standard très simple sur le principe mais assez laxe, donc moins simple à utiliser que I²C.
 
 ### Stack logicielle
-TODO: fusionner ici le document « stack logicielle »
 
-- desktop : Python + QML
-  - Python = simplicité
-  - Qt/QML = le standard de fait pour les apps industrielles
-  - compétences faciles à trouver
+Aujourd’hui, RBI repose sur des produits de National Instrument (LabView, cartes multi-fonctions…) pour prototyper leurs produits, ce qui s’avère être dangereux : leurs produits sont très cher et peuvent ne plus être maintenu du jour au lendemain, sans plan de secours viable. Le projet Sciduino cherche à créer une « boîte à outils » simple, basé sur du logiciel libre pour se débarasser de la dépendence à NI.
 
-- analyse : SciPy <3
-  - what else ?
-  - cf. alternative C++
-  - prototypage et rapports d’analyse avec Jupyter Notebook
+Afin de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire, Sciduino est basé une stack logicielle séparé en trois étages disctincts :
 
-- IDE micro-contrôleur
-  - [Arduino-IDE] ? simple, efficace, possiblement limité en perfs
-  - [PlatformIO] ? intéressant mais [limité à une version obsolète de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303)
-  - [MicroPython] ? intéressant mais limité aux MCU très véloces, et moins de support matériel pour les périphériques
+1. le code Arduino qui pilote le micro controlleur et effectue les mesures
+2. un module python pour s’interfacer avec le micro-controlleur
+3. une interface graphique en QML qui affiche les informations reçu
 
-- SCPI
-  - un standard laxe de communication entre instruments, basé sur du texte
-  - débug facile avec un simple moniteur série
-  - permet de livrer des apps PC sans pilote logiciel
+L’objectif de cette stack logicielle est de limiter le couplage entre les différentes fonctions nécessaires (acquisition, pilotage, affichage), mais aussi de se limiter à des outils simple et libre.
+
+**Firmware Arduino**
+
+Le firmware tournant sur le micro-controlleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner.
+
+Aujourd’hui, le code contient une API faisant abstraction de différents ADC communément utilisés dans la boutique, une structure de donnée pour représenter les entrées analogique / sorties numérique utiliés et une structure `Waveform` qui stoque une fenêtre sur le signal.
+
+La carte peut effectuer une mesure « one-shot », mesurer une fenêtre ou mesurer en continu sur toutes les voies activées et les stoquer dans différentes waveforms avant de les envoyer à l’ordinateur.
+
+Afin d’échanger des instructions et informations entre la carte et l’ordinateur, on utilise le protocol SCPI, car cela permet d’écrire des instructions à la main pour du débug, mais aussi ne pas dépendre d’un pilote spécifique dans l’application desktop. Cependant, la carte permet aussi de renvoyer les mesures et informations en binaire pour de meilleurs performances.
+
+**Pilote Python**
+
+Un module python est développé en parallèle pour pouvoir s’interfacer avec le micro-controlleur. Il exporte un objet `Sciduino` qui récupère la configuration des entrées / sorties de la carte et contient des méthode pour envoyer des instructions à la carte puis parser les réponses en des types natif à Python ou dans des tableaux Numpy (comme le contenu des `Waveform` envoyé par la carte).
+
+Ce module est écrit en Python car bien que les performances soient très mauvaises, c’est un langage simple, interprété, cross plateform et qui possède un écosystème très complet pour le calcul scientifique ou traitement de signal rapide (Numpy, Scipy, Pandas…).
+
+**Interface graphique QML**
+
+Pour l’interface graphique on utilise QML (un langage de description basé sur Qt et JS en backend / frontend respectivement), car il combine :
+
+- un langage de description plutôt simple
+- une grande librairie standard de composant simple à utiliser ou étendre
+- des graphs optimisés par OpenGL
+- des bindings vers C++ (via le framework Qt) ou Python (via la librarie Pyside6)
+
+En plus du code QML nécessaire pour créer l’interface graphique, un second module Python défini les bindings nécessaire pour transmettre les commandes de l’interface au pilote de la carte, puis mettre en forme les réponses avant de les afficher dans l’interface.
+
+
+<!-- TODO: fusionner ici le document « stack logicielle » -->
+<!---->
+<!-- - desktop : Python + QML -->
+<!--   - Python = simplicité -->
+<!--   - Qt/QML = le standard de fait pour les apps industrielles -->
+<!--   - compétences faciles à trouver -->
+<!---->
+<!-- - analyse : SciPy <3 -->
+<!--   - what else ? -->
+<!--   - cf. alternative C++ -->
+<!--   - prototypage et rapports d’analyse avec Jupyter Notebook -->
+<!---->
+<!-- - IDE micro-contrôleur -->
+<!--   - [Arduino-IDE] ? simple, efficace, possiblement limité en perfs -->
+<!--   - [PlatformIO] ? intéressant mais [limité à une version obsolète de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303) -->
+<!--   - [MicroPython] ? intéressant mais limité aux MCU très véloces, et moins de support matériel pour les périphériques -->
+<!---->
+<!-- - SCPI -->
+<!--   - un standard laxe de communication entre instruments, basé sur du texte -->
+<!--   - débug facile avec un simple moniteur série -->
+<!--   - permet de livrer des apps PC sans pilote logiciel -->
 
 [PlatformIO]:  https://platformio.org/
 [MicroPython]: https://micropython.org/
