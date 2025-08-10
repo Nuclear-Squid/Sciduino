@@ -333,9 +333,9 @@ Quitte à utiliser un protocole réseau, un SBC comme le [RPi Zero 2 W] sera
 
 ### Objectif
 
-Objectif initial (figurant sur l’offre de stage) : un shield DAQ Arduino Uno, 16 bits / 1 kHz / 8 voies. Mais c’était trop trivial (il suffit d’utiliser un ADC communiquant en SPI ou I²C), et à l’usage, on a vu que le prototypage sur breadboard était plus pratique.
+L’objectif initial (figurant sur l’offre de stage) était de concevoir un shield DAQ pour Arduino Uno, basé sur un ADC 16 bits / 1 kHz / 8 voies et comportant une zone sur laquelle on peut souder des composants. Cette approche a finalement vite été rejetée, car le projet était trivial (il suffit d’utiliser un ADC communiquant en SPI ou I²C), et à l’uage, on a vu que le prototipage sur breadboard était bien plus pratique (beaucoup plus de place, pas besoin de souder…).
 
-Objectif révisé : une carte [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc de test OBOGS (BTO) de RBI.
+L’objectif révisé est de concevoir une carte au [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc de test OBOGS (BTO) de RBI.
 
 Cette carte doit assurer les fonctions qu’on attendait de la [NI-6212] :
 - numérisation au mV près de 8 voies analogiques ±10 V, à 1 kHz ou mieux ;
@@ -351,25 +351,62 @@ Cette carte BTO est l’occasion de réduire la dépendance de RBI à NI.
 
 ### Choix du matériel
 
-= carte Nano (AVR ou RP2040) + DAC en SPI
+Arduino possède une gamme de cartes au format Nano comportant une dizaine de produits ; la plupart étant basés sur des architectures ARM, mais certains sont encore en AVR. Cette distinction est importante, car non seulement les cartes AVR n’ont pas la puissance de calcul des cartes ARM, mais leurs GPIOs fonctionnent à une tension de référence (ioref) différente (5V pour AVR, 3.3V pour ARM).
 
-- MAX 1300 : nope
-- LTC 1859 : yup
-- référence de tension
-   
+Nous avons choisi l’Arduino Nano RP2040 Connect pour sa puissance de calcul (et pour découvrir les capacités du RP2040), mais nous avons aussi approvisionné un Arduino Nano Every (un AVR) pour s’assurer que la carte BTO BTO fonctionne avec les cartes AVR, que RBI a l’habitude d’utiliser.
+
+En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un MAX1300. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. Le composant à déjà utilisé auparavent au sein de la boutique, et en théorie il remplit confortablement les besoins de la carte BTO. Cependant, nous avons vite repéré de nombreux problèmes en pratique :
+
+- le signal mesuré comportait beaucoup de bruit, rendant la résolution de 16 bits inutile
+- le protocol SPI n’a pas été correctement implémenté : il est incapable d’envoyer et recevoir des informations en même temps, divisant par deux la fréquence d’acquisition.
+- dans certains cas, l’ADC renvoyait des valeurs complètement abhérentes : sur des tensions négatives le MAX1300 renvoyait parfois des valeurs binaires où les `n` bits de poids fort sont à `1` et les autres à `0` (`n` étant *vaguement* proportionnel au niveau de tension)
+
+Le MAX1300 est donc pratiquement inutile pour les besoins de RBI sur la carte BTO. Nous avons donc choisi de le remplacer par un LTC1859 : un autre ADC ayant les mêmes specs que le MAX1300, mais ne comportant aucun des problèmes cité précédemment, en plus d’être bien plus simple à piloter et pouvant théoriquement atteindre une fréquence d’acquisition de 250kHz.
+
+Ces fréquences d’acquisition de 50, 100 voir 250kHz semblent démesurées, mais c’est ce qui nous permet de garantir d’avoir non seulement les 1kHz sur 8 voies, mais aussi de pouvoir aller jusque 10kHz sur de l’AVR (pour certains signaux plus rapides) ou effectuer des traitements plus complexes sur de l’ARM (typiquement des transformées de Fourier).
+
+Pour finir, bien que les deux ADC utilisés possèdent une tension de référence interne, celles-ci ne sont pas assez précise, donc nous avons utilisé un composant externe dédié – un LT6654AIS6-2.5 – pour obtenir une tension de référence à 2.5V ±0.05%.
+
+(Pour l’anecdote, le MAX1300 *avec* la vref externe avait un signal plus bruité que le LTC1859 *sans*…)
+
 ### Conception KiCad
-Toute la carte est conçue autour de l’empreinte Nano.
 
-- level shifters pour fonctionnement 5V ou 3.3V
-- règles apprises : plans de masse, largeur de pistes, routage…
-- choix des composants : câblage maison vs PCBA
+RBI utilise Kicad pour la conception électronique, car c’est un logiciel libre et open-source très puissant. N’ayant pas été formé au design électronique durant mes études, il a fallu que je me forme à l’utiliser. Pour cela, mon maître de stage m’a aider à mettre en œuvre un projet personnel de clavier ergonomique sur lequel je travaille sur mon temps libre, que je vend aujourd’hui à prix libre dans le cadre d’un buiseness associatif.
+
+Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années, donc il a d’abord fallu que je retranscrive ce dont j’avais besoin dans Kicad (conneteurs, buffers, protection décharges électro-statique…).
+
+Une des conscéquence de l’écart d’ioref est que par défaut, les cartes ARM ne sont pas compatible avec le reste du banc, qui nécessite un `ioref` de 5V. On veut donc pouvoir amplifier le signal des cartes ARM tout en gardant le signal 5V des cartes AVR, le tout sans nécessiter de configuration manuelle (qui est la source de nombreux disfonctionnements).
+
+Pour celà, on utilise un « level-shifter », un montage à transistor qui reçoit un signal numérique et une référence de tension en entrée, et fixe le niveau de tension en sortie à un niveau fixe. Les Arduino Nanos ne fournissent pas de pin `ioref` par défaut, donc on utilise un GPIO en sortie numérique pour recréer la fonction.
+
+![Schéma électronique d’un level-shifter](./level_shifter.png)
+
+Une des difficultés rencontrée avec cette approche est que les GPIOs ne peuvent pas tirer autant de courant qu’une vrai `ioref`, donc il a fallu ajuster les valeurs de résistance pour rester dans les limites des cartes les plus contraignantes (< 7mA). La tension de 0.7V en sortie (causée par la diode) pour 0V en entrée n’est pas un problème, car on utilise un buffer 8 bits pour dissocier électriquement la carte Arduino du reste du banc.
+
+![Simulation LTSPICE d’un level-shifter](./simu_level_shifter.png)
+
+En ce qui concerne l’ADC, la résolution de 16 bits fait que la moindre perturbation électrique ou électro-magnétique sur le circuit peut introduire du bruit qui viendrait fausser la mesure. C’est pourquoi nous avons dû mettre en œuvre de nombreux systèmes pour mitiger cela le plus possible :
+
+Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, afin de filtrer les bruits parasites et protéger l’ADC des décharges électro-statiques. Chaque voie est envoyée sur une paire signal / commun, ces communs sont tous sur des pistes différentes, mais sont au même potentiel en amont, donc en les relie ensemble avant de les connecter à la patte `COM` de l’ADC et au GND. Ce système date d’une ancienne révision du banc de test OBOGS, qu’on doit garder en place pour des questions de compatibilité.
+
+![Schéma de l’étage de traitement de signal](./traitement_signal.png)
+
+Les micro-contrôleurs sont des composants très complexes, dont le fonctionnement interne peut générer un léger bruit qui peut se répercuter sur le reste du circuit, notamment sur le plan de masse. Ce bruit peut perturber les mesures de l’ADC, donc on a cherché à séparer l’ADC du « monde numérique » le plus possible. Cela a été réalisé via deux techniques :
+
+1. On utilise un régulateur de tension externe – un L78L05-SOT89 – pour fournir une tension stable aux alimentations analogiques de l’ADC
+2. On sépare la carte en deux plans de masse disctincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0Ω et quelques capacités, afin de les garder au même potentiel mais d’absorber leurs perturbations.
+
+La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ont une très légère résistance, donc on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation au différents composants peuvent faire circuler beaucoup de courant, donc on les a élargie pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à interval régulier afin d’éviter d’obtenir des effets capacitifs sur la carte.
 
 ### Fabrication et validation
 
-- JLCPCB
-- même programme et même carte que sur breadboard
+La validation de la carte est normalement triviale. Plusieurs personnes ont vérifiés mon schéma et routage, et les différentes fonctions électroniques ont été testés individuellement sur des breadboards. Toutes les erreurs possibles ont donc été commises pendant la phase de prototypage, et les montages fonctionnels ont été retranscrit dans Kicad.
 
-=> approche sensée pour remplacer les cartes NI
+Pour fabriquer la carte, nous fabriquons la carte chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais pour la plupart de leurs projets, RBI ne ne fait que des petites séries donc c’est plus économique de les assembler en interne.
+
+Pour celà, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adapté à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la cableuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format europe, donc nous largement la place nécessaire.
+
+J’ai dû aussi générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaire pour le bon fonctionnement de la carte et où les acheter.
 
 ## Carte Dionysos : 8 bits / 1 MHz
 
