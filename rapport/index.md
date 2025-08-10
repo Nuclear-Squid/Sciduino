@@ -362,7 +362,7 @@ En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un MAX1
 
 On a donc choisi de le remplacer par un LTC1859 : un autre ADC ayant les mêmes specs que le MAX1300, mais ne comportant aucun des problèmes cités précédemment, en plus d’être bien plus simple à piloter et pouvant théoriquement atteindre une fréquence d’acquisition de 250 kHz.
 
-Ces fréquences d’acquisition de 50, 100 voire 250 kHz semblent démesurées, mais c’est ce qui nous permet de garantir une parité de fonctionnement avec la carte NI‑6212 actuellement utilisée : s’il fallait implémenter un test à 10 kHz sur l’AVR ou effectuer des traitements plus complexes (par exemple, une transormée de Fourier avec un ARM), le matériel ne nous limitera pas.
+Ces fréquences d’acquisition de 50, 100 voire 250 kHz semblent démesurées, mais c’est ce qui nous permet de garantir une parité de fonctionnement avec la carte NI‑6212 actuellement utilisée : s’il fallait implémenter un test à 10 kHz sur l’AVR ou effectuer des traitements plus complexes (par exemple, une transformée de Fourier avec un ARM), le matériel ne nous limitera pas.
 
 Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié – un LT6654AIS6-2.5 – pour obtenir une tension de référence à 2.5 V ±0.05%.
 
@@ -374,7 +374,7 @@ RBI privilégie les logiciels libres quand c’est possible, et utilise [KiCad] 
 
 [KiCad]: https://www.kicad.org/
 
-Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans Kicad (conneteurs, buffers, protection décharges électro-statique…).
+Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans KiCad (conneteurs, buffers, protection décharges électro-statique…).
 
 Le rack électronique du banc fonctionne en 5 V, les AVR aussi, mais pas les ARM. On veut donc pouvoir amplifier le signal des cartes ARM tout en gardant le signal 5 V des cartes AVR — le tout, sans nécessiter de configuration manuelle, qui est source d’erreurs parfois difficiles à diagnostiquer.
 
@@ -405,7 +405,7 @@ La validation de la carte est normalement triviale. Plusieurs personnes ont vér
 
 Nous fabriquons la carte chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais pour la plupart de leurs projets, RBI ne ne fait que des petites séries et trouve plus économique de les assembler en interne.
 
-Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adapté à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la câbleuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format Europe, donc nous largement la place nécessaire.
+Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adaptés à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la câbleuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format Europe, donc nous avons largement la place nécessaire.
 
 J’ai dû aussi générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaire pour le bon fonctionnement de la carte et où les acheter.
 
