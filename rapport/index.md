@@ -353,7 +353,7 @@ Cette carte BTO est l’occasion de réduire la dépendance de RBI à NI.
 
 Arduino possède une gamme de cartes au format Nano comportant une dizaine de produits ; la plupart sont basés sur des architectures ARM, mais certains sont encore en AVR. Cette distinction est importante, car non seulement les cartes AVR n’ont pas la puissance de calcul des cartes ARM, mais leurs GPIOs fonctionnent à une tension de référence (ioref) différente : 5V pour AVR, 3.3V pour ARM.
 
-Nous avons choisi l’Arduino [Nano RP2040] Connect pour sa puissance de calcul (et pour découvrir les capacités du RP2040), mais nous avons aussi approvisionné un Arduino [Nano Every] (AVR) pour s’assurer que la carte BTO fonctionne avec les AVR que RBI a l’habitude d’utiliser.
+Nous avons choisi le [Nano RP2040] pour sa puissance de calcul (et pour découvrir les capacités du [RP2040]), mais nous avons aussi approvisionné un [Nano Every] (AVR) pour s’assurer que la carte BTO fonctionne avec les MCU que RBI a l’habitude d’utiliser.
 
 En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un MAX1300. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. L’équipe a l’habitude des MAX, et sur le papier, le MAX1300 remplit largement les besoins de la carte BTO. Cependant, nous avons vite repéré de nombreux problèmes en pratique :
 
@@ -370,40 +370,42 @@ Enfin, bien que les deux ADC utilisés possèdent une tension de référence int
 
 ### Conception KiCad
 
-RBI utilise Kicad pour la conception électronique, car c’est un logiciel libre et open-source très puissant. N’ayant pas été formé au design électronique durant mes études, il a fallu que je me forme à l’utiliser. Pour cela, mon maître de stage m’a aider à mettre en œuvre un projet personnel de clavier ergonomique sur lequel je travaille sur mon temps libre, que je vend aujourd’hui à prix libre dans le cadre d’un buiseness associatif.
+RBI privilégie les logiciels libres quand c’est possible, et utilise [KiCad] pour la conception électronique. N’ayant pas été formé au design électronique durant mes études, il a fallu apprendre sur le tas. Mon maître de stage m’a formé et m’a assisté, tant sur la carte BTO que sur un *pet project* sur lequel je travaille sur mon temps libre, dans un cadre associatif. Grâce à lui je suis désormais autonome avec KiCad.
 
-Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années, donc il a d’abord fallu que je retranscrive ce dont j’avais besoin dans Kicad (conneteurs, buffers, protection décharges électro-statique…).
+[KiCad]: https://www.kicad.org/
 
-Une des conscéquence de l’écart d’ioref est que par défaut, les cartes ARM ne sont pas compatible avec le reste du banc, qui nécessite un `ioref` de 5V. On veut donc pouvoir amplifier le signal des cartes ARM tout en gardant le signal 5V des cartes AVR, le tout sans nécessiter de configuration manuelle (qui est la source de nombreux disfonctionnements).
+Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans Kicad (conneteurs, buffers, protection décharges électro-statique…).
 
-Pour celà, on utilise un « level-shifter », un montage à transistor qui reçoit un signal numérique et une référence de tension en entrée, et fixe le niveau de tension en sortie à un niveau fixe. Les Arduino Nanos ne fournissent pas de pin `ioref` par défaut, donc on utilise un GPIO en sortie numérique pour recréer la fonction.
+Le rack électronique du banc fonctionne en 5 V, les AVR aussi, mais pas les ARM. On veut donc pouvoir amplifier le signal des cartes ARM tout en gardant le signal 5 V des cartes AVR — le tout, sans nécessiter de configuration manuelle, qui est source d’erreurs parfois difficiles à diagnostiquer.
+
+Pour celà, on utilise un « level-shifter », un montage à transistor qui reçoit un signal numérique et une référence de tension en entrée, et fixe le niveau de tension en sortie à un niveau fixe. Les Arduino Nano ne fournissant pas de pin `ioref` par défaut, on utilise un GPIO en sortie numérique pour recréer la fonction.
 
 ![Schéma électronique d’un level-shifter](./level_shifter.png)
 
-Une des difficultés rencontrée avec cette approche est que les GPIOs ne peuvent pas tirer autant de courant qu’une vrai `ioref`, donc il a fallu ajuster les valeurs de résistance pour rester dans les limites des cartes les plus contraignantes (< 7mA). La tension de 0.7V en sortie (causée par la diode) pour 0V en entrée n’est pas un problème, car on utilise un buffer 8 bits pour dissocier électriquement la carte Arduino du reste du banc.
+Les GPIOs ne pouvant pas tirer autant de courant qu’une vrai `ioref`, il a fallu ajuster les valeurs de résistance pour rester dans les limites des cartes les plus contraignantes (< 7 mA). La tension de 0.7 V en sortie (causée par la diode) pour 0 V en entrée n’est pas un problème, car on utilise un buffer 8 bits pour dissocier électriquement la carte Arduino du reste du banc.
 
 ![Simulation LTSPICE d’un level-shifter](./simu_level_shifter.png)
 
-En ce qui concerne l’ADC, la résolution de 16 bits fait que la moindre perturbation électrique ou électro-magnétique sur le circuit peut introduire du bruit qui viendrait fausser la mesure. C’est pourquoi nous avons dû mettre en œuvre de nombreux systèmes pour mitiger cela le plus possible :
+Concernant l’ADC, la résolution de 16 bits n’a d’intérêt métrologique que si on prend soin à éviter tout perturbation électrique ou électro-magnétique sur le circuit. C’est pourquoi nous avons dû mettre en œuvre de nombreux systèmes pour mitiger cela le plus possible.
 
-Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, afin de filtrer les bruits parasites et protéger l’ADC des décharges électro-statiques. Chaque voie est envoyée sur une paire signal / commun, ces communs sont tous sur des pistes différentes, mais sont au même potentiel en amont, donc en les relie ensemble avant de les connecter à la patte `COM` de l’ADC et au GND. Ce système date d’une ancienne révision du banc de test OBOGS, qu’on doit garder en place pour des questions de compatibilité.
+Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, afin de filtrer les bruits parasites et protéger l’ADC des décharges électro-statiques. Chaque voie est envoyée sur une paire signal / commun ; ces communs sont tous sur des pistes différentes, mais sont au même potentiel en amont, donc en les relie ensemble avant de les connecter à la patte `COM` de l’ADC et au `GND`. Ce système date d’une ancienne révision du banc de test OBOGS, qu’on doit garder en place pour des questions de compatibilité ascendante.
 
 ![Schéma de l’étage de traitement de signal](./traitement_signal.png)
 
-Les micro-contrôleurs sont des composants très complexes, dont le fonctionnement interne peut générer un léger bruit qui peut se répercuter sur le reste du circuit, notamment sur le plan de masse. Ce bruit peut perturber les mesures de l’ADC, donc on a cherché à séparer l’ADC du « monde numérique » le plus possible. Cela a été réalisé via deux techniques :
+Les micro-contrôleurs sont des composants très complexes, dont le fonctionnement interne peut générer un léger bruit susceptible se répercuter sur le reste du circuit, notamment sur le plan de masse. Ce bruit pouvant perturber les mesures de l’ADC, on a cherché à séparer l’ADC du « monde numérique » le plus possible. Cela a été réalisé via deux techniques :
 
-1. On utilise un régulateur de tension externe – un L78L05-SOT89 – pour fournir une tension stable aux alimentations analogiques de l’ADC
-2. On sépare la carte en deux plans de masse disctincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0Ω et quelques capacités, afin de les garder au même potentiel mais d’absorber leurs perturbations.
+1. on utilise un régulateur de tension externe – un L78L05-SOT89 – pour fournir une tension stable aux alimentations analogiques de l’ADC ;
+2. on sépare la carte en deux plans de masse disctincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
 
-La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ont une très légère résistance, donc on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation au différents composants peuvent faire circuler beaucoup de courant, donc on les a élargie pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à interval régulier afin d’éviter d’obtenir des effets capacitifs sur la carte.
+La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ayant une très légère résistance, on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation aux différents composants pouvant faire circuler beaucoup de courant, on les a élargies pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à intervalle régulier afin d’éviter des éventuels effets capacitifs sur la carte.
 
 ### Fabrication et validation
 
-La validation de la carte est normalement triviale. Plusieurs personnes ont vérifiés mon schéma et routage, et les différentes fonctions électroniques ont été testés individuellement sur des breadboards. Toutes les erreurs possibles ont donc été commises pendant la phase de prototypage, et les montages fonctionnels ont été retranscrit dans Kicad.
+La validation de la carte est normalement triviale. Plusieurs personnes ont vérifié mon schéma et routage, et les différentes fonctions électroniques ont été testés individuellement sur des breadboards. Toutes les erreurs possibles ont donc été commises pendant la phase de prototypage, et les montages fonctionnels ont été retranscrits dans KiCad.
 
-Pour fabriquer la carte, nous fabriquons la carte chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais pour la plupart de leurs projets, RBI ne ne fait que des petites séries donc c’est plus économique de les assembler en interne.
+Nous fabriquons la carte chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais pour la plupart de leurs projets, RBI ne ne fait que des petites séries et trouve plus économique de les assembler en interne.
 
-Pour celà, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adapté à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la cableuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format europe, donc nous largement la place nécessaire.
+Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adapté à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la câbleuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format Europe, donc nous largement la place nécessaire.
 
 J’ai dû aussi générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaire pour le bon fonctionnement de la carte et où les acheter.
 
