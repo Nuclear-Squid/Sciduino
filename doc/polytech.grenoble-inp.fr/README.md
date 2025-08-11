@@ -1,3 +1,11 @@
+---
+title: Rapport de stage
+author: Léo Cazenave
+date: 2025-08-18
+subtitle: unknown command "prout"
+abstract: 4 mois chez les dingos
+---
+
 # Rapport de stage
 
 ## Contexte
