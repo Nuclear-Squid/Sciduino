@@ -1,0 +1,3 @@
+[submodule "sciduino1k/3rd_part/TimerInterrupt_Generic"]
+	path = sciduino1k/3rd_part/TimerInterrupt_Generic
+	url = git@github.com:khoih-prog/TimerInterrupt_Generic.git
