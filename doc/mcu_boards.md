@@ -6,8 +6,6 @@ Most other MCU boards are designed to be plugged onto a breadboard (DIP). Thereâ
 
 Hereâ€™s a list of popular MCU boards that follow a stable footprint/pinout.
 
-[TOC]
-
 ## Arduino
 
 ### Uno
