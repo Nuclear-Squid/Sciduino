@@ -2,8 +2,8 @@
 title: Rapport de stage
 author: Léo Cazenave
 date: 2025-08-18
-subtitle: unknown command "prout"
-abstract: 4 mois chez les dingos
+subtitle: RBI, mai-août 2024
+abstract: Sciduino
 ---
 
 # Rapport de stage
@@ -85,8 +85,8 @@ Le code et les documents relatifs à [Sciduino][2] sont décrits en anglais, et 
 Le code et les documents de conception spécifiques aux projets [BTO][3] et [Dionysos][4] sont la propriété de RBI, et ne sont pas inclus dans ce rapport. RBI m’autorise à en publier des extraits pertinents pour la rédaction.
 
 [2]: #stack-technique-proposée-sciduino
-[3]: #carte-bto-16bits--1khz
-[4]: #carte-dionysos-8bits--1mhz
+[3]: #carte-bto-16bits-1khz
+[4]: #carte-dionysos-8bits-1mhz
 
 ## Stack technique proposée : Sciduino
 Sciduino = [SciPy] + [PySide] + [Arduino]
@@ -416,7 +416,7 @@ Les applications écrites en LabVIEW peuvent être adaptées facilement pour uti
 
 J’espère que Sciduino sera utile à RBI et qu’il continuera à évoluer au fil des projets.
 
-## Carte BTO : 16 bits / 1 kHz
+## Carte BTO : 16bits / 1kHz
 
 ### Objectif
 
@@ -425,6 +425,7 @@ L’objectif initial (figurant sur l’offre de stage) était de concevoir un sh
 L’objectif révisé est de concevoir une carte au [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc de test OBOGS (BTO) de RBI.
 
 Cette carte doit assurer les fonctions qu’on attendait de la [NI-6212] :
+
 - numérisation au mV près de 8 voies analogiques ±10 V, à 1 kHz ou mieux ;
 - gestion des bus d’adresse (8 bits) et de données (8 bits) spécifiques à BTO.
 
@@ -505,7 +506,7 @@ La carte BTO effectue toutes les fonctions attendues par la carte NI-6212. Elle 
 
 La dépendance à LabVIEW demeure, le projet BTO ayant trop d’ampleur et d’ancienneté pour envisager une réécriture, mais elle est fortement réduite : il ne sera pas nécessaire de mettre à jour LabVIEW pour permettre l’utilisation d’une carte NI-DAQ plus récente. BTO peut donc continuer à tourner sur LabVIEW 2015 aussi longtemps que souhaité.
 
-## Carte Dionysos : 8 bits / 1 MHz
+## Carte Dionysos : 8bits / 1MHz
 
 ### Objectif
 
@@ -517,6 +518,7 @@ Objectif initial : créer un shield type oscilloscope. Problème :
 Objectif révisé : prototyper une solution RPi Pico + ADC externe (SPI) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de Dionysos, l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des PicoScope.
 
 Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
+
 - le niveau bas correspond au milieu liquide (la pointe de la sonde optique est dans l’eau)
 - le niveau haut correspond au milieu gazeux (la pointe de la sonde optique est dans l’air)
 - le passage d’une bulle sur une sonde correspond donc à un crénau dont on veut connaitre :
@@ -552,6 +554,7 @@ Les PIO se programment en assembleur, on peut donc viser une acquisition de l’
 Les performances étant critiques, on cherche à avoir le moins d’abstraction possible pour exploiter le MCU au mieux de ses capacités.
 
 L’API C serait le choix le plus évident, mais l’approche Rust Embedded semble pertinente :
+
 - une bibliothèque Rust standard, décrivant les [traits](https://fr.wikipedia.org/wiki/Trait_(programmation)) à implémenter ;
 - une bibliothèque par classe de MCU, décrivant l’implémentation de ces traits — il y en a une pour STM32 et une pour Raspberry, entre autres.
 
@@ -583,6 +586,7 @@ L’approche Nano facilite à la fois le développement (breadboard) et la conce
 ### Rust Embedded
 
 Une voie encore en développement mais prometteuse :
+
 - [embedded-hal] fournit une excellente abstraction matérielle ;
 - [RTIC] gère très bien la concurrence (mais pas encore le multi-cœurs) ;
 - les puces ARM et RISC-V sont supportées ;
