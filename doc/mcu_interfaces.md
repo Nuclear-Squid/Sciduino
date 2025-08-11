@@ -56,7 +56,6 @@ Having a standard connector for Analog/Digital/PWM devices can be interesting as
 | Adafruit <br>[Stemma QT] | JST SH      | 1.0 mm | 5 V ‑ 3.3 V | 4‑pin |  -    |
 | SparkFun <br>[Qwiic]     | JST SH      | 1.0 mm |       3.3 V | 4‑pin |  -    |
 | Arduino  <br>[Modulino]  | JST SH      | 1.0 mm |       3.3 V | 4‑pin |  -    |
-|
 | DF Robot <br>[Gravity]   | JST PH      | 2.0 mm | 5 V ‑ 3.3 V | 4-pin |  ?    |
 | Pimoroni <br>[Breakout Garden]  | ?   | 2.54 mm | 5 V ‑ 3.3 V | 5‑pin |  -    |
 

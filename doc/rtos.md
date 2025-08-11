@@ -21,7 +21,6 @@
 | ----------- | -------------------- | ------------------
 | [FreeRTOS]  | Amazon Web Services  | simplicity
 | [NuttX]     | Apache Foundation    | POSIX-compliant
-|
 | [Zephyr]    | Linux Foundation     | scalability, highest project activity
 | [ThreadX]`*`| Eclipse Foundation   | used by STM32Cube
 | [VxWorks]   | Wind River Systems   | non-free, safety/security certifications

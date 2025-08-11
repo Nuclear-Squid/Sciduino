@@ -68,29 +68,39 @@ L’avancement du projet est jalonné par les démonstrations techniques et les 
 
 ### Livrables attendus
 
-- code source commenté <sup>(1)</sup> côté MCU et PC
-- documents de conception électronique <sup>(1)</sup> : schémas, routages
-- fiches de synthèse justifiant les solutions envisagées <sup>(2)</sup>
+- code source commenté côté MCU et PC
+- documents de conception électronique : schémas, routages
+- fiches de synthèse justifiant les solutions envisagées
 
+Le code et les documents relatifs à [Sciduino][2] sont décrits en anglais, et disponibles sous licence libre (GPLv3) sur [le dépôt GitHub](https://github.com/Nuclear-Squid/Sciduino).
 
-<sup>(1)</sup> Le code et les documents de conception sont la propriété de RBI, et ne sont pas inclus dans ce rapport. RBI m’autorise à en publier les extraits pertinents pour la rédaction du rapport.
+Le code et les documents de conception spécifiques aux projets [BTO][3] et [Dionysos][4] sont la propriété de RBI, et ne sont pas inclus dans ce rapport. RBI m’autorise à en publier des extraits pertinents pour la rédaction.
 
-<sup>(2)</sup> Avec l’accord de RBI, les fiches de synthèse ont été rédigées en anglais pour me permettre de les publier sur mon compte GitHub.
+[2]: #stack-technique-proposée-sciduino
+[3]: #carte-bto-16bits--1khz
+[4]: #carte-dionysos-8bits--1mhz
 
+## Stack technique proposée : Sciduino
+Sciduino = [SciPy] + [PySide] + [Arduino]
 
-## Stack technique proposée
-Sciduino = SciPy + PySide + Arduino
+[SciPy]: https://scipy.org/
+[PySide]: https://doc.qt.io/qtforpython-6/
+[Arduino]: https://docs.arduino.cc/software/
 
 ### Stack matérielle
 
-Plus que de simples MCU, on cherche un écosystème de cartes de développement avec un bon rapport facilité/pérennité. On a exploré les solutions disponibles pour avoir une vue d’ensemble des puces (fiche `MCU Chips`), des cartes de développement (`MCU Boards`) et de leurs empreintes/pinouts (`MCU Interfaces`).
+Plus que de simples MCU, on cherche un écosystème de cartes de développement avec un bon rapport facilité/pérennité. On a exploré les solutions disponibles pour avoir une vue d’ensemble des puces (fiche [MCU Chips]), des cartes de développement ([MCU Boards]) et de leurs empreintes/pinouts ([MCU Interfaces]).
+
+[MCU Chips]:      https://github.com/Nuclear-Squid/Sciduino/blob/report/doc/mcu_chips.md
+[MCU Boards]:     https://github.com/Nuclear-Squid/Sciduino/blob/report/doc/mcu_boards.md
+[MCU Interfaces]: https://github.com/Nuclear-Squid/Sciduino/blob/report/doc/mcu_interfaces.md
 
 Le choix s’est vite restreint à trois options : Arduino, STM32, Raspberry Pi.
 
-**Arduino = le standard des hobbyistes**
+**Arduino : l’Espéranto de l’embarqué**
 
 - avantages :
-  - [environnement logiciel](https://www.arduino.cc/en/software/) simple, libre et complet : [Arduino-IDE], [Arduino-CLI](https://docs.arduino.cc/arduino-cli/)…
+  - [environnement logiciel][Arduino] simple, libre et complet : [Arduino-IDE], [Arduino-CLI]…
   - agnostique : AVR, ARM Cortex‑M, ESP32, RISC-V…
   - gestion saine de l’obsolescence (maintien de puces 8-bits, [remplacement de ARM Mbed par Zephyr](https://blog.arduino.cc/2024/07/24/the-end-of-mbed-marks-a-new-beginning-for-arduino/)…)
   - les empreintes Uno et Nano sont là pour durer
@@ -105,7 +115,7 @@ Le choix s’est vite restreint à trois options : Arduino, STM32, Raspberry P
 [Arduino-IDE]: https://docs.arduino.cc/software/ide/
 [Arduino-CLI]: https://docs.arduino.cc/arduino-cli/
 
-**STM32 = la référence industrielle**
+**STM32 : la référence industrielle**
 
 - avantages :
   - c’est la solution la plus utilisée actuellement en industrie
@@ -119,7 +129,7 @@ Le choix s’est vite restreint à trois options : Arduino, STM32, Raspberry P
   - gestion moins claire de l’obsolescence (les documents STM32 se réfèrent toujours à ARM Mbed, dont la fin de vie est programmée pour juin 2026)
   - puces maintenues 10 ans, donc pas mieux que NI
 
-**Raspberry Pi Pico = l’alternative hi-speed/low-cost**
+**Raspberry Pi Pico : l’alternative hi-speed/low-cost**
 
 - avantages :
   - environnement logiciel libre : [MicroPython](
@@ -152,7 +162,7 @@ Pour retrouver cette facilité on utilise des cartes des développement au forma
 2. commencer le développement logiciel sans attendre que le PCB soit finalisé ;
 3. transférer la carte contrôleur de la breadboard au PCB quand il est prêt.
 
-RBI ne faisant pas de production en série, intégrer le MCU directement sur le PCB n’a pas d’intérêt. On préfère donc choisir une empreinte et un pinout aussi stable que possible — v. fiche `MCU Interfaces`.
+RBI ne faisant pas de production en série, intégrer le MCU directement sur le PCB n’a pas d’intérêt. On préfère donc choisir une empreinte et un pinout aussi stable que possible — v. fiche [MCU Interfaces].
 
 **L’empreinte Nano est une bonne passerelle :**
 
@@ -207,7 +217,7 @@ L’objectif de cette stack logicielle est de limiter le couplage entre les diff
 
 **Firmware Arduino**
 
-Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [MicroPython], dont le support matériel et plus limité, ot [PlatformIO], dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
+Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [MicroPython], très pratique mais dont le support matériel et plus limité, et [PlatformIO], plus complet mais dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
 
 Aujourd’hui, le code micro-contrôleur s’articule autour de :
 
@@ -219,13 +229,15 @@ La carte peut effectuer une mesure « one-shot », mesurer une fenêtre temp
 
 ![Les types de données importants de Sciduino](./data_types.png)
 
-Afin d’échanger des instructions et informations entre la carte et l’ordinateur, on utilise le protocole SCPI. Cela permet d’écrire des instructions à la main pour débugger depuis une console série, mais aussi ne pas dépendre d’un pilote spécifique dans l’application desktop. Cependant, la carte permet aussi de renvoyer les mesures et informations en binaire pour de meilleures performances.
+Afin d’échanger des instructions et informations entre la carte et l’ordinateur, on utilise le protocole [SCPI]. Cela permet d’écrire des instructions à la main pour débugger depuis une console série, mais aussi ne pas dépendre d’un pilote spécifique dans l’application desktop. Cependant, la carte permet aussi de renvoyer les mesures et informations en binaire pour de meilleures performances.
+
+[SCPI]: https://fr.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments
 
 **Pilote Python**
 
 Un module Python est développé en parallèle pour s’interfacer avec le micro-contrôleur. Il exporte un objet `Sciduino` qui récupère la configuration des entrées / sorties de la carte et contient des méthodes pour envoyer des instructions à la carte puis parser les réponses en des types natif à Python ou dans des tableaux Numpy (comme le contenu des `Waveform` envoyé par la carte).
 
-Ce module est écrit en Python car bien que les performances soient très mauvaises, c’est un langage simple, interprété, cross plateform et qui possède un écosystème très complet pour le calcul scientifique ou traitement de signal rapide (Numpy, Scipy, Pandas…).
+Ce module est écrit en Python car c’est un langage simple, interprété, cross-plateform et qui possède un écosystème très complet, notamment pour les applications scientifiques. Les piètres performances de Python ne sont pas un problème : toutes les parties critiques en performances sont exécutées soit sur le micro-contrôleur, soit par des bibliothèques optimisées pour le calcul (NumPy, SciPy, Pandas…), soit par un framework d’interface graphique C++.
 
 **Interface graphique QML**
 
@@ -234,7 +246,7 @@ Pour l’interface graphique on utilise QML, un langage de description basé sur
 - un langage de description plutôt simple, et éditable graphiquement ;
 - une grande librairie standard de composants simples à utiliser ou étendre ;
 - des graphiques optimisés par OpenGL ;
-- des bindings vers C++ (via le framework Qt) ou Python (via la bibiothèque Pyside6).
+- des bindings vers C++ (via le framework Qt) ou Python (via la bibiothèque PySide6).
 
 En plus du code QML nécessaire pour créer l’interface graphique, un second module Python définit les bindings nécessaire pour transmettre les commandes de l’interface au pilote de la carte, puis mettre en forme les réponses avant de les afficher dans l’interface.
 
@@ -335,7 +347,29 @@ STM32 propose des cartes Nucleo dédiées à l’acquisition rapide de données.
 | [Nucleo-G431KB] | [MB1430]  | [STM32G431KBT6] | 2 x 0.25µs (~500 kHz)
 | [Nucleo-L412KB] | [MB1180]  | [STM32L412KBU3] | 2 × 0.20μs (~400 kHz)
 
-> *[TODO: transposer ce tableau pour le rendre homogène avec celut des cartes Arduino]*
+[MB1180]: https://www.st.com/resource/en/user_manual/dm00231744.pdf
+[MB1455]: https://www.st.com/resource/en/user_manual/dm00622380.pdf
+[MB1430]: https://www.st.com/resource/en/user_manual/dm00493601.pdf
+
+[Nucleo-F031K6]: https://www.st.com/en/product/nucleo-f031k6
+[Nucleo-F042K6]: https://www.st.com/en/product/nucleo-f042k6
+[Nucleo-F303K8]: https://www.st.com/en/product/nucleo-f303k8
+[Nucleo-G031K8]: https://www.st.com/en/product/nucleo-g031k8
+[Nucleo-G431KB]: https://www.st.com/en/product/nucleo-g431kb
+[Nucleo-L011K4]: https://www.st.com/en/product/nucleo-l011k4
+[Nucleo-L031K6]: https://www.st.com/en/product/nucleo-l031k6
+[Nucleo-L412KB]: https://www.st.com/en/product/nucleo-l412kb
+[Nucleo-L432KC]: https://www.st.com/en/product/nucleo-l432kc
+
+[STM32F031K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f031k6.html
+[STM32F042K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f042k6.html
+[STM32F303K8T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f303k8.html
+[STM32G031K8T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32g031k8.html
+[STM32G431KBT6]: https://www.st.com/en/microcontrollers-microprocessors/stm32g431kb.html
+[STM32L011K4T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32l011k4.html
+[STM32L031K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32l031k6.html
+[STM32L412KBU3]: https://www.st.com/en/microcontrollers-microprocessors/stm32l412kb.html
+[STM32L432KCU3]: https://www.st.com/en/microcontrollers-microprocessors/stm32l432kc.html
 
 **Jusqu’où un MUC peut-il remplacer une carte NI-DAQ ?**
 
@@ -366,6 +400,13 @@ Quitte à utiliser un protocole réseau, un SBC comme le [RPi Zero 2 W] sera
 [ThunderScope]: https://github.com/EEVengers/ThunderScope
 [RPi Zero 2 W]: https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/
 
+### Perspectives
+
+Avec Sciduino, un Arduino peut être utilisé en lieu et place d’une carte NI-DAQ dans tous les cas d’usage de RBI. Le principal avantage est qu’un banc de test conçu autour d’un MCU peut fonctionner de façon autonome : la connexion USB ne sert qu’à transférer les données traitées au PC.
+
+Les applications écrites en LabVIEW peuvent être adaptées facilement pour utiliser Sciduino en lieu et place de NI-DAQ. La conversion d’une application LabVIEW en Python+QML n’est pas triviale, mais les nouveaux développements pourraient être faits directement en Python+QML sans gros surcoût — et ainsi permettre d’adjoindre un SBC type RPi Zero aux futurs bancs de test RBI.
+
+J’espère que Sciduino sera utile à RBI et qu’il continuera à évoluer au fil des projets.
 
 ## Carte BTO : 16 bits / 1 kHz
 
@@ -393,18 +434,21 @@ Arduino possède une gamme de cartes au format Nano comportant une dizaine de pr
 
 Nous avons choisi le [Nano RP2040] pour sa puissance de calcul (et pour découvrir les capacités du [RP2040]), mais nous avons aussi approvisionné un [Nano Every] (AVR) pour s’assurer que la carte BTO fonctionne avec les MCU que RBI a l’habitude d’utiliser.
 
-En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un MAX1300. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. L’équipe a l’habitude des MAX, et sur le papier, le MAX1300 remplit largement les besoins de la carte BTO. Cependant, nous avons vite repéré de nombreux problèmes en pratique :
+En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un [MAX1300]. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. L’équipe a l’habitude des MAX, et sur le papier, le MAX1300 remplit largement les besoins de la carte BTO. Cependant, on a vite repéré de nombreux problèmes en pratique :
 
 - le signal mesuré comportait beaucoup de bruit, rendant la résolution de 16 bits inutile ;
 - le protocole SPI est un standard très laxe, et la façon dont il a été implémenté nous limite : notamment, il est incapable d’envoyer et recevoir des informations en même temps, divisant par deux la fréquence d’acquisition.
 
-On a donc choisi de le remplacer par un LTC1859 : un autre ADC ayant les mêmes specs que le MAX1300, mais ne comportant aucun des problèmes cités précédemment, en plus d’être bien plus simple à piloter et pouvant théoriquement atteindre une fréquence d’acquisition de 250 kHz.
+On a donc choisi de le remplacer par un [LTC1859] : un autre ADC ayant les mêmes specs que le MAX1300, mais ne comportant aucun des problèmes cités précédemment, en plus d’être bien plus simple à piloter et pouvant théoriquement atteindre une fréquence d’acquisition de 250 kHz.
 
 Ces fréquences d’acquisition de 50, 100 voire 250 kHz semblent démesurées, mais c’est ce qui nous permet de garantir une parité de fonctionnement avec la carte NI‑6212 actuellement utilisée : s’il fallait implémenter un test à 10 kHz sur l’AVR ou effectuer des traitements plus complexes (par exemple, une transformée de Fourier avec un ARM), le matériel ne nous limitera pas.
 
 Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié – un LT6654AIS6-2.5 – pour obtenir une tension de référence à 2.5 V ±0.05%.
 
 (Pour l’anecdote, le MAX1300 *avec* la vref externe avait un signal plus bruité que le LTC1859 *sans*…)
+
+[MAX1300]: https://www.analog.com/en/products/max1300.html
+[LTC1859]: https://www.analog.com/en/products/ltc1859.html
 
 ### Conception KiCad
 
@@ -439,13 +483,20 @@ La qualité du routage peut aussi influer les performances de la carte. Les pist
 
 ### Fabrication et validation
 
-La validation de la carte est normalement triviale. Plusieurs personnes ont vérifié mon schéma et routage, et les différentes fonctions électroniques ont été testés individuellement sur des breadboards. Toutes les erreurs possibles ont donc été commises pendant la phase de prototypage, et les montages fonctionnels ont été retranscrits dans KiCad.
+La validation de la carte est normalement triviale. Plusieurs personnes ont vérifié mon schéma et routage, et les différentes fonctions électroniques ont été testées individuellement sur des breadboards. Toutes les erreurs possibles ont donc été commises pendant la phase de prototypage, et les montages fonctionnels ont été retranscrits dans KiCad.
 
-Nous fabriquons la carte chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais pour la plupart de leurs projets, RBI ne ne fait que des petites séries et trouve plus économique de les assembler en interne.
+La carte est fabriquée chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent mais RBI n’en a pas l’usage : rien n’étant produit en série, c’est plus pertinent de les assembler en interne — notamment pour certaines opérations de diagnostic, où on pourra tester des corrections en intervenant manuellement les PCB.
 
 Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adaptés à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la câbleuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format Europe, donc nous avons largement la place nécessaire.
 
-J’ai dû aussi générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaire pour le bon fonctionnement de la carte et où les acheter.
+J’ai dû aussi générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaires pour le bon fonctionnement de la carte et où les acheter.
+
+### Perspectives
+
+La carte BTO effectue toutes les fonctions attendues par la carte NI-6212. Elle pourrait effectuer des tâches supplémentaires comme l’auto-contrôle du banc de test, sans dépendre du PC externe. La dépendance à NI-DAQ est résolue.
+
+La dépendance à LabVIEW demeure, le projet BTO ayant trop d’ampleur et d’ancienneté pour envisager une réécriture, mais elle est fortement réduite : il ne sera pas nécessaire de mettre à jour LabVIEW pour permettre l’utilisation d’une carte NI-DAQ plus récente. BTO peut donc continuer à tourner sur LabVIEW 2015 aussi longtemps que souhaité.
+
 
 ## Carte Dionysos : 8 bits / 1 MHz
 
@@ -453,10 +504,10 @@ J’ai dû aussi générer la documentation nécessaire pour assembler la carte,
 
 Objectif initial : créer un shield type oscilloscope. Problème :
 
-- aucune carte Arduino n’offre un débit USB suffisant
-- aucune carte STM32 n’a à la fois un ADC suffisamment rapide et un USB hi-speed
+- aucune carte Arduino n’offre un débit USB suffisant, cf. « [Cadence d’échantillonnage](#cadence-déchantillonnage) » ;
+- aucune carte STM32 n’a à la fois un ADC suffisamment rapide et un USB `hi-speed`.
 
-Objectif révisé : prototyper une solution Pico + ADC externe (SPI) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de Dionysos, l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des PicoScope.
+Objectif révisé : prototyper une solution RPi Pico + ADC externe (SPI) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de Dionysos, l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des PicoScope.
 
 Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
 - le niveau bas correspond au milieu liquide (la pointe de la sonde optique est dans l’eau)
