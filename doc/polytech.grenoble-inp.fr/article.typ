@@ -168,7 +168,7 @@
         #set text(weight: "bold", size: 1.4em)
         #block([#smallcaps(all: true)[#it.body]])
         #v(-1em)
-        #line(start: (0%,0%), end: (100%,0%), stroke: 1pt)
+        #line(start: (0%,0%), end: (100%,0%), stroke: 0.8pt + gradient.linear(black, white))
       ])
 
   show heading.where(depth: 2): body => {
