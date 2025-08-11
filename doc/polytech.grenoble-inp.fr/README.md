@@ -329,7 +329,7 @@ Pour un fonctionnement en mode *streamnig* (acquisition de données en direct su
 Arduino propose systématiquement 8 entrées analogiques sur ses contrôleurs, avec une cadence d’ADC typiquement entre 4 et 10 µs (100 à 250 kHz). Pour envoyer un *stream* continu de 8 voies (800 kS/s à 2 000 kS/s), il faudrait un débit USB de 1.6 à 4 MB/s — et aucune carte Arduino ne semble permettre de transférer un tel flux de données.
 
 |                   | Due               | Nano 2040         | Giga R1 Wifi
-|-------------------|------------------:|------------------:|---------------:
+|:------------------|------------------:|------------------:|---------------:
 | MCU               | Atmel SAM3X3E     | RP2040            | STM32H747XIH6
 | architecture      | ARM Cortex-M3     | 2× ARM Cortex-M0+ | ARM Cortex‑M7 + M4
 | horloge           | 84 MHz            | 125 MHz           | 480 MHz + 240 MHz
@@ -341,8 +341,8 @@ Arduino propose systématiquement 8 entrées analogiques sur ses contrôleurs, a
 
 STM32 propose des cartes Nucleo dédiées à l’acquisition rapide de données. Mais là encore, leur contrôleur USB `full-speet` les limite à 1 MB/s. On ne peut donc streamer qu’une seule voie à sa cadence d’échantillonnage maximale.
 
-| Board           | Référence | MCU             | ADC                         
-| --------------- |:---------:| ----------------|-------- 
+| Carte           | Référence | MCU             | ADC                         
+|:--------------- |:---------:| ----------------|-------- 
 | [Nucleo-F303K8] | [MB1180]  | [STM32F303K8T6] | 2 × 0.20μs (~400 kHz)
 | [Nucleo-G431KB] | [MB1430]  | [STM32G431KBT6] | 2 x 0.25µs (~500 kHz)
 | [Nucleo-L412KB] | [MB1180]  | [STM32L412KBU3] | 2 × 0.20μs (~400 kHz)
