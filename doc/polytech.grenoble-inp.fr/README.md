@@ -497,7 +497,6 @@ La carte BTO effectue toutes les fonctions attendues par la carte NI-6212. Elle 
 
 La dépendance à LabVIEW demeure, le projet BTO ayant trop d’ampleur et d’ancienneté pour envisager une réécriture, mais elle est fortement réduite : il ne sera pas nécessaire de mettre à jour LabVIEW pour permettre l’utilisation d’une carte NI-DAQ plus récente. BTO peut donc continuer à tourner sur LabVIEW 2015 aussi longtemps que souhaité.
 
-
 ## Carte Dionysos : 8 bits / 1 MHz
 
 ### Objectif
