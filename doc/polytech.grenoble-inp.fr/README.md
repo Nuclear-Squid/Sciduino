@@ -322,9 +322,9 @@ Pour un fonctionnement en mode *streamnig* (acquisition de données en direct su
 
 > Côté Python, les vitesses de transmission USB ont été évaluées en envoyant le texte dans le moniteur série d’arduino-cli. On évalue maintenant les perfs de différentes libs USB.
 >
-> * **pyserial**: On constate un très gros écart de performance (100 kHz max) si on lit trop de données d’un coup avec pyserial (avec un `readline` trop long, par exemple). Allouer à l’avance un `bytearray` suffisemment long et écrire dedans ce qu’on recoit par des plus petits paquets élimine les réallocs et rend cet overhead négligeable.
+> * **pyserial**: On constate un très gros écart de performance (100 kHz max) si on lit trop de données d’un coup avec pyserial (avec un `readline` trop long, par exemple). Allouer à l’avance un `bytearray` suffisemment long et écrire dedans ce qu’on reçoit par des plus petits paquets élimine les réallocs et rend cet overhead négligeable.
 >
-> * **pyusb**: Beaucoup trop compliqué à mettre en place. Pyserial est probablement suffisemment rapide pour la plupart des applications.
+> * **pyusb**: Beaucoup trop compliqué à mettre en place. Pyserial est probablement suffisamment rapide pour la plupart des applications.
 
 Arduino propose systématiquement 8 entrées analogiques sur ses contrôleurs, avec une cadence d’ADC typiquement entre 4 et 10 µs (100 à 250 kHz). Pour envoyer un *stream* continu de 8 voies (800 kS/s à 2 000 kS/s), il faudrait un débit USB de 1.6 à 4 MB/s — et aucune carte Arduino ne semble permettre de transférer un tel flux de données.
 
