@@ -340,7 +340,7 @@ Arduino propose systématiquement 8 entrées analogiques sur ses contrôleurs, a
 |:------------------|------------------:|------------------:|---------------:
 | MCU               | Atmel SAM3X3E     | RP2040            | STM32H747XIH6
 | architecture      | Cortex-M3         | 2× Cortex-M0+     | Cortex‑M7 + M4
-| horloge           | 84 MHz            | 125 MHz 125 MHz   | 480 MHz 240 MHz
+| horloge           | 84 MHz            | 125 MHz           | 480 MHz 240 MHz
 | mémoire flash     | 512 kB            | 16 MB             | 2 MB
 | mémoire SRAM      | 96 kB             | 264 kB            | 1024 kB
 | débit USB réel    | 2.8 MB/s          | 1.0 MB/s          | 0.67 MB/s
