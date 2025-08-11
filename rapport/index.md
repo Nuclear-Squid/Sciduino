@@ -216,8 +216,8 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 
 Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendence à NI. Comme avec LabVIEW et les cartes NI, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages disctincts :
 
-1. le code Arduino qui pilote le micro controlleur et effectue les mesures ;
-2. un module Python pour s’interfacer avec le micro-controlleur ;
+1. le code Arduino qui pilote le micro contrôleur et effectue les mesures ;
+2. un module Python pour s’interfacer avec le micro-contrôleur ;
 3. une interface graphique en QML qui affiche les informations reçues.
 
 L’objectif de cette stack logicielle est de limiter le couplage entre les différentes fonctions nécessaires (acquisition, pilotage, affichage), mais aussi de se limiter à des outils simples et libres.
@@ -240,7 +240,7 @@ Afin d’échanger des instructions et informations entre la carte et l’ordina
 
 **Pilote Python**
 
-Un module Python est développé en parallèle pour s’interfacer avec le micro-controlleur. Il exporte un objet `Sciduino` qui récupère la configuration des entrées / sorties de la carte et contient des méthodes pour envoyer des instructions à la carte puis parser les réponses en des types natif à Python ou dans des tableaux Numpy (comme le contenu des `Waveform` envoyé par la carte).
+Un module Python est développé en parallèle pour s’interfacer avec le micro-contrôleur. Il exporte un objet `Sciduino` qui récupère la configuration des entrées / sorties de la carte et contient des méthodes pour envoyer des instructions à la carte puis parser les réponses en des types natif à Python ou dans des tableaux Numpy (comme le contenu des `Waveform` envoyé par la carte).
 
 Ce module est écrit en Python car bien que les performances soient très mauvaises, c’est un langage simple, interprété, cross plateform et qui possède un écosystème très complet pour le calcul scientifique ou traitement de signal rapide (Numpy, Scipy, Pandas…).
 
@@ -286,7 +286,7 @@ En plus du code QML nécessaire pour créer l’interface graphique, un second m
 
 ### Mise en œuvre
 
-Grâce à Sciduino, un Arduino peut rapidement devenir un périphérique DAQ : les abstractions sur les ADCs permettent d’utiliser l’ADC interne de l’Arduino pour rapidement prototyper une application, puis passer à un ADC externe plus précis sans changement majeur danas le code.
+Grâce à Sciduino, un Arduino peut rapidement devenir un périphérique DAQ : les abstractions sur les ADCs permettent d’utiliser l’ADC interne de l’Arduino pour rapidement prototyper une application, puis passer à un ADC externe plus précis sans changement majeur dans le code.
 
 La communication avec le PC se fait via une liaison série : les cartes AVR exposent un port COM virtuel, les cartes ARM possèdent une API nommée `SerialUSB` qui permet d’échanger directement via le bus USB, ce qui augemente drastiquement le débit de transfert.
 
