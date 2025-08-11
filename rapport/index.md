@@ -36,19 +36,16 @@ RBI réalise un chiffre d’affaire annuel d’environ 900 k€/an (chiffre 20
 
 ### Technologies
 
-Forte dépendance à [National Instruments](https://ni.com) (NI) :
+Pour ses développements, RBI se repose beaucoup sur les produits [National Instruments](https://ni.com) (NI) :
 
 - pour les cartes mutifonctions (MIO) et d’acquisition de données (DAQ) ;
 - pour l’environnement de développement logiciel (LabVIEW).
 
-Problèmes :
+Ce choix a fonctionné longtemps, mais est remis en cause par des choix récents de NI en matière de gestion d’obsolescence : leur durée de support n’est pas très longue (4 ans pour chaque version de LabVIEW, une dizaine d’années pour les cartes DAQ), et ils n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la [fin de vie au profit de NXG](https://labviewwiki.org/wiki/LabVIEW_NXG) en 2017, avant de décider l’inverse en 2020.
 
-- technos propriétaires
-- obsolescence :
-  - les cartes MIO-DAQ ne sont maintenues que ~10 ans
-  - les versions de LabVIEW ne sont maintenues que 4 ans
-- de moins en moins adapté aux contraintes des clients de RBI (scientifiques et industriels)
-- coût élevé
+Par ailleurs, ces produits sont chers (le prix des licences LabVIEW a récemment explosé) et de moins en moins adaptés aux applications industrielles. Ces produits étant fermés, il est difficile de les remplacer par une alternative tierce sans remettre en cause tout le développement.
+
+RBI souhaite donc envisager d’autres technologies pour ses développements à venir.
 
 ### Objectifs du stage
 
@@ -209,11 +206,7 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 
 ### Stack logicielle
 
-> TODO: paragraphe à passer dans l’intro (Contexte/Technologies) ?
-
-> Aujourd’hui, RBI repose sur des produits de National Instruments (LabVIEW, cartes multi-fonctions…) pour leurs développements, ce qui s’avère dangereux : ces produits sont fermés, et n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la [fin de vie au profit de NXG](https://labviewwiki.org/wiki/LabVIEW_NXG) en 2017, avant de décider l’inverse en 2020. Par ailleurs, ces produits sont chers (le prix des licences LabVIEW a récemment explosé) et de moins en moins adaptés aux applications industrielles.
-
-Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendence à NI. Comme avec LabVIEW et les cartes NI, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages disctincts :
+Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendence à National Instruments. Comme avec LabVIEW et les cartes NI-DAQ, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages disctincts :
 
 1. le code Arduino qui pilote le micro contrôleur et effectue les mesures ;
 2. un module Python pour s’interfacer avec le micro-contrôleur ;
