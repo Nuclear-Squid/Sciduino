@@ -174,7 +174,7 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 [Nucleo32]:   https://www.st.com/resource/en/data_brief/nucleo-f031k6.pdf
 
 | Référence     | Contrôleur  | Architecture  | Horloge | E/S   |
-|---------------|-------------|---------------|--------:|------:|
+|:--------------|-------------|---------------|--------:|------:|
 | [Nano]        | ATmega 328  | AVR           |  16 MHz |   5 V |
 | [Nano Every]  | ATmega 4809 | AVR           |  20 MHz |   5 V |
 | [Nano 33 BLE] | nRF52840    | Cortex‑M4     |  64 MHz | 3.3 V |
@@ -331,8 +331,8 @@ Arduino propose systématiquement 8 entrées analogiques sur ses contrôleurs, a
 |                   | Due               | Nano 2040         | Giga R1 Wifi
 |:------------------|------------------:|------------------:|---------------:
 | MCU               | Atmel SAM3X3E     | RP2040            | STM32H747XIH6
-| architecture      | ARM Cortex-M3     | 2× ARM Cortex-M0+ | ARM Cortex‑M7 + M4
-| horloge           | 84 MHz            | 125 MHz           | 480 MHz + 240 MHz
+| architecture      | Cortex-M3         | 2× Cortex-M0+     | Cortex‑M7 + M4
+| horloge           | 84 MHz            | 125 MHz 125 MHz   | 480 MHz 240 MHz
 | mémoire flash     | 512 kB            | 16 MB             | 2 MB
 | mémoire SRAM      | 96 kB             | 264 kB            | 1024 kB
 | débit USB réel    | 2.8 MB/s          | 1.0 MB/s          | 0.67 MB/s
