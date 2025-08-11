@@ -1,14 +1,5 @@
 # Rapport de stage
 
-<style>
-    table { width: 100%; }
-    table th { background-color: #8882; text-align: center; }
-    table td { padding: 0.3em 1em !important; }
-    h3 { font-size: 1.3em; border: none !important; }
-</style>
-
-[TOC]
-
 ## Contexte
 
 ### RBI Instrumentation
@@ -380,7 +371,7 @@ Quitte à utiliser un protocole réseau, un SBC comme le [RPi Zero 2 W] sera
 
 ### Objectif
 
-L’objectif initial (figurant sur l’offre de stage) était de concevoir un shield DAQ pour Arduino Uno, basé sur un ADC 16 bits / 1 kHz / 8 voies et comportant une zone sur laquelle on peut souder des composants. Cette approche a finalement vite été rejetée, car le projet était trivial (il suffit d’utiliser un ADC communiquant en SPI ou I²C), et à l’uage, on a vu que le prototipage sur breadboard était bien plus pratique (beaucoup plus de place, pas besoin de souder…).
+L’objectif initial (figurant sur l’offre de stage) était de concevoir un shield DAQ pour Arduino Uno, basé sur un ADC 16 bits / 1 kHz / 8 voies et comportant une zone sur laquelle on peut souder des composants. Cette approche a finalement vite été rejetée, car le projet était trivial (il suffit d’utiliser un ADC communiquant en SPI ou I²C), et à l’uage, on a vu que le prototypage sur breadboard était bien plus pratique (beaucoup plus de place, pas besoin de souder…).
 
 L’objectif révisé est de concevoir une carte au [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc de test OBOGS (BTO) de RBI.
 
