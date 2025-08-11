@@ -136,8 +136,7 @@ Le choix s’est vite restreint à trois options : Arduino, STM32, Raspberry P
 - avantages :
   - environnement logiciel libre : [MicroPython](
 https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf) ou [SDK C/C++](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-c-sdk.pdf)
-  - les puces sont top ([rp2040], [rp2350])
-  - les cartes sont top ([Pico], [Pico2])
+  - excellents micro-contrôleurs ([rp2040], [rp2350]) et cartes de développement ([Pico], [Pico2])
   - les [PIO] ouvrent [des possibilités uniques](https://blog.ploopy.co/rp2040-the-little-engine-that-could-96)
   - pas limité à ARM Cortex‑M (le rp2350 propose du RISC–V)
   - puces maintenues 20 ans
