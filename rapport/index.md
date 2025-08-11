@@ -210,7 +210,9 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 
 ### Stack logicielle
 
-Aujourd’hui, RBI repose sur des produits de National Instruments (LabView, cartes multi-fonctions…) pour leurs développements, ce qui s’avère dangereux : ces produits sont fermés, et n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la fin de vie au profit de NXG (avant de se rétracter). Par ailleurs, ces produits sont chers (le prix des licences LabVIEW a récemment explosé) et de moins en moins adaptés aux applications industrielles.
+> TODO: paragraphe à passer dans l’intro (Contexte/Technologies) ?
+
+> Aujourd’hui, RBI repose sur des produits de National Instruments (LabVIEW, cartes multi-fonctions…) pour leurs développements, ce qui s’avère dangereux : ces produits sont fermés, et n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la [fin de vie au profit de NXG](https://labviewwiki.org/wiki/LabVIEW_NXG) en 2017, avant de décider l’inverse en 2020. Par ailleurs, ces produits sont chers (le prix des licences LabVIEW a récemment explosé) et de moins en moins adaptés aux applications industrielles.
 
 Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendence à NI. Comme avec LabVIEW et les cartes NI, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages disctincts :
 
@@ -222,7 +224,7 @@ L’objectif de cette stack logicielle est de limiter le couplage entre les diff
 
 **Firmware Arduino**
 
-Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [MicroPython], dont le support matériel et plus limité, ot [PlatformIO], dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste limité aux versions obsolètes de Zephyr, le RTOS de référence).
+Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [MicroPython], dont le support matériel et plus limité, ot [PlatformIO], dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
 
 Aujourd’hui, le code micro-contrôleur s’articule autour de :
 
