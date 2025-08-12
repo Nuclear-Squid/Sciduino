@@ -320,93 +320,28 @@ Pour un fonctionnement en mode *streamnig* (acquisition de données en direct su
 
 - La plupart des cartes MUC ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois sulement 600 kB/s.
 
-- Certaines cartes comme l’Arduino Due ont un contrôleur USB 2.0 mais attention, toutes ne permettent pas le débit `hi-speed` de 480 Mbds ; et même quand c’est le cas, ça reste un débit théorique (*[signaling rate]*) : le débit réel de transfert de données est très inférieur, de l’ordre de 30 MB/s pour une clé USB, et quasiment 10 fois moins pour le seul contrôleur `hi-speed` qu’on ait pu tester (Arduino Due). 
+- Certaines cartes comme l’Arduino Due ont un contrôleur USB 2.0 mais attention, toutes ne permettent pas le débit `hi-speed` de 480 Mbds ; et même quand c’est le cas, ça reste un débit théorique (*[signaling rate]*) : le débit réel de transfert de données est très inférieur, de l’ordre de 30 MB/s pour une clé USB, et quasiment 10 fois moins pour le seul contrôleur `hi-speed` qu’on ait pu tester (Arduino Due).
 
 - D’autres cartes comme l’Arduino Giga, avec sa puce STM32H747, ont à la fois un contrôleur `full-speed` et un contrôleur `hi-speed`… mais c’est le premier qui est utilisé pour communiquer avec le PC, semble-t-il. Avec un débit nettement inférieur à celui du RP2040.
 
-[signaling rate]: https://en.wikipedia.org/wiki/USB_communications#Signaling_(USB_PHY)
+Ces débits sont obtenus en mode de communication série (`pyserial`). On pourrait obtenir de meilleurs débits avec un autre protocole (c’est ce que font les [PicoScope] et [ThunderScope], en USB3 et USB4 respectivement), mais on tient à l’approche SCPI et au test via de simples consoles série.
 
-> *[TODO: partie `pyserial` à revoir]*
+Cette limitation à 1 MB/s reste *très* haute pour les besoins courants :
 
-> Côté Python, les vitesses de transmission USB ont été évaluées en envoyant le texte dans le moniteur série d’arduino-cli. On évalue maintenant les perfs de différentes libs USB.
->
-> * **pyserial**: On constate un très gros écart de performance (100 kHz max) si on lit trop de données d’un coup avec pyserial (avec un `readline` trop long, par exemple). Allouer à l’avance un `bytearray` suffisemment long et écrire dedans ce qu’on reçoit par des plus petits paquets élimine les réallocs et rend cet overhead négligeable.
->
-> * **pyusb**: Beaucoup trop compliqué à mettre en place. Pyserial est probablement suffisamment rapide pour la plupart des applications.
+- c’est beaucoup plus que nécessaire pour les bancs de test de RBI ;
+- c’est suffisant streamer 8 voies audio 16 bits à 48 kHz.
 
-Arduino propose systématiquement 8 entrées analogiques sur ses contrôleurs, avec une cadence d’ADC typiquement entre 4 et 10 µs (100 à 250 kHz). Pour envoyer un *stream* continu de 8 voies (800 kS/s à 2 000 kS/s), il faudrait un débit USB de 1.6 à 4 MB/s — et aucune carte Arduino ne semble permettre de transférer un tel flux de données.
+Pour les applications qui nécessitent un débit supérieur à ce que perment la communication série, on pourrait utiliser un SBC comme le [RPi Zero 2 W] :
 
-|                   | Due               | Nano 2040         | Giga R1 Wifi
-|:------------------|------------------:|------------------:|---------------:
-| MCU               | Atmel SAM3X3E     | RP2040            | STM32H747XIH6
-| architecture      | Cortex-M3         | 2× Cortex-M0+     | Cortex‑M7 + M4
-| horloge           | 84 MHz            | 125 MHz           | 480 MHz 240 MHz
-| mémoire flash     | 512 kB            | 16 MB             | 2 MB
-| mémoire SRAM      | 96 kB             | 264 kB            | 1024 kB
-| débit USB réel    | 2.8 MB/s          | 1.0 MB/s          | 0.67 MB/s
-| cadence USB max. (8 voies) | ~170 kHz |  ~60 kHz          |  ~40 kHz
-| cadence ADC       |          ~230 kHz | ~250 kHz          | ~110 kHz
-
-STM32 propose des cartes Nucleo dédiées à l’acquisition rapide de données. Mais là encore, leur contrôleur USB `full-speet` les limite à 1 MB/s. On ne peut donc streamer qu’une seule voie à sa cadence d’échantillonnage maximale.
-
-| Carte           | Référence | MCU             | ADC                         
-|:--------------- |:---------:| ----------------|-------- 
-| [Nucleo-F303K8] | [MB1180]  | [STM32F303K8T6] | 2 × 0.20μs (~400 kHz)
-| [Nucleo-G431KB] | [MB1430]  | [STM32G431KBT6] | 2 x 0.25µs (~500 kHz)
-| [Nucleo-L412KB] | [MB1180]  | [STM32L412KBU3] | 2 × 0.20μs (~400 kHz)
-
-[MB1180]: https://www.st.com/resource/en/user_manual/dm00231744.pdf
-[MB1455]: https://www.st.com/resource/en/user_manual/dm00622380.pdf
-[MB1430]: https://www.st.com/resource/en/user_manual/dm00493601.pdf
-
-[Nucleo-F031K6]: https://www.st.com/en/product/nucleo-f031k6
-[Nucleo-F042K6]: https://www.st.com/en/product/nucleo-f042k6
-[Nucleo-F303K8]: https://www.st.com/en/product/nucleo-f303k8
-[Nucleo-G031K8]: https://www.st.com/en/product/nucleo-g031k8
-[Nucleo-G431KB]: https://www.st.com/en/product/nucleo-g431kb
-[Nucleo-L011K4]: https://www.st.com/en/product/nucleo-l011k4
-[Nucleo-L031K6]: https://www.st.com/en/product/nucleo-l031k6
-[Nucleo-L412KB]: https://www.st.com/en/product/nucleo-l412kb
-[Nucleo-L432KC]: https://www.st.com/en/product/nucleo-l432kc
-
-[STM32F031K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f031k6.html
-[STM32F042K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f042k6.html
-[STM32F303K8T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f303k8.html
-[STM32G031K8T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32g031k8.html
-[STM32G431KBT6]: https://www.st.com/en/microcontrollers-microprocessors/stm32g431kb.html
-[STM32L011K4T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32l011k4.html
-[STM32L031K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32l031k6.html
-[STM32L412KBU3]: https://www.st.com/en/microcontrollers-microprocessors/stm32l412kb.html
-[STM32L432KCU3]: https://www.st.com/en/microcontrollers-microprocessors/stm32l432kc.html
-
-**Jusqu’où un MUC peut-il remplacer une carte NI-DAQ ?**
-
-L’intérêt d’une carte MUC consiste à faire l’acquisition *et le traitement* des données *avant* d’en envoyer le résultat au PC. On peut quand même streamer des données en continu :
-
-- pour les bancs de test pneumatiques de RBI, où on se contente de 1 kHz ;
-- pour les applications audio, où l’USB `full-speed` permet de passer 8 voies 16 bits à 48 kHz ;
-- mais pas pour les applications nécessitant un échantillonnage plus rapide.
-
-Pour l’acquisition haute fréquence, les [PicoScope] et leur port USB3 sont de bonnes alternatives : beaucoup plus rapides que les cartes NI du moment, avec un bon SDK et des pilotes pour Windows, macOS, Linux. Il y a aussi le projet *open-hardware* [ThunderScope], qui pousse les performances encore plus loin, en utilisant directement la RAM et le GPU du PC.
-
-**Utiliser un protocole réseau plutôt qu’USB ?**
-
-Une alternative serait d’utiliser un micro-contrôleur avec un port Ethernet 100 Mbds. STM32 en propose au format Nucleo144 (simili Uno) avec les [h7s3l8] et [n657x0-q]. Il y a aussi le [RP2040-ETH] de Waveshare. On pourrait aussi, tout simplement, utiliser la connectivité WiFi du Giga R1, du Nano RP2040, ou d’un autre MUC orienté IoT. Mais cela sort du cadre fixé pour ce projet.
-
-Quitte à utiliser un protocole réseau, un SBC comme le [RPi Zero 2 W] serait plus approprié :
-
-- bien meilleures performances (quad-core 64 bits 1 GHz, 512 MB de RAM)
+- des performances supérieures à n’importe quel MCU (quad-core 64 bits 1 GHz, 512 MB de RAM)
 - un vrai PC, avec serveur HTTP, port HDMI, stockage persistant (MicroSD)
 - le GPIO Raspberry, pour les périphériques HAT
 - low-cost (environ 15 €)
 
-[h7s3l8]:     https://www.st.com/en/evaluation-tools/nucleo-h7s3l8.html
-[n657x0-q]:   https://www.st.com/en/evaluation-tools/nucleo-n657x0-q.html
-[RP2040-ETH]: https://www.waveshare.com/wiki/RP2040-ETH
-
-[PicoScope]:    https://www.picotech.com/products/oscilloscope
-[ThunderScope]: https://github.com/EEVengers/ThunderScope
-[RPi Zero 2 W]: https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/
+[signaling rate]: https://en.wikipedia.org/wiki/USB_communications#Signaling_(USB_PHY)
+[PicoScope]:      https://www.picotech.com/products/oscilloscope
+[ThunderScope]:   https://github.com/EEVengers/ThunderScope
+[RPi Zero 2 W]:   https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/
 
 ### Perspectives
 
