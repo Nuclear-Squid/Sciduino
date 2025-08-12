@@ -1,3 +1,11 @@
+---
+title: Rapport de stage
+author: Léo Cazenave
+date: 2025-08-18
+subtitle: RBI, mai-août 2024
+abstract: Sciduino
+---
+
 # Rapport de stage
 
 ## Contexte
@@ -77,8 +85,8 @@ Le code et les documents relatifs à [Sciduino][2] sont décrits en anglais, et 
 Le code et les documents de conception spécifiques aux projets [BTO][3] et [Dionysos][4] sont la propriété de RBI, et ne sont pas inclus dans ce rapport. RBI m’autorise à en publier des extraits pertinents pour la rédaction.
 
 [2]: #stack-technique-proposée-sciduino
-[3]: #carte-bto-16bits--1khz
-[4]: #carte-dionysos-8bits--1mhz
+[3]: #carte-bto-16bits-1khz
+[4]: #carte-dionysos-8bits-1mhz
 
 ## Stack technique proposée : Sciduino
 Sciduino = [SciPy] + [PySide] + [Arduino]
@@ -174,7 +182,7 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 [Nucleo32]:   https://www.st.com/resource/en/data_brief/nucleo-f031k6.pdf
 
 | Référence     | Contrôleur  | Architecture  | Horloge | E/S   |
-|---------------|-------------|---------------|--------:|------:|
+|:--------------|-------------|---------------|--------:|------:|
 | [Nano]        | ATmega 328  | AVR           |  16 MHz |   5 V |
 | [Nano Every]  | ATmega 4809 | AVR           |  20 MHz |   5 V |
 | [Nano 33 BLE] | nRF52840    | Cortex‑M4     |  64 MHz | 3.3 V |
@@ -287,7 +295,7 @@ La communication avec le PC se fait via une liaison série : les cartes AVR ex
 
 L’approche SCPI illustre bien la différence de démarche avec les produits NI : au lieu d’acquérir directement les données brutes via le PC, c’est le MCU qui est en charge de l’essentiel de l’acquisition *et du traitement*. Les données remontées au PC sont donc minimes, et le développement desktop se concentre sur la présentation des données.
 
-Pour présenter les informations dans l’interface graphique QML, nous avons créé des bindings entre l’interface et le driver Python. Bien que l’environnement Qt soit originellement codé en C++, la librairie `PySide6` nous permet de lancer une application QML et développer des éléments graphique custom en Python. Un paterne récurent est de définir un élément `Bridge`, chargé de faire l’interface entre l’interface graphique et le backend Python / C++ de l’application.
+Pour présenter les informations dans l’interface graphique QML, nous avons créé des bindings entre l’interface et le driver Python. Bien que l’environnement Qt soit originellement codé en C++, la librairie `PySide6` nous permet de lancer une application QML et développer des éléments graphique custom en Python. Un patern récurrent est de définir un élément `Bridge`, chargé de faire l’interface entre l’interface graphique et le backend Python / C++ de l’application.
 
 ![Morceau du Bridge utilisé pour l’interface](./bridge.png)
 
@@ -310,95 +318,30 @@ Grâce à Python, l’application desktop est développée, mise au point et dé
 
 Pour un fonctionnement en mode *streamnig* (acquisition de données en direct sur le PC, en utilisant le MCU comme une carte NI), les premiers tests ont mis en évidence une limitation inattendue de la cadence d’échantillonnage : c’est souvent l’USB et non l’ADC qui bride les performances.
 
-- La plupart des cartes MUC ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois sulement 600 kB/s.
+- La plupart des cartes MCU ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois seulement 600 kB/s.
 
-- Certaines cartes comme l’Arduino Due ont un contrôleur USB 2.0 mais attention, toutes ne permettent pas le débit `hi-speed` de 480 Mbds ; et même quand c’est le cas, ça reste un débit théorique (*[signaling rate]*) : le débit réel de transfert de données est très inférieur, de l’ordre de 30 MB/s pour une clé USB, et quasiment 10 fois moins pour le seul contrôleur `hi-speed` qu’on ait pu tester (Arduino Due). 
+- Certaines cartes comme l’Arduino Due ont un contrôleur USB 2.0 mais attention, toutes ne permettent pas le débit `hi-speed` de 480 Mbds ; et même quand c’est le cas, ça reste un débit théorique (*[signaling rate]*) : le débit réel de transfert de données est très inférieur, de l’ordre de 30 MB/s pour une clé USB, et quasiment 10 fois moins pour le seul contrôleur `hi-speed` qu’on ait pu tester (Arduino Due).
 
 - D’autres cartes comme l’Arduino Giga, avec sa puce STM32H747, ont à la fois un contrôleur `full-speed` et un contrôleur `hi-speed`… mais c’est le premier qui est utilisé pour communiquer avec le PC, semble-t-il. Avec un débit nettement inférieur à celui du RP2040.
 
-[signaling rate]: https://en.wikipedia.org/wiki/USB_communications#Signaling_(USB_PHY)
+Ces débits sont obtenus en mode de communication série (`pyserial`). On pourrait obtenir de meilleurs débits avec un autre protocole (c’est ce que font les [PicoScope] et [ThunderScope], en USB3 et USB4 respectivement), mais on tient à l’approche SCPI et au test via de simples consoles série.
 
-> *[TODO: partie `pyserial` à revoir]*
+Cette limitation à 1 MB/s reste *très* haute pour les besoins courants :
 
-> Côté Python, les vitesses de transmission USB ont été évaluées en envoyant le texte dans le moniteur série d’arduino-cli. On évalue maintenant les perfs de différentes libs USB.
->
-> * **pyserial**: On constate un très gros écart de performance (100 kHz max) si on lit trop de données d’un coup avec pyserial (avec un `readline` trop long, par exemple). Allouer à l’avance un `bytearray` suffisemment long et écrire dedans ce qu’on recoit par des plus petits paquets élimine les réallocs et rend cet overhead négligeable.
->
-> * **pyusb**: Beaucoup trop compliqué à mettre en place. Pyserial est probablement suffisemment rapide pour la plupart des applications.
+- c’est beaucoup plus que nécessaire pour les bancs de test de RBI ;
+- c’est suffisant streamer 8 voies audio 16 bits à 48 kHz.
 
-Arduino propose systématiquement 8 entrées analogiques sur ses contrôleurs, avec une cadence d’ADC typiquement entre 4 et 10 µs (100 à 250 kHz). Pour envoyer un *stream* continu de 8 voies (800 kS/s à 2 000 kS/s), il faudrait un débit USB de 1.6 à 4 MB/s — et aucune carte Arduino ne semble permettre de transférer un tel flux de données.
+Pour les applications qui nécessitent un débit supérieur à ce que permet la communication série, on pourrait utiliser un SBC comme le [RPi Zero 2 W] :
 
-|                   | Due               | Nano 2040         | Giga R1 Wifi
-|-------------------|------------------:|------------------:|---------------:
-| MCU               | Atmel SAM3X3E     | RP2040            | STM32H747XIH6
-| architecture      | ARM Cortex-M3     | 2× ARM Cortex-M0+ | ARM Cortex‑M7 + M4
-| horloge           | 84 MHz            | 125 MHz           | 480 MHz + 240 MHz
-| mémoire flash     | 512 kB            | 16 MB             | 2 MB
-| mémoire SRAM      | 96 kB             | 264 kB            | 1024 kB
-| débit USB réel    | 2.8 MB/s          | 1.0 MB/s          | 0.67 MB/s
-| cadence USB max. (8 voies) | ~170 kHz |  ~60 kHz          |  ~40 kHz
-| cadence ADC       |          ~230 kHz | ~250 kHz          | ~110 kHz
-
-STM32 propose des cartes Nucleo dédiées à l’acquisition rapide de données. Mais là encore, leur contrôleur USB `full-speet` les limite à 1 MB/s. On ne peut donc streamer qu’une seule voie à sa cadence d’échantillonnage maximale.
-
-| Board           | Référence | MCU             | ADC                         
-| --------------- |:---------:| ----------------|-------- 
-| [Nucleo-F303K8] | [MB1180]  | [STM32F303K8T6] | 2 × 0.20μs (~400 kHz)
-| [Nucleo-G431KB] | [MB1430]  | [STM32G431KBT6] | 2 x 0.25µs (~500 kHz)
-| [Nucleo-L412KB] | [MB1180]  | [STM32L412KBU3] | 2 × 0.20μs (~400 kHz)
-
-[MB1180]: https://www.st.com/resource/en/user_manual/dm00231744.pdf
-[MB1455]: https://www.st.com/resource/en/user_manual/dm00622380.pdf
-[MB1430]: https://www.st.com/resource/en/user_manual/dm00493601.pdf
-
-[Nucleo-F031K6]: https://www.st.com/en/product/nucleo-f031k6
-[Nucleo-F042K6]: https://www.st.com/en/product/nucleo-f042k6
-[Nucleo-F303K8]: https://www.st.com/en/product/nucleo-f303k8
-[Nucleo-G031K8]: https://www.st.com/en/product/nucleo-g031k8
-[Nucleo-G431KB]: https://www.st.com/en/product/nucleo-g431kb
-[Nucleo-L011K4]: https://www.st.com/en/product/nucleo-l011k4
-[Nucleo-L031K6]: https://www.st.com/en/product/nucleo-l031k6
-[Nucleo-L412KB]: https://www.st.com/en/product/nucleo-l412kb
-[Nucleo-L432KC]: https://www.st.com/en/product/nucleo-l432kc
-
-[STM32F031K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f031k6.html
-[STM32F042K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f042k6.html
-[STM32F303K8T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32f303k8.html
-[STM32G031K8T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32g031k8.html
-[STM32G431KBT6]: https://www.st.com/en/microcontrollers-microprocessors/stm32g431kb.html
-[STM32L011K4T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32l011k4.html
-[STM32L031K6T6]: https://www.st.com/en/microcontrollers-microprocessors/stm32l031k6.html
-[STM32L412KBU3]: https://www.st.com/en/microcontrollers-microprocessors/stm32l412kb.html
-[STM32L432KCU3]: https://www.st.com/en/microcontrollers-microprocessors/stm32l432kc.html
-
-**Jusqu’où un MUC peut-il remplacer une carte NI-DAQ ?**
-
-L’intérêt d’une carte MUC consiste à faire l’acquisition *et le traitement* des données *avant* d’en envoyer le résultat au PC. On peut quand même streamer des données en continu :
-
-- pour les bancs de test pneumatiques de RBI, où on se contente de 1 kHz ;
-- pour les applications audio, où l’USB `full-speed` permet de passer 8 voies 16 bits à 48 kHz ;
-- mais pas pour les applications nécessitant un échantillonnage plus rapide.
-
-Pour l’acquisition haute fréquence, les [PicoScope] et leur port USB3 sont de bonnes alternatives : beaucoup plus rapides que les cartes NI du moment, avec un bon SDK et des pilotes pour Windows, macOS, Linux. Il y a aussi le projet *open-hardware* [ThunderScope], qui pousse les performances encore plus loin, en utilisant directement la RAM et le GPU du PC.
-
-**Utiliser un protocole réseau plutôt qu’USB ?**
-
-Une alternative serait d’utiliser un micro-contrôleur avec un port Ethernet 100 Mbds. STM32 en propose au format Nucleo144 (simili Uno) avec les [h7s3l8] et [n657x0-q]. Il y a aussi le [RP2040-ETH] de Waveshare. On pourrait aussi, tout simplement, utiliser la connectivité WiFi du Giga R1, du Nano RP2040, ou d’un autre MUC orienté IoT. Mais cela sort du cadre fixé pour ce projet.
-
-Quitte à utiliser un protocole réseau, un SBC comme le [RPi Zero 2 W] serait plus approprié :
-
-- bien meilleures performances (quad-core 64 bits 1 GHz, 512 MB de RAM)
+- des performances supérieures à n’importe quel MCU (quad-core 64 bits 1 GHz, 512 MB de RAM)
 - un vrai PC, avec serveur HTTP, port HDMI, stockage persistant (MicroSD)
 - le GPIO Raspberry, pour les périphériques HAT
 - low-cost (environ 15 €)
 
-[h7s3l8]:     https://www.st.com/en/evaluation-tools/nucleo-h7s3l8.html
-[n657x0-q]:   https://www.st.com/en/evaluation-tools/nucleo-n657x0-q.html
-[RP2040-ETH]: https://www.waveshare.com/wiki/RP2040-ETH
-
-[PicoScope]:    https://www.picotech.com/products/oscilloscope
-[ThunderScope]: https://github.com/EEVengers/ThunderScope
-[RPi Zero 2 W]: https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/
+[signaling rate]: https://en.wikipedia.org/wiki/USB_communications#Signaling_(USB_PHY)
+[PicoScope]:      https://www.picotech.com/products/oscilloscope
+[ThunderScope]:   https://github.com/EEVengers/ThunderScope
+[RPi Zero 2 W]:   https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/
 
 ### Perspectives
 
@@ -408,7 +351,7 @@ Les applications écrites en LabVIEW peuvent être adaptées facilement pour uti
 
 J’espère que Sciduino sera utile à RBI et qu’il continuera à évoluer au fil des projets.
 
-## Carte BTO : 16 bits / 1 kHz
+## Carte BTO : 16bits / 1kHz
 
 ### Objectif
 
@@ -417,6 +360,7 @@ L’objectif initial (figurant sur l’offre de stage) était de concevoir un sh
 L’objectif révisé est de concevoir une carte au [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc de test OBOGS (BTO) de RBI.
 
 Cette carte doit assurer les fonctions qu’on attendait de la [NI-6212] :
+
 - numérisation au mV près de 8 voies analogiques ±10 V, à 1 kHz ou mieux ;
 - gestion des bus d’adresse (8 bits) et de données (8 bits) spécifiques à BTO.
 
@@ -497,7 +441,7 @@ La carte BTO effectue toutes les fonctions attendues par la carte NI-6212. Elle 
 
 La dépendance à LabVIEW demeure, le projet BTO ayant trop d’ampleur et d’ancienneté pour envisager une réécriture, mais elle est fortement réduite : il ne sera pas nécessaire de mettre à jour LabVIEW pour permettre l’utilisation d’une carte NI-DAQ plus récente. BTO peut donc continuer à tourner sur LabVIEW 2015 aussi longtemps que souhaité.
 
-## Carte Dionysos : 8 bits / 1 MHz
+## Carte Dionysos : 8bits / 1MHz
 
 ### Objectif
 
@@ -509,6 +453,7 @@ Objectif initial : créer un shield type oscilloscope. Problème :
 Objectif révisé : prototyper une solution RPi Pico + ADC externe (SPI) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de Dionysos, l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des PicoScope.
 
 Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
+
 - le niveau bas correspond au milieu liquide (la pointe de la sonde optique est dans l’eau)
 - le niveau haut correspond au milieu gazeux (la pointe de la sonde optique est dans l’air)
 - le passage d’une bulle sur une sonde correspond donc à un crénau dont on veut connaitre :
@@ -544,6 +489,7 @@ Les PIO se programment en assembleur, on peut donc viser une acquisition de l’
 Les performances étant critiques, on cherche à avoir le moins d’abstraction possible pour exploiter le MCU au mieux de ses capacités.
 
 L’API C serait le choix le plus évident, mais l’approche Rust Embedded semble pertinente :
+
 - une bibliothèque Rust standard, décrivant les [traits](https://fr.wikipedia.org/wiki/Trait_(programmation)) à implémenter ;
 - une bibliothèque par classe de MCU, décrivant l’implémentation de ces traits — il y en a une pour STM32 et une pour Raspberry, entre autres.
 
@@ -575,6 +521,7 @@ L’approche Nano facilite à la fois le développement (breadboard) et la conce
 ### Rust Embedded
 
 Une voie encore en développement mais prometteuse :
+
 - [embedded-hal] fournit une excellente abstraction matérielle ;
 - [RTIC] gère très bien la concurrence (mais pas encore le multi-cœurs) ;
 - les puces ARM et RISC-V sont supportées ;
