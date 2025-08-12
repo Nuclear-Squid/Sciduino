@@ -318,7 +318,7 @@ Grâce à Python, l’application desktop est développée, mise au point et dé
 
 Pour un fonctionnement en mode *streamnig* (acquisition de données en direct sur le PC, en utilisant le MCU comme une carte NI), les premiers tests ont mis en évidence une limitation inattendue de la cadence d’échantillonnage : c’est souvent l’USB et non l’ADC qui bride les performances.
 
-- La plupart des cartes MUC ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois sulement 600 kB/s.
+- La plupart des cartes MCU ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois sulement 600 kB/s.
 
 - Certaines cartes comme l’Arduino Due ont un contrôleur USB 2.0 mais attention, toutes ne permettent pas le débit `hi-speed` de 480 Mbds ; et même quand c’est le cas, ça reste un débit théorique (*[signaling rate]*) : le débit réel de transfert de données est très inférieur, de l’ordre de 30 MB/s pour une clé USB, et quasiment 10 fois moins pour le seul contrôleur `hi-speed` qu’on ait pu tester (Arduino Due).
 
