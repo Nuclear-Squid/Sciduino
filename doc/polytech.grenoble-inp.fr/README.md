@@ -331,7 +331,7 @@ Cette limitation à 1 MB/s reste *très* haute pour les besoins courants :
 - c’est beaucoup plus que nécessaire pour les bancs de test de RBI ;
 - c’est suffisant streamer 8 voies audio 16 bits à 48 kHz.
 
-Pour les applications qui nécessitent un débit supérieur à ce que perment la communication série, on pourrait utiliser un SBC comme le [RPi Zero 2 W] :
+Pour les applications qui nécessitent un débit supérieur à ce que permet la communication série, on pourrait utiliser un SBC comme le [RPi Zero 2 W] :
 
 - des performances supérieures à n’importe quel MCU (quad-core 64 bits 1 GHz, 512 MB de RAM)
 - un vrai PC, avec serveur HTTP, port HDMI, stockage persistant (MicroSD)
