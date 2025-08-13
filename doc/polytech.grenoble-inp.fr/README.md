@@ -219,7 +219,7 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 
 ### Stack logicielle
 
-Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendence à National Instruments. Comme avec LabVIEW et les cartes NI-DAQ, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages disctincts :
+Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendance à National Instruments. Comme avec LabVIEW et les cartes NI-DAQ, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages distincts :
 
 1. le code Arduino qui pilote le micro contrôleur et effectue les mesures ;
 2. un module Python pour s’interfacer avec le micro-contrôleur ;
@@ -229,7 +229,7 @@ L’objectif de cette stack logicielle est de limiter le couplage entre les diff
 
 **Firmware Arduino**
 
-Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [MicroPython], très pratique mais dont le support matériel et plus limité, et [PlatformIO], plus complet mais dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
+Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différentes alternatives ont été envisagées, notamment [MicroPython], très pratique mais dont le support matériel et plus limité, et [PlatformIO], plus complet mais dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
 
 [PlatformIO]:  https://platformio.org/
 [MicroPython]: https://micropython.org/
@@ -293,20 +293,20 @@ La communication avec le PC se fait via une liaison série : les cartes AVR ex
 
 L’approche SCPI illustre bien la différence de démarche avec les produits NI : au lieu d’acquérir directement les données brutes via le PC, c’est le MCU qui est en charge de l’essentiel de l’acquisition *et du traitement*. Les données remontées au PC sont donc minimes, et le développement desktop se concentre sur la présentation des données.
 
-Pour présenter les informations dans l’interface graphique QML, nous avons créé des bindings entre l’interface et le driver Python. Bien que l’environnement Qt soit originellement codé en C++, la librairie `PySide6` nous permet de lancer une application QML et développer des éléments graphique custom en Python. Un patern récurrent est de définir un élément `Bridge`, chargé de faire l’interface entre l’interface graphique et le backend Python / C++ de l’application.
+Pour présenter les informations dans l’interface graphique QML, nous avons créé des bindings entre l’interface et le driver Python. Bien que l’environnement Qt soit originellement codé en C++, la librairie `PySide6` nous permet de lancer une application QML et développer des éléments graphique custom en Python. Un pattern récurrent est de définir un élément `Bridge`, chargé de faire l’interface entre l’interface graphique et le backend Python / C++ de l’application.
 
 ![Morceau du Bridge utilisé pour l’interface](./bridge.png)
 
-La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce au décorateur `QmlElement`, et défini des proriété et méthodes via les décorateurs `property` et `slot` respectivement. Une fois mis en place, l’élément `Bridge` peut être intégré au code d’interface, et ses propriété / méthodes peuvent être utilisés comme n’importe quel autre élément QML.
+La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce au décorateur `QmlElement`, et défini des propriétés et méthodes via les décorateurs `property` et `slot` respectivement. Une fois mis en place, l’élément `Bridge` peut être intégré au code d’interface, et ses propriétés / méthodes peuvent être utilisés comme n’importe quel autre élément QML.
 
-Grâce à Python, l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée paur un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
+Grâce à Python, l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée par un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
 
 > *TODO: Rajouter un screenshot de l’appli*
 
 **Retour d’expérience** après quelques semaines d’utilisation :
 
 - LabVIEW reste l’option la plus rapide pour prototyper ;
-- Python/QML est un peu plus exigeant, mais permet de livrer des applicationss mieux finies :
+- Python/QML est un peu plus exigeant, mais permet de livrer des applications mieux finies :
   - le versionnement SVN ou Git est enfin possible (pas de `diff` avec LabVIEW) ;
   - de bons outils de qualité logicielle : [ruff] (lint, LSP), [uv] (gestionnaire de paquets), [ty]/[mypy] (type checker)…
   - la gestion de l’interface utilisateur (GUI) est bien séparée du reste du code ;
@@ -321,7 +321,7 @@ Grâce à Python, l’application desktop est développée, mise au point et dé
 
 ### Cadence d’échantillonnage
 
-Pour un fonctionnement en mode *streamnig* (acquisition de données en direct sur le PC, en utilisant le MCU comme une carte NI), les premiers tests ont mis en évidence une limitation inattendue de la cadence d’échantillonnage : c’est souvent l’USB et non l’ADC qui bride les performances.
+Pour un fonctionnement en mode *streaming* (acquisition de données en direct sur le PC, en utilisant le MCU comme une carte NI), les premiers tests ont mis en évidence une limitation inattendue de la cadence d’échantillonnage : c’est souvent l’USB et non l’ADC qui bride les performances.
 
 - La plupart des cartes MCU ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois seulement 600 kB/s.
 
@@ -334,7 +334,7 @@ Ces débits sont obtenus en mode de communication série (`pyserial`). On pourra
 Cette limitation à 1 MB/s reste *très* haute pour les besoins courants :
 
 - c’est beaucoup plus que nécessaire pour les bancs de test de RBI ;
-- c’est suffisant streamer 8 voies audio 16 bits à 48 kHz.
+- c’est suffisant pour streamer 8 voies audio 16 bits à 48 kHz.
 
 Pour les applications qui nécessitent un débit supérieur à ce que permet la communication série, on pourrait utiliser un SBC comme le [RPi Zero 2 W] :
 
@@ -405,11 +405,11 @@ RBI privilégie les logiciels libres quand c’est possible, et utilise [KiCad] 
 
 [KiCad]: https://www.kicad.org/
 
-Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans KiCad (conneteurs, buffers, protection décharges électro-statique…).
+Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans KiCad (connecteurs, buffers, protection décharges électro-statique…).
 
 Le rack électronique du banc fonctionne en 5 V, les AVR aussi, mais pas les ARM. On veut donc pouvoir amplifier le signal des cartes ARM tout en gardant le signal 5 V des cartes AVR — le tout, sans nécessiter de configuration manuelle, qui est source d’erreurs parfois difficiles à diagnostiquer.
 
-Pour celà, on utilise un « level-shifter », un montage à transistor qui reçoit un signal numérique et une référence de tension en entrée, et fixe le niveau de tension en sortie à un niveau fixe. Les Arduino Nano ne fournissant pas de pin `ioref` par défaut, on utilise un GPIO en sortie numérique pour recréer la fonction.
+Pour cela, on utilise un « level-shifter », un montage à transistor qui reçoit un signal numérique et une référence de tension en entrée, et fixe le niveau de tension en sortie à un niveau fixe. Les Arduino Nano ne fournissant pas de pin `ioref` par défaut, on utilise un GPIO en sortie numérique pour recréer la fonction.
 
 ![Schéma électronique d’un level-shifter](./level_shifter.png)
 
@@ -426,7 +426,7 @@ Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, a
 Les micro-contrôleurs sont des composants très complexes, dont le fonctionnement interne peut générer un léger bruit susceptible se répercuter sur le reste du circuit, notamment sur le plan de masse. Ce bruit pouvant perturber les mesures de l’ADC, on a cherché à séparer l’ADC du « monde numérique » le plus possible. Cela a été réalisé via deux techniques :
 
 1. on utilise un régulateur de tension externe – un L78L05-SOT89 – pour fournir une tension stable aux alimentations analogiques de l’ADC ;
-2. on sépare la carte en deux plans de masse disctincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
+2. on sépare la carte en deux plans de masse distincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
 
 La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ayant une très légère résistance, on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation aux différents composants pouvant faire circuler beaucoup de courant, on les a élargies pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à intervalle régulier afin d’éviter des éventuels effets capacitifs sur la carte.
 
@@ -461,7 +461,7 @@ Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
 
 - le niveau bas correspond au milieu liquide (la pointe de la sonde optique est dans l’eau)
 - le niveau haut correspond au milieu gazeux (la pointe de la sonde optique est dans l’air)
-- le passage d’une bulle sur une sonde correspond donc à un crénau dont on veut connaitre :
+- le passage d’une bulle sur une sonde correspond donc à un créneau dont on veut connaitre :
   - la date par rapport au début de l’acquisition
   - la durée (qui permet d’évaluer la taille de la bulle)
   - les temps de montée et de descente (qui pourraient permettre d’évaluer la vitesse)
@@ -470,7 +470,7 @@ On cherche à qualifier ces signaux avec une résolution de 50 ns, donc une ac
 
 On sort du cadre de Sciduino : aucun MCU ne peut transférer un signal à cette cadence-là. Il faudrait un contrôleur USB3, probablement associé à un FPGA.
 
-L’idée ici est d’utiliser un MCU pour transformer le signal analogique à 20 MHz en une suite d’événements (date, durée, temps de montée/descente), avant de la tranférer au PC. Une limite à 10 000 événements par seconde est raisonnable, et correspond déjà à des écoulements extrêmes.
+L’idée ici est d’utiliser un MCU pour transformer le signal analogique à 20 MHz en une suite d’événements (date, durée, temps de montée/descente), avant de la transférer au PC. Une limite à 10 000 événements par seconde est raisonnable, et correspond déjà à des écoulements extrêmes.
 
 La stack Python/QML/SciPy reste pertinente pour assurer la visualisation des résultats de mesure côté PC.
 
