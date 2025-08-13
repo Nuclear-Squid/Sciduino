@@ -231,6 +231,9 @@ L’objectif de cette stack logicielle est de limiter le couplage entre les diff
 
 Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [MicroPython], très pratique mais dont le support matériel et plus limité, et [PlatformIO], plus complet mais dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
 
+[PlatformIO]:  https://platformio.org/
+[MicroPython]: https://micropython.org/
+
 Aujourd’hui, le code micro-contrôleur s’articule autour de :
 
 - une API faisant abstraction de différents ADC communément utilisés par l’équipe, facile à étendre ;
@@ -253,24 +256,34 @@ Ce module est écrit en Python car c’est un langage simple, interprété, cros
 
 **Interface graphique QML**
 
-Pour l’interface graphique on utilise QML, un langage de description basé sur Qt (backend) et JS (frontend). Il combine :
+Pour l’interface graphique on utilise [QML], un langage de description basé sur [Qt] (backend) et JavaScript (frontend). Il combine :
 
 - un langage de description plutôt simple, et éditable graphiquement ;
 - une grande librairie standard de composants simples à utiliser ou étendre ;
 - des graphiques optimisés par OpenGL ;
-- des bindings vers C++ (via le framework Qt) ou Python (via la bibiothèque PySide6).
+- des bindings vers C++ via le framework Qt ;
+- des bindings vers Python via la bibliothèque [PySide6] (anciennement « Qt for Python »), qui est maintenue par l’équipe Qt.
 
 En plus du code QML nécessaire pour créer l’interface graphique, un second module Python définit les bindings nécessaire pour transmettre les commandes de l’interface au pilote de la carte, puis mettre en forme les réponses avant de les afficher dans l’interface.
 
 ![Vue d’ensemble de la stack logicielle](./graph_stack_soft.png)
 
-<!-- - analyse : SciPy <3 -->
-<!--   - what else ? -->
-<!--   - cf. alternative C++ -->
-<!--   - prototypage et rapports d’analyse avec Jupyter Notebook -->
+[Qt]: https://www.qt.io/
+[QML]: https://doc.qt.io/qt-6/qmlapplications.html
+[PySide6]: https://wiki.qt.io/Qt_for_Python
 
-[PlatformIO]:  https://platformio.org/
-[MicroPython]: https://micropython.org/
+**Bibliothèque scientifique SciPy**
+
+[SciPy] est la bibliothèque Python de référence pour le calcul scientifique : algèbre linéaire, traitement du signal, statistiques…
+
+Elle est basée sur [NumPy] et fait l’objet d’optimisations assez poussées pour que ses performances soient proches des bibliothèques natives C, tout en étant *beaucoup* plus simple d’emploi. Les notebooks [Jupyter] permettent de documenter et valider des méthodes de calcul avant de les implémenter dans l’application Python.
+
+Elle contient une solution de graphiques ([Matplotlib]) qui peut s’avérer pratique pour prototyper, mais ses performances ne sont pas comparables à ce que propose les graphiques Qt/QML.
+
+[SciPy]: https://scipy.org/
+[NumPy]: https://numpy.org/
+[Jupyter]: https://jupyter.org/
+[Matplotlib]: https://matplotlib.org/
 
 ### Mise en œuvre
 
