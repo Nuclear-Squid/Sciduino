@@ -14,11 +14,11 @@ abstract: Sciduino
 
 [RBI instrumentation](https://rbi-instrumentation.com) est une TPE meylanaise spécialisée dans l’instrumentation. Elle ne compte aujourd’hui que 5 salariés :
 
-- Aurélien Rosset, électronicien, directeur
-- Jean Arnault, ingénieur mécanique et spécialiste en mécanique des fluides
-- Hugo Vernier-Lambert, ingénieur mécatronique (mon maitre de stage)
-- Julien Lorent, responsable câblage
-- Isabelle Hauck, câbleuse
+- Aurélien Rosset, électronicien, directeur ;
+- Jean Arnault, ingénieur mécanique et spécialiste en mécanique des fluides ;
+- Hugo Vernier-Lambert, ingénieur mécatronique (mon maitre de stage) ;
+- Julien Lorent, responsable câblage ;
+- Isabelle Hauck, câbleuse.
 
 L’équipe est épaulée par 3 prestataires réguliers pour la gestion, la conception électronique et le développement logiciel.
 
@@ -32,7 +32,7 @@ RBI est en activité depuis plus de 30 ans, sur trois principaux domaines.
 
 RBI a été rachetée en 2023 par [BIGATA](https://www.bigata.net), une société bordelaise spécialisée en équipements aéronautiques. Elle porte aujourd’hui officiellement le nom de SN·RBI pour « Société Nouvelle RBI ».
 
-RBI réalise un chiffre d’affaire annuel d’environ un million d’euros par an.
+RBI réalise un chiffre d’affaire d’environ un million d’euros par an.
 
 ### Technologies
 
