@@ -12,14 +12,15 @@ abstract: Sciduino
 
 ### RBI Instrumentation
 
-[RBI instrumentation](https://rbi-instrumentation.com) est une TPE meylanaise spécialisée dans l’instrumentation. Elle ne compte aujourd’hui que 4 salariés :
+[RBI instrumentation](https://rbi-instrumentation.com) est une TPE meylanaise spécialisée dans l’instrumentation. Elle ne compte aujourd’hui que 5 salariés :
 
 - Aurélien Rosset, électronicien, directeur
 - Jean Arnault, ingénieur mécanique et spécialiste en mécanique des fluides
 - Hugo Vernier-Lambert, ingénieur mécatronique (mon maitre de stage)
-- Julien Lorent, câbleur.
+- Julien Lorent, responsable câblage
+- Isabelle Hauck, câbleuse
 
-L’équipe est épaulée par 4 prestataires réguliers pour la gestion, la conception électronique, le câblage électronique et le développement logiciel.
+L’équipe est épaulée par 3 prestataires réguliers pour la gestion, la conception électronique et le développement logiciel.
 
 RBI est en activité depuis plus de 30 ans, sur trois principaux domaines.
 
