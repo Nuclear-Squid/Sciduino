@@ -35,12 +35,12 @@
   lang: "fr",
   region: "FR",
   paper: "a4",
-  margin: (top: 3cm, bottom: 2cm, inside: 2.5cm, outside: 2.5cm),
+  margin: (top: 3cm, bottom: 3cm, inside: 2.5cm, outside: 2.5cm),
   cols: 1,
   font: ("Liberation Sans"),
   fontsize: 12pt,
   sectionnumbering: "1.1.",
-  pagenumbering: "1",
+  pagenumbering: "1/1",
   doc,
 ) = {
   set document(
@@ -62,11 +62,14 @@
       set text(10pt)
       if (here().page()) > 1 {        // skip first page
         if calc.odd(here().page()) {  // different headers on L/R pages
-          align(left, counter(page).display("1"))
-          align(right, [#title])
+          align(left, block(width: 100%)[
+            #counter(page).display("1") – #title
+          ])
         } else {
-          align(left, [#authors.first().name])
-          align(right, counter(page).display("1"))
+          align(right, block(width: 100%)[
+            #authors.first().name – #counter(page).display()
+            // #align(left)[#authors.first().name] #h(1fr) #align(right)[#counter(page).display("1")]
+          ])
         }
       }
     },
@@ -212,6 +215,6 @@
 
   // COLOPHON at the end
   v(1fr)
-  align(center, text(size: 8pt, style: "italic")[Fait avec Markdown + Pandoc + Typst + LanguageTool.])
+  align(center, text(size: 9pt, style: "italic")[Fait avec Markdown + Pandoc + Typst + LanguageTool.])
 
 } // end 'let conf'
