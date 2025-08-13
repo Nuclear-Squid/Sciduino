@@ -2,8 +2,9 @@
 title: Rapport de stage
 author: Léo Cazenave
 date: 2025-08-18
-subtitle: RBI, mai-août 2024
-abstract: Sciduino
+subtitle: RBI, mai-août 2025
+abstract: "Pour réduire la dépendance de RBI aux produits National Instruments, on développe le projet Sciduino : une alternative basée sur des technologies libres et pérennes telles que Arduino, Python, QML, SciPy."
+confidentiality: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du vieux Chêne 38240 MEYLAN. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse."
 ---
 
 # Rapport de stage
@@ -12,27 +13,27 @@ abstract: Sciduino
 
 ### RBI Instrumentation
 
-[RBI instrumentation](https://rbi-instrumentation.com) est une TPE meylanaise spécialisée dans l’instrumentation. Elle ne compte aujourd’hui que 5 salariés :
+[RBI instrumentation](https://rbi-instrumentation.com) est une TPE meylanaise spécialisée dans l’instrumentation. Elle compte aujourd’hui 5 salariés :
 
-- Aurélien Rosset, électronicien, directeur ;
+- Aurélien Rosset, directeur des opérations ;
 - Jean Arnault, ingénieur mécanique et spécialiste en mécanique des fluides ;
 - Hugo Vernier-Lambert, ingénieur mécatronique (mon maitre de stage) ;
 - Julien Lorent, responsable câblage ;
 - Isabelle Hauck, câbleuse.
 
-L’équipe est épaulée par 3 prestataires réguliers pour la gestion, la conception électronique et le développement logiciel.
+L’équipe est épaulée par trois prestataires réguliers pour la gestion, la conception électronique et le développement logiciel.
 
-RBI est en activité depuis plus de 30 ans, sur trois principaux domaines.
+RBI est en activité depuis 1987, sur trois principaux domaines.
 
 1. **Les sondes optiques** pour l’étude d’[écoulements diphasiques](https://fr.wikipedia.org/wiki/%C3%89coulement_diphasique). C’est l’activité historique sur laquelle RBI a démarré.
 
-2. **Les bancs de test**, notamment pour qualifier les équipements aéronautiques produisant l’[oxygène de bord](https://fr.wikipedia.org/wiki/Concentrateur_d'oxygène). Cette activité a démarré il y a une dizaine d’années avec l’arrivée de deux personnes issues d’une société spécialisée dans le domaine, et c’est la principale source de revenus de RBI aujourd’hui.
+2. **Les bancs de test**, notamment pour qualifier des équipements aéronautiques. Cette activité a débuté il y a une dizaine d’années avec l’arrivée de deux personnes issues d’une société spécialisée dans le domaine, et c’est la principale source de revenus de RBI aujourd’hui.
 
 3. **Le câblage industriel**. C’est l’activité la plus récente.
 
-RBI a été rachetée en 2023 par [BIGATA](https://www.bigata.net), une société bordelaise spécialisée en équipements aéronautiques. Elle porte aujourd’hui officiellement le nom de SN·RBI pour « Société Nouvelle RBI ».
+RBI a été rachetée en 2023 par Thomas Naulleau, qui possède d’autres sociétés spécialisées dans la production et la maintenance d’équipements aéronautiques. Elle porte aujourd’hui officiellement le nom de SN·RBI pour « Société Nouvelle RBI ».
 
-RBI réalise un chiffre d’affaire d’environ un million d’euros par an.
+RBI réalise un chiffre d’affaires d’environ un million d’euros par an.
 
 ### Technologies
 
@@ -41,7 +42,7 @@ Pour les développements liés à l’informatique de ses bancs de test, RBI se 
 - les périphériques [NI-DAQ] pour l’acquisition de données ;
 - [LabVIEW] pour l’environnement de développement logiciel.
 
-Ce choix a fonctionné longtemps, mais est remis en cause par des choix récents de NI en matière de gestion d’obsolescence : leur durée de support n’est pas très longue (4 ans pour chaque version de LabVIEW, une dizaine d’années pour les cartes DAQ), et ils n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la [fin de vie au profit de NXG](https://labviewwiki.org/wiki/LabVIEW_NXG) en 2017, avant de décider l’inverse en 2020.
+Ce choix a fonctionné longtemps, mais est remis en cause par des choix récents de NI en matière de gestion d’obsolescence : leur durée de support n’est pas très longue (quatre ans pour chaque version de LabVIEW, une dizaine d’années pour les cartes DAQ), et ils n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la [fin de vie au profit de NXG](https://labviewwiki.org/wiki/LabVIEW_NXG) en 2017, avant de décider l’inverse en 2020.
 
 Par ailleurs, ces produits sont chers (le prix des licences LabVIEW a récemment explosé) et de moins en moins adaptés aux applications industrielles. Ces produits étant fermés, il est difficile de les remplacer par une alternative tierce sans remettre en cause tout le développement.
 
@@ -74,7 +75,7 @@ Le projet nécessite trois types de compétences :
 
 2. **La connaissance de l’écosystème embarqué.** L’équipe a une petite culture Arduino, j’ai utilisé des STM32 à l’école, mais personne n’a d’expertise sur le sujet : les options proposées à RBI viennent de mes recherches sur Internet et de ma veille technologique, et sont à valider par l’équipe et leur prestataire informatique.
 
-3. **La conception électronique.** Je n’ai qu’une formation théorique et aucune expérience en conception, mais c’est le domaine où RBI excelle : je peux compter sur l’équipe pour m’aider à monter en compétence. C’est le sujet sur lequel j’ai le moins d’autonomie.
+3. **La conception électronique.** Je n’ai qu’une formation théorique et aucune expérience en conception, mais c’est le domaine dans lequel RBI excelle : je peux compter sur l’équipe pour m’aider à monter en compétence. C’est le sujet sur lequel j’ai le moins d’autonomie.
 
 L’avancement du projet est jalonné par les démonstrations techniques et les revues de design des électroniciens. Chacune de ces étapes de validation est l’occasion d’ajuster les objectifs du projet.
 
@@ -84,12 +85,12 @@ L’avancement du projet est jalonné par les démonstrations techniques et les 
 - documents de conception électronique : schémas, routages
 - fiches de synthèse justifiant les solutions envisagées
 
-Le code et les documents relatifs à [Sciduino][2] sont décrits en anglais, et disponibles sous licence libre (GPLv3) sur [le dépôt GitHub](https://github.com/Nuclear-Squid/Sciduino).
+Le code et les documents relatifs à [Sciduino][2] sont décrits en anglais et disponibles sous licence libre (GPLv3) sur [le dépôt GitHub](https://github.com/Nuclear-Squid/Sciduino).
 
-Le code et les documents de conception spécifiques aux projets [BTO][3] et [Dionysos][4] sont la propriété de RBI, et ne sont pas inclus dans ce rapport. RBI m’autorise à en publier des extraits pertinents pour la rédaction.
+Le code et les documents de conception spécifiques aux projets [BEP][3] et [Dionysos][4] sont la propriété de RBI, et ne sont pas inclus dans ce rapport. RBI m’autorise à en publier des extraits pertinents pour la rédaction.
 
 [2]: #stack-technique-proposée-sciduino
-[3]: #carte-bto-16bits-1khz
+[3]: #carte-bep-16bits-1khz
 [4]: #carte-dionysos-8bits-1mhz
 
 ## Stack technique proposée : Sciduino
@@ -168,7 +169,7 @@ Arduino semble avoir le meilleur compromis facilité/pérennité, malgré son im
 
 Les cartes NI sont faciles à connecter à des signaux extérieurs, via des borniers à vis le plus souvent.
 
-Pour retrouver cette facilité on utilise des cartes des développement au format DIP et des *breadboards*. L’idée est de :
+Pour retrouver cette facilité on utilise des cartes des développements au format DIP et des *breadboards*. L’idée est de :
 
 1. valider un schéma sur la *breadboard* ;
 2. commencer le développement logiciel sans attendre que le PCB soit finalisé ;
@@ -205,7 +206,7 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 
 - standard ancien et solide, très largement diffusé ;
 - connectable en daisy-chain, un même contrôleur I²C peut piloter plusieurs équipements ;
-- beaucoup de cartelettes sont disponibles avec des connecteurs [Qwiic], [Stemma], [Stemma QT] qui sont compatibles (électriquement) entre eux — à privilégier à [Grove] (propriétaire) et [Gravity] (compatible mécaniquement mais pas électriquement, attention !).
+- beaucoup de cartelettes sont disponibles avec des connecteurs [Qwiic], [Stemma], [Stemma QT] qui sont compatibles (électriquement) entre eux — à privilégier à [Grove] (propriétaire) et [Gravity] (compatible mécaniquement, mais pas électriquement, attention !).
 
 [Grove]:     https://wiki.seeedstudio.com/Grove_System/
 [Stemma]:    https://learn.adafruit.com/introducing-adafruit-stemma-qt/what-is-stemma
@@ -215,7 +216,7 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 
 À l’usage, on a trouvé que les périphériques I²C étaient plus pratiques que les *shields* Arduino, y compris pour le prototypage : pas de conflits d’usage de broche, pas de contraintes de forme.
 
-**SPI pour les fonctions critiques en performance :** c’est notamment le choix qu’on a retenu pour les ADC mis en œuvre. C’est un standard très simple sur le principe mais assez laxe, donc moins immédiat à utiliser que I²C.
+**SPI pour les fonctions critiques en performance :** c’est notamment le choix qu’on a retenu pour les ADC mis en œuvre. C’est un standard très simple sur le principe, mais assez laxe, donc moins immédiat à utiliser que I²C.
 
 ### Stack logicielle
 
@@ -250,13 +251,13 @@ Afin d’échanger des instructions et informations entre la carte et l’ordina
 
 **Pilote Python**
 
-Un module Python est développé en parallèle pour s’interfacer avec le micro-contrôleur. Il exporte un objet `Sciduino` qui récupère la configuration des entrées / sorties de la carte et contient des méthodes pour envoyer des instructions à la carte puis parser les réponses en des types natif à Python ou dans des tableaux Numpy (comme le contenu des `Waveform` envoyé par la carte).
+Un module Python est développé en parallèle pour s’interfacer avec le micro-contrôleur. Il exporte un objet `Sciduino` qui récupère la configuration des entrées / sorties de la carte et contient des méthodes pour envoyer des instructions à la carte puis parser les réponses en des types natif à Python ou dans des tableaux NumPy (comme le contenu des `Waveform` envoyé par la carte).
 
-Ce module est écrit en Python car c’est un langage simple, interprété, cross-plateform et qui possède un écosystème très complet, notamment pour les applications scientifiques. Les piètres performances de Python ne sont pas un problème : toutes les parties critiques en performances sont exécutées soit sur le micro-contrôleur, soit par des bibliothèques optimisées pour le calcul (NumPy, SciPy, Pandas…), soit par un framework d’interface graphique C++.
+Ce module est écrit en Python, car c’est un langage simple, interprété, cross-plateform et qui possède un écosystème très complet, notamment pour les applications scientifiques. Les piètres performances de Python ne sont pas un problème : toutes les parties critiques en performances sont exécutées soit sur le micro-contrôleur, soit par des bibliothèques optimisées pour le calcul (NumPy, SciPy, Pandas…), soit par un framework d’interface graphique C++.
 
 **Interface graphique QML**
 
-Pour l’interface graphique on utilise [QML], un langage de description basé sur [Qt] (backend) et JavaScript (frontend). Il combine :
+Pour l’interface graphique, on utilise [QML], un langage de description basé sur [Qt] (backend) et JavaScript (frontend). Il combine :
 
 - un langage de description plutôt simple, et éditable graphiquement ;
 - une grande librairie standard de composants simples à utiliser ou étendre ;
@@ -278,7 +279,7 @@ En plus du code QML nécessaire pour créer l’interface graphique, un second m
 
 Elle est basée sur [NumPy] et fait l’objet d’optimisations assez poussées pour que ses performances soient proches des bibliothèques natives C, tout en étant *beaucoup* plus simple d’emploi. Les notebooks [Jupyter] permettent de documenter et valider des méthodes de calcul avant de les implémenter dans l’application Python.
 
-Elle contient une solution de graphiques ([Matplotlib]) qui peut s’avérer pratique pour prototyper, mais ses performances ne sont pas comparables à ce que propose les graphiques Qt/QML.
+Elle contient une solution de graphiques ([Matplotlib]) qui peut s’avérer pratique pour prototyper, mais ses performances ne sont pas comparables à ce que proposent les graphiques Qt/QML.
 
 [SciPy]: https://scipy.org/
 [NumPy]: https://numpy.org/
@@ -289,7 +290,7 @@ Elle contient une solution de graphiques ([Matplotlib]) qui peut s’avérer pra
 
 Grâce à Sciduino, un Arduino peut rapidement devenir un périphérique DAQ : les abstractions sur les ADCs permettent d’utiliser l’ADC interne de l’Arduino pour rapidement prototyper une application, puis passer à un ADC externe plus précis sans changement majeur dans le code.
 
-La communication avec le PC se fait via une liaison série : les cartes AVR exposent un port COM virtuel, les cartes ARM possèdent une API nommée `SerialUSB` qui permet d’échanger directement via le bus USB, ce qui augemente drastiquement le débit de transfert.
+La communication avec le PC se fait via une liaison série : les cartes AVR exposent un port COM virtuel, les cartes ARM possèdent une API nommée `SerialUSB` qui permet d’échanger directement via le bus USB, ce qui augmente drastiquement le débit de transfert.
 
 L’approche SCPI illustre bien la différence de démarche avec les produits NI : au lieu d’acquérir directement les données brutes via le PC, c’est le MCU qui est en charge de l’essentiel de l’acquisition *et du traitement*. Les données remontées au PC sont donc minimes, et le développement desktop se concentre sur la présentation des données.
 
@@ -323,9 +324,9 @@ Grâce à Python, l’application desktop est développée, mise au point et dé
 
 Pour un fonctionnement en mode *streaming* (acquisition de données en direct sur le PC, en utilisant le MCU comme une carte NI), les premiers tests ont mis en évidence une limitation inattendue de la cadence d’échantillonnage : c’est souvent l’USB et non l’ADC qui bride les performances.
 
-- La plupart des cartes MCU ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois seulement 600 kB/s.
+- La plupart des cartes MCU ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbps théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois seulement 600 kB/s.
 
-- Certaines cartes comme l’Arduino Due ont un contrôleur USB 2.0 mais attention, toutes ne permettent pas le débit `hi-speed` de 480 Mbds ; et même quand c’est le cas, ça reste un débit théorique (*[signaling rate]*) : le débit réel de transfert de données est très inférieur, de l’ordre de 30 MB/s pour une clé USB, et quasiment 10 fois moins pour le seul contrôleur `hi-speed` qu’on ait pu tester (Arduino Due).
+- Certaines cartes comme l’Arduino Due ont un contrôleur USB 2.0 mais attention, toutes ne permettent pas le débit `hi-speed` de 480 Mbps ; et même quand c’est le cas, ça reste un débit théorique (*[signaling rate]*) : le débit réel de transfert de données est très inférieur, de l’ordre de 30 MB/s pour une clé USB, et quasiment 10 fois moins pour le seul contrôleur `hi-speed` qu’on ait pu tester (Arduino Due).
 
 - D’autres cartes comme l’Arduino Giga, avec sa puce STM32H747, ont à la fois un contrôleur `full-speed` et un contrôleur `hi-speed`… mais c’est le premier qui est utilisé pour communiquer avec le PC, semble-t-il. Avec un débit nettement inférieur à celui du RP2040.
 
@@ -356,22 +357,22 @@ Les applications écrites en LabVIEW peuvent être adaptées facilement pour uti
 
 J’espère que Sciduino sera utile à RBI et qu’il continuera à évoluer au fil des projets.
 
-## Carte BTO : 16bits / 1kHz
+## Carte BEP : 16bits / 1kHz
 
 ### Objectif
 
 L’objectif initial (figurant sur l’offre de stage) était de concevoir un shield DAQ pour Arduino Uno, basé sur un ADC 16 bits / 1 kHz / 8 voies et comportant une zone sur laquelle on peut souder des composants. Cette approche a finalement vite été rejetée, car le projet était trivial (il suffit d’utiliser un ADC communiquant en SPI ou I²C), et à l’usage, on a vu que le prototypage sur breadboard était bien plus pratique (beaucoup plus de place, pas besoin de souder…).
 
-L’objectif révisé est de concevoir une carte au [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc de test OBOGS (BTO) de RBI.
+L’objectif révisé est de concevoir une carte au [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc d’essais pneumatiques (BEP) de RBI.
 
 Cette carte doit assurer les fonctions qu’on attendait de la [NI-6212] :
 
 - numérisation au mV près de 8 voies analogiques ±10 V, à 1 kHz ou mieux ;
-- gestion des bus d’adresse (8 bits) et de données (8 bits) spécifiques à BTO.
+- gestion des bus d’adresse (8 bits) et de données (8 bits) spécifiques à BEP.
 
-National Instruments ne propose aucune alternative suffisamment compacte pour le format Europe du rack électronique BTO. Par ailleurs, BTO est piloté par une application LabVIEW 2015, et l’utilisation d’une carte NI plus récente imposerait une mise à jour de LabVIEW — pour lequel NI a récemment revu la politique commerciale : prix (beaucoup) plus élevés, fin du support Linux, entre autres.
+National Instruments ne propose aucune alternative suffisamment compacte pour le format Europe du rack électronique BEP. Par ailleurs, BEP est piloté par une application LabVIEW 2015, et l’utilisation d’une carte NI plus récente imposerait une mise à jour de LabVIEW — pour lequel NI a récemment revu la politique commerciale : prix (beaucoup) plus élevés, fin du support Linux, entre autres.
 
-Cette carte BTO est l’occasion de réduire la dépendance de RBI à NI.
+Cette carte BEP est l’occasion de réduire la dépendance de RBI à NI.
 
 [format Europe]: https://fr.wikipedia.org/wiki/Eurocard_(circuit_imprim%C3%A9)
 [NI-6212 OEM]: https://www.ni.com/fr-fr/shop/model/usb-6212.html
@@ -381,9 +382,9 @@ Cette carte BTO est l’occasion de réduire la dépendance de RBI à NI.
 
 Arduino possède une gamme de cartes au format Nano comportant une dizaine de produits ; la plupart sont basés sur des architectures ARM, mais certains sont encore en AVR. Cette distinction est importante, car non seulement les cartes AVR n’ont pas la puissance de calcul des cartes ARM, mais leurs GPIOs fonctionnent à une tension de référence (ioref) différente : 5V pour AVR, 3.3V pour ARM.
 
-Nous avons choisi le [Nano RP2040] pour sa puissance de calcul (et pour découvrir les capacités du [RP2040]), mais nous avons aussi approvisionné un [Nano Every] (AVR) pour s’assurer que la carte BTO fonctionne avec les MCU que RBI a l’habitude d’utiliser.
+Nous avons choisi le [Nano RP2040] pour sa puissance de calcul (et pour découvrir les capacités du [RP2040]), mais nous avons aussi approvisionné un [Nano Every] (AVR) pour s’assurer que la carte BEP fonctionne avec les MCU que RBI a l’habitude d’utiliser.
 
-En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un [MAX1300]. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. L’équipe a l’habitude des MAX, et sur le papier, le MAX1300 remplit largement les besoins de la carte BTO. Cependant, on a vite repéré de nombreux problèmes en pratique :
+En ce qui concerne l’ADC, nous avions initialement choisi d’utiliser un [MAX1300]. C’est un ADC SPI / 16 bits / 100 kHz / 8 voies. L’équipe a l’habitude des MAX, et sur le papier, le MAX1300 remplit largement les besoins de la carte BEP. Cependant, on a vite repéré de nombreux problèmes en pratique :
 
 - le signal mesuré comportait beaucoup de bruit, rendant la résolution de 16 bits inutile ;
 - le protocole SPI est un standard très laxe, et la façon dont il a été implémenté nous limite : notamment, il est incapable d’envoyer et recevoir des informations en même temps, divisant par deux la fréquence d’acquisition.
@@ -394,18 +395,18 @@ Ces fréquences d’acquisition de 50, 100 voire 250 kHz semblent démesurées
 
 Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié – un LT6654AIS6-2.5 – pour obtenir une tension de référence à 2.5 V ±0.05%.
 
-(Pour l’anecdote, le MAX1300 *avec* la vref externe avait un signal plus bruité que le LTC1859 *sans*…)
+(Pour l’anecdote, le MAX1300 *avec* la Vref externe avait un signal plus bruité que le LTC1859 *sans*…)
 
 [MAX1300]: https://www.analog.com/en/products/max1300.html
 [LTC1859]: https://www.analog.com/en/products/ltc1859.html
 
 ### Conception KiCad
 
-RBI privilégie les logiciels libres quand c’est possible, et utilise [KiCad] pour la conception électronique. N’ayant pas été formé au design électronique durant mes études, il a fallu apprendre sur le tas. Mon maître de stage m’a formé et m’a assisté, tant sur la carte BTO que sur un *pet project* sur lequel je travaille sur mon temps libre, dans un cadre associatif. Grâce à lui je suis désormais autonome avec KiCad.
+RBI privilégie les logiciels libres quand c’est possible, et utilise [KiCad] pour la conception électronique. N’ayant pas été formé au design électronique durant mes études, il a fallu apprendre sur le tas. Mon maître de stage m’a formé et m’a assisté, tant sur la carte BEP que sur un *pet project* sur lequel je travaille sur mon temps libre, dans un cadre associatif. Grâce à lui je suis désormais autonome avec KiCad.
 
 [KiCad]: https://www.kicad.org/
 
-Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans KiCad (connecteurs, buffers, protection décharges électro-statique…).
+Le schéma de principe de l’ancienne carte a été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans KiCad (connecteurs, buffers, protection décharges électro-statique…).
 
 Le rack électronique du banc fonctionne en 5 V, les AVR aussi, mais pas les ARM. On veut donc pouvoir amplifier le signal des cartes ARM tout en gardant le signal 5 V des cartes AVR — le tout, sans nécessiter de configuration manuelle, qui est source d’erreurs parfois difficiles à diagnostiquer.
 
@@ -413,13 +414,13 @@ Pour cela, on utilise un « level-shifter », un montage à transistor qui r
 
 ![Schéma électronique d’un level-shifter](./level_shifter.png)
 
-Les GPIOs ne pouvant pas tirer autant de courant qu’une vrai `ioref`, il a fallu ajuster les valeurs de résistance pour rester dans les limites des cartes les plus contraignantes (< 7 mA). La tension de 0.7 V en sortie (causée par la diode) pour 0 V en entrée n’est pas un problème, car on utilise un buffer 8 bits pour dissocier électriquement la carte Arduino du reste du banc.
+Les GPIOs ne pouvant pas tirer autant de courant qu’une vraie `ioref`, il a fallu ajuster les valeurs de résistance pour rester dans les limites des cartes les plus contraignantes (< 7 mA). La tension de 0.7 V en sortie (causée par la diode) pour 0 V en entrée n’est pas un problème, car on utilise un buffer 8 bits pour dissocier électriquement la carte Arduino du reste du banc.
 
 ![Simulation LTSPICE d’un level-shifter](./simu_level_shifter.png)
 
-Concernant l’ADC, la résolution de 16 bits n’a d’intérêt métrologique que si on prend soin à éviter tout perturbation électrique ou électro-magnétique sur le circuit. C’est pourquoi nous avons dû mettre en œuvre de nombreux systèmes pour mitiger cela le plus possible.
+Concernant l’ADC, la résolution de 16 bits n’a d’intérêt métrologique que si on prend soin à éviter toute perturbation électrique ou électro-magnétique sur le circuit. C’est pourquoi nous avons dû mettre en œuvre de nombreux systèmes pour mitiger cela le plus possible.
 
-Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, afin de filtrer les bruits parasites et protéger l’ADC des décharges électro-statiques. Chaque voie est envoyée sur une paire signal / commun ; ces communs sont tous sur des pistes différentes, mais sont au même potentiel en amont, donc en les relie ensemble avant de les connecter à la patte `COM` de l’ADC et au `GND`. Ce système date d’une ancienne révision du banc de test OBOGS, qu’on doit garder en place pour des questions de compatibilité ascendante.
+Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, afin de filtrer les bruits parasites et protéger l’ADC des décharges électro-statiques. Chaque voie est envoyée sur une paire signal / commun ; ces communs sont tous sur des pistes différentes, mais sont au même potentiel en amont, donc en les relie ensemble avant de les connecter à la patte `COM` de l’ADC et au `GND`. Ce système date d’une ancienne révision du banc d’essais pneumatiques (BEP), qu’on doit garder en place pour des questions de compatibilité ascendante.
 
 ![Schéma de l’étage de traitement de signal](./traitement_signal.png)
 
@@ -428,13 +429,13 @@ Les micro-contrôleurs sont des composants très complexes, dont le fonctionneme
 1. on utilise un régulateur de tension externe – un L78L05-SOT89 – pour fournir une tension stable aux alimentations analogiques de l’ADC ;
 2. on sépare la carte en deux plans de masse distincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
 
-La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ayant une très légère résistance, on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation aux différents composants pouvant faire circuler beaucoup de courant, on les a élargies pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à intervalle régulier afin d’éviter des éventuels effets capacitifs sur la carte.
+La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ayant une très légère résistance, on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation aux différents composants pouvant faire circuler beaucoup de courant, on les a élargies pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à intervalles réguliers afin d’éviter des éventuels effets capacitifs sur la carte.
 
 ### Fabrication et validation
 
 La validation de la carte est normalement triviale. Plusieurs personnes ont vérifié mon schéma et routage, et les différentes fonctions électroniques ont été testées individuellement sur des breadboards. Toutes les erreurs possibles ont donc été commises pendant la phase de prototypage, et les montages fonctionnels ont été retranscrits dans KiCad.
 
-La carte est fabriquée chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent mais RBI n’en a pas l’usage : rien n’étant produit en série, c’est plus pertinent de les assembler en interne — notamment pour certaines opérations de diagnostic, où on pourra tester des corrections en intervenant manuellement les PCB.
+La carte est fabriquée chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais RBI n’en a pas l’usage : rien n’étant produit en série, c’est plus pertinent de les assembler en interne — notamment pour certaines opérations de diagnostic, où on pourra tester des corrections en intervenant manuellement les PCB.
 
 Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adaptés à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la câbleuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format Europe, donc nous avons largement la place nécessaire.
 
@@ -442,9 +443,9 @@ J’ai dû aussi générer la documentation nécessaire pour assembler la carte,
 
 ### Perspectives
 
-La carte BTO effectue toutes les fonctions attendues par la carte NI-6212. Elle pourrait effectuer des tâches supplémentaires comme l’auto-contrôle du banc de test, sans dépendre du PC externe. La dépendance à NI-DAQ est résolue.
+La carte BEP effectue toutes les fonctions attendues par la carte NI-6212. Elle pourrait effectuer des tâches supplémentaires comme l’auto-contrôle du banc de test, sans dépendre du PC externe. La dépendance à NI-DAQ est résolue.
 
-La dépendance à LabVIEW demeure, le projet BTO ayant trop d’ampleur et d’ancienneté pour envisager une réécriture, mais elle est fortement réduite : il ne sera pas nécessaire de mettre à jour LabVIEW pour permettre l’utilisation d’une carte NI-DAQ plus récente. BTO peut donc continuer à tourner sur LabVIEW 2015 aussi longtemps que souhaité.
+La dépendance à LabVIEW demeure, le projet BEP ayant trop d’ampleur et d’ancienneté pour envisager une réécriture, mais elle est fortement réduite : il ne sera pas nécessaire de mettre à jour LabVIEW pour permettre l’utilisation d’une carte NI-DAQ plus récente. BEP peut donc continuer à tourner sur LabVIEW 2015 aussi longtemps que souhaité.
 
 ## Carte Dionysos : 8bits / 1MHz
 
@@ -487,7 +488,7 @@ Les PIO se programment en assembleur, on peut donc viser une acquisition de l’
 
 ### Environnement de développement
 
-- Arduino IDE/CLI ? possible (il y a un support officiel rp2040) mais pas opti en perfs
+- Arduino IDE/CLI ? possible (il y a un support officiel rp2040) mais pas optimal en perfs
 - API C de Raspberry ?
 - [Rust Embedded] ?
 
@@ -528,7 +529,7 @@ L’approche Nano facilite à la fois le développement (breadboard) et la conce
 Une voie encore en développement mais prometteuse :
 
 - [embedded-hal] fournit une excellente abstraction matérielle ;
-- [RTIC] gère très bien la concurrence (mais pas encore le multi-cœurs) ;
+- [RTIC] gère très bien la concurrence (mais pas encore le multicœurs) ;
 - les puces ARM et RISC-V sont supportées ;
 - les performances sont équivalentes aux API natives ;
 - l’écosystème Rust est bien plus avancé que celui de C/C++.
@@ -539,7 +540,7 @@ Rust est un langage élitiste, et [Rust Embedded] est nettement plus complexe à
 
 C’est l’architecture MCU de référence, qui couvre tous les besoins actuels de RBI. Les puces AVR suffisent pour beaucoup d’applications mais n’offrent aucun avantage évident, y compris pour la consommation ou le prix.
 
-Les MCU de Raspberry Pi, [rp2040] et [rp2350], basés sur des double-cœurs Cortex M0+ et M33 respectivement, sortent du lot avec un ratio performances/coût *très* compétitif.
+Les MCU de Raspberry Pi, [rp2040] et [rp2350], basés sur des double cœurs Cortex M0+ et M33 respectivement, sortent du lot avec un ratio performances/coût *très* compétitif.
 
 Il y a beaucoup de développements autour de RISC‑V (Arduino et Raspberry Pi participent à la gouvernance, entre autres), et cette architecture pourrait s’avérer très intéressante pour des besoins spécifiques à l’avenir ; mais il n’y a pas encore de cas d’usage évident pour RBI.
 
@@ -583,4 +584,4 @@ Merci à toute l’équipe RBI pour l’incroyable environnement de travail dont
 
 J’ai plus appris en 4 mois de stage que pendant tout mon cycle ingénieur : de la théorie à la pratique il y a un monde, et l’équipe m’a bien aidé à monter en compétence. Moi qui doutais de mon orientation, je suis désormais certain d’avoir choisi la bonne voie en visant la double compétence informatique et électronique.
 
-J’espère trouver un employeur où l’ambiance est aussi saine et où les projets sont aussi intéressants. Immense merci à RBI !
+J’espère trouver un employeur chez qui l’ambiance est aussi saine et où les projets sont aussi intéressants. Immense merci à RBI !
