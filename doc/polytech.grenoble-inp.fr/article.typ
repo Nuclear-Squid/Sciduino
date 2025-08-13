@@ -1,13 +1,13 @@
 // A4 article layout template for Typst v0.13+ with Pandoc v3.6+.
 // Adapted from John Maxwell, jmax@sfu.ca, VERSION as of March 2025
 // Assumes Markdown source with a YAML metadata block (title, author, date...).
+//
 // Usage:
 //    pandoc article.md \
 //      -f markdown --wrap=none \
 //      -t pdf --pdf-engine=typst \
 //      -V template=article.typ \
 //      -o article.pdf
-
 
 // This bit from Pandoc, to help parse incoming metadata
 #let content-to-string(content) = {
@@ -23,18 +23,21 @@
 }
 
 #let conf(
-  title: none, // These first few come through from markdown metadata
+  // these first few come through from markdown metadata:
+  title: none,
   subtitle: none,
   authors: (),
   keywords: (),
   date: none,
   abstract: none,
+  // the rest is defined locally here:
+  comment: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du vieux Chêne 38240 Meylan. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse.",
   lang: "fr",
   region: "FR",
   paper: "a4",
   margin: (top: 3cm, bottom: 2cm, inside: 2.5cm, outside: 2.5cm),
   cols: 1,
-  font: ("Liberation Sans"),  // Your font here
+  font: ("Liberation Sans"),
   fontsize: 12pt,
   sectionnumbering: "1.1.",
   pagenumbering: "1",
@@ -55,13 +58,15 @@
     // Running header:
     header-ascent: 25% + 0pt,
     header: context {
-      show smallcaps: set text(tracking: 0.14em)
+      // show smallcaps: set text(tracking: 0.14em)
       set text(10pt)
-      if (here().page()) > 1 {  // skip first page
+      if (here().page()) > 1 {        // skip first page
         if calc.odd(here().page()) {  // different headers on L/R pages
-          align(right,[#title] )
+          align(left, counter(page).display("1"))
+          align(right, [#title])
         } else {
-          align(left,[#authors.first().name] )
+          align(left, [#authors.first().name])
+          align(right, counter(page).display("1"))
         }
       }
     },
@@ -69,17 +74,14 @@
     // Running footer
     footer-descent: 30% + 0pt,
     footer: context {
-      set text(10pt)
-      if calc.odd(here().page()) {  // different footers on L/R pages
-        align(right,counter(page).display( "1") )
-      } else {
-        align(left,counter(page).display( "1") )
-      }
+      set par(leading: 4pt)
+      align(center, text(size: 9pt, style: "italic")[#comment])
     },
   )
 
   // Text defaults
-  set text(lang: lang,
+  set text(
+    lang: lang,
     region: region,
     font: font, // see 'conf' above
     size: fontsize,
@@ -114,7 +116,7 @@
 
   // Code blocks: green monospace
   show raw: set block(inset: (left: 2em, top: 1em, right: 1em, bottom: 1em ))
-  show raw: set text(fill: rgb("#116611"), size: 9pt, )
+  show raw: set text(fill: rgb("#116611"), size: 9pt)
 
   // Images and figures
   set image(fit: "contain")
@@ -146,35 +148,22 @@
   show heading: set text(hyphenate: false)
   set heading(numbering: sectionnumbering)
 
-  show heading.where(level: 1
-    ): it => align(left, block(above: 22pt, below: 12pt, width: 100% )[
-        // #v(12pt) // space above
-        // #set par(leading: 16pt)
-        // #set text(font: font, weight: "bold", style: "normal", size: 16pt)
-        // #block(it.body)
-        // #v(6pt) // space below
-      ])
-
-  show heading.where(level: 2
-    ): it => align(left, block(above: 48pt, below: 32pt, width: 100%)[
-        #set text(weight: "bold", style: "normal", size: 1.6em)
-        #v(2em)
-        #block(it.body)
-        #v(1em)
-      ])
-
-  show heading.where(level: 3
-    ): it => align(left, block(above: 32pt, below: 18pt)[
-        #set text(weight: "bold", size: 1.4em)
-        #block([#smallcaps(all: true)[#it.body]])
-        #v(-1em)
-        #line(start: (0%,0%), end: (100%,0%), stroke: 0.8pt + gradient.linear(black, white))
-      ])
-
-  show heading.where(depth: 2): body => {
+  show heading.where(level: 1): body => {
     pagebreak(weak: true)
-    body
+    align(left, block(above: 48pt, below: 32pt, width: 100%)[
+      #set text(weight: "bold", style: "normal", size: 1.6em)
+      #v(2em)
+      #body
+      #v(1em)
+    ])
   }
+
+  show heading.where(level: 2): body => align(left, block(above: 32pt, below: 18pt)[
+    #set text(weight: "bold", size: 1.4em)
+    #body
+    #v(-1em)
+    #line(start: (0%, 0%), end: (100%, 0%), stroke: 0.8pt + gradient.linear(black, white))
+  ])
 
   // STYLING LABELLED SECTIONS
   //
@@ -223,6 +212,6 @@
 
   // COLOPHON at the end
   v(1fr)
-  align(center, text(size: 8pt, style: "italic")[Typeset from Markdown with open-source tools Pandoc and Typst.])
+  align(center, text(size: 8pt, style: "italic")[Fait avec Markdown + Pandoc + Typst + LanguageTool.])
 
 } // end 'let conf'
