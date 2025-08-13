@@ -26,20 +26,20 @@ RBI est en activité depuis plus de 30 ans, sur trois principaux domaines.
 
 1. **Les sondes optiques** pour l’étude d’[écoulements diphasiques](https://fr.wikipedia.org/wiki/%C3%89coulement_diphasique). C’est l’activité historique sur laquelle RBI a démarré.
 
-2. **Les bancs de test**, notamment pour qualifier les équipements aéronautiques produisant l’[oxygène de bord](https://fr.wikipedia.org/wiki/Concentrateur_d%27oxyg%C3%A8ne). Cette activité a démarré il y a une dizaine d’années avec l’arrivée de deux personnes issues d’une société spécialisée dans le domaine, et c’est la principale source de revenus de RBI aujourd’hui.
+2. **Les bancs de test**, notamment pour qualifier les équipements aéronautiques produisant l’[oxygène de bord](https://fr.wikipedia.org/wiki/Concentrateur_d'oxygène). Cette activité a démarré il y a une dizaine d’années avec l’arrivée de deux personnes issues d’une société spécialisée dans le domaine, et c’est la principale source de revenus de RBI aujourd’hui.
 
 3. **Le câblage industriel**. C’est l’activité la plus récente.
 
 RBI a été rachetée en 2023 par [BIGATA](https://www.bigata.net), une société bordelaise spécialisée en équipements aéronautiques. Elle porte aujourd’hui officiellement le nom de SN·RBI pour « Société Nouvelle RBI ».
 
-RBI réalise un chiffre d’affaire annuel d’environ 900 k€/an (chiffre 2017).
+RBI réalise un chiffre d’affaire annuel d’environ un million d’euros par an.
 
 ### Technologies
 
-Pour ses développements, RBI se repose beaucoup sur les produits [National Instruments](https://ni.com) (NI) :
+Pour les développements liés à l’informatique de ses bancs de test, RBI se repose beaucoup sur les produits [National Instruments](https://ni.com) (NI), notamment :
 
-- pour les cartes mutifonctions (MIO) et d’acquisition de données (DAQ) ;
-- pour l’environnement de développement logiciel (LabVIEW).
+- les périphériques [NI-DAQ] pour l’acquisition de données ;
+- [LabVIEW] pour l’environnement de développement logiciel.
 
 Ce choix a fonctionné longtemps, mais est remis en cause par des choix récents de NI en matière de gestion d’obsolescence : leur durée de support n’est pas très longue (4 ans pour chaque version de LabVIEW, une dizaine d’années pour les cartes DAQ), et ils n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la [fin de vie au profit de NXG](https://labviewwiki.org/wiki/LabVIEW_NXG) en 2017, avant de décider l’inverse en 2020.
 
@@ -47,19 +47,22 @@ Par ailleurs, ces produits sont chers (le prix des licences LabVIEW a récemment
 
 RBI souhaite donc envisager d’autres technologies pour ses développements à venir.
 
+[NI-DAQ]:  https://www.ni.com/fr/shop/data-acquisition.html
+[LabVIEW]: https://www.ni.com/fr/shop/labview.html
+
 ### Objectifs du stage
 
-= proposer une stack techno alternative et pérenne, pour compléter ou remplacer la stack NI.
+Proposer une stack technique alternative et pérenne pour l’informatique des bancs de test, afin de compléter ou remplacer la stack NI actuellement utilisée.
 
 On souhaite particulièrement explorer :
 
-- les possibilités des micro-contrôleurs (MCU) pour remplacer les cartes NI ;
-- les solutions logicielles liées à Python, très utilisé par les clients de RBI, pour remplacer LabVIEW.
+- les possibilités des micro-contrôleurs (MCU) pour remplacer les cartes [NI-DAQ] ;
+- les solutions logicielles liées à Python, très utilisé par les clients de RBI, pour remplacer [LabVIEW].
 
-Deux développements doivent permettre de valider la stack techno :
+Deux développements doivent permettre de valider la stack technique :
 
-- une carte DAQ 16 bits / 1 kHz
-- une carte DAQ 8 bits / 1 MHz
+- [une carte DAQ 16 bits / 1 kHz][2]
+- [une carte DAQ 8 bits / 1 MHz][3]
 
 ### Gestion de projet
 
@@ -71,7 +74,7 @@ Le projet nécessite trois types de compétences :
 
 2. **La connaissance de l’écosystème embarqué.** L’équipe a une petite culture Arduino, j’ai utilisé des STM32 à l’école, mais personne n’a d’expertise sur le sujet : les options proposées à RBI viennent de mes recherches sur Internet et de ma veille technologique, et sont à valider par l’équipe et leur prestataire informatique.
 
-3. **La conception électronique.** Je n’ai qu’une formation théorique et aucune expérience en conception, mais c’est le domaine où RBI excelle : je peux compter sur l’équipe et le prestataire électronique pour m’aider à monter en compétence. C’est le sujet sur lequel j’ai le moins d’autonomie.
+3. **La conception électronique.** Je n’ai qu’une formation théorique et aucune expérience en conception, mais c’est le domaine où RBI excelle : je peux compter sur l’équipe pour m’aider à monter en compétence. C’est le sujet sur lequel j’ai le moins d’autonomie.
 
 L’avancement du projet est jalonné par les démonstrations techniques et les revues de design des électroniciens. Chacune de ces étapes de validation est l’occasion d’ajuster les objectifs du projet.
 
