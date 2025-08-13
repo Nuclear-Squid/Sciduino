@@ -31,7 +31,7 @@
   date: none,
   abstract: none,
   // the rest is defined locally here:
-  comment: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du vieux Chêne 38240 Meylan. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse.",
+  comment: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du Vieux Chêne 38240 Meylan. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse.",
   lang: "fr",
   region: "FR",
   paper: "a4",
