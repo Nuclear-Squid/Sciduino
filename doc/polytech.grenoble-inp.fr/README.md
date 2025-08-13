@@ -264,29 +264,10 @@ En plus du code QML nécessaire pour créer l’interface graphique, un second m
 
 ![Vue d’ensemble de la stack logicielle](./graph_stack_soft.png)
 
-<!-- TODO: Rajouter un screenshot de l’appli -->
-
-<!-- TODO: fusionner ici le document « stack logicielle » -->
-<!---->
-<!-- - desktop : Python + QML -->
-<!--   - Python = simplicité -->
-<!--   - Qt/QML = le standard de fait pour les apps industrielles -->
-<!--   - compétences faciles à trouver -->
-<!---->
 <!-- - analyse : SciPy <3 -->
 <!--   - what else ? -->
 <!--   - cf. alternative C++ -->
 <!--   - prototypage et rapports d’analyse avec Jupyter Notebook -->
-<!---->
-<!-- - IDE micro-contrôleur -->
-<!--   - [Arduino-IDE] ? simple, efficace, possiblement limité en perfs -->
-<!--   - [PlatformIO] ? intéressant mais [limité à une version obsolète de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303) -->
-<!--   - [MicroPython] ? intéressant mais limité aux MCU très véloces, et moins de support matériel pour les périphériques -->
-<!---->
-<!-- - SCPI -->
-<!--   - un standard laxe de communication entre instruments, basé sur du texte -->
-<!--   - débug facile avec un simple moniteur série -->
-<!--   - permet de livrer des apps PC sans pilote logiciel -->
 
 [PlatformIO]:  https://platformio.org/
 [MicroPython]: https://micropython.org/
@@ -307,16 +288,23 @@ La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce a
 
 Grâce à Python, l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée paur un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
 
+> *TODO: Rajouter un screenshot de l’appli*
+
 **Retour d’expérience** après quelques semaines d’utilisation :
 
-- LabVIEW est l’option la plus rapide pour prototyper ;
-- Python/QML reste simple, et permet de livrer des apps mieux finies :
-  - versionnement SVN ou Git possible (pas de `diff` avec LabVIEW)
-  - qualité logicielle (lint, typage…) : `ruff`, `uv`, `mypy`
-  - GUI bien séparée du reste du code
-  - installeur de taille raisonnable (PyInstaller)
-  - le client final peut modifier l’app sans dépendances logicielles
+- LabVIEW reste l’option la plus rapide pour prototyper ;
+- Python/QML est un peu plus exigeant, mais permet de livrer des applicationss mieux finies :
+  - le versionnement SVN ou Git est enfin possible (pas de `diff` avec LabVIEW) ;
+  - de bons outils de qualité logicielle : [ruff] (lint, LSP), [uv] (gestionnaire de paquets), [ty]/[mypy] (type checker)…
+  - la gestion de l’interface utilisateur (GUI) est bien séparée du reste du code ;
+  - l’installeur de taille raisonnable (PyInstaller) ;
+  - le client final peut modifier l’application sans dépendances propriétaires ;
 - l’approche SCPI facilite la portabilité du code LabVIEW ou Python, sans nécessiter de pilote spécifique.
+
+[mypy]: https://www.mypy-lang.org/
+[ruff]: https://docs.astral.sh/ruff/
+[uv]:   https://docs.astral.sh/uv/
+[ty]:   https://docs.astral.sh/ty/
 
 ### Cadence d’échantillonnage
 
