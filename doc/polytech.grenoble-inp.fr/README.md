@@ -12,33 +12,34 @@ abstract: Sciduino
 
 ### RBI Instrumentation
 
-[RBI instrumentation](https://rbi-instrumentation.com) est une TPE meylanaise spécialisée dans l’instrumentation. Elle ne compte aujourd’hui que 4 salariés :
+[RBI instrumentation](https://rbi-instrumentation.com) est une TPE meylanaise spécialisée dans l’instrumentation. Elle ne compte aujourd’hui que 5 salariés :
 
-- Aurélien Rosset, électronicien, directeur
-- Jean Arnault, ingénieur mécanique et spécialiste en mécanique des fluides
-- Hugo Vernier-Lambert, ingénieur mécatronique (mon maitre de stage)
-- Julien Lorent, câbleur.
+- Aurélien Rosset, électronicien, directeur ;
+- Jean Arnault, ingénieur mécanique et spécialiste en mécanique des fluides ;
+- Hugo Vernier-Lambert, ingénieur mécatronique (mon maitre de stage) ;
+- Julien Lorent, responsable câblage ;
+- Isabelle Hauck, câbleuse.
 
-L’équipe est épaulée par 4 prestataires réguliers pour la gestion, la conception électronique, le câblage électronique et le développement logiciel.
+L’équipe est épaulée par 3 prestataires réguliers pour la gestion, la conception électronique et le développement logiciel.
 
 RBI est en activité depuis plus de 30 ans, sur trois principaux domaines.
 
 1. **Les sondes optiques** pour l’étude d’[écoulements diphasiques](https://fr.wikipedia.org/wiki/%C3%89coulement_diphasique). C’est l’activité historique sur laquelle RBI a démarré.
 
-2. **Les bancs de test**, notamment pour qualifier les équipements aéronautiques produisant l’[oxygène de bord](https://fr.wikipedia.org/wiki/Concentrateur_d%27oxyg%C3%A8ne). Cette activité a démarré il y a une dizaine d’années avec l’arrivée de deux personnes issues d’une société spécialisée dans le domaine, et c’est la principale source de revenus de RBI aujourd’hui.
+2. **Les bancs de test**, notamment pour qualifier les équipements aéronautiques produisant l’[oxygène de bord](https://fr.wikipedia.org/wiki/Concentrateur_d'oxygène). Cette activité a démarré il y a une dizaine d’années avec l’arrivée de deux personnes issues d’une société spécialisée dans le domaine, et c’est la principale source de revenus de RBI aujourd’hui.
 
 3. **Le câblage industriel**. C’est l’activité la plus récente.
 
 RBI a été rachetée en 2023 par [BIGATA](https://www.bigata.net), une société bordelaise spécialisée en équipements aéronautiques. Elle porte aujourd’hui officiellement le nom de SN·RBI pour « Société Nouvelle RBI ».
 
-RBI réalise un chiffre d’affaire annuel d’environ 900 k€/an (chiffre 2017).
+RBI réalise un chiffre d’affaire d’environ un million d’euros par an.
 
 ### Technologies
 
-Pour ses développements, RBI se repose beaucoup sur les produits [National Instruments](https://ni.com) (NI) :
+Pour les développements liés à l’informatique de ses bancs de test, RBI se repose beaucoup sur les produits [National Instruments](https://ni.com) (NI), notamment :
 
-- pour les cartes mutifonctions (MIO) et d’acquisition de données (DAQ) ;
-- pour l’environnement de développement logiciel (LabVIEW).
+- les périphériques [NI-DAQ] pour l’acquisition de données ;
+- [LabVIEW] pour l’environnement de développement logiciel.
 
 Ce choix a fonctionné longtemps, mais est remis en cause par des choix récents de NI en matière de gestion d’obsolescence : leur durée de support n’est pas très longue (4 ans pour chaque version de LabVIEW, une dizaine d’années pour les cartes DAQ), et ils n’ont pas toujours de remplacement viable quand ils arrivent en fin de vie. Cela s’est produit pour une carte DAQ cruciale pour un banc de test RBI ; et l’avenir de LabVIEW reste incertain, NI en ayant annoncé la [fin de vie au profit de NXG](https://labviewwiki.org/wiki/LabVIEW_NXG) en 2017, avant de décider l’inverse en 2020.
 
@@ -46,19 +47,22 @@ Par ailleurs, ces produits sont chers (le prix des licences LabVIEW a récemment
 
 RBI souhaite donc envisager d’autres technologies pour ses développements à venir.
 
+[NI-DAQ]:  https://www.ni.com/fr/shop/data-acquisition.html
+[LabVIEW]: https://www.ni.com/fr/shop/labview.html
+
 ### Objectifs du stage
 
-= proposer une stack techno alternative et pérenne, pour compléter ou remplacer la stack NI.
+Proposer une stack technique alternative et pérenne pour l’informatique des bancs de test, afin de compléter ou remplacer la stack NI actuellement utilisée.
 
 On souhaite particulièrement explorer :
 
-- les possibilités des micro-contrôleurs (MCU) pour remplacer les cartes NI ;
-- les solutions logicielles liées à Python, très utilisé par les clients de RBI, pour remplacer LabVIEW.
+- les possibilités des micro-contrôleurs (MCU) pour remplacer les cartes [NI-DAQ] ;
+- les solutions logicielles liées à Python, très utilisé par les clients de RBI, pour remplacer [LabVIEW].
 
-Deux développements doivent permettre de valider la stack techno :
+Deux développements doivent permettre de valider la stack technique :
 
-- une carte DAQ 16 bits / 1 kHz
-- une carte DAQ 8 bits / 1 MHz
+- [une carte DAQ 16 bits / 1 kHz][2]
+- [une carte DAQ 8 bits / 1 MHz][3]
 
 ### Gestion de projet
 
@@ -70,7 +74,7 @@ Le projet nécessite trois types de compétences :
 
 2. **La connaissance de l’écosystème embarqué.** L’équipe a une petite culture Arduino, j’ai utilisé des STM32 à l’école, mais personne n’a d’expertise sur le sujet : les options proposées à RBI viennent de mes recherches sur Internet et de ma veille technologique, et sont à valider par l’équipe et leur prestataire informatique.
 
-3. **La conception électronique.** Je n’ai qu’une formation théorique et aucune expérience en conception, mais c’est le domaine où RBI excelle : je peux compter sur l’équipe et le prestataire électronique pour m’aider à monter en compétence. C’est le sujet sur lequel j’ai le moins d’autonomie.
+3. **La conception électronique.** Je n’ai qu’une formation théorique et aucune expérience en conception, mais c’est le domaine où RBI excelle : je peux compter sur l’équipe pour m’aider à monter en compétence. C’est le sujet sur lequel j’ai le moins d’autonomie.
 
 L’avancement du projet est jalonné par les démonstrations techniques et les revues de design des électroniciens. Chacune de ces étapes de validation est l’occasion d’ajuster les objectifs du projet.
 
@@ -211,11 +215,11 @@ RBI ne faisant pas de production en série, intégrer le MCU directement sur le 
 
 À l’usage, on a trouvé que les périphériques I²C étaient plus pratiques que les *shields* Arduino, y compris pour le prototypage : pas de conflits d’usage de broche, pas de contraintes de forme.
 
-**SPI pour les fonctions critiques en performance :** c’est notamment le choix qu’on a retenu pour les ADC mis en œuvre. C’est un standard très simple sur le principe mais assez laxe, donc moins simple à utiliser que I²C.
+**SPI pour les fonctions critiques en performance :** c’est notamment le choix qu’on a retenu pour les ADC mis en œuvre. C’est un standard très simple sur le principe mais assez laxe, donc moins immédiat à utiliser que I²C.
 
 ### Stack logicielle
 
-Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendence à National Instruments. Comme avec LabVIEW et les cartes NI-DAQ, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages disctincts :
+Le projet Sciduino cherche à créer une « boîte à outils » simple, basée sur du logiciel libre et pérenne, pour réduire voire supprimer la dépendance à National Instruments. Comme avec LabVIEW et les cartes NI-DAQ, l’objectif est de pouvoir facilement afficher à l’écran un signal mesuré d’un capteur avec le traitement nécessaire. Sciduino est basé une stack logicielle séparée en trois étages distincts :
 
 1. le code Arduino qui pilote le micro contrôleur et effectue les mesures ;
 2. un module Python pour s’interfacer avec le micro-contrôleur ;
@@ -225,7 +229,10 @@ L’objectif de cette stack logicielle est de limiter le couplage entre les diff
 
 **Firmware Arduino**
 
-Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différntes alternatives ont été envisagées, notamment [MicroPython], très pratique mais dont le support matériel et plus limité, et [PlatformIO], plus complet mais dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
+Le firmware tournant sur le micro-contrôleur est écrit en Arduino afin de pouvoir rapidement prototyper du code qui fasse abstraction du matériel sur lequel il va tourner. Différentes alternatives ont été envisagées, notamment [MicroPython], très pratique mais dont le support matériel et plus limité, et [PlatformIO], plus complet mais dont la gestion d’obsolescence n’a pas convaincu (notamment parce qu’il reste [limité aux versions obsolètes de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303), le RTOS de référence).
+
+[PlatformIO]:  https://platformio.org/
+[MicroPython]: https://micropython.org/
 
 Aujourd’hui, le code micro-contrôleur s’articule autour de :
 
@@ -249,43 +256,34 @@ Ce module est écrit en Python car c’est un langage simple, interprété, cros
 
 **Interface graphique QML**
 
-Pour l’interface graphique on utilise QML, un langage de description basé sur Qt (backend) et JS (frontend). Il combine :
+Pour l’interface graphique on utilise [QML], un langage de description basé sur [Qt] (backend) et JavaScript (frontend). Il combine :
 
 - un langage de description plutôt simple, et éditable graphiquement ;
 - une grande librairie standard de composants simples à utiliser ou étendre ;
 - des graphiques optimisés par OpenGL ;
-- des bindings vers C++ (via le framework Qt) ou Python (via la bibiothèque PySide6).
+- des bindings vers C++ via le framework Qt ;
+- des bindings vers Python via la bibliothèque [PySide6] (anciennement « Qt for Python »), qui est maintenue par l’équipe Qt.
 
 En plus du code QML nécessaire pour créer l’interface graphique, un second module Python définit les bindings nécessaire pour transmettre les commandes de l’interface au pilote de la carte, puis mettre en forme les réponses avant de les afficher dans l’interface.
 
 ![Vue d’ensemble de la stack logicielle](./graph_stack_soft.png)
 
-<!-- TODO: Rajouter un screenshot de l’appli -->
+[Qt]: https://www.qt.io/
+[QML]: https://doc.qt.io/qt-6/qmlapplications.html
+[PySide6]: https://wiki.qt.io/Qt_for_Python
 
-<!-- TODO: fusionner ici le document « stack logicielle » -->
-<!---->
-<!-- - desktop : Python + QML -->
-<!--   - Python = simplicité -->
-<!--   - Qt/QML = le standard de fait pour les apps industrielles -->
-<!--   - compétences faciles à trouver -->
-<!---->
-<!-- - analyse : SciPy <3 -->
-<!--   - what else ? -->
-<!--   - cf. alternative C++ -->
-<!--   - prototypage et rapports d’analyse avec Jupyter Notebook -->
-<!---->
-<!-- - IDE micro-contrôleur -->
-<!--   - [Arduino-IDE] ? simple, efficace, possiblement limité en perfs -->
-<!--   - [PlatformIO] ? intéressant mais [limité à une version obsolète de Zephyr](https://github.com/zephyrproject-rtos/zephyr/pull/53303) -->
-<!--   - [MicroPython] ? intéressant mais limité aux MCU très véloces, et moins de support matériel pour les périphériques -->
-<!---->
-<!-- - SCPI -->
-<!--   - un standard laxe de communication entre instruments, basé sur du texte -->
-<!--   - débug facile avec un simple moniteur série -->
-<!--   - permet de livrer des apps PC sans pilote logiciel -->
+**Bibliothèque scientifique SciPy**
 
-[PlatformIO]:  https://platformio.org/
-[MicroPython]: https://micropython.org/
+[SciPy] est la bibliothèque Python de référence pour le calcul scientifique : algèbre linéaire, traitement du signal, statistiques…
+
+Elle est basée sur [NumPy] et fait l’objet d’optimisations assez poussées pour que ses performances soient proches des bibliothèques natives C, tout en étant *beaucoup* plus simple d’emploi. Les notebooks [Jupyter] permettent de documenter et valider des méthodes de calcul avant de les implémenter dans l’application Python.
+
+Elle contient une solution de graphiques ([Matplotlib]) qui peut s’avérer pratique pour prototyper, mais ses performances ne sont pas comparables à ce que propose les graphiques Qt/QML.
+
+[SciPy]: https://scipy.org/
+[NumPy]: https://numpy.org/
+[Jupyter]: https://jupyter.org/
+[Matplotlib]: https://matplotlib.org/
 
 ### Mise en œuvre
 
@@ -295,28 +293,35 @@ La communication avec le PC se fait via une liaison série : les cartes AVR ex
 
 L’approche SCPI illustre bien la différence de démarche avec les produits NI : au lieu d’acquérir directement les données brutes via le PC, c’est le MCU qui est en charge de l’essentiel de l’acquisition *et du traitement*. Les données remontées au PC sont donc minimes, et le développement desktop se concentre sur la présentation des données.
 
-Pour présenter les informations dans l’interface graphique QML, nous avons créé des bindings entre l’interface et le driver Python. Bien que l’environnement Qt soit originellement codé en C++, la librairie `PySide6` nous permet de lancer une application QML et développer des éléments graphique custom en Python. Un patern récurrent est de définir un élément `Bridge`, chargé de faire l’interface entre l’interface graphique et le backend Python / C++ de l’application.
+Pour présenter les informations dans l’interface graphique QML, nous avons créé des bindings entre l’interface et le driver Python. Bien que l’environnement Qt soit originellement codé en C++, la librairie `PySide6` nous permet de lancer une application QML et développer des éléments graphique custom en Python. Un pattern récurrent est de définir un élément `Bridge`, chargé de faire l’interface entre l’interface graphique et le backend Python / C++ de l’application.
 
 ![Morceau du Bridge utilisé pour l’interface](./bridge.png)
 
-La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce au décorateur `QmlElement`, et défini des proriété et méthodes via les décorateurs `property` et `slot` respectivement. Une fois mis en place, l’élément `Bridge` peut être intégré au code d’interface, et ses propriété / méthodes peuvent être utilisés comme n’importe quel autre élément QML.
+La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce au décorateur `QmlElement`, et défini des propriétés et méthodes via les décorateurs `property` et `slot` respectivement. Une fois mis en place, l’élément `Bridge` peut être intégré au code d’interface, et ses propriétés / méthodes peuvent être utilisés comme n’importe quel autre élément QML.
 
-Grâce à Python, l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée paur un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
+Grâce à Python, l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée par un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
+
+> *TODO: Rajouter un screenshot de l’appli*
 
 **Retour d’expérience** après quelques semaines d’utilisation :
 
-- LabVIEW est l’option la plus rapide pour prototyper ;
-- Python/QML reste simple, et permet de livrer des apps mieux finies :
-  - versionnement SVN ou Git possible (pas de `diff` avec LabVIEW)
-  - qualité logicielle (lint, typage…) : `ruff`, `uv`, `mypy`
-  - GUI bien séparée du reste du code
-  - installeur de taille raisonnable (PyInstaller)
-  - le client final peut modifier l’app sans dépendances logicielles
+- LabVIEW reste l’option la plus rapide pour prototyper ;
+- Python/QML est un peu plus exigeant, mais permet de livrer des applications mieux finies :
+  - le versionnement SVN ou Git est enfin possible (pas de `diff` avec LabVIEW) ;
+  - de bons outils de qualité logicielle : [ruff] (lint, LSP), [uv] (gestionnaire de paquets), [ty]/[mypy] (type checker)…
+  - la gestion de l’interface utilisateur (GUI) est bien séparée du reste du code ;
+  - l’installeur de taille raisonnable (PyInstaller) ;
+  - le client final peut modifier l’application sans dépendances propriétaires ;
 - l’approche SCPI facilite la portabilité du code LabVIEW ou Python, sans nécessiter de pilote spécifique.
+
+[mypy]: https://www.mypy-lang.org/
+[ruff]: https://docs.astral.sh/ruff/
+[uv]:   https://docs.astral.sh/uv/
+[ty]:   https://docs.astral.sh/ty/
 
 ### Cadence d’échantillonnage
 
-Pour un fonctionnement en mode *streamnig* (acquisition de données en direct sur le PC, en utilisant le MCU comme une carte NI), les premiers tests ont mis en évidence une limitation inattendue de la cadence d’échantillonnage : c’est souvent l’USB et non l’ADC qui bride les performances.
+Pour un fonctionnement en mode *streaming* (acquisition de données en direct sur le PC, en utilisant le MCU comme une carte NI), les premiers tests ont mis en évidence une limitation inattendue de la cadence d’échantillonnage : c’est souvent l’USB et non l’ADC qui bride les performances.
 
 - La plupart des cartes MCU ont un contrôleur USB 1.1, limité au débit `full-speed` soit 12 Mbds théoriques — et au mieux 1 MB/s en pratique (Arduino Nano 2040), parfois seulement 600 kB/s.
 
@@ -329,7 +334,7 @@ Ces débits sont obtenus en mode de communication série (`pyserial`). On pourra
 Cette limitation à 1 MB/s reste *très* haute pour les besoins courants :
 
 - c’est beaucoup plus que nécessaire pour les bancs de test de RBI ;
-- c’est suffisant streamer 8 voies audio 16 bits à 48 kHz.
+- c’est suffisant pour streamer 8 voies audio 16 bits à 48 kHz.
 
 Pour les applications qui nécessitent un débit supérieur à ce que permet la communication série, on pourrait utiliser un SBC comme le [RPi Zero 2 W] :
 
@@ -355,7 +360,7 @@ J’espère que Sciduino sera utile à RBI et qu’il continuera à évoluer au 
 
 ### Objectif
 
-L’objectif initial (figurant sur l’offre de stage) était de concevoir un shield DAQ pour Arduino Uno, basé sur un ADC 16 bits / 1 kHz / 8 voies et comportant une zone sur laquelle on peut souder des composants. Cette approche a finalement vite été rejetée, car le projet était trivial (il suffit d’utiliser un ADC communiquant en SPI ou I²C), et à l’uage, on a vu que le prototypage sur breadboard était bien plus pratique (beaucoup plus de place, pas besoin de souder…).
+L’objectif initial (figurant sur l’offre de stage) était de concevoir un shield DAQ pour Arduino Uno, basé sur un ADC 16 bits / 1 kHz / 8 voies et comportant une zone sur laquelle on peut souder des composants. Cette approche a finalement vite été rejetée, car le projet était trivial (il suffit d’utiliser un ADC communiquant en SPI ou I²C), et à l’usage, on a vu que le prototypage sur breadboard était bien plus pratique (beaucoup plus de place, pas besoin de souder…).
 
 L’objectif révisé est de concevoir une carte au [format Europe] (100×160 mm) conçue autour d’une empreinte Nano pour résoudre l’obsolescence de la carte [NI-6212 OEM], cruciale pour le banc de test OBOGS (BTO) de RBI.
 
@@ -400,11 +405,11 @@ RBI privilégie les logiciels libres quand c’est possible, et utilise [KiCad] 
 
 [KiCad]: https://www.kicad.org/
 
-Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans KiCad (conneteurs, buffers, protection décharges électro-statique…).
+Le schéma de principe de l’ancienne carte à été conçu dans un autre logiciel il y a quelques années. Il a d’abord fallu que je retranscrive ce dont j’avais besoin dans KiCad (connecteurs, buffers, protection décharges électro-statique…).
 
 Le rack électronique du banc fonctionne en 5 V, les AVR aussi, mais pas les ARM. On veut donc pouvoir amplifier le signal des cartes ARM tout en gardant le signal 5 V des cartes AVR — le tout, sans nécessiter de configuration manuelle, qui est source d’erreurs parfois difficiles à diagnostiquer.
 
-Pour celà, on utilise un « level-shifter », un montage à transistor qui reçoit un signal numérique et une référence de tension en entrée, et fixe le niveau de tension en sortie à un niveau fixe. Les Arduino Nano ne fournissant pas de pin `ioref` par défaut, on utilise un GPIO en sortie numérique pour recréer la fonction.
+Pour cela, on utilise un « level-shifter », un montage à transistor qui reçoit un signal numérique et une référence de tension en entrée, et fixe le niveau de tension en sortie à un niveau fixe. Les Arduino Nano ne fournissant pas de pin `ioref` par défaut, on utilise un GPIO en sortie numérique pour recréer la fonction.
 
 ![Schéma électronique d’un level-shifter](./level_shifter.png)
 
@@ -421,7 +426,7 @@ Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, a
 Les micro-contrôleurs sont des composants très complexes, dont le fonctionnement interne peut générer un léger bruit susceptible se répercuter sur le reste du circuit, notamment sur le plan de masse. Ce bruit pouvant perturber les mesures de l’ADC, on a cherché à séparer l’ADC du « monde numérique » le plus possible. Cela a été réalisé via deux techniques :
 
 1. on utilise un régulateur de tension externe – un L78L05-SOT89 – pour fournir une tension stable aux alimentations analogiques de l’ADC ;
-2. on sépare la carte en deux plans de masse disctincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
+2. on sépare la carte en deux plans de masse distincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
 
 La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ayant une très légère résistance, on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation aux différents composants pouvant faire circuler beaucoup de courant, on les a élargies pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à intervalle régulier afin d’éviter des éventuels effets capacitifs sur la carte.
 
@@ -456,7 +461,7 @@ Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
 
 - le niveau bas correspond au milieu liquide (la pointe de la sonde optique est dans l’eau)
 - le niveau haut correspond au milieu gazeux (la pointe de la sonde optique est dans l’air)
-- le passage d’une bulle sur une sonde correspond donc à un crénau dont on veut connaitre :
+- le passage d’une bulle sur une sonde correspond donc à un créneau dont on veut connaitre :
   - la date par rapport au début de l’acquisition
   - la durée (qui permet d’évaluer la taille de la bulle)
   - les temps de montée et de descente (qui pourraient permettre d’évaluer la vitesse)
@@ -465,7 +470,7 @@ On cherche à qualifier ces signaux avec une résolution de 50 ns, donc une ac
 
 On sort du cadre de Sciduino : aucun MCU ne peut transférer un signal à cette cadence-là. Il faudrait un contrôleur USB3, probablement associé à un FPGA.
 
-L’idée ici est d’utiliser un MCU pour transformer le signal analogique à 20 MHz en une suite d’événements (date, durée, temps de montée/descente), avant de la tranférer au PC. Une limite à 10 000 événements par seconde est raisonnable, et correspond déjà à des écoulements extrêmes.
+L’idée ici est d’utiliser un MCU pour transformer le signal analogique à 20 MHz en une suite d’événements (date, durée, temps de montée/descente), avant de la transférer au PC. Une limite à 10 000 événements par seconde est raisonnable, et correspond déjà à des écoulements extrêmes.
 
 La stack Python/QML/SciPy reste pertinente pour assurer la visualisation des résultats de mesure côté PC.
 
