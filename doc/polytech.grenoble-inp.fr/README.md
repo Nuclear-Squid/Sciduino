@@ -1,11 +1,18 @@
 ---
-title: Rapport de stage
+title: Rapport de stage 4A
+subtitle: "Sciduino : une stack technique libre et résiliente en alternative à LabVIEW et NI‑DAQ."
 author: Léo Cazenave
-date: 2025-08-18
-subtitle: RBI, mai-août 2025
-abstract: "Pour réduire la dépendance de RBI aux produits National Instruments, on développe le projet Sciduino : une alternative basée sur des technologies libres et pérennes telles que Arduino, Python, QML, SciPy."
-confidentiality: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du vieux Chêne 38240 MEYLAN. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse."
+date: "Période du stage : de mai à août 2025"
+abstract: |
+  Pour réduire la dépendance de RBI aux produits National Instruments dans le développement de ses bancs de test, on développe le projet Sciduino : une alternative basée sur des technologies libres et pérennes telles que Arduino, Python, SciPy.
+
+  Dans un premier temps, on identifie les briques technologiques répondant le mieux aux besoins de RBI : les micro-contrôleurs, les cartes de développement, les interfaces physiques, les environnements de développement, les bibliothèques logicielles pour le développement d’applications et l’analyse de données.
+
+  Cette stack Sciduino est ensuite mise en œuvre pour une application générique d’acquisition de données, typique de ce que proposent LabVIEW et les cartes NI-DAQ, afin de déterminer quelle fréquence maximale d’acquisition on peut espérer d’un micro-contrôleur actuel. On l’applique ensuite à une application spécifique de banc de test pneumatique RBI, pour laquelle une carte électronique est développée autour d’une empreinte Arduino Nano, le contrôleur pilotant un bus GPIO dédié et un ADC 16 bits (8 voies à 1 kHz).
+  
+  Enfin, on valide la pertinence des micro-contrôleurs pour une application RBI sortant du cadre de Sciduino, où il faut traiter en temps réel un flux continu de données 8 bits à 1 MHz. On a choisi le Raspberry Pi RP2040, dont les entrées-sorties programmables permettent d’assurer la numérisation du signal sans affecter la charge du processeur, et l’environnement Rust Embedded, qui fournit une couche d’abstraction « zero-cost » pour l’embarqué et une gestion mémoire plus sûre que C/C++.
 ---
+
 
 # Contexte
 
