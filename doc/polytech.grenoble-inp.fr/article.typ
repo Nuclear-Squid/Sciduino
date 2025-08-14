@@ -23,26 +23,26 @@
 }
 
 #let conf(
-  // these first few come through from markdown metadata:
+  // markdown metadata
   title: none,
   subtitle: none,
   authors: (),
   keywords: (),
   date: none,
   abstract: none,
-  // the rest is defined locally here:
+  // local strings
   dept: "Informatique et Électronique des Systèmes Embarqués",
   cursus: "Année universitaire 2024-2025",
   volume: "tome principal",
   comment: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du Vieux Chêne 38 240 Meylan. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse.",
-  // global options:
+  // local settings
   lang: "fr",
   region: "FR",
   paper: "a4",
   margin: (top: 3cm, bottom: 3cm, inside: 2.5cm, outside: 2.5cm),
   cols: 1,
   font: ("Liberation Sans"),
-  fontsize: 12pt,
+  fontsize: 11.5pt,
   sectionnumbering: "1.1.",
   pagenumbering: "1/1",
   doc,
@@ -62,7 +62,6 @@
     // Running header:
     header-ascent: 25% + 0pt,
     header: context {
-      // show smallcaps: set text(tracking: 0.14em)
       set text(10pt)
       if (here().page()) > 1 {        // skip first page
         if calc.odd(here().page()) {  // different headers on L/R pages
@@ -94,7 +93,6 @@
     historical-ligatures: false,
     number-type: "old-style",
     number-width: "proportional"
-    //set strong(delta: 200) // use semibold instead of bold
   )
 
   // Paragraph defaults
@@ -137,12 +135,6 @@
   show footnote.entry: set text(size: 9pt, weight: 200)
 
   // Tables, Lists
-  // show table.cell: it => {
-  //   if it.y == 0 {
-  //     return align(center)[#it.body]
-  //   }
-  //   it
-  // }
   show table: set par(justify: false)
   show list: set par(justify: false)
 
@@ -152,14 +144,14 @@
   show heading.where(level: 1): body => {
     pagebreak(weak: true)
     align(left, block(above: 48pt, below: 32pt, width: 100%)[
-      #set text(weight: "bold", style: "normal", size: 1.6em)
+      #set text(weight: "bold", style: "normal", size: 1.5em)
       #v(2em)
       #body
       #v(1em)
     ])
   }
   show heading.where(level: 2): body => align(left, block(above: 32pt, below: 18pt)[
-    #set text(weight: "bold", size: 1.4em)
+    #set text(weight: "bold", size: 1.3em)
     #body
     #v(-1em)
     #line(start: (0%, 0%), end: (100%, 0%), stroke: 0.8pt + gradient.linear(black, white))
