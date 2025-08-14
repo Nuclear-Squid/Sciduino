@@ -217,9 +217,10 @@
   //
   // BODY
   // 
-  counter(page).update(1) // re-set page numbering
-  set par(justify: true)  // default for the rest of the doc
-  doc                     // actual body content
+  counter(page).update(1)  // reset page numbering
+  set text(size: fontsize) // reset font size
+  set par(justify: true)   // default for the rest of the doc
+  doc                      // actual body content
 
   //
   // COLOPHON / LAST PAGE
