@@ -34,7 +34,7 @@
   dept: "Informatique et Électronique des Systèmes Embarqués",
   cursus: "Année universitaire 2024-2025",
   volume: "tome principal",
-  comment: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du Vieux Chêne 38240 Meylan. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse.",
+  comment: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du Vieux Chêne 38 240 Meylan. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse.",
   // global options:
   lang: "fr",
   region: "FR",
@@ -66,15 +66,11 @@
       set text(10pt)
       if (here().page()) > 1 {        // skip first page
         if calc.odd(here().page()) {  // different headers on L/R pages
-          align(left, block(width: 100%)[
-            #counter(page).display("1") – #title
-          ])
+          [ #counter(page).display() #h(1fr) #title ]
         } else {
-          align(right, block(width: 100%)[
-            #authors.first().name – #counter(page).display()
-            // #align(left)[#authors.first().name] #h(1fr) #align(right)[#counter(page).display("1")]
-          ])
+          [ #authors.first().name #h(1fr) #counter(page).display() ]
         }
+        v(1.5em) // dirty hack: vertical positionning of the text before
       }
     },
 
@@ -188,30 +184,26 @@
   //
   // TITLE BLOCK / FIRST PAGE
   //
-  
-  // header (logos)
+
+  // logos
   v(-3em)
-  par([
+  [
     #box(image("polytech.png", width: 65%))
     #h(1fr)
     #box(image("rbi.svg", width: 20%))
-  ])
+  ]
 
   // author
-  v(7em)
+  v(1fr)
   set text(size: 16pt)
-  align(center, [
-    #authors.first().name
-    \ #dept
-    \ #title
-  ])
+  align(center, [#authors.first().name \ #dept \ #title])
 
   // title
-  v(7em)
+  v(1fr)
   align(center, strong[#subtitle])
-  v(7em)
+  v(1fr)
   align(center, [#volume])
-  v(7em)
+  v(1fr)
   align(center, [#cursus \ #date])
 
   //
@@ -226,6 +218,40 @@
   // COLOPHON / LAST PAGE
   // 
   v(1fr)
-  align(center, text(size: 9pt, style: "italic")[Fait avec Markdown + Pandoc + Typst + LanguageTool.])
+  align(center, text(size: 10pt, style: "italic")[Fait avec Markdown + Pandoc + Typst + LanguageTool.])
+  v(1fr)
+  
+  pagebreak(to: "even")
+  par([
+    *Étudiant :*  #authors.first().name
+    #h(1fr)
+    Année d’étude dans la spécialité : 4#super[e] année
+  ])
+  par([
+    *Organisme d’accueil :* SN·RBI
+    \ Adresse : 53 chemin du Vieux Chêne, 38 240 Meylan
+    \ Téléphone : 04 76 41 91 66
+  ])
+  par([
+    *Responsable administratif:* Aurélien Rosset
+    \ Téléphone : 04 76 41 91 66
+    \ Courriel : Aurelien.Rosset\@rbi-instrumentation.com
+  ])
+  par([
+    *Tuteur professionnel :* Hugo Vernier-Lambert
+    \ Téléphone : 04 76 41 91 66
+    \ Courriel : Hugo.Vernier-Lambert\@rbi-instrumentation.com
+  ])
+  par([
+    *Enseignant référent :* Nacer Zergainoh
+    \ Téléphone : 04 76 82 79 02
+    \ Courriel : Nacer.Zergainoh\@univ-grenoble-alpes.fr
+  ])
+  par([
+    *Titre :*
+    \ #subtitle
+  ])
+  [*Résumé :* \ ]
+  abstract
 
 } // end 'let conf'
