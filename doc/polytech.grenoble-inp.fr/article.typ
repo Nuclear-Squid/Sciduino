@@ -31,7 +31,11 @@
   date: none,
   abstract: none,
   // the rest is defined locally here:
+  dept: "Informatique et Électronique des Systèmes Embarqués",
+  cursus: "Année universitaire 2024-2025",
+  volume: "tome principal",
   comment: "Ce document est la propriété de Société Nouvelle RBI, 53 chemin du Vieux Chêne 38240 Meylan. Il est remis à titre strictement confidentiel. Il ne peut être reproduit, ni communiqué sans son autorisation expresse.",
+  // global options:
   lang: "fr",
   region: "FR",
   paper: "a4",
@@ -146,11 +150,9 @@
   show table: set par(justify: false)
   show list: set par(justify: false)
 
-  // HEADINGS
-  //
-  show heading: set text(hyphenate: false)
+  // Headings
   set heading(numbering: sectionnumbering)
-
+  show heading: set text(hyphenate: false)
   show heading.where(level: 1): body => {
     pagebreak(weak: true)
     align(left, block(above: 48pt, below: 32pt, width: 100%)[
@@ -160,7 +162,6 @@
       #v(1em)
     ])
   }
-
   show heading.where(level: 2): body => align(left, block(above: 32pt, below: 18pt)[
     #set text(weight: "bold", size: 1.4em)
     #body
@@ -168,11 +169,9 @@
     #line(start: (0%, 0%), end: (100%, 0%), stroke: 0.8pt + gradient.linear(black, white))
   ])
 
-  // STYLING LABELLED SECTIONS
-  //
+  // Labelled sections
   show <epigraph>: set text(rgb("#777"))
   show <epigraph>: set par(justify: false)
-
   show <refs>: set par(
     justify: false,
     spacing: 16pt,
@@ -182,38 +181,49 @@
   )
   show <refs>: set text(black)  // for testing
 
-  // STYLING SPECIFIC STRINGS OF TEXT
+  // Specific strings
   show "LaTeX": smallcaps
   show regex("https?://\S+"): set text(style: "normal", rgb("#33d"))
 
-  // THIS IS THE TITLE BLOCK
-  v(1em)
-  set par(justify: false)
-  align(left, text(size: 18pt)[
-    #title#if subtitle != none [: #emph[#subtitle] ]
+  //
+  // TITLE BLOCK / FIRST PAGE
+  //
+  
+  // header (logos)
+  v(-3em)
+  par([
+    #box(image("polytech.png", width: 65%))
+    #h(1fr)
+    #box(image("rbi.svg", width: 20%))
   ])
-  v(1em)
-  align(left, text(size: 12pt)[#authors.first().name])
-  if date != none {
-    v(0.5em)
-    align(left, text(size: 12pt)[#date])
-  }
-  if abstract != none {
-    v(0.5em)
-    align(left, text(size: 11pt, tracking: 0.05em)[Abstract: ]+ text(size: 11pt, style: "italic")[#abstract])
-  }
-  v(1em)
-  //line(start: (1%,0%), end: (99%,0%), stroke: 1pt + gray)
-  v(4em)
 
-  // THIS IS THE ACTUAL BODY
+  // author
+  v(7em)
+  set text(size: 16pt)
+  align(center, [
+    #authors.first().name
+    \ #dept
+    \ #title
+  ])
+
+  // title
+  v(7em)
+  align(center, strong[#subtitle])
+  v(7em)
+  align(center, [#volume])
+  v(7em)
+  align(center, [#cursus \ #date])
+
+  //
+  // BODY
+  // 
   counter(page).update(1) // re-set page numbering
+  set par(justify: true)  // default for the rest of the doc
+  doc                     // actual body content
 
-  set par(justify: true) //default for the rest of the doc
-
-  doc  // HERE is the actual body content
-
-  // COLOPHON at the end
+  //
+  // COLOPHON / LAST PAGE
+  // 
   v(1fr)
   align(center, text(size: 9pt, style: "italic")[Fait avec Markdown + Pandoc + Typst + LanguageTool.])
 
