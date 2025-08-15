@@ -398,7 +398,7 @@ On a donc choisi de le remplacer par un [LTC1859] : un autre ADC ayant les mê
 
 Ces fréquences d’acquisition de 50, 100 voire 250 kHz semblent démesurées, mais c’est ce qui nous permet de garantir une parité de fonctionnement avec la carte NI‑6212 actuellement utilisée : s’il fallait implémenter un test à 10 kHz sur l’AVR ou effectuer des traitements plus complexes (par exemple, une transformée de Fourier avec un ARM), le matériel ne nous limitera pas.
 
-Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié – un LT6654AIS6-2.5 – pour obtenir une tension de référence à 2.5 V ±0.05%.
+Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié — un LT6654AIS6-2.5 — pour obtenir une tension de référence à 2.5 V ±0.05%.
 
 (Pour l’anecdote, le MAX1300 *avec* la Vref externe avait un signal plus bruité que le LTC1859 *sans*…)
 
@@ -431,20 +431,22 @@ Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, a
 
 Les micro-contrôleurs sont des composants très complexes, dont le fonctionnement interne peut générer un léger bruit susceptible se répercuter sur le reste du circuit, notamment sur le plan de masse. Ce bruit pouvant perturber les mesures de l’ADC, on a cherché à séparer l’ADC du « monde numérique » le plus possible. Cela a été réalisé via deux techniques :
 
-1. on utilise un régulateur de tension externe – un L78L05-SOT89 – pour fournir une tension stable aux alimentations analogiques de l’ADC ;
+1. on utilise un régulateur de tension externe — un L78L05-SOT89 — pour fournir une tension stable aux alimentations analogiques de l’ADC ;
 2. on sépare la carte en deux plans de masse distincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
 
 La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ayant une très légère résistance, on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation aux différents composants pouvant faire circuler beaucoup de courant, on les a élargies pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à intervalles réguliers afin d’éviter des éventuels effets capacitifs sur la carte.
 
 ## Fabrication et validation
 
-La validation de la carte est normalement triviale. Plusieurs personnes ont vérifié mon schéma et routage, et les différentes fonctions électroniques ont été testées individuellement sur des breadboards. Toutes les erreurs possibles ont donc été commises pendant la phase de prototypage, et les montages fonctionnels ont été retranscrits dans KiCad.
+La validation de la carte est généralement simple. Les différentes fonctions électroniques sont conçues et validés individuellement sur une breadboard, puis retranscrites dans KiCad dans un second temps. Dès que mon travail a été partagé dans l’espace CryptPad de la boutique, il a été régulièrement contrôlé par mes collègues. KiCad fournit également des outils pour valider le schéma (*electrical rules checker*) et le routage (*design rules checker*), et on ne laisse jamais passer le moindre avertissemetn. Les erreures restent possible, mais la grande majorité sont corrigés avant la production des premiers prototypes.
 
 La carte est fabriquée chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais RBI n’en a pas l’usage : rien n’étant produit en série, c’est plus pertinent de les assembler en interne — notamment pour certaines opérations de diagnostic, où on pourra tester des corrections en intervenant manuellement les PCB.
 
-Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adaptés à la soudure en surface à la main. J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière afin de faciliter le travail de la câbleuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais nous faisons une carte au format Europe, donc nous avons largement la place nécessaire.
+Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adaptés à’la OUdure en surface à la main. Les librairies de footprints fourissent généralement des variantes « handsoldering » dotés de pas plus large, mais cela ne garantit pas que le composant soit facile à souder. Une des diodes PESD que j’ai choisi était au format `SOD-882`, qui ne fait que 1mm de long.
 
-J’ai dû aussi générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaires pour le bon fonctionnement de la carte et où les acheter.
+J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière, afin de faciliter le travail d’Isabelle, notre cableuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais les cartes europe offrent largement assez de place.
+
+Pour finir, il a fallu générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaires pour le bon fonctionnement de la carte et où les acheter.
 
 ## Perspectives
 
@@ -461,7 +463,7 @@ Objectif initial : créer un shield type oscilloscope. Problème :
 - aucune carte Arduino n’offre un débit USB suffisant, cf. « [Cadence d’échantillonnage](#cadence-déchantillonnage) » ;
 - aucune carte STM32 n’a à la fois un ADC suffisamment rapide et un USB `hi-speed`.
 
-Objectif révisé : prototyper une solution RPi Pico + ADC externe (SPI) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de Dionysos, l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des PicoScope.
+Objectif révisé : prototyper une solution RPi Pico + ADC externe (port 8 bits parallèles) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de Dionysos, l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des PicoScope.
 
 Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
 
@@ -482,14 +484,18 @@ La stack Python/QML/SciPy reste pertinente pour assurer la visualisation des ré
 
 ## Choix du matériel
 
-- ADC : LTCxxxx, interface SPI
+- ADC : LTC1406, port 8 bits parallèle
 - MCU : Raspberry Pi Pico 2 (rp2350)
 
-On est à la limite de ce qu’on peut faire avec un MCU. Même avec un contrôleur cadencé à 600 MHz, ça ne laisse que 30 cycles par échantillon pour l’acquisition SPI, le traitement et le transfert des données.
+On est à la limite de ce qu’on peut faire avec un MCU. Même avec un contrôleur cadencé à 600 MHz, ça ne laisse que 30 cycles par échantillon pour l’acquisition, le traitement et le transfert des données. Le rp2350 n’est pas le contrôleur le plus rapide du moment (150 MHz pour chacun des deux cœurs Cortex‑M33, overclockable), mais on compte sur ses PIO pour assurer l’acquisition des données de l’ADC.
 
-Le rp2350 n’est pas le contrôleur le plus rapide du moment (150 MHz pour chacun des deux cœurs Cortex‑M33, overclockable), mais on compte sur ses PIO pour assurer le pilotage de l’ADC sans solliciter les cœurs du MCU.
+Les PIO sont un ensemble de machines à état qui exécutent des programmes simple indépendemment du reste du MCU. Elles sont programmée dans un assembleur 8 bit **très** limité mais spécialisés dans les intéractions avec des périphériques externes :
 
-Les PIO se programment en assembleur, on peut donc viser une acquisition de l’ADC calée au cycle d’horloge près. Les MCU de Raspberry sont actuellement les seuls du marché à proposer des PIO.
+- chaque instruction ne prend qu’un cycle d’horloge
+- chaque machine à état a son propre diviseur d’horloge fractionnel (TODO : mettre une formule propre)
+- elles peuvent déclancher des interruptions, mais aussi lire ou remplir des tableaux d’entiers partagés avec le reste du MCU, grâce au DMA (Direct Memory Access)
+
+Les PIOs nous permettent d’assurer une acquisition des données de l’ADC à *exactement* 20MHz ainsi qu’une détection de la saturation sans soliciter les cœurs du MCU. Le rp2040 et rp2350 sont actuellement les seuls MCU du marché à proposer des PIO.
 
 ## Environnement de développement
 
