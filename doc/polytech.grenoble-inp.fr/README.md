@@ -307,7 +307,7 @@ La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce a
 
 Grâce à Python, l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée par un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
 
-> *TODO: Rajouter un screenshot de l’appli*
+![Screenchot de l’appli Sciduino](./appli_sciduino.png)
 
 **Retour d’expérience** après quelques semaines d’utilisation :
 
