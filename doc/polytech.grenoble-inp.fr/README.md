@@ -398,12 +398,13 @@ On a donc choisi de le remplacer par un [LTC1859] : un autre ADC ayant les mê
 
 Ces fréquences d’acquisition de 50, 100 voire 250 kHz semblent démesurées, mais c’est ce qui nous permet de garantir une parité de fonctionnement avec la carte NI‑6212 actuellement utilisée : s’il fallait implémenter un test à 10 kHz sur l’AVR ou effectuer des traitements plus complexes (par exemple, une transformée de Fourier avec un ARM), le matériel ne nous limitera pas.
 
-Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié — un LT6654AIS6-2.5 — pour obtenir une tension de référence à 2.5 V ±0.05%.
+Enfin, bien que les deux ADC utilisés possèdent une tension de référence interne, celle-ci n’est pas assez précise pour l’objectif du mV sur ±10 V. On a donc utilisé un composant externe dédié — un [LT6654]AIS6-2.5 — pour obtenir une tension de référence à 2.5 V ±0.05%.
 
 (Pour l’anecdote, le MAX1300 *avec* la Vref externe avait un signal plus bruité que le LTC1859 *sans*…)
 
 [MAX1300]: https://www.analog.com/en/products/max1300.html
 [LTC1859]: https://www.analog.com/en/products/ltc1859.html
+[LT6654]:  https://www.analog.com/en/products/lt6654.html
 
 ## Conception KiCad
 
@@ -431,10 +432,12 @@ Chaque voie de l’ADC passe d’abord dans un étage de traitement de signal, a
 
 Les micro-contrôleurs sont des composants très complexes, dont le fonctionnement interne peut générer un léger bruit susceptible se répercuter sur le reste du circuit, notamment sur le plan de masse. Ce bruit pouvant perturber les mesures de l’ADC, on a cherché à séparer l’ADC du « monde numérique » le plus possible. Cela a été réalisé via deux techniques :
 
-1. on utilise un régulateur de tension externe — un L78L05-SOT89 — pour fournir une tension stable aux alimentations analogiques de l’ADC ;
+1. on utilise un régulateur de tension externe — un [L78L05]‑SOT89 — pour fournir une tension stable aux alimentations analogiques de l’ADC ;
 2. on sépare la carte en deux plans de masse distincts, un pour le ground numérique (`DGND`), l’autre pour le ground analogique (`GND`). Ces deux plans de masse sont reliés via une résistance de 0 Ω et quelques capacités, afin de les garder au même potentiel tout en absorbant leurs perturbations.
 
 La qualité du routage peut aussi influer les performances de la carte. Les pistes de cuivre ayant une très légère résistance, on a cherché à raccourcir les pistes le plus possible avant d’entrer sur l’ADC. À l’inverse, les pistes qui traversent la carte pour fournir de l’alimentation aux différents composants pouvant faire circuler beaucoup de courant, on les a élargies pour éviter qu’elles ne chauffent. Les plans de masse sont aussi traversés par des vias à intervalles réguliers afin d’éviter des éventuels effets capacitifs sur la carte.
+
+[L78L05]: https://www.st.com/resource/en/datasheet/l78l.pdf
 
 ## Fabrication et validation
 
