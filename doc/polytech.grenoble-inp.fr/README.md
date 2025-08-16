@@ -248,6 +248,33 @@ Aujourd’hui, le code micro-contrôleur s’articule autour de :
 
 La carte peut effectuer une mesure « one-shot », mesurer une fenêtre temporelle (*burst*) ou mesurer en continu (*streaming*) sur toutes les voies activées, et stocker les mesures dans différentes waveforms avant de les envoyer à l’ordinateur.
 
+:::{test}
+prout
+:::
+
+```c
+// waveforms.h
+typedef struct {
+    u32 length;
+    u32 time;
+    f32 interval;
+    u8  pin;
+} WaveformHeader:
+
+typedef struct Waveform {
+    WaveformHeader Meta;
+    size_t current_index;
+    u16* data;
+
+    FillStatus push(u16 value);
+    void read_subset(
+        const u16** ptr,
+        sizet* len,
+        BufferSubset subset
+    ) const;
+} Waveform;
+```
+
 ![Les types de données importants de Sciduino](./data_types.png)
 
 Afin d’échanger des instructions et informations entre la carte et l’ordinateur, on utilise le protocole [SCPI]. Cela permet d’écrire des instructions à la main pour débugger depuis une console série, mais aussi ne pas dépendre d’un pilote spécifique dans l’application desktop. Cependant, la carte permet aussi de renvoyer les mesures et informations en binaire pour de meilleures performances.
@@ -271,8 +298,6 @@ Pour l’interface graphique, on utilise [QML], un langage de description basé 
 - des bindings vers Python via la bibliothèque [PySide6] (anciennement « Qt for Python »), qui est maintenue par l’équipe Qt.
 
 En plus du code QML nécessaire pour créer l’interface graphique, un second module Python définit les bindings nécessaire pour transmettre les commandes de l’interface au pilote de la carte, puis mettre en forme les réponses avant de les afficher dans l’interface.
-
-![Vue d’ensemble de la stack logicielle](./graph_stack_soft.png)
 
 [Qt]: https://www.qt.io/
 [QML]: https://doc.qt.io/qt-6/qmlapplications.html
@@ -534,7 +559,7 @@ Afin de limiter le poids des informations transférées sur le bus USB, les fron
 - [63] la voie du front détecté (voie A / voie B) ;
 - [62] le type de front (montant / descendant) ;
 - [61] vaut `1` si le signal est saturé (valeur trop haute) ;
-- [60] vaut `0` si le signal est saturé (valeur trop basse) ;
+- [60] vaut `1` si le signal est saturé (valeur trop basse) ;
 - [0–59] le timestamp du front (nombre de µs depuis le début de l’acquisition).
 
 Le temps de montée / descente du front est pour l’instant ignoré, car il n’est pour l’instant pas utilisé dans l’application desktop.
@@ -569,7 +594,18 @@ sm.start();  // Start the state-machine
 ```
 
 ## Perspectives
-TODO
+
+ En ce moment, le programme ne peut tenir qu’une cadance de 1.5MHz, ce qui est insufisent pour avoir 1MHz sur deux voies, donc j’ai overclocké le rp2040 à 250 MHz, en espérant pouvoir optimiser le programme plus tard.
+
+Une piste d’optimisation que nous avons envisagé est de passer du rp2040 au rp2350 (disponible sur le Raspberry Pico 2) : il est plus puissant (double cortex-M33 à 150 MHz, overclockable), mais surtout il dispose d’opérations [SIMD][], d’un [FPU][] et d’un [DSP][], ce qui pourrait permettre de nouvelles possibilités en terme d’optimisations.
+
+Bien qu’une fréquence d’acquisition de 1 MHz par voie soit suffisante pour mesurer la vitesse d’écoulement avec moins de 1% d’erreur, pouvoir aller à une vitesse de 20 MHz par voie permetterai de mesurer les temps de montée et descente, ce qui pourrait fournir des renseignements supplémentaires sur la nature de l’écoulement.
+
+Pour finir, les fronts sont actuellement récupérés par une application desktop pour faire les calculs de vitesse d’écoulement. Cela implique donc de livrer un ordinateur avec le reste de la machine. On pourrait donc adapter l’application pour la faire tourner sur un SBC (probablement un Raspberry Pi 5) afin de simplifier les déploiments et permettre aux utilisateurs d’accéder aux données via le réseau.
+
+[SIMD]: https://fr.wikipedia.org/wiki/Single_instruction_multiple_data
+[FPU]:  https://fr.wikipedia.org/wiki/Unit%C3%A9_de_calcul_en_virgule_flottante
+[DSP]:  https://fr.wikipedia.org/wiki/Processeur_de_signal_num%C3%A9rique
 
 # Conclusion
 
