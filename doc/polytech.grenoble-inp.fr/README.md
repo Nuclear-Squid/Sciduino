@@ -479,6 +479,8 @@ Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
   - la durée (qui permet d’évaluer la taille de la bulle)
   - les temps de montée et de descente (qui pourraient permettre d’évaluer la vitesse)
 
+![](./signaux_dyonisos.png)
+
 On cherche à qualifier ces signaux avec une résolution de 1 µs, donc une acquisition à 1 MHz. 
 
 On sort du cadre de Sciduino : aucun MCU ne peut transférer un signal à cette cadence-là. Il faudrait un contrôleur USB3, probablement associé à un FPGA.
@@ -515,6 +517,8 @@ L’API C serait le choix le plus évident, mais l’approche Rust Embedded semb
 - chaque classe de MCU a une bibliothèque qui implémente ces traits — il y en a une pour STM32 et une pour Raspberry, entre autres
 - le framework [rtic][] facilite grandement le développement d’applications embarqués
 
+Le système de type et de traits de Rust permet d’avoir des performances marginalement meilleur qu’en C, mais avec une sécurité inégalée : se tromper de pin peut très souvent devenir une erreur de type !
+
 Pour RBI, Rust Embedded pourrait donc être une solution complémentaire à Sciduino pour les projets critiques en performances, tout en conservant une couche d’abstraction « gratuite » pour ne pas être dépendant d’une architecture matérielle.
 
 [traits]:        https://fr.wikipedia.org/wiki/Trait_(programmation)
@@ -524,7 +528,45 @@ Pour RBI, Rust Embedded pourrait donc être une solution complémentaire à Scid
 [rtic]:          https://rtic.rs/2/book/en/
 
 ## Mise en œuvre
-TODO
+
+Afin de limiter le poids des informations transféré sur le bus USB, les fronts sont encodé dans un bitset sur un entier 64 bits, sous la forme suivante :
+
+- [63] la voie du front détecté (voie A / voie B)
+- [62] le type de front (montant / désendant)
+- [61] vaut `1` si le signal est saturé (valeur trop hautes)
+- [60] vaut `0` si le signal est saturé (valeur trop basses)
+- [0–59] le timestamp du front
+
+Le temps de montée / descente du front est pour l’instant ignoré, car il n’est pour l’instant pas utilisé dans l’application desktop.
+
+Le code est séparé en 3 modules distincts :
+
+1. le module principal : il définit les types utilisés au sein de l’application, la procédure d’initialisation du MCU et ses périphériques ainsi que la mémoire partagée entre les deux cœurs, avant de démarrer la boucle principale de chaque cœur  ;
+2. Core0 : il exporte la boucle principale du premier cœur, et est chargé de l’acquisition des données (via des PIO) et de la détection de fronts dans le signal.
+3. Core1 : il exporte la boucle principale du second cœur, et est chargé de la communication USB.
+
+Les programmes PIO sont normalement définit dans des fichiers `.pio` à part, puis assemblé dans des fichiers `.h` avec `pioasm`, ce qui permet de facilement les inclure dans un programme C. Cependant, le HAL rp2040 définit une macro pour écrire ces programmes au milieu du code Rust, et les configurer facilement via un objet `PIOBuilder`.
+
+Le signal numérisé par l’ADC est envoyé au MCU via un bus 8 bits parallèle, donc en connectant ce bus sur 8 GPIO d’indice consécutif, on peut récupérer la valeur de l’ADC en une instruction PIO. La directive `autopush` nous permet également d’envoyer au DMA les données dès que l’`ISR` (*Input Shift Register*) est rempli.
+
+Le morceau de programme nécessaire pour assurer cette acquisition est donc juste :
+
+```rust
+let pio_program = pio::pio_asm!("
+    .wrap_target   // Start of program
+        in pins 8  // Read the 8 pins of the ADC’s bus, then write it to `ISR`
+    .wrap          // loop back to start of program
+");
+
+let (mut pio, sm0, _, _, _) = pac.PIO0.split(&mut pac.RESETS);
+let (mut sm, mut rx, _) = PIOBuilder::from_installed(pio_program)
+    .clock_divisor_fixed_point(125, 0)  // 1MHz
+    .in_pin_base(ADC_LSB_PIN)  // Set the first pin of the ADC’s bus
+    .autopush(true)  // Send value to DMA when `ISR` is full
+    .build(sm0);  // Assign program to state machine 0
+
+sm.start();  // Start the state-machine
+```
 
 ## Perspectives
 TODO
