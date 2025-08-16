@@ -466,7 +466,9 @@ Objectif initial : créer un shield type oscilloscope. Problème :
 - aucune carte Arduino n’offre un débit USB suffisant, cf. « [Cadence d’échantillonnage](#cadence-déchantillonnage) » ;
 - aucune carte STM32 n’a à la fois un ADC suffisamment rapide et un USB `hi-speed`.
 
-Objectif révisé : prototyper une solution RPi Pico + ADC externe (port 8 bits parallèles) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de Dionysos, l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des PicoScope.
+L’objectif révisé est de prototyper une solution RPi Pico + ADC externe (port parallèle 8 bits) pour résoudre un projet concret : remplacer la chaine d’acquisition de mesures de [Dionysos], l’application RBI de mesure d’écoulement diphasiques, actuellement basée sur des [PicoScope] en USB3.
+
+[Dionysos]: https://rbi-instrumentation.com/software
 
 Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
 
@@ -477,28 +479,31 @@ Les signaux analogiques des sondes optiques ressemblent à des signaux TTL :
   - la durée (qui permet d’évaluer la taille de la bulle)
   - les temps de montée et de descente (qui pourraient permettre d’évaluer la vitesse)
 
-On cherche à qualifier ces signaux avec une résolution de 50 ns, donc une acquisition à 20 MHz. 
+On cherche à qualifier ces signaux avec une résolution de 1 µs, donc une acquisition à 1 MHz. 
 
 On sort du cadre de Sciduino : aucun MCU ne peut transférer un signal à cette cadence-là. Il faudrait un contrôleur USB3, probablement associé à un FPGA.
 
-L’idée ici est d’utiliser un MCU pour transformer le signal analogique à 20 MHz en une suite d’événements (date, durée, temps de montée/descente), avant de la transférer au PC. Une limite à 10 000 événements par seconde est raisonnable, et correspond déjà à des écoulements extrêmes.
+L’idée ici est d’utiliser un MCU pour transformer le signal analogique à 1 MHz en une suite d’événements (date, durée, temps de montée/descente), avant de la transférer au PC. Une limite à 10 000 événements par seconde est raisonnable, et correspond déjà à des écoulements extrêmes.
 
 La stack Python/QML/SciPy reste pertinente pour assurer la visualisation des résultats de mesure côté PC.
 
 ## Choix du matériel
 
-- ADC : LTC1406, port 8 bits parallèle
-- MCU : Raspberry Pi Pico 2 (rp2350)
+- ADC : LTC1406, port parallèle 8 bits
+- MCU : Raspberry Pi Pico ([rp2040])
 
-On est à la limite de ce qu’on peut faire avec un MCU. Même avec un contrôleur cadencé à 600 MHz, ça ne laisse que 30 cycles par échantillon pour l’acquisition, le traitement et le transfert des données. Le rp2350 n’est pas le contrôleur le plus rapide du moment (150 MHz pour chacun des deux cœurs Cortex‑M33, overclockable), mais on compte sur ses PIO pour assurer l’acquisition des données de l’ADC.
+On est à la limite de ce qu’on peut faire avec un MCU. Le rp2040 n’est pas le contrôleur le plus rapide du moment (125 MHz pour chacun des deux cœurs Cortex‑M0+, facilement overclockable à 250 MHz), mais on compte sur ses PIO pour assurer l’acquisition des données de l’ADC, plutôt que de tenter un « *brute-force* » avec une carte [Teensy] ou certaines cartes STM32, qui proposent des Cortex‑M7 à 600 MHz.
 
-Les PIO sont un ensemble de machines à état qui exécutent des programmes simple indépendemment du reste du MCU. Elles sont programmée dans un assembleur 8 bit **très** limité mais spécialisés dans les intéractions avec des périphériques externes :
+Les PIO sont un ensemble de machines à état qui exécutent des programmes simple indépendemment du reste du MCU. Elles sont programmée dans un assembleur 8 bits **très** limité mais spécialisés dans les interactions avec des périphériques externes :
 
-- chaque instruction ne prend qu’un cycle d’horloge
-- chaque machine à état a son propre diviseur d’horloge fractionnel (TODO : mettre une formule propre)
-- elles peuvent déclancher des interruptions, mais aussi lire ou remplir des tableaux d’entiers partagés avec le reste du MCU, grâce au DMA (Direct Memory Access)
+- chaque instruction ne prend qu’un cycle d’horloge ;
+- chaque machine à état a son propre diviseur d’horloge fractionnel (TODO : mettre une formule propre) ;
+- elles peuvent déclencher des interruptions, mais aussi lire ou remplir des tableaux d’entiers partagés avec le reste du MCU, grâce au DMA (*Direct Memory Access*).
 
-Les PIOs nous permettent d’assurer une acquisition des données de l’ADC à *exactement* 20MHz ainsi qu’une détection de la saturation sans soliciter les cœurs du MCU. Le rp2040 et rp2350 sont actuellement les seuls MCU du marché à proposer des PIO.
+Les PIOs nous permettent d’assurer une acquisition des données de l’ADC à *exactement* 1 MHz, ainsi qu’une détection de la saturation sans solliciter les cœurs du MCU. Les rp2040 et rp2350 sont actuellement les seuls MCU du marché à proposer des PIO.
+
+[LTC1406]: https://www.analog.com/media/en/technical-documentation/data-sheets/1406f.pdf
+[Teensy]:  https://www.sparkfun.com/teensy-4-0.html
 
 ## Environnement de développement
 
