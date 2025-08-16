@@ -489,39 +489,38 @@ La stack Python/QML/SciPy reste pertinente pour assurer la visualisation des ré
 
 ## Choix du matériel
 
-- ADC : LTC1406, port parallèle 8 bits
+- ADC : LTC1406, 20 MHz, port parallèle 8 bits
 - MCU : Raspberry Pi Pico ([rp2040])
 
 On est à la limite de ce qu’on peut faire avec un MCU. Le rp2040 n’est pas le contrôleur le plus rapide du moment (125 MHz pour chacun des deux cœurs Cortex‑M0+, facilement overclockable à 250 MHz), mais on compte sur ses PIO pour assurer l’acquisition des données de l’ADC, plutôt que de tenter un « *brute-force* » avec une carte [Teensy] ou certaines cartes STM32, qui proposent des Cortex‑M7 à 600 MHz.
 
 Les PIO sont un ensemble de machines à état qui exécutent des programmes simple indépendemment du reste du MCU. Elles sont programmée dans un assembleur 8 bits **très** limité mais spécialisés dans les interactions avec des périphériques externes :
 
-- chaque instruction ne prend qu’un cycle d’horloge ;
-- chaque machine à état a son propre diviseur d’horloge fractionnel (TODO : mettre une formule propre) ;
+- une instruction ne dure qu’un cycle d’horloge et peut actionner des pins en parallèle ;
+- chaque machine à état a son propre diviseur d’horloge fractionnel ($f_{PIO} = \frac{f_{MCU}}{n + p / 255}$) ;
 - elles peuvent déclencher des interruptions, mais aussi lire ou remplir des tableaux d’entiers partagés avec le reste du MCU, grâce au DMA (*Direct Memory Access*).
 
-Les PIOs nous permettent d’assurer une acquisition des données de l’ADC à *exactement* 1 MHz, ainsi qu’une détection de la saturation sans solliciter les cœurs du MCU. Les rp2040 et rp2350 sont actuellement les seuls MCU du marché à proposer des PIO.
+Les PIOs nous permettent d’assurer une acquisition des données de l’ADC à *exactement* 1 MHz sans solliciter les cœurs du MCU. Les rp2040 et rp2350 sont actuellement les seuls MCU du marché à proposer des PIO.
 
 [LTC1406]: https://www.analog.com/media/en/technical-documentation/data-sheets/1406f.pdf
 [Teensy]:  https://www.sparkfun.com/teensy-4-0.html
 
 ## Environnement de développement
 
-- Arduino IDE/CLI ? possible (il y a un support officiel rp2040) mais pas optimal en perfs
-- API C de Raspberry ?
-- [Rust Embedded] ?
-
-Les performances étant critiques, on cherche à avoir le moins d’abstraction possible pour exploiter le MCU au mieux de ses capacités.
+L’environnement de développement Arduino a un support officiel pour le rp2040, mais le fait qu’il favorise la simplicité et la portabilité est un problème : les perforpances étant critiques, on cherche à avoir le moins d’abstraction possible pour exploiter le MCU au mieux de ses capacités.
 
 L’API C serait le choix le plus évident, mais l’approche Rust Embedded semble pertinente :
 
-- une bibliothèque Rust standard, décrivant les [traits](https://fr.wikipedia.org/wiki/Trait_(programmation)) à implémenter ;
-- une bibliothèque par classe de MCU, décrivant l’implémentation de ces traits — il y en a une pour STM32 et une pour Raspberry, entre autres.
+- des bibliothèques comme [embedded-hal][] (standard) ou [usb-device][] (communautaire) décrivent des interfaces générique, via des [traits][]
+- chaque classe de MCU a une bibliothèque qui implémente ces traits — il y en a une pour STM32 et une pour Raspberry, entre autres
+- le framework [rtic][] facilite grandement le développement d’applications embarqués
 
 Pour RBI, Rust Embedded pourrait donc être une solution complémentaire à Sciduino pour les projets critiques en performances, tout en conservant une couche d’abstraction « gratuite » pour ne pas être dépendant d’une architecture matérielle.
 
+[traits]:        https://fr.wikipedia.org/wiki/Trait_(programmation)
 [Rust Embedded]: https://docs.rust-embedded.org/book/
 [embedded-hal]:  https://github.com/rust-embedded/embedded-hal
+[usb-device]:    https://github.com/rust-embedded-community/usb-device
 [rtic]:          https://rtic.rs/2/book/en/
 
 ## Mise en œuvre
