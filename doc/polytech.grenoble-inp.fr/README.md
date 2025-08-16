@@ -439,17 +439,17 @@ La qualité du routage peut aussi influer les performances de la carte. Les pist
 
 [L78L05]: https://www.st.com/resource/en/datasheet/l78l.pdf
 
-## Fabrication et validation
+## Validation et fabrication
 
-La validation de la carte est généralement simple. Les différentes fonctions électroniques sont conçues et validés individuellement sur une breadboard, puis retranscrites dans KiCad dans un second temps. Dès que mon travail a été partagé dans l’espace CryptPad de la boutique, il a été régulièrement contrôlé par mes collègues. KiCad fournit également des outils pour valider le schéma (*electrical rules checker*) et le routage (*design rules checker*), et on ne laisse jamais passer le moindre avertissemetn. Les erreures restent possible, mais la grande majorité sont corrigés avant la production des premiers prototypes.
+La validation de la carte est généralement simple. Les différentes fonctions électroniques sont conçues et validés individuellement sur une breadboard, puis retranscrites dans KiCad. Dès que mon travail a été partagé dans l’espace CryptPad de l’équipe, il a été régulièrement contrôlé par mes collègues. KiCad fournit également des outils pour valider le schéma (*electrical rules checker*) et le routage (*design rules checker*), et on ne laisse jamais passer le moindre avertissement. Les erreurs restent possibles, mais la grande majorité sont corrigées avant la production des premiers prototypes.
 
 La carte est fabriquée chez JLCPCB. Ils proposent un service d’assemblage des cartes qu’ils produisent, mais RBI n’en a pas l’usage : rien n’étant produit en série, c’est plus pertinent de les assembler en interne — notamment pour certaines opérations de diagnostic, où on pourra tester des corrections en intervenant manuellement les PCB.
 
-Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des footprints de composants adaptés à’la OUdure en surface à la main. Les librairies de footprints fourissent généralement des variantes « handsoldering » dotés de pas plus large, mais cela ne garantit pas que le composant soit facile à souder. Une des diodes PESD que j’ai choisi était au format `SOD-882`, qui ne fait que 1mm de long.
+Pour cela, il a fallu prendre en compte quelques contraintes, comme utiliser des *footprints* de composants adaptés à la soudure à la main. Les bibiothèques de *footprints* fournissent généralement des variantes « *handsoldering* » dotées de pas plus large, mais cela ne garantit pas que le composant soit facile à souder. Une des diodes PESD que j’ai choisies était au format `SOD-882`, qui ne fait que 1 mm de long.
 
-J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière, afin de faciliter le travail d’Isabelle, notre cableuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais les cartes europe offrent largement assez de place.
+J’ai dû aussi faire attention à laisser de l’espace entre les composants et limiter le nombre de composants sur la face arrière, afin de faciliter le travail d’Isabelle, notre câbleuse. Cela implique que le PCB n’est pas aussi compact qu’il ne pourrait l’être, mais les cartes Europe offrent largement assez de place.
 
-Pour finir, il a fallu générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « bill of materials » (BOM) pour décrire quels composants sont nécessaires pour le bon fonctionnement de la carte et où les acheter.
+Pour finir, il a fallu générer la documentation nécessaire pour assembler la carte, en exportant un plan de montage propre et un « *bill of materials* » (BOM) pour décrire quels composants sont nécessaires pour le bon fonctionnement de la carte et où les acheter.
 
 ## Perspectives
 
