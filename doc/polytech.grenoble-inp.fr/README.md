@@ -307,7 +307,7 @@ La classe `Bridge` est automatiquement exportée en tant qu’objet QML grâce a
 
 Grâce à Python, l’application desktop est développée, mise au point et débuguée sur un PC, mais peut ensuite être exécutée par un SBC type Raspberry Pi — contrairement à LabVIEW — sans nécessiter de recompilation.
 
-![Screenchot de l’appli Sciduino](./appli_sciduino.png)
+![Copie d’écran de l’appli Sciduino](./appli_sciduino.png)
 
 **Retour d’expérience** après quelques semaines d’utilisation :
 
@@ -513,11 +513,11 @@ L’environnement de développement Arduino a un support officiel pour le rp2040
 
 L’API C serait le choix le plus évident, mais l’approche Rust Embedded semble pertinente :
 
-- des bibliothèques comme [embedded-hal][] (standard) ou [usb-device][] (communautaire) décrivent des interfaces générique, via des [traits][]
-- chaque classe de MCU a une bibliothèque qui implémente ces traits — il y en a une pour STM32 et une pour Raspberry, entre autres
-- le framework [rtic][] facilite grandement le développement d’applications embarqués
+- des bibliothèques comme [embedded-hal][] (standard) ou [usb-device][] (communautaire) décrivent des interfaces génériques, via des [traits][] ;
+- chaque classe de MCU a une bibliothèque qui implémente ces traits — il y en a une pour STM32 et une pour Raspberry, entre autres ;
+- le framework [rtic][] facilite grandement le développement d’applications embarquées.
 
-Le système de type et de traits de Rust permet d’avoir des performances marginalement meilleur qu’en C, mais avec une sécurité inégalée : se tromper de pin peut très souvent devenir une erreur de type !
+Le système de type et de traits de Rust permet d’avoir des performances marginalement meilleures qu’en C, mais avec une sécurité inégalée : se tromper de pin devient très souvent une erreur de type !
 
 Pour RBI, Rust Embedded pourrait donc être une solution complémentaire à Sciduino pour les projets critiques en performances, tout en conservant une couche d’abstraction « gratuite » pour ne pas être dépendant d’une architecture matérielle.
 
@@ -529,25 +529,25 @@ Pour RBI, Rust Embedded pourrait donc être une solution complémentaire à Scid
 
 ## Mise en œuvre
 
-Afin de limiter le poids des informations transféré sur le bus USB, les fronts sont encodé dans un bitset sur un entier 64 bits, sous la forme suivante :
+Afin de limiter le poids des informations transférées sur le bus USB, les fronts sont encodés dans un bitset sur un entier 64 bits, sous la forme suivante :
 
-- [63] la voie du front détecté (voie A / voie B)
-- [62] le type de front (montant / désendant)
-- [61] vaut `1` si le signal est saturé (valeur trop hautes)
-- [60] vaut `0` si le signal est saturé (valeur trop basses)
-- [0–59] le timestamp du front
+- [63] la voie du front détecté (voie A / voie B) ;
+- [62] le type de front (montant / descendant) ;
+- [61] vaut `1` si le signal est saturé (valeur trop haute) ;
+- [60] vaut `0` si le signal est saturé (valeur trop basse) ;
+- [0–59] le timestamp du front (nombre de µs depuis le début de l’acquisition).
 
 Le temps de montée / descente du front est pour l’instant ignoré, car il n’est pour l’instant pas utilisé dans l’application desktop.
 
-Le code est séparé en 3 modules distincts :
+Le code est séparé en 3 modules distincts.
 
-1. le module principal : il définit les types utilisés au sein de l’application, la procédure d’initialisation du MCU et ses périphériques ainsi que la mémoire partagée entre les deux cœurs, avant de démarrer la boucle principale de chaque cœur  ;
+1. Le module principal : il définit les types utilisés au sein de l’application, la procédure d’initialisation du MCU et de ses périphériques ainsi que la mémoire partagée entre les deux cœurs, avant de démarrer la boucle principale de chaque cœur.
 2. Core0 : il exporte la boucle principale du premier cœur, et est chargé de l’acquisition des données (via des PIO) et de la détection de fronts dans le signal.
 3. Core1 : il exporte la boucle principale du second cœur, et est chargé de la communication USB.
 
-Les programmes PIO sont normalement définit dans des fichiers `.pio` à part, puis assemblé dans des fichiers `.h` avec `pioasm`, ce qui permet de facilement les inclure dans un programme C. Cependant, le HAL rp2040 définit une macro pour écrire ces programmes au milieu du code Rust, et les configurer facilement via un objet `PIOBuilder`.
+Les programmes PIO sont normalement définis dans des fichiers `.pio` à part, puis assemblés dans des fichiers `.h` avec `pioasm`, ce qui permet de facilement les inclure dans un programme C. Cependant, le HAL rp2040 définit une macro pour écrire ces programmes au milieu du code Rust, et les configurer facilement via un objet `PIOBuilder`.
 
-Le signal numérisé par l’ADC est envoyé au MCU via un bus 8 bits parallèle, donc en connectant ce bus sur 8 GPIO d’indice consécutif, on peut récupérer la valeur de l’ADC en une instruction PIO. La directive `autopush` nous permet également d’envoyer au DMA les données dès que l’`ISR` (*Input Shift Register*) est rempli.
+Le signal numérisé par l’ADC est envoyé au MCU via un bus 8 bits parallèle, donc en connectant ce bus sur 8 GPIO d’indices consécutifs, on peut récupérer la valeur de l’ADC en une seule instruction PIO. La directive `autopush` nous permet également d’envoyer au DMA les données dès que l’`ISR` (*Input Shift Register*) est rempli.
 
 Le morceau de programme nécessaire pour assurer cette acquisition est donc juste :
 
