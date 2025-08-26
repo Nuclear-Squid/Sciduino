@@ -6,7 +6,8 @@ cd $(dirname "$0")
 
 # fqbn="arduino:mbed_giga:giga"
 # fqbn="arduino:avr:mega"
-fqbn="arduino:sam:arduino_due_x"
+# fqbn="arduino:sam:arduino_due_x"
+fqbn="arduino:megaavr:nona4809"
 port="/dev/ttyACM1"
 baudrate=115200
 

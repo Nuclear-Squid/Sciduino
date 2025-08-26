@@ -8,7 +8,7 @@ typedef   int32_t       i32;
 typedef   int64_t       i64;
 
 typedef   uint8_t       u8;
-#if defined(ARDUINO_SAM_DUE) || defined(ARDUINO_GIGA)
+#if defined(ARDUINO_SAM_DUE) || defined(ARDUINO_GIGA) || defined(ARDUINO_AVR_NANO_EVERY)
 typedef   uint16_t      u16;
 #endif
 typedef   uint32_t      u32;

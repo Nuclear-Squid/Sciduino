@@ -1,7 +1,7 @@
 #define USE_TIMER_1 true // NOTE: Needed by `TimerInterrupt`, keep above include statements
 
 #include "adc.h"
-#include "sciduino1k.h"
+#include "sciduino.h"
 #include "stdint_aliases.h"
 #include "timers.h"
 #include "waveforms.h"
@@ -256,6 +256,7 @@ void setup() {
     serial_input.reserve(256);
     Serial.begin(115200);
     adc->begin();
+    timer_init();
     while (!Serial);
 }
 

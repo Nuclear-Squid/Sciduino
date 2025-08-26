@@ -10,7 +10,7 @@
 // Arduino Giga
 // #if 0
 // #define CS_PIN 10
-#define Serial SerialUSB
+// #define Serial SerialUSB
 // #define SPI SPI1
 // #endif
 
