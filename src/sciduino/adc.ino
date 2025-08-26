@@ -28,7 +28,7 @@ void SciduinoADC::analogReadBurst(WaveformArray* waveforms, size_t measurements,
             status = waveforms.arr[i].push(adc->analogRead(waveforms.arr[i].meta.pin));
         }
 
-        if (status == FillStatus::CompletellyFull) {
+        if (status == FillStatus::CompletelyFull) {
             timer_stop();
             waveforms.schedule_transmission(transmission_format, BufferSubset::Full);
         }
@@ -72,7 +72,7 @@ void SciduinoADC::analogReadStream(WaveformArray* waveforms, size_t measurements
                 waveforms.schedule_transmission(transmission_format, BufferSubset::FirstHalf);
                 break;
 
-            case FillStatus::CompletellyFull:
+            case FillStatus::CompletelyFull:
                 waveforms.schedule_transmission(transmission_format, BufferSubset::SecondHalf);
                 break;
         }

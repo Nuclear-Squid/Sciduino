@@ -11,7 +11,7 @@ FillStatus Waveform::push(u16 value) {
 
     if (this->current_index == this->meta.length) {
         this->current_index = 0;
-        return FillStatus::CompletellyFull;
+        return FillStatus::CompletelyFull;
     }
 
     return this->current_index == this->meta.length / 2

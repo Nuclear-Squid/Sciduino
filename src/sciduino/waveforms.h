@@ -12,7 +12,7 @@ enum class TransmissionFormat: char {
 enum class FillStatus: u8 {
     DontWorry,
     HalfFull,
-    CompletellyFull,
+    CompletelyFull,
 };
 
 enum class BufferSubset: u8 {

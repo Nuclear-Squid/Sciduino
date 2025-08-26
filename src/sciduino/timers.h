@@ -27,7 +27,7 @@
     void timer_init() { }
 
 #else
-// TODO: Provide a software fallback in case we fail to provide a haardware
+// TODO: Provide a software fallback in case we fail to provide a hardware
 // timer implementation.
 #error "Timers are not supported for this board."
 
